@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    // 支持 import a from '@/a'
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      // "components/*": ["src/components/*"],
+    },
     "target": "es5",
     "lib": [
       "dom",

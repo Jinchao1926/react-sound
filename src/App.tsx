@@ -1,9 +1,26 @@
-import { memo } from 'react'
+import React, { Suspense, memo } from 'react'
+import type { FC, ReactNode } from 'react'
+import { useRoutes } from 'react-router-dom'
 
-const App = memo(() => {
+import routes from '@/routers'
+
+import AppHeader from '@/components/app-header'
+import AppFooter from '@/components/app-footer'
+
+interface IProps {
+  children?: ReactNode
+}
+
+const App: FC<IProps> = () => {
   return (
-    <div>App</div>
+    <div>
+      <AppHeader />
+      <Suspense fallback="">
+        <div>{ useRoutes(routes) }</div>
+      </Suspense>
+      <AppFooter />
+    </div>
   )
-})
+}
 
-export default App
+export default memo(App)
