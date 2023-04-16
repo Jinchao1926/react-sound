@@ -21,7 +21,7 @@ const AppFooter: FC<IProps> = () => {
             footerLinks.map((item, index) => {
               return (
                 <div key={item.title}>
-                  <a className={'logofooter ' + item.logo} href={item.link}/>
+                  <a className={'logofooter ' + item.logo} href={item.link}> </a>
                   <span className='title'>{item.title}</span>
                 </div>
               )

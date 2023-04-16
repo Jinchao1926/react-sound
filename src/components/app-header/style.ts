@@ -63,7 +63,8 @@ export const HeaderLeft = styled.div`
         bottom: -1px;
         left: 50%;  // 元素左边距位于父元素中心
         transform: translate(-50%, 0);  // 元素左移自身宽度的一半
-        background-position: -226px 0;
+        background-position: -105px -70px;
+        background-size: 120px auto;
       }
 
       // Hot
