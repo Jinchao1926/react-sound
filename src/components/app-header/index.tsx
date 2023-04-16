@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import { 
-  HeaderWrapper, 
+  AppHeaderWrapper, 
   HeaderLeft, 
   HeaderRight 
 } from './style'
@@ -37,10 +37,10 @@ const AppHeader: FC<IProps> = () => {
   }
 
   return (
-    <HeaderWrapper>
+    <AppHeaderWrapper>
       <div className='content wrap-v1'>
         <HeaderLeft>
-          <a href='#/' className='logo sprite_01'></a>
+          <a className='logo-app sprite_01' href='#/'>网易云音乐</a>
           <div className='nav-list'>
             {
               headerLinks.map((item) => {
@@ -64,7 +64,7 @@ const AppHeader: FC<IProps> = () => {
         </HeaderRight>
       </div>
       <div className='divider'></div>
-    </HeaderWrapper>
+    </AppHeaderWrapper>
   )
 }
 

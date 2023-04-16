@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HeaderWrapper = styled.div`
+export const AppHeaderWrapper = styled.div`
   height: 75px;
   background-color: #242424;
   border-bottom: 1px #000;
@@ -23,7 +23,7 @@ export const HeaderLeft = styled.div`
   display: flex;
   justify-content: space-between;
 
-  .logo {
+  .logo-app {
     // a 元素默认不能修改宽高
     display: block;
     width: 157px;
@@ -31,6 +31,8 @@ export const HeaderLeft = styled.div`
     // 背景图片定位到元素的左上角
     background-position: 0 0;
     padding-right: 20px;
+    // SEO 优化，但是又不想显示文本
+    text-indent: -9999px;
   }
 
   .nav-list {
