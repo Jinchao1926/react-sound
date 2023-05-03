@@ -6,6 +6,8 @@
       "@/*": ["src/*"],
       // "components/*": ["src/components/*"],
     },
+    // 解决 tsx 文件无法识别 redux 的问题
+    // "types": ["node", "react-redux"],
     "target": "es5",
     "lib": [
       "dom",

@@ -32,6 +32,7 @@ class RSRequest {
         if (error.response.status === 404) {
           console.log('404的错误~')
         }
+        console.log('其他网络错误~')
         return error
       }
     )

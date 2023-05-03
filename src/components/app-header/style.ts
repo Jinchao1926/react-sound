@@ -80,7 +80,7 @@ export const HeaderLeft = styled.div`
           background-image: url(${require('@/assets/img/sprite_01.png')});// url('@/assets/img/sprite_01.png');
           background-position: -190px 0;
           top: 20px;
-          right: -15px;
+          right: -20px;
         }
       }
     }
@@ -91,12 +91,12 @@ export const HeaderRight = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
+  font-size: 12px;
 
   .search {
     width: 158px;
     height: 32px;
     border-radius: 32px;
-    font-size: 12px;
 
     input {
       &::placeholder {

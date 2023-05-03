@@ -1,4 +1,4 @@
-import { rsRequest } from ".."
+import { rsRequest } from "@/services"
 
 export function fetchBanners() {
   return rsRequest.get({
