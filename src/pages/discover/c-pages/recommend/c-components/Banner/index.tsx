@@ -12,6 +12,7 @@ import {
   BannerControl
 } from './style'
 
+import classNames from 'classnames'
 
 interface IProps {
   children?: ReactNode
@@ -54,6 +55,8 @@ const Banner: FC<IProps> = () => {
             ref={bannerRef}
             pauseOnHover={true}
             pauseOnDotsHover={true}
+            dotPosition='top'
+            dots={false}
             beforeChange={handleBeforeChange}
             afterChange={handleAfterChange}
           >
@@ -71,6 +74,21 @@ const Banner: FC<IProps> = () => {
               })
             }
           </Carousel>
+          {/* 自定义走马灯 Dot */}
+          <ul className='dots'>
+            {
+              banners.map((item, idx) => {
+                return (
+                  <li key={item.imageUrl}>
+                    <button 
+                      className={classNames('item', {active: currentIndex === idx})}
+                      onClick={e => bannerRef.current?.goTo(idx)}
+                    />
+                  </li>
+                )
+              })
+            }
+          </ul>
         </BannerLeft>
         <BannerRight>
           <p>PC 安卓 iPhone WP iPad Mac 六大客户端</p>

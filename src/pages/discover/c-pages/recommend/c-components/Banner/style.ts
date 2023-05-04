@@ -30,6 +30,31 @@ export const BannerLeft = styled.div`
       object-position: center;
     }
   }
+
+  .dots {
+    position: absolute;
+    bottom: 0;
+    width: 730px;
+    display: flex;
+    justify-content: center;
+
+    > li {
+      margin: 0 2px;
+  
+      .item {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url(${require('@/assets/img/banner_sprite.png')});
+        background-position: 3px -343px;
+        cursor: pointer;
+
+        &:hover, &.active {
+          background-position: -16px -343px;
+        }
+      }
+    }
+  }
 `
 
 export const BannerRight = styled.a.attrs({
@@ -68,6 +93,8 @@ export const BannerControl = styled.div`
     height: 63px;
     background-image: url(${require('@/assets/img/banner_sprite.png')});
     background-color: transparent;
+    // 光标变为手形，一般用于提示可点击
+    cursor: pointer;
 
     &:hover {
       background-color: rgba(0, 0, 0, .2);
