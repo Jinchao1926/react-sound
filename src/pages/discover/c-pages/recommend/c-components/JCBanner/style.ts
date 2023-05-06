@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
-interface BannerProps {
+interface JCBannerProps {
   bgImage?: string
 }
-
-export const BannerWrapper = styled.div<BannerProps>`
+export const JCBannerWrapper = styled.div<JCBannerProps>`
   background: url(${ props => props.bgImage });
   background-size: 6000px;
   background-position: center;
@@ -16,8 +15,7 @@ export const BannerWrapper = styled.div<BannerProps>`
   }
 `
 
-export const BannerLeft = styled.div`
-  /* position: relative; */
+export const JCBannerLeft = styled.div`
   width: 730px;
 
   .banner-item {
@@ -30,6 +28,38 @@ export const BannerLeft = styled.div`
       object-position: center;
     }
   }
+
+  .fade-exit {
+    opacity: 1;
+  }
+
+  .fade-exit-active {
+    opacity: 0.2;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  /*
+  .slide-enter {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  .slide-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 500ms, transform 500ms;
+  }
+
+  .slide-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .slide-exit-active {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 500ms, transform 500ms;
+  } */
 
   .dots {
     position: absolute;
@@ -57,7 +87,7 @@ export const BannerLeft = styled.div`
   }
 `
 
-export const BannerRight = styled.a.attrs({
+export const JCBannerRight = styled.a.attrs({
   href: 'https://music.163.com/#/download',
   target: '_blank' // 会导致页面跳转
 })`
@@ -80,7 +110,7 @@ export const BannerRight = styled.a.attrs({
   }
 `
 
-export const BannerControl = styled.div`
+export const JCBannerControl = styled.div`
   position: absolute;
   left: 0;
   right: 0;

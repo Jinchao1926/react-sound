@@ -12,7 +12,7 @@ import {
   RecommendWrapper 
 } from './style'
 import Banner from './c-components/Banner'
-import { useSelector } from 'react-redux'
+// import JCBanner from './c-components/JCBanner'
 
 interface IProps {
   children?: ReactNode
@@ -28,6 +28,7 @@ const Recommend: FC<IProps> = () => {
   return (
     <RecommendWrapper>
       <Banner />
+      {/* <JCBanner /> */}
       <div>Recommend</div>
     </RecommendWrapper>
   )
