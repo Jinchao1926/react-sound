@@ -45,6 +45,7 @@ const JCBanner: FC<IProps> = () => {
     if (banners.length === 0) return
     setBgImage(banners[currentIndex].imageUrl + '?imageView&blur=40x20')
     setRefreshTimer(!refreshTimer)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [banners])
   // 更新 imageUrl
   useEffect(() => {
@@ -64,6 +65,7 @@ const JCBanner: FC<IProps> = () => {
       console.log("useEffect return ")
       if (timerRef.current) clearInterval(timerRef.current)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refreshTimer, isPaused])
 
   // 事件监听

@@ -9,10 +9,14 @@ import {
 
 // UIs
 import { 
-  RecommendWrapper 
+  RecommendWrapper,
+  RecommendSection,
+  RecommendLeft,
+  RecommendRight
 } from './style'
-import Banner from './c-components/Banner'
-// import JCBanner from './c-components/JCBanner'
+import Banner from './c-components/banner'
+import JCBanner from './c-components/jc-banner'
+import UserProfile from './c-components/user-profile'
 
 interface IProps {
   children?: ReactNode
@@ -21,7 +25,6 @@ interface IProps {
 const Recommend: FC<IProps> = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
-    console.log("Recommend")
     dispatch(fetchRecommendDataAsync())
   }, [])
 
@@ -29,7 +32,14 @@ const Recommend: FC<IProps> = () => {
     <RecommendWrapper>
       <Banner />
       {/* <JCBanner /> */}
-      <div>Recommend</div>
+      <RecommendSection className="wrap-v2">
+        {/* <RecommendLeft>
+
+        </RecommendLeft> */}
+        {/* <RecommendRight> */}
+          {/* <UserProfile /> */}
+        {/* </RecommendRight> */}
+      </RecommendSection>
     </RecommendWrapper>
   )
 }
