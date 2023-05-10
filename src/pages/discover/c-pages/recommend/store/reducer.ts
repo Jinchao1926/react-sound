@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 /* Reducer */
 interface IRecommendState {
-  banners: any[]
+  banners: any[],
+  hotRecommends: any[]
 }
 const initialState: IRecommendState = {
-  banners: []
+  banners: [],
+  hotRecommends: []
 }
 
 const recommendSlice = createSlice({
@@ -14,12 +16,16 @@ const recommendSlice = createSlice({
   reducers: {
     changeBannersAction(state, action) {
       state.banners = action.payload
+    },
+    changeHotRecommendsAction(state, action) {
+      state.hotRecommends = action.payload
     }
   },
 })
   
 export const {
-  changeBannersAction
+  changeBannersAction,
+  changeHotRecommendsAction
 } = recommendSlice.actions
 export default recommendSlice.reducer
 /* Reducer Ends */

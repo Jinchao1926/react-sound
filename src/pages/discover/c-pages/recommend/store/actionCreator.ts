@@ -1,10 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { 
-  changeBannersAction 
+  changeBannersAction,
+  changeHotRecommendsAction
 } from "./reducer";
 
 import { 
-  fetchBanners 
+  fetchBanners,
+  fetchHotRecommends
 } from "../service/recommend";
 
 // 定义获取推荐列表数据的异步 Action
@@ -14,7 +16,6 @@ export const fetchRecommendDataAsync = createAsyncThunk(
     try {
       const { banners } = await fetchBanners();
       dispatch(changeBannersAction(banners))
-      console.log("banners: ", banners)
     } catch (error) {
       console.log("fetchBanners error: ", error)
     }
@@ -25,5 +26,12 @@ export const fetchRecommendDataAsync = createAsyncThunk(
     // }).catch((err: any) => {
     //   console.log("fetchBanners error: ", err)
     // })
+
+    try {
+      const { result } = await fetchHotRecommends();
+      dispatch(changeHotRecommendsAction(result))
+    } catch (error) {
+      console.log("fetchHotRecommends error: ", error)
+    }
   }
 )

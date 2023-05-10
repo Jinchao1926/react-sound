@@ -15,8 +15,12 @@ import {
   RecommendRight
 } from './style'
 import Banner from './c-components/banner'
-import JCBanner from './c-components/jc-banner'
+// import JCBanner from './c-components/jc-banner'
 import UserProfile from './c-components/user-profile'
+import HotRecommend from './c-components/hot-recommend'
+import NewAlbum from './c-components/new-album'
+import RankList from './c-components/rank-list'
+import ResidentSinger from './c-components/resident-singer'
 
 interface IProps {
   children?: ReactNode
@@ -26,19 +30,23 @@ const Recommend: FC<IProps> = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(fetchRecommendDataAsync())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <RecommendWrapper>
       <Banner />
       {/* <JCBanner /> */}
-      <RecommendSection className="wrap-v2">
-        {/* <RecommendLeft>
-
-        </RecommendLeft> */}
-        {/* <RecommendRight> */}
-          {/* <UserProfile /> */}
-        {/* </RecommendRight> */}
+      <RecommendSection>
+        <RecommendLeft>
+          <HotRecommend />
+          <NewAlbum />
+          <RankList />
+        </RecommendLeft>
+        <RecommendRight>
+          <UserProfile />
+          <ResidentSinger />
+        </RecommendRight>
       </RecommendSection>
     </RecommendWrapper>
   )
