@@ -12,6 +12,9 @@ const RankList: FC<IProps> = () => {
   return (
     <RankListWrapper>
       <SectionHeaderRCM title='榜单' morePath='/discover/ranking'/>
+      <div className='rank-list'>
+        
+      </div>
     </RankListWrapper>
   )
 }

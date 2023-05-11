@@ -13,6 +13,7 @@ interface IProps {
   children?: ReactNode
 }
 
+// 热门推荐
 const HotRecommend: FC<IProps> = () => {
   // 获取 redux 数据
   const { hotRecommends } = useAppSelector(state => ({
