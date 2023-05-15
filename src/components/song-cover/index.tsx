@@ -16,7 +16,7 @@ const SongCover: FC<IProps> = (props: IProps) => {
     <SongCoverWrapper>
       <div className='cover'>
         <a href={`/playlist?id=${info.id}`}> 
-          <img src={formatSizedImage(info.picUrl, 160)} alt={info.name} />
+          <img src={formatSizedImage(info.picUrl, 140)} alt={info.name} />
         </a>
         
         <div className='panel sprite_cover'>

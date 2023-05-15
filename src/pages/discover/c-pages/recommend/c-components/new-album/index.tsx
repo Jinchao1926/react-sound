@@ -39,7 +39,7 @@ const NewAlbum: FC<IProps> = () => {
             return (
               <div className='album-page' key={idx}>
                 {albums.slice(idx * 5, (idx + 1) * 5).map(item => {
-                  return <AlbumCover info={item} style={albumStyle}/>
+                  return <AlbumCover key={item.id} info={item} style={albumStyle}/>
                 })}
               </div>
             )

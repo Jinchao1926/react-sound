@@ -4,12 +4,14 @@ import { createSlice } from "@reduxjs/toolkit";
 interface IRecommendState {
   banners: any[],
   hotRecommends: any[],
-  newAlbums: any[]
+  newAlbums: any[],
+  rankings: any[]
 }
 const initialState: IRecommendState = {
   banners: [],
   hotRecommends: [],
-  newAlbums: []
+  newAlbums: [],
+  rankings: []
 }
 
 const recommendSlice = createSlice({
@@ -24,6 +26,9 @@ const recommendSlice = createSlice({
     },
     changeNewAlbumsAction(state, action) {
       state.newAlbums = action.payload
+    },
+    changeRankingsAction(state, action) {
+      state.rankings = action.payload
     }
   },
 })
@@ -31,7 +36,8 @@ const recommendSlice = createSlice({
 export const {
   changeBannersAction,
   changeHotRecommendsAction,
-  changeNewAlbumsAction
+  changeNewAlbumsAction,
+  changeRankingsAction
 } = recommendSlice.actions
 export default recommendSlice.reducer
 /* Reducer Ends */

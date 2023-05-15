@@ -4,7 +4,8 @@ import type { FC, ReactNode } from 'react'
 // Store
 import { useAppDispatch } from '@/store'
 import { 
-  fetchRecommendDataAsync 
+  fetchRecommendDataAsync,
+  fetchRankingDataAsync
 } from './store'
 
 // UIs
@@ -19,7 +20,7 @@ import Banner from './c-components/banner'
 import UserProfile from './c-components/user-profile'
 import HotRecommend from './c-components/hot-recommend'
 import NewAlbum from './c-components/new-album'
-import RankList from './c-components/rank-list'
+import RankingList from './c-components/ranking-list'
 import ResidentSinger from './c-components/resident-singer'
 
 interface IProps {
@@ -30,6 +31,7 @@ const Recommend: FC<IProps> = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(fetchRecommendDataAsync())
+    dispatch(fetchRankingDataAsync())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -41,7 +43,7 @@ const Recommend: FC<IProps> = () => {
         <RecommendLeft>
           <HotRecommend />
           <NewAlbum />
-          <RankList />
+          <RankingList />
         </RecommendLeft>
         <RecommendRight>
           <UserProfile />
