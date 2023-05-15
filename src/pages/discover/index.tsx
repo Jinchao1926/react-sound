@@ -9,6 +9,7 @@ interface IProps {
   children?: ReactNode
 }
 
+// 发现音乐
 const Discover: FC<IProps> = () => {
   return (
     <DiscoverWrapper>

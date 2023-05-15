@@ -117,9 +117,7 @@ export function fetchTopList() {
   })
 }
 
-/* 获取榜单详情，榜单也是歌单的一种
-
-*/
+// 获取榜单详情，榜单也是歌单的一种
 export function fetchPlaylistDetail(id: number) {
   return rsRequest.get({
     url: '/playlist/detail',
@@ -128,3 +126,17 @@ export function fetchPlaylistDetail(id: number) {
     }
   })
 }
+
+// 获取热门歌手
+export function fetchTopArtists(offset: number = 0, limit: number = 5) {
+  return rsRequest.get({
+    url: '/top/artists',
+    params: {
+      offset,
+      limit
+    }
+  })
+}
+
+// 热门歌手：/top/artists?offset=0&limit=30
+// 歌手分类列表：/artist/list?type=1&area=96&initial=b

@@ -5,13 +5,15 @@ interface IRecommendState {
   banners: any[],
   hotRecommends: any[],
   newAlbums: any[],
-  rankings: any[]
+  rankings: any[],
+  hotSingers: any[]
 }
 const initialState: IRecommendState = {
   banners: [],
   hotRecommends: [],
   newAlbums: [],
-  rankings: []
+  rankings: [],
+  hotSingers: []
 }
 
 const recommendSlice = createSlice({
@@ -29,6 +31,9 @@ const recommendSlice = createSlice({
     },
     changeRankingsAction(state, action) {
       state.rankings = action.payload
+    },
+    changeHotSingersAction(state, action) {
+      state.hotSingers = action.payload
     }
   },
 })
@@ -37,7 +42,8 @@ export const {
   changeBannersAction,
   changeHotRecommendsAction,
   changeNewAlbumsAction,
-  changeRankingsAction
+  changeRankingsAction,
+  changeHotSingersAction
 } = recommendSlice.actions
 export default recommendSlice.reducer
 /* Reducer Ends */

@@ -3,14 +3,16 @@ import {
   changeBannersAction,
   changeHotRecommendsAction,
   changeNewAlbumsAction,
-  changeRankingsAction
+  changeRankingsAction,
+  changeHotSingersAction
 } from "./reducer";
 
 import { 
   fetchBanners,
   fetchHotRecommends,
   fetchTopAlbums,
-  fetchPlaylistDetail
+  fetchPlaylistDetail,
+  fetchTopArtists
 } from "../service/recommend";
 
 // 定义获取推荐列表数据的异步 Action
@@ -66,6 +68,17 @@ export const fetchRankingDataAsync = createAsyncThunk(
       dispatch(changeRankingsAction(rankings))
     }).catch((error) => {
       console.log("fetchPlaylistDetail error: ", error)
+    })
+  }
+)
+
+export const fetchSingerDataAsync = createAsyncThunk(
+  "fetchSingerDatas",
+  async (_, { dispatch }) => {
+    fetchTopArtists().then((res) => {
+      dispatch(changeHotSingersAction(res.artists))
+    }).catch((error) => {
+      console.log("fetchTopArtists error: ", error)
     })
   }
 )

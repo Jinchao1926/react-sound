@@ -90,7 +90,7 @@ export const RankingColumnListWrapper = styled.div`
       text-align: center;
     }
     .name {
-      /* width: 170px; */
+      width: 170px;
       flex: 1;
       color: #000;
       white-space: nowrap;
