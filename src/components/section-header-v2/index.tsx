@@ -11,7 +11,7 @@ interface IProps {
 
 const SectionHeaderV2: FC<IProps> = (props: IProps) => {
   const { title, morePath } = props
-  const showMorePath = (morePath != null && morePath != undefined)
+  const showMorePath = (morePath !== null && morePath !== undefined)
 
   return (
     <SectionHeaderV2Wrapper>

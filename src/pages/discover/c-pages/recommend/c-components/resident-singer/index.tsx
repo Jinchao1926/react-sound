@@ -29,7 +29,7 @@ const ResidentSinger: FC<IProps> = () => {
           hotSingers.map(item => {
             return (
               <a className='singer' key={item.id} href={`/user/home?id=${item.id}`}>
-                <img className='avatar' src={formatSizedImage(item.picUrl, 62)}/>
+                <img className='avatar' src={formatSizedImage(item.picUrl, 62)} alt=''/>
                 <div className='info'>
                   <h4 className='name'>{item.name}</h4>
                   <p className='desc'>{item.alias.join(' ') || item.name}</p>
