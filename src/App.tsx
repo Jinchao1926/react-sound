@@ -6,6 +6,7 @@ import routes from '@/routers'
 
 import AppHeader from '@/components/app-header'
 import AppFooter from '@/components/app-footer'
+import PlayerBar from '@/pages/player/player-bar'
 
 interface IProps {
   children?: ReactNode
@@ -19,6 +20,7 @@ const App: FC<IProps> = () => {
         <div>{ useRoutes(routes) }</div>
       </Suspense>
       <AppFooter />
+      <PlayerBar />
     </div>
   )
 }
