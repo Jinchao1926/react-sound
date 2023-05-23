@@ -8,6 +8,7 @@ import {
   fetchRankingDataAsync,
   fetchSingerDataAsync
 } from './store'
+import { fetchSongDetailAsync } from '@/pages/player/store'
 
 // UIs
 import { 
@@ -36,6 +37,9 @@ const Recommend: FC<IProps> = () => {
     dispatch(fetchRecommendDataAsync())
     dispatch(fetchRankingDataAsync())
     dispatch(fetchSingerDataAsync())
+
+    // Test
+    dispatch(fetchSongDetailAsync("2046805446"))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

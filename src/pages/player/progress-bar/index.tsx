@@ -19,8 +19,23 @@ const ProgressBar: FC<IProps> = (props: IProps) => {
   const [curPercent, setCurPercent] = useState(percent)
   const [isDragging, setIsDragging] = useState(false)
   const curPercentRef = useRef<number>(curPercent)
-  const fullRef = useRef<HTMLDivElement>(null)
 
+  const barRef = useRef<HTMLDivElement>(null)
+  const fullRef = useRef<HTMLDivElement>(null)
+  const curRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    barRef.current!.style.width = `${width}px`
+  }, [width])
+
+  // 更新进度条，这种写法不会重新渲染组件，只会修改 width 属性
+  // 如果使用 styled-components 的话，虚拟 DOM 会重新渲染
+  useEffect(() => {
+    setCurPercent(percent)
+
+    curRef.current!.style.width = `${percent}%`
+  }, [percent])
+  
   // Mouse events
   function moveProgress(e: React.MouseEvent) {
     if (!fullRef.current) return
@@ -56,13 +71,9 @@ const ProgressBar: FC<IProps> = (props: IProps) => {
   // Mouse events Ends
 
   return (
-    <ProgressBarWrapper 
-      className='sprite_progress_bar progress' 
-      width={width}
-      percent={curPercent}
-      >
+    <ProgressBarWrapper className='sprite_progress_bar progress' ref={barRef}>
       <div className='sprite_progress_bar full' ref={fullRef} onClick={e => handleProgressClick(e)} />
-      <div className='sprite_progress_bar cur' onClick={e => handleProgressClick(e)}>
+      <div className='sprite_progress_bar cur' ref={curRef} onClick={e => handleProgressClick(e)}>
         <span 
           className='sprite_icon dot' 
           onMouseDown={ e => handleMouseDown() }

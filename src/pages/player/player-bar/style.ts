@@ -16,7 +16,11 @@ export const PlayerBarWrapper = styled.div`
   }
 `
 
-export const PlayerControl = styled.div`
+interface IPlayerControl {
+  isPlaying: Boolean
+}
+
+export const PlayerControl = styled.div<IPlayerControl>`
   display: flex;
   padding-top: 6px;
   width: 137px;
@@ -37,9 +41,9 @@ export const PlayerControl = styled.div`
     width: 36px;
     height: 36px;
     margin: 0 8px;
-    background-position: 0 -204px;
+    background-position: ${props => props.isPlaying ? '0 -165px' : '0 -204px'};
     &:hover {
-      background-position: -40px -204px;
+      background-position: ${props => props.isPlaying ? '-40px -165px' : '-40px -204px'};
     }
   }
   .next {
@@ -124,6 +128,7 @@ export const PlayerAction = styled.div`
     width: 126px;
     padding-left: 13px;
     background-position: -147px -248px;
+    box-sizing: border-box;
   }
 
   .btn {

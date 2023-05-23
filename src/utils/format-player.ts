@@ -20,3 +20,7 @@ export function roundToDecimal(num: number, decimal: number) {
   const rounded = Math.round(num / decimal) * decimal
   return rounded.toFixed(1) as unknown as number
 }
+
+export function getMusicUrl(id: number) {
+  return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+}

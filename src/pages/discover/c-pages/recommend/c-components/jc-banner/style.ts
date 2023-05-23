@@ -97,7 +97,7 @@ export const JCBannerRight = styled.a.attrs({
   right: -1px;
   width: 254px;
   height: 285px;
-  z-index: 20;
+  /* z-index: 20; */
 
   p {
     position: absolute;

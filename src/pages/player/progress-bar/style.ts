@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
-interface IProgressState {
-  width: number
-  percent: number
-}
-export const ProgressBarWrapper = styled.div<IProgressState>`
-  width: ${props => props.width + "px"};
+export const ProgressBarWrapper = styled.div`
+  width: 466px;
   height: 9px;
   position: relative;
   background-position: right 0;
@@ -19,7 +15,7 @@ export const ProgressBarWrapper = styled.div<IProgressState>`
     position: absolute;
     left: 0;
     top: 0;
-    width: ${props => props.percent}%;
+    width: 0%;
     height: 100%;
     background-position: left -66px;
 

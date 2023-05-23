@@ -1,12 +1,11 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState, useEffect, useRef } from 'react'
 import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
-import { useAppDispatch, useAppSelector } from '@/store'
-import { fetchSongDetailAsync } from '@/pages/player/store'
+import { useAppSelector } from '@/store'
 
 import { formatSizedImage } from '@/utils/format-utils'
-import { formatTime } from '@/utils/format-player'
+import { formatTime, getMusicUrl } from '@/utils/format-player'
 
 import { 
   PlayerBarWrapper,
@@ -25,9 +24,12 @@ const PlayerBar: FC<IProps> = () => {
   // data
   const [songUrl, setSongUrl] = useState("")
   const [songAvatar, setSongAvatar] = useState("")
-  const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
+
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0) // ms
+  const [duration, setDuration] = useState(0) // ms
   const [progress, setProgress] = useState(0)
+  const audioRef = useRef<HTMLAudioElement>(null)
 
   // redux
   const { currentSong } = useAppSelector(
@@ -37,44 +39,85 @@ const PlayerBar: FC<IProps> = () => {
     shallowEqual
   )
 
-  // request
-  const dispatch = useAppDispatch()
-  useEffect(() => {
-    dispatch(fetchSongDetailAsync("2046805446"))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   // Format data
   useEffect(() => {
-    if (!currentSong) {
-      setSongUrl('')
-      setSongAvatar(require('@/assets/img/default_album.png'))
-      setDuration(0)
+    if (currentSong) {
+      setSongUrl(`/song?id=${currentSong.id}`)
+      setSongAvatar(formatSizedImage(currentSong.al.picUrl, 35))
+      setDuration(currentSong.dt)
+  
+      if (audioRef.current) {
+        audioRef.current.src = getMusicUrl(currentSong.id)
+        audioRef.current.play()
+          .then(() => {
+            console.log("Play music successfully")
+          }).catch(err => {
+            console.log("Play music failed:", err)
+          })
+      }
       return
     }
-    setSongUrl(`/song?id=${currentSong?.id}`)
-    setSongAvatar(formatSizedImage(currentSong?.al.picUrl, 35))
-    setDuration(currentSong?.dt || 0)
+    
+    // clear 
+    setSongUrl('')
+    setSongAvatar(require('@/assets/img/default_album.png'))
+    setDuration(0)
 
+    if (audioRef.current) {
+      audioRef.current.src = ""
+      audioRef.current.pause()
+    }
   }, [currentSong])
 
-  // handles
+  // Player
+  function handlePlayMusic() {
+    const willBePlaying = !isPlaying
+    console.log("handlePlayMusic willBePlaying: ", willBePlaying)
+    if (willBePlaying) {
+      audioRef.current?.play()
+        .then(() => {
+          console.log("Play music successfully")
+        }).catch(err => {
+          console.log("Play music failed:", err)
+        })
+      console.log("Play")
+    } else {
+      audioRef.current?.pause()
+      console.log("Pause")
+    }
+    // willBePlaying ? audioRef.current?.play() : audioRef.current?.pause()
+    setIsPlaying(willBePlaying)
+  }
+  function handlePlayerTimeUpdate(e: React.SyntheticEvent) {
+    const target = e.target as HTMLAudioElement
+    const newTime = Math.min(target.currentTime * 1000, duration)// ms
+    setCurrentTime(newTime)
+    // console.log("handlePlayerTimeUpdate target.currentTime:", target.currentTime)
+    // console.log("progress:", newTime / duration * 100)
+    setProgress(newTime / duration * 100)
+  }
+
+  // Progress
   function handleProgressChange(percent: number) {
-    console.log("handleProgressChange:", percent)
+    console.log("handleProgressChange percent:", percent)
+    // 进度条变化中...
     const newTime = percent * duration / 100
     setCurrentTime(newTime)
     setProgress(percent)
   }
   function handleProgressAfterChange(percent: number) {
-    console.log("handleProgressAfterChange:", percent)
+    // 进度条变化结束后播放音乐
+    const newTimeInSec = (percent / 100) * duration / 1000
+    setCurrentTime(newTimeInSec)
+    audioRef.current && (audioRef.current.currentTime = newTimeInSec)
   }
 
   return (
     <PlayerBarWrapper className='sprite_player_bar'>
       <div className='content wrap-v2'>
-        <PlayerControl>
+        <PlayerControl isPlaying={isPlaying}>
           <button className='sprite_player_bar prev' />
-          <button className='sprite_player_bar play' />
+          <button className='sprite_player_bar play' onClick={e => handlePlayMusic()}/>
           <button className='sprite_player_bar next' />
         </PlayerControl>
         <PlayerInfo>
@@ -115,6 +158,7 @@ const PlayerBar: FC<IProps> = () => {
           </div>
         </PlayerAction>
       </div>
+      <audio ref={audioRef} onTimeUpdate={e => handlePlayerTimeUpdate(e)}/>
     </PlayerBarWrapper>
   )
 }
