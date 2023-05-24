@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useRef } from 'react'
+import React, { memo, useState, useEffect, useRef, useCallback } from 'react'
 import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
@@ -51,6 +51,9 @@ const PlayerBar: FC<IProps> = () => {
   
       if (audioRef.current) {
         audioRef.current.src = getMusicUrl(currentSong.id)
+
+        // DOMException: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
+        if (!isPlaying) return
         audioRef.current.play()
           .then(() => {
             setIsPlaying(true)
@@ -75,12 +78,15 @@ const PlayerBar: FC<IProps> = () => {
   }, [currentSong])
 
   // Player Actions
-  function handlePlayMusic() {
+  function handleChangeMusic(isForward: boolean = true) {
+    // 切歌
+  }
+  const handlePlayMusic = useCallback(() => {
     const isPaused = audioRef.current!.paused
     isPaused ? audioRef.current?.play() : audioRef.current?.pause()
-    setIsPlaying(!isPaused)
-  }
-  function handlePlayerTimeUpdate(e: React.SyntheticEvent) {
+    setIsPlaying(isPaused)
+  }, [])
+  const handlePlayerTimeUpdate = useCallback((e: React.SyntheticEvent) => {
     // 播放时间更新中... 如果这时候在拖动进度条，就不根据播放时间更新进度条
     if (isDragging) return
   
@@ -88,10 +94,10 @@ const PlayerBar: FC<IProps> = () => {
     const newTime = Math.min(target.currentTime * 1000, duration)// ms
     setCurrentTime(newTime)
     setProgress(newTime / duration * 100)
-  }
+  }, [isDragging, duration])
 
   // Progress Actions
-  function handleProgressChange(percent: number) {
+  const handleProgressChange = useCallback((percent: number) => {
     console.log("handleProgressChange percent:", percent)
     // 进度条变化中...
     setIsDragging(true)
@@ -99,22 +105,22 @@ const PlayerBar: FC<IProps> = () => {
     const newTime = percent * duration / 100
     setCurrentTime(newTime)
     setProgress(percent)
-  }
-  function handleProgressAfterChange(percent: number) {
+  }, [duration])
+  const handleProgressAfterChange = useCallback((percent: number) => {
     // 进度条变化结束后播放音乐
     const newTimeInSec = (percent / 100) * duration / 1000
     audioRef.current && (audioRef.current.currentTime = newTimeInSec)
   
     setIsDragging(false)
-  }
+  }, [duration])
 
   return (
     <PlayerBarWrapper className='sprite_player_bar'>
       <div className='content wrap-v2'>
         <PlayerControl>
-          <button className='sprite_player_bar prev' />
-          <PlayButton className='sprite_player_bar play' isPlaying={isPlaying} onClick={e => handlePlayMusic()}/>
-          <button className='sprite_player_bar next' />
+          <button className='sprite_player_bar prev' onClick={e => handleChangeMusic(false)}/>
+          <PlayButton className='sprite_player_bar play' isPlaying={isPlaying} onClick={handlePlayMusic}/>
+          <button className='sprite_player_bar next' onClick={e => handleChangeMusic()}/>
         </PlayerControl>
         <PlayerInfo>
           <div className='avatar'>
@@ -131,8 +137,8 @@ const PlayerBar: FC<IProps> = () => {
             <PlayerProgressBar>
               <ProgressBar 
                 percent={progress} 
-                onChange={value => handleProgressChange(value)}
-                onAfterChange={value => handleProgressAfterChange(value)}
+                onChange={handleProgressChange}
+                onAfterChange={handleProgressAfterChange}
               />
               <span className='time'>
                 <span className='now-time'>{ formatTime(currentTime) }</span>
@@ -150,11 +156,11 @@ const PlayerBar: FC<IProps> = () => {
           <div className='right sprite_playbar'>
             <button className='sprite_player_bar btn mute' />
             <button className='sprite_player_bar btn loop' />
-            <button className='sprite_player_bar btn playlist'>2</button>
+            <button className='sprite_player_bar btn playlist'>1</button>
           </div>
         </PlayerAction>
       </div>
-      <audio ref={audioRef} onTimeUpdate={e => handlePlayerTimeUpdate(e)}/>
+      <audio ref={audioRef} onTimeUpdate={handlePlayerTimeUpdate}/>
     </PlayerBarWrapper>
   )
 }

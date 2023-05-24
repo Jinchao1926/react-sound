@@ -31,9 +31,10 @@ const ProgressBar: FC<IProps> = (props: IProps) => {
   // 更新进度条，这种写法不会重新渲染组件，只会修改 width 属性
   // 如果使用 styled-components 的话，虚拟 DOM 会重新渲染
   useEffect(() => {
-    setCurPercent(percent)
+    const newPercent = roundToDecimal(percent, 0.5)
+    setCurPercent(newPercent)
 
-    curRef.current!.style.width = `${percent}%`
+    curRef.current!.style.width = `${newPercent}%`
   }, [percent])
   
   // Mouse events
