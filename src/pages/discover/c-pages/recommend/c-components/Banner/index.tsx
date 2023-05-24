@@ -1,4 +1,4 @@
-import React, { ElementRef, memo, useRef, useState } from 'react'
+import React, { ElementRef, memo, useState, useEffect, useRef } from 'react'
 import type { FC, ReactNode } from 'react'
 import { shallowEqual } from 'react-redux';
 
@@ -22,7 +22,7 @@ const Banner: FC<IProps> = () => {
   // 定义组件内部数据
   const [currentIndex, setCurrentIndex] = useState(0)
   const bannerRef = useRef<ElementRef<typeof Carousel>>(null)
-  const bgImageRef = useRef<string>()
+  const bgRef = useRef<HTMLDivElement>(null)
 
   // 从 redux 中获取数据
   const { banners } = useAppSelector(
@@ -32,9 +32,12 @@ const Banner: FC<IProps> = () => {
     shallowEqual
   )
 
-  if (currentIndex >= 0 && banners.length > 0) {
-    bgImageRef.current = banners[currentIndex].imageUrl + '?imageView&blur=40x20'
-  }
+  useEffect(() => {
+    if (currentIndex >= 0 && banners.length > 0) {
+      const bgImageUrl = banners[currentIndex].imageUrl + '?imageView&blur=40x20'
+      bgRef.current!.style.backgroundImage = `url(${bgImageUrl})`
+    }
+  }, [banners, currentIndex])
 
   // 事件监听
   function handleBeforeChange(from: number, to: number) {
@@ -46,7 +49,7 @@ const Banner: FC<IProps> = () => {
   }
 
   return (
-    <BannerWrapper bgImage={bgImageRef.current}>
+    <BannerWrapper ref={bgRef}>
       <div className='banner wrap-v2'>
         <BannerLeft>
           <Carousel 

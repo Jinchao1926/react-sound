@@ -52,7 +52,6 @@ const ProgressBar: FC<IProps> = (props: IProps) => {
 
   function handleProgressClick(e: React.MouseEvent) {
     moveProgress(e)
-    console.log("handleProgressClick")
     setTimeout(() => {
       onAfterChange && onAfterChange(curPercentRef.current)
     }, 0)

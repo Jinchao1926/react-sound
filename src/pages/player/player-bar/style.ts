@@ -16,11 +16,7 @@ export const PlayerBarWrapper = styled.div`
   }
 `
 
-interface IPlayerControl {
-  isPlaying: Boolean
-}
-
-export const PlayerControl = styled.div<IPlayerControl>`
+export const PlayerControl = styled.div`
   display: flex;
   padding-top: 6px;
   width: 137px;
@@ -37,20 +33,24 @@ export const PlayerControl = styled.div<IPlayerControl>`
       background-position: -30px -130px;
     }
   }
-  .play {
-    width: 36px;
-    height: 36px;
-    margin: 0 8px;
-    background-position: ${props => props.isPlaying ? '0 -165px' : '0 -204px'};
-    &:hover {
-      background-position: ${props => props.isPlaying ? '-40px -165px' : '-40px -204px'};
-    }
-  }
   .next {
     background-position: -80px -130px;
     &:hover {
       background-position: -110px -130px;
     }
+  }
+`
+
+interface IPlayButton {
+  isPlaying: Boolean
+}
+export const PlayButton = styled.button<IPlayButton>`
+  width: 36px;
+  height: 36px;
+  margin: 0 8px;
+  background-position: ${props => props.isPlaying ? '0 -165px' : '0 -204px'};
+  &:hover {
+    background-position: ${props => props.isPlaying ? '-40px -165px' : '-40px -204px'};
   }
 `
 

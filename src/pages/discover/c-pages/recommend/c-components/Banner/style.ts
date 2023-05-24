@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// 这种方式会重新渲染
 interface BannerProps {
   bgImage?: string
 }

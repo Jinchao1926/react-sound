@@ -10,6 +10,7 @@ import { formatTime, getMusicUrl } from '@/utils/format-player'
 import { 
   PlayerBarWrapper,
   PlayerControl,
+  PlayButton,
   PlayerInfo,
   PlayerProgressBar,
   PlayerAction
@@ -25,6 +26,8 @@ const PlayerBar: FC<IProps> = () => {
   const [songUrl, setSongUrl] = useState("")
   const [songAvatar, setSongAvatar] = useState("")
 
+  // 标识进度条是否在拖动，防止在音频播放过程中 & 拖动进度条时，进度条操作的冲突
+  const [isDragging, setIsDragging] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0) // ms
   const [duration, setDuration] = useState(0) // ms
@@ -39,7 +42,7 @@ const PlayerBar: FC<IProps> = () => {
     shallowEqual
   )
 
-  // Format data
+  // 监听 currentSong 变化
   useEffect(() => {
     if (currentSong) {
       setSongUrl(`/song?id=${currentSong.id}`)
@@ -50,8 +53,10 @@ const PlayerBar: FC<IProps> = () => {
         audioRef.current.src = getMusicUrl(currentSong.id)
         audioRef.current.play()
           .then(() => {
+            setIsPlaying(true)
             console.log("Play music successfully")
           }).catch(err => {
+            setIsPlaying(false)
             console.log("Play music failed:", err)
           })
       }
@@ -69,38 +74,28 @@ const PlayerBar: FC<IProps> = () => {
     }
   }, [currentSong])
 
-  // Player
+  // Player Actions
   function handlePlayMusic() {
-    const willBePlaying = !isPlaying
-    console.log("handlePlayMusic willBePlaying: ", willBePlaying)
-    if (willBePlaying) {
-      audioRef.current?.play()
-        .then(() => {
-          console.log("Play music successfully")
-        }).catch(err => {
-          console.log("Play music failed:", err)
-        })
-      console.log("Play")
-    } else {
-      audioRef.current?.pause()
-      console.log("Pause")
-    }
-    // willBePlaying ? audioRef.current?.play() : audioRef.current?.pause()
-    setIsPlaying(willBePlaying)
+    const isPaused = audioRef.current!.paused
+    isPaused ? audioRef.current?.play() : audioRef.current?.pause()
+    setIsPlaying(!isPaused)
   }
   function handlePlayerTimeUpdate(e: React.SyntheticEvent) {
+    // 播放时间更新中... 如果这时候在拖动进度条，就不根据播放时间更新进度条
+    if (isDragging) return
+  
     const target = e.target as HTMLAudioElement
     const newTime = Math.min(target.currentTime * 1000, duration)// ms
     setCurrentTime(newTime)
-    // console.log("handlePlayerTimeUpdate target.currentTime:", target.currentTime)
-    // console.log("progress:", newTime / duration * 100)
     setProgress(newTime / duration * 100)
   }
 
-  // Progress
+  // Progress Actions
   function handleProgressChange(percent: number) {
     console.log("handleProgressChange percent:", percent)
     // 进度条变化中...
+    setIsDragging(true)
+  
     const newTime = percent * duration / 100
     setCurrentTime(newTime)
     setProgress(percent)
@@ -108,16 +103,17 @@ const PlayerBar: FC<IProps> = () => {
   function handleProgressAfterChange(percent: number) {
     // 进度条变化结束后播放音乐
     const newTimeInSec = (percent / 100) * duration / 1000
-    setCurrentTime(newTimeInSec)
     audioRef.current && (audioRef.current.currentTime = newTimeInSec)
+  
+    setIsDragging(false)
   }
 
   return (
     <PlayerBarWrapper className='sprite_player_bar'>
       <div className='content wrap-v2'>
-        <PlayerControl isPlaying={isPlaying}>
+        <PlayerControl>
           <button className='sprite_player_bar prev' />
-          <button className='sprite_player_bar play' onClick={e => handlePlayMusic()}/>
+          <PlayButton className='sprite_player_bar play' isPlaying={isPlaying} onClick={e => handlePlayMusic()}/>
           <button className='sprite_player_bar next' />
         </PlayerControl>
         <PlayerInfo>
