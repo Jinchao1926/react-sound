@@ -67,7 +67,7 @@ export const PlayerInfo = styled.div`
       width: 100%;
       height: 100%;
     }
-    a {
+    .sprite_player_bar {
       background-position: 0 -80px;
       position: absolute;
       width: 100%;
@@ -85,6 +85,7 @@ export const PlayerInfo = styled.div`
       display: flex;
       height: 28px;
       line-height: 28px;
+
       .name {
         color: #e8e8e8;
         max-width: 300px;
@@ -166,6 +167,18 @@ export const PlayerAction = styled.div`
     background-position: -3px -344px;
     &:hover {
       background-position: -33px -344px;
+    }
+  }
+  .random {
+    background-position: -66px -248px;
+    &:hover {
+      background-position: -93px -248px;
+    }
+  }
+  .single-loop {
+    background-position: -66px -344px;
+    &:hover {
+      background-position: -92px -344px;
     }
   }
   .playlist {

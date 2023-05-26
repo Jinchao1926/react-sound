@@ -1,5 +1,12 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { NavLink } from 'react-router-dom'
+
+import { useAppDispatch } from '@/store'
+import { 
+  fetchSongDetailAsync,
+  addSongToPlaylistAction,
+} from '@/pages/player/store'
 
 import { formatSizedImage } from '@/utils/format-utils'
 
@@ -20,21 +27,34 @@ const RankingColumn: FC<IProps> = (props: IProps) => {
   const { tracks = [] } = info
 
   const rankingUrl = `/discover/ranking?id=${info.id}`
+  const dispatch = useAppDispatch()
+
+  // Playlist music handlers
+
+  // Music handlers
+  const playMusic = (item: any) => {
+    dispatch(fetchSongDetailAsync(item.id))
+  }
+  const addMusicToPlaylist = (item: any) => {
+    dispatch(addSongToPlaylistAction(item))
+  }
+  const collectMusic = (item: any) => {
+  }
 
   return (
     <RankingColumnWrapper>
       <RankingColumnHeaderWrapper>
         <div className='cover'>
           <img src={formatSizedImage(info.coverImgUrl, 80)} alt={info.name}/>
-          <a className='sprite_cover' href={rankingUrl}> </a>
+          <NavLink className='sprite_cover' to={rankingUrl} />
         </div>
         <div className='info'>
-          <a href={rankingUrl}>
+          <NavLink to={rankingUrl}>
             <h3>{info.name}</h3>
-          </a>
+          </NavLink>
           <div className='actions'>
-            <a className='sprite_02 btn play' href='/#' title='播放'> </a>
-            <a className='sprite_02 btn collect' href='/#' title='收藏'> </a>
+            <button className='sprite_02 btn play' title='播放'> </button>
+            <button className='sprite_02 btn collect' title='收藏'> </button>
           </div>
         </div>
       </RankingColumnHeaderWrapper>
@@ -46,9 +66,9 @@ const RankingColumn: FC<IProps> = (props: IProps) => {
                 <span className='index'>{index + 1}</span>
                 <span className='name'>{item.name}</span>
                 <div className='actions'>
-                  <a className='sprite_02 btn play' href='/#' title='播放'> </a>
-                  <a className='sprite_icon2 btn addTo' href='/#' title='添加到播放列表'> </a>
-                  <a className='sprite_02 btn collect' href='/#' title='收藏'> </a>
+                  <button className='sprite_02 btn play' title='播放' onClick={e => playMusic(item)} />
+                  <button className='sprite_icon2 btn addTo' title='添加到播放列表' onClick={e => addMusicToPlaylist(item)}/>
+                  <button className='sprite_02 btn collect' title='收藏' onClick={e => collectMusic(item)}/>
                 </div>
               </div>
             )
@@ -56,7 +76,7 @@ const RankingColumn: FC<IProps> = (props: IProps) => {
         }
       </RankingColumnListWrapper>
       <RankingColumnFootererWrapper>
-        <a href={rankingUrl}>查看全部</a>
+        <NavLink to={rankingUrl}>查看全部</NavLink>
       </RankingColumnFootererWrapper>
     </RankingColumnWrapper>
   )

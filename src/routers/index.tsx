@@ -2,6 +2,7 @@ import React, { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
 
+// Discover-related page
 const Discover = lazy(() => import('@/pages/discover'))
 const Recommend = lazy(() => import('@/pages/discover/c-pages/recommend'))
 const Ranking = lazy(() => import('@/pages/discover/c-pages/ranking'))
@@ -9,6 +10,7 @@ const Playlist = lazy(() => import('@/pages/discover/c-pages/playlist'))
 const DJRadio = lazy(() => import('@/pages/discover/c-pages/djradio'))
 const Artist = lazy(() => import('@/pages/discover/c-pages/artist'))
 const Album = lazy(() => import('@/pages/discover/c-pages/album'))
+const Player = lazy(() => import('@/pages/player'))
 
 const Mine = lazy(() => import('@/pages/mine'))
 const Friend = lazy(() => import('@/pages/friend'))
@@ -51,6 +53,10 @@ const routes: RouteObject[] = [
         path: '/discover/album',
         element: <Album />,
       },
+      {
+        path: '/discover/song',
+        element: <Player />,
+      },
     ]
   },
   {
@@ -61,11 +67,6 @@ const routes: RouteObject[] = [
     path: '/friend',
     element: <Friend />,
   },
-  // {
-  //   path: '/page',
-  //   element: <Page />,
-  //   children: []
-  // },
 ]
 
 export default routes

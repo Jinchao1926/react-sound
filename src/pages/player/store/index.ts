@@ -1,10 +1,14 @@
 import { 
-  fetchSongDetailAsync 
+  fetchSongDetailAsync,
+  addSongToPlaylistAction,
+  switchPlayModeAction
 } from "./actionCreator"
 
 import playerReducer from "./reducer"
 
 export {
   fetchSongDetailAsync,
-  playerReducer
+  addSongToPlaylistAction,
+  switchPlayModeAction,
+  playerReducer,
 }

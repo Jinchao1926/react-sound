@@ -5,9 +5,10 @@ export const RecommendWrapper = styled.div``
 export const RecommendSection = styled.div`
   width: 980px;
   margin: 0 auto;
-  border: 1px solid #d3d3d3;
-  display: flex;
   background-color: #fff;
+  border: 1px solid #d3d3d3;
+  border-width: 0 1px;
+  display: flex;
 `
 
 export const RecommendLeft = styled.div`

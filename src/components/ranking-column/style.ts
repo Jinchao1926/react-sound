@@ -52,6 +52,7 @@ export const RankingColumnHeaderWrapper = styled.div`
         height: 22px;
         margin-right: 10px;
         text-indent: -9999px;
+        cursor: pointer;
       }
       .play {
         background-position: -267px -205px;
@@ -109,6 +110,7 @@ export const RankingColumnListWrapper = styled.div`
         width: 17px;
         height: 17px;
         margin-left: 8px;
+        cursor: pointer;
       }
       .play {
         background-position: -267px -268px;

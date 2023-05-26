@@ -1,8 +1,10 @@
 import React, { memo, useState, useEffect, useRef, useCallback } from 'react'
 import type { FC, ReactNode } from 'react'
+import { NavLink } from 'react-router-dom'
 
 import { shallowEqual } from 'react-redux'
-import { useAppSelector } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
+import { switchPlayModeAction } from '../store'
 
 import { formatSizedImage } from '@/utils/format-utils'
 import { formatTime, getMusicUrl } from '@/utils/format-player'
@@ -35,9 +37,11 @@ const PlayerBar: FC<IProps> = () => {
   const audioRef = useRef<HTMLAudioElement>(null)
 
   // redux
-  const { currentSong } = useAppSelector(
+  const { currentSong, playlist, playMode } = useAppSelector(
     (state) => ({
-      currentSong: state.player.currentSong
+      currentSong: state.player.currentSong,
+      playlist: state.player.playlist,
+      playMode: state.player.playMode
     }), 
     shallowEqual
   )
@@ -45,7 +49,7 @@ const PlayerBar: FC<IProps> = () => {
   // 监听 currentSong 变化
   useEffect(() => {
     if (currentSong) {
-      setSongUrl(`/song?id=${currentSong.id}`)
+      setSongUrl(`/discover/song?id=${currentSong.id}`)
       setSongAvatar(formatSizedImage(currentSong.al.picUrl, 35))
       setDuration(currentSong.dt)
   
@@ -75,9 +79,16 @@ const PlayerBar: FC<IProps> = () => {
       audioRef.current.src = ""
       audioRef.current.pause()
     }
-  }, [currentSong])
+  }, [currentSong, isPlaying])
 
   // Player Actions
+  const dispatch = useAppDispatch()
+  const handlePlayMode = () => {
+    dispatch(switchPlayModeAction())
+  }
+  // Player Actions End
+
+  // Player Control Handlers
   function handleChangeMusic(isForward: boolean = true) {
     // 切歌
   }
@@ -95,6 +106,7 @@ const PlayerBar: FC<IProps> = () => {
     setCurrentTime(newTime)
     setProgress(newTime / duration * 100)
   }, [isDragging, duration])
+  // Player Control Handlers End
 
   // Progress Actions
   const handleProgressChange = useCallback((percent: number) => {
@@ -113,6 +125,7 @@ const PlayerBar: FC<IProps> = () => {
   
     setIsDragging(false)
   }, [duration])
+  // Progress Actions End
 
   return (
     <PlayerBarWrapper className='sprite_player_bar'>
@@ -125,11 +138,11 @@ const PlayerBar: FC<IProps> = () => {
         <PlayerInfo>
           <div className='avatar'>
             <img src={songAvatar} alt='' />
-            <a className='sprite_player_bar' href={songUrl}> </a>
+            <NavLink className='sprite_player_bar' to={songUrl} />
           </div>
           <div className='info'>
             <div className='music'>
-              <a className='name' href={songUrl}>{currentSong?.name}</a>
+              <NavLink className='name' to={songUrl}>{currentSong?.name}</NavLink>
               <span className='singer'>
                 { currentSong?.ar.map((item: {name: string}) => item.name).join("/" ) }
               </span>
@@ -155,8 +168,8 @@ const PlayerBar: FC<IProps> = () => {
           </div>
           <div className='right sprite_playbar'>
             <button className='sprite_player_bar btn mute' />
-            <button className='sprite_player_bar btn loop' />
-            <button className='sprite_player_bar btn playlist'>1</button>
+            <button className={`sprite_player_bar btn ${playMode}`} onClick={handlePlayMode}/>
+            <button className='sprite_player_bar btn playlist'>{playlist.length}</button>
           </div>
         </PlayerAction>
       </div>
