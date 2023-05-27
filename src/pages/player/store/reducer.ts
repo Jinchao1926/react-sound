@@ -4,7 +4,7 @@ import { PlayMode } from "../type/PlayMode";
 interface IPlayerState {
   currentSong?: any,
   playlist: any[],
-  currentSongIndex?: number,
+  currentSongIndex: number,
   playMode: PlayMode,
 }
 const initialState: IPlayerState = {

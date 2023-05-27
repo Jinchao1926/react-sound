@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import { shallowEqual } from 'react-redux'
 import { useAppDispatch, useAppSelector } from '@/store'
-import { switchPlayModeAction } from '../store'
+import { switchSongAction } from '../store'
 
 import { formatSizedImage } from '@/utils/format-utils'
 import { formatTime, getMusicUrl } from '@/utils/format-player'
@@ -15,9 +15,9 @@ import {
   PlayButton,
   PlayerInfo,
   PlayerProgressBar,
-  PlayerAction
 } from './style'
 import ProgressBar from '../progress-bar'
+import PlayerAction from './player-action'
 
 interface IProps {
   children?: ReactNode
@@ -35,13 +35,13 @@ const PlayerBar: FC<IProps> = () => {
   const [duration, setDuration] = useState(0) // ms
   const [progress, setProgress] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
+  const isPlayingRef = useRef(isPlaying)
 
   // redux
-  const { currentSong, playlist, playMode } = useAppSelector(
+  const { currentSong, playMode } = useAppSelector(
     (state) => ({
       currentSong: state.player.currentSong,
-      playlist: state.player.playlist,
-      playMode: state.player.playMode
+      playMode: state.player.playMode,
     }), 
     shallowEqual
   )
@@ -57,7 +57,7 @@ const PlayerBar: FC<IProps> = () => {
         audioRef.current.src = getMusicUrl(currentSong.id)
 
         // DOMException: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
-        if (!isPlaying) return
+        if (!isPlayingRef.current) return
         audioRef.current.play()
           .then(() => {
             setIsPlaying(true)
@@ -79,24 +79,38 @@ const PlayerBar: FC<IProps> = () => {
       audioRef.current.src = ""
       audioRef.current.pause()
     }
-  }, [currentSong, isPlaying])
+  }, [currentSong])
 
-  // Player Actions
+  useEffect(() => {
+    isPlayingRef.current = isPlaying
+  }, [isPlaying])
+
   const dispatch = useAppDispatch()
-  const handlePlayMode = () => {
-    dispatch(switchPlayModeAction())
-  }
-  // Player Actions End
 
-  // Player Control Handlers
+  // ========== Player Control Handlers ========== 
+  // 切歌（上一首/下一首）
   function handleChangeMusic(isForward: boolean = true) {
-    // 切歌
+    dispatch(switchSongAction(isForward))
   }
+  // 播放/暂停
   const handlePlayMusic = useCallback(() => {
     const isPaused = audioRef.current!.paused
     isPaused ? audioRef.current?.play() : audioRef.current?.pause()
     setIsPlaying(isPaused)
   }, [])
+  // ========== Player Control Handlers End ========== 
+
+  // ========== Audio Handlers ========== 
+  // 播放结束
+  const handlePlayerEnded = useCallback(() => {
+    if (playMode === "single-loop") {
+      audioRef.current!.currentTime = 0
+      audioRef.current!.play()
+      return 
+    }
+    dispatch(switchSongAction(true))
+  }, [dispatch, playMode])
+  // 播放回调
   const handlePlayerTimeUpdate = useCallback((e: React.SyntheticEvent) => {
     // 播放时间更新中... 如果这时候在拖动进度条，就不根据播放时间更新进度条
     if (isDragging) return
@@ -106,11 +120,10 @@ const PlayerBar: FC<IProps> = () => {
     setCurrentTime(newTime)
     setProgress(newTime / duration * 100)
   }, [isDragging, duration])
-  // Player Control Handlers End
+  // ========== Audio Handlers End ========== 
 
-  // Progress Actions
+  // ========== Progress Handlers ========== 
   const handleProgressChange = useCallback((percent: number) => {
-    console.log("handleProgressChange percent:", percent)
     // 进度条变化中...
     setIsDragging(true)
   
@@ -118,6 +131,7 @@ const PlayerBar: FC<IProps> = () => {
     setCurrentTime(newTime)
     setProgress(percent)
   }, [duration])
+
   const handleProgressAfterChange = useCallback((percent: number) => {
     // 进度条变化结束后播放音乐
     const newTimeInSec = (percent / 100) * duration / 1000
@@ -125,15 +139,15 @@ const PlayerBar: FC<IProps> = () => {
   
     setIsDragging(false)
   }, [duration])
-  // Progress Actions End
+  // ========== Progress Handlers End ========== 
 
   return (
     <PlayerBarWrapper className='sprite_player_bar'>
       <div className='content wrap-v2'>
         <PlayerControl>
-          <button className='sprite_player_bar prev' onClick={e => handleChangeMusic(false)}/>
+          <button className='sprite_player_bar prev' onClick={ e => handleChangeMusic(false)}/>
           <PlayButton className='sprite_player_bar play' isPlaying={isPlaying} onClick={handlePlayMusic}/>
-          <button className='sprite_player_bar next' onClick={e => handleChangeMusic()}/>
+          <button className='sprite_player_bar next' onClick={ e => handleChangeMusic(true)}/>
         </PlayerControl>
         <PlayerInfo>
           <div className='avatar'>
@@ -160,20 +174,9 @@ const PlayerBar: FC<IProps> = () => {
             </PlayerProgressBar>
           </div>
         </PlayerInfo>
-        <PlayerAction>
-          <div className='left'>
-            <button className='btn pip' />
-            <button className='sprite_player_bar btn collect' />
-            <button className='sprite_player_bar btn share' />
-          </div>
-          <div className='right sprite_playbar'>
-            <button className='sprite_player_bar btn mute' />
-            <button className={`sprite_player_bar btn ${playMode}`} onClick={handlePlayMode}/>
-            <button className='sprite_player_bar btn playlist'>{playlist.length}</button>
-          </div>
-        </PlayerAction>
+        <PlayerAction />
       </div>
-      <audio ref={audioRef} onTimeUpdate={handlePlayerTimeUpdate}/>
+      <audio ref={audioRef} onTimeUpdate={handlePlayerTimeUpdate} onEnded={handlePlayerEnded}/>
     </PlayerBarWrapper>
   )
 }

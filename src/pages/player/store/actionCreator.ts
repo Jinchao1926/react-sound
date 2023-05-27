@@ -85,3 +85,47 @@ export const switchPlayModeAction = createAsyncThunk<
     dispatch(changePlayModeAction(newPlayMode))
   }
 )
+
+// 切换歌曲（上一首 / 下一首）
+export const switchSongAction = createAsyncThunk<
+  void,
+  boolean,
+  { state: RootState }
+>(
+  "switchSong",
+  async (isForward: boolean, { dispatch, getState }) => {
+    const playlist = getState().player.playlist
+    const playMode = getState().player.playMode
+    const currentSongIndex = getState().player.currentSongIndex
+
+    // 播放列表为空，直接返回
+    if (!playlist.length || playlist.length === 1) return
+
+    let newSongIndex = currentSongIndex
+    if (playMode === "random") {
+      // 随机播放，不允许出现重复歌曲
+      newSongIndex = Math.floor(Math.random() * playlist.length)
+      if (newSongIndex === currentSongIndex) {
+        newSongIndex = currentSongIndex + 1
+      }
+    } else {
+      // 单曲循环和顺序播放
+      if (currentSongIndex === -1) {
+        newSongIndex = 0
+      } else {
+        newSongIndex = isForward ? currentSongIndex + 1 : currentSongIndex - 1
+      }
+    }
+
+    // 边界处理
+    if (newSongIndex < 0) {
+      newSongIndex = playlist.length - 1
+    } else if (newSongIndex >= playlist.length) {
+      newSongIndex = 0
+    }
+
+    dispatch(changeCurrentSongIndexAction(newSongIndex))
+    dispatch(changeCurrentSongAction(playlist[newSongIndex]))
+  }
+)
+
