@@ -19,3 +19,13 @@ export function fetchSongsDetail(songIds: string[]) {
     }
   })
 }
+
+// 获取歌词
+export function fetchLyric(id: string) {
+  return rsRequest.get({
+    url: '/lyric',
+    params: {
+      id
+    }
+  })
+}

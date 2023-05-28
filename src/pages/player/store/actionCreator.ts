@@ -2,16 +2,20 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@/store";
 
 import { nextPlayMode } from "../type/PlayMode";
+import { parserLyric } from "@/utils/parser-lyric";
 
 import { 
   changeCurrentSongAction,
   changeCurrentSongIndexAction, 
   changePlaylistAction,
+  changeCurrentLyricAction,
+  changeLyricListAction,
   changePlayModeAction
 } from "./reducer"
 
 import { 
-  fetchSongDetail 
+  fetchSongDetail,
+  fetchLyric
 } from "../service/player";
 
 // 获取歌曲详情
@@ -25,6 +29,30 @@ export const fetchSongDetailAsync = createAsyncThunk<
 >(
   "fetchSongDetail",
   async (id: string, { dispatch, getState }) => {
+    // 获取歌词
+    const fetchLyricIfNeeded = async (idx: number, songId: string) => {
+      const lyricList = getState().player.lyricList
+      
+      if (idx !== -1 && idx < lyricList.length) {
+        // 歌词存在
+        dispatch(changeCurrentLyricAction(lyricList[idx]))
+        return
+      }
+
+      // 获取新的歌词
+      try {
+        const { lrc } = await fetchLyric(id)
+        const lyric = parserLyric(lrc.lyric)
+
+        // 6. 将歌词添加到 lyricList 中
+        const newLyricList = [...lyricList, lyric]
+        dispatch(changeLyricListAction(newLyricList))
+        dispatch(changeCurrentLyricAction(lyric))
+      } catch (error) {
+        console.log("fetchLyric error: ", error)
+      }
+    }
+
     // 1. 根据 id 查找歌曲是否在 playlist 中
     const playlist = getState().player.playlist
     const idx = playlist.findIndex(song => song.id === id)
@@ -33,6 +61,8 @@ export const fetchSongDetailAsync = createAsyncThunk<
     if (idx !== -1) {
       dispatch(changeCurrentSongAction(playlist[idx]))
       dispatch(changeCurrentSongIndexAction(idx))
+      // 请求歌词
+      fetchLyricIfNeeded(idx, id)
       return
     }
 
@@ -50,6 +80,9 @@ export const fetchSongDetailAsync = createAsyncThunk<
     } catch (error) {
       console.log("fetchSongDetail error: ", error)
     }
+
+    // 5. 请求歌词
+    fetchLyricIfNeeded(idx, id)
   }
 )
 

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import { shallowEqual } from 'react-redux'
 import { useAppDispatch, useAppSelector } from '@/store'
-import { switchSongAction } from '../store'
+import { switchSongAction, changeLyricLineIndexAction } from '../store'
 
 import { formatSizedImage } from '@/utils/format-utils'
 import { formatTime, getMusicUrl } from '@/utils/format-player'
@@ -38,9 +38,10 @@ const PlayerBar: FC<IProps> = () => {
   const isPlayingRef = useRef(isPlaying)
 
   // redux
-  const { currentSong, playMode } = useAppSelector(
+  const { currentSong, currentLyric, playMode } = useAppSelector(
     (state) => ({
       currentSong: state.player.currentSong,
+      currentLyric: state.player.currentLyric,
       playMode: state.player.playMode,
     }), 
     shallowEqual
@@ -98,6 +99,18 @@ const PlayerBar: FC<IProps> = () => {
     isPaused ? audioRef.current?.play() : audioRef.current?.pause()
     setIsPlaying(isPaused)
   }, [])
+  // 歌词滚动
+  const handleLyric = useCallback((time: number) => {
+    if (!currentLyric) return
+    for (let idx = 0; idx < currentLyric.length; idx++) {
+      const lyricItem = currentLyric[idx]
+      if (time < lyricItem.time) {
+        console.log("Lyric:", currentLyric[idx - 1])
+        dispatch(changeLyricLineIndexAction(idx - 1))
+        break
+      }
+    }
+  }, [currentLyric, dispatch])
   // ========== Player Control Handlers End ========== 
 
   // ========== Audio Handlers ========== 
@@ -119,7 +132,10 @@ const PlayerBar: FC<IProps> = () => {
     const newTime = Math.min(target.currentTime * 1000, duration)// ms
     setCurrentTime(newTime)
     setProgress(newTime / duration * 100)
-  }, [isDragging, duration])
+
+    // 查找歌词位置
+    handleLyric(newTime)
+  }, [isDragging, duration, handleLyric])
   // ========== Audio Handlers End ========== 
 
   // ========== Progress Handlers ========== 

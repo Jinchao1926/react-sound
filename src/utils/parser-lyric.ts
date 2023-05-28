@@ -1,0 +1,134 @@
+/**
+[00:00.00] 作词 : 廖莹如/吴依铮
+[00:00.48] 作曲 : 李偲菘
+[00:00.97] 原唱 : 孙燕姿
+[00:01.46] 词SP：华纳盛世音乐版权代理（北京）有限公司
+[00:01.95] 曲SP：Universal Music Publishing CHINA/北京伟思音乐文化传播有限公司
+[00:02.44] 音乐总监：谷粟@牛班NEWBAND
+[00:02.92] 音响总监：何飚
+[00:03.41] 舞台总监：李柯
+[00:03.90] 音乐监制：陈美威
+[00:04.39] 音乐设计：王皓@WONDERWALL 
+[00:04.88] 制作人：汤佩弦@牛班NEWBAND
+[00:05.36] 改编编曲：陈牧荻
+[00:05.85] 混音：林梦洋
+[00:06.34] 乐队队长：倪方来@牛班NEWBAND
+[00:06.83] 键盘：董音@牛班NEWBAND/洪信杰@牛班NEWBAND
+[00:07.32] 吉他：倪方来@牛班NEWBAND/毕赫宸@牛班NEWBAND
+[00:07.80] 贝斯：邱培荣@牛班NEWBAND
+[00:08.29] 打击乐：荣辰初@牛班NEWBAND
+[00:08.78] 单簧管：毕赫宸
+[00:09.27] PGM：郭锦阳@牛班NEWBAND
+[00:09.76] 弦乐：李琪弦乐团
+[00:10.26]窦靖童：
+[00:10.74]我的小时候吵闹任性的时候
+[00:15.72]我的外婆总会唱歌哄我
+[00:21.00]夏天的午后老老的歌安慰我
+[00:26.34]那首歌好像这样唱的
+[00:32.34]天黑黑欲落雨天黑黑黑黑
+[00:49.26]莫文蔚：
+[00:49.77]离开小时候有了自己的生活
+[00:55.02]新鲜的歌新鲜的念头
+[01:00.24]任性和冲动无法控制的时候
+[01:05.37]我忘记还有这样的歌
+[01:11.31]天黑黑欲落雨天黑黑黑黑
+[01:28.65]窦靖童：
+[01:29.22]我爱上让我奋不顾身的一个人
+[01:34.80]我以为这就是我所追求的世界
+[01:39.99]然而横冲直撞被误解被骗
+[01:44.82]是否成人的世界背后总有残缺
+[01:49.92]莫文蔚：
+[01:50.40]我走在每天必须面对的分岔路
+[01:55.35]我怀念过去单纯美好的小幸福
+[02:00.27]爱总是让人哭让人觉得不满足
+[02:05.10]天空很大却看不清楚好孤独
+[02:33.72]窦靖童：
+[02:34.32]我爱上让我奋不顾身的一个人
+[02:39.18]莫文蔚：
+[02:39.42]我以为这就是我所追求的世界
+[02:43.71]窦靖童：
+[02:43.98]然而横冲直撞被误解被骗
+[02:48.42]莫文蔚：
+[02:48.63]是否成人的世界背后总有残缺
+[02:53.28]合：
+[02:53.46]我走在每天必须面对的分岔路
+[02:57.93]我怀念过去单纯美好的小幸福
+[03:02.34]爱总是让人哭让人觉得不满足
+[03:06.87]天空很大却看不清楚好孤独
+[03:18.87]窦靖童：
+[03:19.23]天黑的时候我又想起那首歌
+[03:24.42]突然期待下起安静的雨
+[03:28.77]莫文蔚：
+[03:29.19]原来外婆的道理早就唱给我听
+[03:33.99]下起雨也要勇敢前进
+[03:38.82]窦靖童：
+[03:39.06]我相信一切都会平息
+[03:44.49]莫文蔚：
+[03:44.85]我现在好想回家去
+[03:52.74]莫文蔚：
+[03:53.17]天黑黑
+[03:55.26]窦靖童：
+[03:55.61]欲落雨
+[04:00.39]合：
+[04:00.82]天黑黑黑黑
+ */
+
+export interface ILyricLine {
+  time: number; // 单位为毫秒
+  text: string; // 歌词内容
+}
+export type ILyric = ILyricLine[];
+
+// 正则，以 / 开始和结束
+// \[ 和 \]，表示 [ 和 ] 字符，特殊字符需要转义
+// \d，表示数字
+// {2}，表示匹配 2 个
+const lyricExp = /^\[(\d{2}):(\d{2})\.(\d{2,3})\]\s*(.*?)$/;
+export function parserLyric(lyricText: string): ILyricLine[] {
+  const lines = lyricText.split('\n');
+  const lyricLines: ILyricLine[] = [];
+
+  lines.forEach((line) => {
+    if (line) {
+      const result = lyricExp.exec(line);
+      if (result) {
+        // 0: "[00:00.97] 原唱 : 孙燕姿"
+        // 1: "00"
+        // 2: "00"
+        // 3: "97"
+        // 4: "原唱 : 孙燕姿"
+        const minutes = parseInt(result[1]);
+        const seconds = parseInt(result[2]);
+        let milliseconds = parseInt(result[3]);
+        if (result[3].length === 2) {
+          milliseconds *= 10;
+        }
+        const time = minutes * 60 * 1000 + seconds * 1000 + milliseconds;
+        const text = result[4];
+        lyricLines.push({ time, text });
+      }
+    }
+  })
+  return lyricLines
+}
+
+// function parseLyric(lyricText: string): LyricLine[] {
+//   const lines = lyricText.split('\n');
+//   const lyricLines: LyricLine[] = [];
+
+//   const timeRegExp = /^\[(\d{2}):(\d{2})\.(\d{2})\]\s*(.*?)$/;
+
+//   for (const line oflines) {
+//     const match = line.match(timeRegExp);
+//     if (match) {
+//       const minutes = parseInt(match[1]);
+//       const seconds = parseInt(match[2]);
+//       const milliseconds = parseInt(match[3]);
+//       const time = minutes * 60 * 1000 + seconds * 1000 + milliseconds;
+//       const text = match[4];
+//       lyricLines.push({ time, text });
+//     }
+//   }
+
+//   return lyricLines;
+// }
