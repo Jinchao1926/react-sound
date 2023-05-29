@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LyricPanelWrapper = styled.div`
+export const SongDetailWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `

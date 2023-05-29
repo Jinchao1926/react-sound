@@ -3,7 +3,7 @@ import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
 import { useAppDispatch, useAppSelector } from '@/store'
-import { switchPlayModeAction } from '../../store'
+import { switchPlayModeAction } from '../store'
 
 import { PlayerActionWrapper } from './style'
 

@@ -15,8 +15,8 @@ import {
 
 import { 
   fetchSongDetail,
-  fetchLyric
-} from "../service/player";
+  fetchLyric,
+} from "@/pages/song/service/song";
 
 // 获取歌曲详情
 export const fetchSongDetailAsync = createAsyncThunk<

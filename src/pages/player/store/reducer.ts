@@ -19,8 +19,13 @@ interface IPlayerState {
   playMode: PlayMode,
   // 是否正在播放音乐
   isPlaying: boolean,
+  // 相似歌单
+  similarPlaylists: any[],
+  // 相似歌曲
+  similarSongs: any[]
 }
 const initialState: IPlayerState = {
+  // 歌曲 & 歌词
   currentSong: null,
   playlist: [],
   currentSongIndex: -1,
@@ -29,6 +34,9 @@ const initialState: IPlayerState = {
   lyricList: [],
   playMode: PlayMode.Loop,
   isPlaying: false,
+  // 其他
+  similarPlaylists: [],
+  similarSongs: []
 }
 
 const playerSlice = createSlice({
@@ -58,6 +66,13 @@ const playerSlice = createSlice({
     },
     changeIsPlayingAction(state, action) {
       state.isPlaying = action.payload
+    },
+    // 其他
+    changeSimilarPlaylistsAction(state, action) {
+      state.similarPlaylists = action.payload
+    },
+    changeSimilarSongsAction(state, action) {
+      state.similarSongs = action.payload
     }
   }
 })
@@ -70,6 +85,8 @@ export const {
   changeLyricLineIndexAction,
   changeLyricListAction,
   changePlayModeAction,
-  changeIsPlayingAction
+  changeIsPlayingAction,
+  changeSimilarPlaylistsAction,
+  changeSimilarSongsAction
 } = playerSlice.actions
 export default playerSlice.reducer

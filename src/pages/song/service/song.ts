@@ -21,9 +21,32 @@ export function fetchSongsDetail(songIds: string[]) {
 }
 
 // 获取歌词
-export function fetchLyric(id: string) {
+export function fetchLyric(songId: string) {
+  const id = songId
   return rsRequest.get({
     url: '/lyric',
+    params: {
+      id
+    }
+  })
+}
+
+// 获取相似歌单
+export function fetchSimilarPlaylists(songId: string) {
+  const id = songId
+  return rsRequest.get({
+    url: '/simi/playlist',
+    params: {
+      id
+    }
+  })
+}
+
+// 获取相似歌曲
+export function fetchSimilarSongs(songId: string) {
+  const id = songId
+  return rsRequest.get({
+    url: '/simi/song',
     params: {
       id
     }

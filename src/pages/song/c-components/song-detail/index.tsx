@@ -14,7 +14,7 @@ import {
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { 
-  LyricPanelWrapper,
+  SongDetailWrapper,
   SongRecord,
   LyricList,
   SongAction,
@@ -24,32 +24,32 @@ interface IProps {
   children?: ReactNode
 }
 
-const LyricPanel: FC<IProps> = () => {
+const SongDetail: FC<IProps> = () => {
   // state
   const [lyricString, setLyricString] = useState<string>('')
   const [showingMore, setShowingMore] = useState<boolean>(false)
   const lyricRef = useRef<HTMLDivElement>(null)
   // redux
-  const { currentSong, currentLyric } = useAppSelector(state => ({
-      currentSong: state.player.currentSong,
-      currentLyric: state.player.currentLyric,
+  const { song, lyric } = useAppSelector(state => ({
+      song: state.song.song,
+      lyric: state.song.lyric,
     }), 
     shallowEqual
   )
 
   // 显示不同长度的歌词
   useEffect(() => {
-    if (!currentLyric) {
+    if (!lyric) {
       setLyricString('')
       return
     }
-    let lyricContents = currentLyric.map((item: {text: string}) => item.text)
+    let lyricContents = lyric.map((item: {text: string}) => item.text)
     if (!showingMore) {
       lyricContents = lyricContents.slice(0, 13)
     }
     const newLyricString = lyricContents.join('\n')
     setLyricString(newLyricString)
-  }, [currentLyric, showingMore])
+  }, [lyric, showingMore])
 
   // 处理 展开/收起 按钮的位置
   useEffect(() => {
@@ -67,13 +67,13 @@ const LyricPanel: FC<IProps> = () => {
   // ========== Music Handlers ==========
   const dispatch = useAppDispatch()
   const playMusic = useCallback(() => {
-    dispatch(fetchSongDetailAsync(currentSong.id))
+    dispatch(fetchSongDetailAsync(song.id))
     dispatch(changeIsPlayingAction(true))
-  }, [currentSong, dispatch])
+  }, [song, dispatch])
 
   const addMusicToPlaylist = useCallback(() => {
-    dispatch(addSongToPlaylistAction(currentSong))
-  }, [currentSong, dispatch])
+    dispatch(addSongToPlaylistAction(song))
+  }, [song, dispatch])
   // ========== Music Handlers End ==========
 
   // handles
@@ -82,10 +82,10 @@ const LyricPanel: FC<IProps> = () => {
   }
 
   return (
-    <LyricPanelWrapper>
+    <SongDetailWrapper>
       <SongRecord>
         <div className='cover'>
-          <img src={formatSizedImage(currentSong?.al.picUrl, 130)} alt=''/>
+          <img src={formatSizedImage(song?.al.picUrl, 130)} alt=''/>
           <span className='record sprite_cover' />
         </div>
         <div className='link'>
@@ -96,12 +96,12 @@ const LyricPanel: FC<IProps> = () => {
       <LyricList>
         <div className='header'>
           <span className='icon sprite_icon2' />
-          <span>{currentSong?.name}</span>
+          <span>{song?.name}</span>
         </div>
         <p className='singer'>
           歌手：
           {
-            currentSong?.ar.map((item: {id: string, name: string}, index: number) => {
+            song?.ar.map((item: {id: string, name: string}, index: number) => {
               return (
                 <React.Fragment key={item.id}>
                   { index > 0 && ' / '}
@@ -113,7 +113,7 @@ const LyricPanel: FC<IProps> = () => {
         </p>
         <p className='album'>
           所属专辑：
-          <NavLink to={`/albumn?id=${currentSong?.al.id}`}>{currentSong?.al.name}</NavLink> 
+          <NavLink to={`/albumn?id=${song?.al.id}`}>{song?.al.name}</NavLink> 
         </p>
         <SongAction>
           <button className='play sprite_button' onClick={playMusic}>播放</button>
@@ -137,8 +137,8 @@ const LyricPanel: FC<IProps> = () => {
           <span className={classNames('sprite_icon2 icon', {collapse: showingMore, expand: !showingMore})}/>
         </div>
       </LyricList>
-    </LyricPanelWrapper>
+    </SongDetailWrapper>
   )
 }
 
-export default memo(LyricPanel)
+export default memo(SongDetail)
