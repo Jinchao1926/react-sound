@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/store'
 import { 
   fetchSongDetailAsync,
   addSongToPlaylistAction,
-  switchIsPlayingAction,
+  changeIsPlayingAction,
 } from '@/pages/player/store'
 
 import { formatSizedImage } from '@/utils/format-utils'
@@ -68,7 +68,7 @@ const LyricPanel: FC<IProps> = () => {
   const dispatch = useAppDispatch()
   const playMusic = useCallback(() => {
     dispatch(fetchSongDetailAsync(currentSong.id))
-    dispatch(switchIsPlayingAction(true))
+    dispatch(changeIsPlayingAction(true))
   }, [currentSong, dispatch])
 
   const addMusicToPlaylist = useCallback(() => {

@@ -6,8 +6,8 @@ import { shallowEqual } from 'react-redux'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { 
   switchSongAction, 
-  switchLyricLineIndexAction,
-  switchIsPlayingAction,
+  changeLyricLineIndexAction,
+  changeIsPlayingAction,
 } from '../store'
 
 import { formatSizedImage } from '@/utils/format-utils'
@@ -40,10 +40,17 @@ const PlayerBar: FC<IProps> = () => {
   const audioRef = useRef<HTMLAudioElement>(null)
 
   // redux
-  const { currentSong, currentLyric, isPlaying, playMode } = useAppSelector(
+  const { 
+    currentSong, 
+    currentLyric, 
+    lyricLineIndex,
+    isPlaying, 
+    playMode 
+  } = useAppSelector(
     (state) => ({
       currentSong: state.player.currentSong,
       currentLyric: state.player.currentLyric,
+      lyricLineIndex: state.player.lyricLineIndex,
       isPlaying: state.player.isPlaying,
       playMode: state.player.playMode,
     }), 
@@ -67,10 +74,10 @@ const PlayerBar: FC<IProps> = () => {
         if (!isPlayingRef.current) return
         audioRef.current.play()
           .then(() => {
-            dispatch(switchIsPlayingAction(true))
+            dispatch(changeIsPlayingAction(true))
             console.log("Play music successfully")
           }).catch(err => {
-            dispatch(switchIsPlayingAction(false))
+            dispatch(changeIsPlayingAction(false))
             console.log("Play music failed:", err)
           })
       }
@@ -102,20 +109,22 @@ const PlayerBar: FC<IProps> = () => {
   // 播放/暂停
   const handlePlayMusic = useCallback(() => {
     const isPaused = audioRef.current!.paused
-    dispatch(switchIsPlayingAction(isPaused))
+    dispatch(changeIsPlayingAction(isPaused))
   }, [dispatch])
   // 歌词滚动
   const handleLyric = useCallback((time: number) => {
     if (!currentLyric) return
-    for (let idx = 0; idx < currentLyric.length; idx++) {
+    for (let idx = lyricLineIndex; idx < currentLyric.length; idx++) {
       const lyricItem = currentLyric[idx]
       if (time < lyricItem.time) {
-        // console.log("Lyric:", currentLyric[idx - 1])
-        // dispatch(switchLyricLineIndexAction(idx - 1))
+        if (idx - 1 !== lyricLineIndex) {
+          // console.log("Lyric:", currentLyric[idx - 1])
+          dispatch(changeLyricLineIndexAction(idx - 1))
+        }
         break
       }
     }
-  }, [currentLyric])
+  }, [currentLyric, lyricLineIndex, dispatch])
   // ========== Player Control Handlers End ========== 
 
   // ========== Audio Handlers ========== 

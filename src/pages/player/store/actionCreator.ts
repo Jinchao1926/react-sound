@@ -10,9 +10,7 @@ import {
   changePlaylistAction,
   changeCurrentLyricAction,
   changeLyricListAction,
-  changeLyricLineIndexAction,
   changePlayModeAction,
-  changeIsPlayingAction,
 } from "./reducer"
 
 import { 
@@ -176,35 +174,5 @@ export const switchSongAction = createAsyncThunk<
     dispatch(changeCurrentSongAction(playlist[newSongIndex]))
     dispatch(fetchLyricAsync({ songIdx: newSongIndex, songId: playlist[newSongIndex].id }))
     return true
-  }
-)
-
-// 切换歌词索引
-export const switchLyricLineIndexAction = createAsyncThunk<
-  void,
-  number,
-  { state: RootState }
->(
-  "switchLyricLineIndex",
-  async (idx: number, { dispatch, getState }) => {
-    const index = getState().player.lyricLineIndex
-    if (index === idx) return
-
-    dispatch(changeLyricLineIndexAction(idx))
-  }
-)
-
-// 切换是否播放歌曲状态
-export const switchIsPlayingAction = createAsyncThunk<
-  void,
-  boolean,
-  { state: RootState }
->(
-  "switchIsPlaying",
-  async (play: boolean, { dispatch, getState }) => {
-    const isPlaying = getState().player.isPlaying
-    if (isPlaying === play) return
-
-    dispatch(changeIsPlayingAction(play))
   }
 )
