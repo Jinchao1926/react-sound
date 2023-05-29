@@ -2,17 +2,18 @@ import {
   fetchSongDetailAsync,
   addSongToPlaylistAction,
   switchPlayModeAction,
-  switchSongAction
+  switchSongAction,
+  switchLyricLineIndexAction,
+  switchIsPlayingAction
 } from "./actionCreator"
 
 import playerReducer from "./reducer"
-import { changeLyricLineIndexAction } from "./reducer"
-
 export {
   fetchSongDetailAsync,
   addSongToPlaylistAction,
   switchPlayModeAction,
   switchSongAction,
-  changeLyricLineIndexAction,
+  switchLyricLineIndexAction,
+  switchIsPlayingAction,
   playerReducer,
 }

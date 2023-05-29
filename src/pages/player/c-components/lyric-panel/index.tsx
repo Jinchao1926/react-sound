@@ -2,11 +2,16 @@ import React, { memo, useEffect, useState, useRef, useCallback } from 'react'
 import type { FC, ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import { shallowEqual } from 'react-redux'
-import { useAppSelector } from '@/store'
-import { formatSizedImage } from '@/utils/format-utils'
-
 import classNames from 'classnames'
+import { shallowEqual } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '@/store'
+import { 
+  fetchSongDetailAsync,
+  addSongToPlaylistAction,
+  switchIsPlayingAction,
+} from '@/pages/player/store'
+
+import { formatSizedImage } from '@/utils/format-utils'
 
 import { 
   LyricPanelWrapper,
@@ -23,6 +28,7 @@ const LyricPanel: FC<IProps> = () => {
   // state
   const [lyricString, setLyricString] = useState<string>('')
   const [showingMore, setShowingMore] = useState<boolean>(false)
+  const lyricRef = useRef<HTMLDivElement>(null)
   // redux
   const { currentSong, currentLyric } = useAppSelector(state => ({
       currentSong: state.player.currentSong,
@@ -31,6 +37,7 @@ const LyricPanel: FC<IProps> = () => {
     shallowEqual
   )
 
+  // 显示不同长度的歌词
   useEffect(() => {
     if (!currentLyric) {
       setLyricString('')
@@ -43,6 +50,31 @@ const LyricPanel: FC<IProps> = () => {
     const newLyricString = lyricContents.join('\n')
     setLyricString(newLyricString)
   }, [currentLyric, showingMore])
+
+  // 处理 展开/收起 按钮的位置
+  useEffect(() => {
+    if (!lyricRef.current) return
+    const scrollY = window.scrollY
+    const rect = lyricRef.current!.getBoundingClientRect()
+
+    setTimeout(() => {
+      const newRect = lyricRef.current!.getBoundingClientRect()
+      const y = scrollY + newRect.height - rect.height
+      window.scrollTo(window.scrollX, y)
+    }, 0)
+  }, [showingMore])
+
+  // ========== Music Handlers ==========
+  const dispatch = useAppDispatch()
+  const playMusic = useCallback(() => {
+    dispatch(fetchSongDetailAsync(currentSong.id))
+    dispatch(switchIsPlayingAction(true))
+  }, [currentSong, dispatch])
+
+  const addMusicToPlaylist = useCallback(() => {
+    dispatch(addSongToPlaylistAction(currentSong))
+  }, [currentSong, dispatch])
+  // ========== Music Handlers End ==========
 
   // handles
   function handleShowingMore() {
@@ -84,8 +116,8 @@ const LyricPanel: FC<IProps> = () => {
           <NavLink to={`/albumn?id=${currentSong?.al.id}`}>{currentSong?.al.name}</NavLink> 
         </p>
         <SongAction>
-          <button className='play sprite_button'>播放</button>
-          <button className='add sprite_button'></button>
+          <button className='play sprite_button' onClick={playMusic}>播放</button>
+          <button className='add sprite_button' onClick={addMusicToPlaylist}></button>
           <button className='collect sprite_button' >
             <span className='sprite_button'>收藏</span>
           </button>
@@ -99,7 +131,7 @@ const LyricPanel: FC<IProps> = () => {
             <span className='sprite_button'>评论</span>
           </button>
         </SongAction>
-        <span className='lyric-content'>{lyricString}</span>
+        <span className='lyric-content' ref={lyricRef}>{lyricString}</span>
         <div className='lyric-control' onClick={e => handleShowingMore()}>
           {showingMore ? '收起' : '展开'}
           <span className={classNames('sprite_icon2 icon', {collapse: showingMore, expand: !showingMore})}/>

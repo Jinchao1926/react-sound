@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { NavLink } from 'react-router-dom'
 
 import { formatSizedImage } from '@/utils/format-utils'
 
@@ -19,13 +20,13 @@ const HotAnchor: FC<IProps> = () => {
       {
         hotRadios.map(item => {
           return (
-            <a className='anchor' key={item.picUrl} href={item.url}>
+            <NavLink className='anchor' key={item.picUrl} to={item.url}>
               <img className='avatar' src={formatSizedImage(item.picUrl, 40)} alt=''/>
               <div className='info'>
                 <span className='name'>{item.name}</span>
                 <span className='desc'>{item.position}</span>
               </div>
-            </a>
+            </NavLink>
           )
         })
       }

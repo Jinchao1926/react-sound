@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
-
+import { NavLink } from 'react-router-dom'
 import { shallowEqual } from 'react-redux'
 import { useAppSelector } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
@@ -28,13 +28,13 @@ const ResidentSinger: FC<IProps> = () => {
         {
           hotSingers.map(item => {
             return (
-              <a className='singer' key={item.id} href={`/user/home?id=${item.id}`}>
+              <NavLink className='singer' key={item.id} to={`/artist?id=${item.id}`}>
                 <img className='avatar' src={formatSizedImage(item.picUrl, 62)} alt=''/>
                 <div className='info'>
                   <h4 className='name'>{item.name}</h4>
                   <p className='desc'>{item.alias.join(' ') || item.name}</p>
                 </div>
-              </a>
+              </NavLink>
             )
           })
         }

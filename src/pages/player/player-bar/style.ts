@@ -92,10 +92,20 @@ export const PlayerInfo = styled.div`
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+        &:hover {
+          text-decoration: underline;
+        }
       }
       .singer {
+        display: flex;
         margin-left: 15px;
         color: #9b9b9b;
+        a {
+          color: #9b9b9b;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
     }
   }

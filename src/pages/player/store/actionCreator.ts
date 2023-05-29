@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@/store";
 
-import { nextPlayMode } from "../type/PlayMode";
+import { PlayMode, nextPlayMode } from "../type/PlayMode";
 import { parserLyric } from "@/utils/parser-lyric";
 
 import { 
@@ -10,7 +10,9 @@ import {
   changePlaylistAction,
   changeCurrentLyricAction,
   changeLyricListAction,
-  changePlayModeAction
+  changeLyricLineIndexAction,
+  changePlayModeAction,
+  changeIsPlayingAction,
 } from "./reducer"
 
 import { 
@@ -29,30 +31,6 @@ export const fetchSongDetailAsync = createAsyncThunk<
 >(
   "fetchSongDetail",
   async (id: string, { dispatch, getState }) => {
-    // 获取歌词
-    const fetchLyricIfNeeded = async (idx: number, songId: string) => {
-      const lyricList = getState().player.lyricList
-      
-      if (idx !== -1 && idx < lyricList.length) {
-        // 歌词存在
-        dispatch(changeCurrentLyricAction(lyricList[idx]))
-        return
-      }
-
-      // 获取新的歌词
-      try {
-        const { lrc } = await fetchLyric(id)
-        const lyric = parserLyric(lrc.lyric)
-
-        // 6. 将歌词添加到 lyricList 中
-        const newLyricList = [...lyricList, lyric]
-        dispatch(changeLyricListAction(newLyricList))
-        dispatch(changeCurrentLyricAction(lyric))
-      } catch (error) {
-        console.log("fetchLyric error: ", error)
-      }
-    }
-
     // 1. 根据 id 查找歌曲是否在 playlist 中
     const playlist = getState().player.playlist
     const idx = playlist.findIndex(song => song.id === id)
@@ -62,7 +40,7 @@ export const fetchSongDetailAsync = createAsyncThunk<
       dispatch(changeCurrentSongAction(playlist[idx]))
       dispatch(changeCurrentSongIndexAction(idx))
       // 请求歌词
-      fetchLyricIfNeeded(idx, id)
+      dispatch(fetchLyricAsync({ songIdx: idx, songId: id }))
       return
     }
 
@@ -82,7 +60,44 @@ export const fetchSongDetailAsync = createAsyncThunk<
     }
 
     // 5. 请求歌词
-    fetchLyricIfNeeded(idx, id)
+    dispatch(fetchLyricAsync({ songIdx: idx, songId: id }))
+  }
+)
+
+// 获取歌词详情
+interface IFetchLyricParams {
+  songIdx: number,
+  songId: string
+}
+const fetchLyricAsync = createAsyncThunk<
+  void,
+  IFetchLyricParams,
+  { state: RootState }
+>(
+  "fetchLyric",
+  async (param: IFetchLyricParams, { dispatch, getState }) => {
+    // 获取歌词
+    const { songIdx, songId } = param
+    const lyricList = getState().player.lyricList
+    
+    if (songIdx !== -1 && songIdx < lyricList.length) {
+      // 歌词存在
+      dispatch(changeCurrentLyricAction(lyricList[songIdx]))
+      return
+    }
+
+    // 获取新的歌词
+    try {
+      const { lrc } = await fetchLyric(songId)
+      const lyric = parserLyric(lrc.lyric)
+
+      // 6. 将歌词添加到 lyricList 中
+      const newLyricList = [...lyricList, lyric]
+      dispatch(changeLyricListAction(newLyricList))
+      dispatch(changeCurrentLyricAction(lyric))
+    } catch (error) {
+      console.log("fetchLyric error: ", error)
+    }
   }
 )
 
@@ -121,7 +136,7 @@ export const switchPlayModeAction = createAsyncThunk<
 
 // 切换歌曲（上一首 / 下一首）
 export const switchSongAction = createAsyncThunk<
-  void,
+  boolean,
   boolean,
   { state: RootState }
 >(
@@ -132,10 +147,10 @@ export const switchSongAction = createAsyncThunk<
     const currentSongIndex = getState().player.currentSongIndex
 
     // 播放列表为空，直接返回
-    if (!playlist.length || playlist.length === 1) return
+    if (!playlist.length || playlist.length === 1) return false
 
     let newSongIndex = currentSongIndex
-    if (playMode === "random") {
+    if (playMode === PlayMode.Random) {
       // 随机播放，不允许出现重复歌曲
       newSongIndex = Math.floor(Math.random() * playlist.length)
       if (newSongIndex === currentSongIndex) {
@@ -159,6 +174,37 @@ export const switchSongAction = createAsyncThunk<
 
     dispatch(changeCurrentSongIndexAction(newSongIndex))
     dispatch(changeCurrentSongAction(playlist[newSongIndex]))
+    dispatch(fetchLyricAsync({ songIdx: newSongIndex, songId: playlist[newSongIndex].id }))
+    return true
   }
 )
 
+// 切换歌词索引
+export const switchLyricLineIndexAction = createAsyncThunk<
+  void,
+  number,
+  { state: RootState }
+>(
+  "switchLyricLineIndex",
+  async (idx: number, { dispatch, getState }) => {
+    const index = getState().player.lyricLineIndex
+    if (index === idx) return
+
+    dispatch(changeLyricLineIndexAction(idx))
+  }
+)
+
+// 切换是否播放歌曲状态
+export const switchIsPlayingAction = createAsyncThunk<
+  void,
+  boolean,
+  { state: RootState }
+>(
+  "switchIsPlaying",
+  async (play: boolean, { dispatch, getState }) => {
+    const isPlaying = getState().player.isPlaying
+    if (isPlaying === play) return
+
+    dispatch(changeIsPlayingAction(play))
+  }
+)

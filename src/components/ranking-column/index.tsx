@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { useAppDispatch } from '@/store'
 import { 
   fetchSongDetailAsync,
+  switchIsPlayingAction,
   addSongToPlaylistAction,
 } from '@/pages/player/store'
 
@@ -34,6 +35,7 @@ const RankingColumn: FC<IProps> = (props: IProps) => {
   // Music handlers
   const playMusic = (item: any) => {
     dispatch(fetchSongDetailAsync(item.id))
+    dispatch(switchIsPlayingAction(true))
   }
   const addMusicToPlaylist = (item: any) => {
     dispatch(addSongToPlaylistAction(item))

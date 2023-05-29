@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { NavLink } from 'react-router-dom'
 
 import { SectionHeaderRCMWrapper } from './style'
 
@@ -16,7 +17,7 @@ const SectionHeaderRCM: FC<IProps> = (props: IProps) => {
   return (
     <SectionHeaderRCMWrapper className='sprite_02'>
       <div className='left'>
-        <a className='title' href='/discover/playlist'>{title}</a>
+        <NavLink className='title' to='/discover/playlist'>{title}</NavLink>
         <div className='keyword-list'>
           {
             keywords?.map(item => {
@@ -31,7 +32,7 @@ const SectionHeaderRCM: FC<IProps> = (props: IProps) => {
         </div>
       </div>
       <div className='right'>
-        <a href={morePath}>更多</a>
+        <NavLink to={morePath}>更多</NavLink>
         <i className='icon sprite_02' />
       </div>
     </SectionHeaderRCMWrapper>

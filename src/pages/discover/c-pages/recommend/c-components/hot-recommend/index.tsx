@@ -26,7 +26,7 @@ const HotRecommend: FC<IProps> = () => {
   return (
     <HotRecommendWrapper>
       <SectionHeaderRCM 
-        title='更多推荐' 
+        title='热门推荐' 
         keywords={keywords}
         morePath='/discover/songs'
       />
