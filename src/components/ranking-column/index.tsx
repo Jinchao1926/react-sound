@@ -4,9 +4,8 @@ import { NavLink } from 'react-router-dom'
 
 import { useAppDispatch } from '@/store'
 import { 
-  fetchSongDetailAsync,
+  playSongAction,
   addSongToPlaylistAction,
-  changeIsPlayingAction,
 } from '@/pages/player/store'
 
 import { formatSizedImage } from '@/utils/format-utils'
@@ -34,8 +33,7 @@ const RankingColumn: FC<IProps> = (props: IProps) => {
 
   // Music handlers
   const playMusic = (item: any) => {
-    dispatch(fetchSongDetailAsync(item.id))
-    dispatch(changeIsPlayingAction(true))
+    dispatch(playSongAction(item.id))
   }
   const addMusicToPlaylist = (item: any) => {
     dispatch(addSongToPlaylistAction(item))

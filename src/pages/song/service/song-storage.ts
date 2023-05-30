@@ -1,4 +1,4 @@
-import { StorageTable, getStorage, setStorage } from "@/utils/storage";
+import { getStorage, setStorage } from "@/utils/session-storage";
 import { parserLyric } from "@/utils/parser-lyric";
 
 import { 
@@ -6,11 +6,18 @@ import {
   fetchLyric,
   fetchSimilarPlaylists,
   fetchSimilarSongs,
-} from "../service/song";
+} from "./song";
+
+enum SongStorageTable {
+  song = "song",
+  lyric = "lyric",
+  similarPlaylists = "similar_playlists",
+  similarSongs = "similar_songs",
+}
 
 // 获取歌曲（sessionStorage / request）
 export const fetchSongAsync = async (id: string) => {
-  const storedSong = getStorage(id, StorageTable.song)
+  const storedSong = getStorage(id, SongStorageTable.song)
   if (storedSong) return storedSong
   
   // request
@@ -19,7 +26,7 @@ export const fetchSongAsync = async (id: string) => {
     if (!songs || !songs.length) return
     
     const song = songs[0]
-    setStorage(id, song, StorageTable.song)
+    setStorage(id, song, SongStorageTable.song)
     return song
   } catch (error) {
     console.log("fetchSongDetail error: ", error)
@@ -29,15 +36,14 @@ export const fetchSongAsync = async (id: string) => {
 
 // 获取歌词（sessionStorage / request）
 export const fetchLyricAsync = async (id: string) => {
-  const storedLyric = getStorage(id, StorageTable.lyric)
-  console.log("storedLyric:", storedLyric)
+  const storedLyric = getStorage(id, SongStorageTable.lyric)
   if (storedLyric) return storedLyric
   
   // request
   try {
     const { lrc } = await fetchLyric(id)
     const lyric = parserLyric(lrc.lyric)
-    setStorage(id, lyric, StorageTable.lyric)
+    setStorage(id, lyric, SongStorageTable.lyric)
     return lyric
   } catch (error) {
     console.log("fetchLyric error: ", error)
@@ -47,14 +53,13 @@ export const fetchLyricAsync = async (id: string) => {
 
 // 获取相似歌单（sessionStorage / request）
 export const fetchSimilarPlaylistsAsync = async (id: string) => {
-  const storedSimilarPlaylists = getStorage(id, StorageTable.similarPlaylists)
-  console.log("storedSimilarPlaylists:", storedSimilarPlaylists)
+  const storedSimilarPlaylists = getStorage(id, SongStorageTable.similarPlaylists)
   if (storedSimilarPlaylists) return storedSimilarPlaylists
   
   // request
   try {
     const { playlists } = await fetchSimilarPlaylists(id)
-    setStorage(id, playlists, StorageTable.similarPlaylists)
+    setStorage(id, playlists, SongStorageTable.similarPlaylists)
     return playlists
   } catch (error) {
     console.log("fetchSimilarPlaylists error: ", error)
@@ -64,14 +69,13 @@ export const fetchSimilarPlaylistsAsync = async (id: string) => {
 
 // 获取相似歌词（sessionStorage / request）
 export const fetchSimilarSongsAsync = async (id: string) => {
-  const storedSimilarSongs = getStorage(id, StorageTable.similarSongs)
-  console.log("storedSimilarSongs:", storedSimilarSongs)
+  const storedSimilarSongs = getStorage(id, SongStorageTable.similarSongs)
   if (storedSimilarSongs) return storedSimilarSongs
   
   // request
   try {
     const { songs } = await fetchSimilarSongs(id)
-    setStorage(id, songs, StorageTable.similarSongs)
+    setStorage(id, songs, SongStorageTable.similarSongs)
     return songs
   } catch (error) {
     console.log("fetchSimilarSongs error: ", error)

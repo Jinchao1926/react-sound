@@ -1,5 +1,6 @@
 import { 
-  fetchSongDetailAsync,
+  fetchPlayerDataAsync,
+  playSongAction,
   addSongToPlaylistAction,
   switchPlayModeAction,
   switchSongAction,
@@ -13,7 +14,8 @@ import {
 import playerReducer from "./reducer"
 
 export {
-  fetchSongDetailAsync,
+  fetchPlayerDataAsync,
+  playSongAction,
   addSongToPlaylistAction,
   switchPlayModeAction,
   switchSongAction,

@@ -13,16 +13,10 @@ interface IPlayerState {
   currentLyric?: ILyric,
   // 当前播放歌词索引（第几行）
   lyricLineIndex: number,
-  // 播放列表中，所有歌曲的歌词
-  lyricList: ILyric[],
   // 播放模式
   playMode: PlayMode,
   // 是否正在播放音乐
   isPlaying: boolean,
-  // 相似歌单
-  similarPlaylists: any[],
-  // 相似歌曲
-  similarSongs: any[]
 }
 const initialState: IPlayerState = {
   // 歌曲 & 歌词
@@ -31,12 +25,8 @@ const initialState: IPlayerState = {
   currentSongIndex: -1,
   currentLyric: undefined,
   lyricLineIndex: 0,
-  lyricList: [],
   playMode: PlayMode.Loop,
   isPlaying: false,
-  // 其他
-  similarPlaylists: [],
-  similarSongs: []
 }
 
 const playerSlice = createSlice({
@@ -58,22 +48,12 @@ const playerSlice = createSlice({
     changeCurrentLyricAction(state, action) {
       state.currentLyric = action.payload
     },
-    changeLyricListAction(state, action) {
-      state.lyricList = action.payload
-    },
     changePlayModeAction(state, action) {
       state.playMode = action.payload
     },
     changeIsPlayingAction(state, action) {
       state.isPlaying = action.payload
     },
-    // 其他
-    changeSimilarPlaylistsAction(state, action) {
-      state.similarPlaylists = action.payload
-    },
-    changeSimilarSongsAction(state, action) {
-      state.similarSongs = action.payload
-    }
   }
 })
 
@@ -83,10 +63,7 @@ export const {
   changeCurrentSongIndexAction,
   changeCurrentLyricAction,
   changeLyricLineIndexAction,
-  changeLyricListAction,
   changePlayModeAction,
   changeIsPlayingAction,
-  changeSimilarPlaylistsAction,
-  changeSimilarSongsAction
 } = playerSlice.actions
 export default playerSlice.reducer

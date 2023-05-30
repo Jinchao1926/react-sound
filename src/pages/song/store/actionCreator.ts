@@ -13,11 +13,11 @@ import {
   fetchLyricAsync,
   fetchSimilarPlaylistsAsync,
   fetchSimilarSongsAsync
-} from "../service/songStorage";
+} from "../service/song-storage";
 
 // 获取歌曲详情
 export const fetchSongDatasAsync = createAsyncThunk(
-  "fetchSongDetail",
+  "fetchSongDatas",
   async (id: string, { dispatch }) => {
     // 1. 请求歌曲详情
     const song = await fetchSongAsync(id)

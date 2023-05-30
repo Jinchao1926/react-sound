@@ -2,24 +2,56 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@/store";
 
 import { PlayMode, nextPlayMode } from "../type/PlayMode";
-import { parserLyric } from "@/utils/parser-lyric";
 
 import { 
   changeCurrentSongAction,
   changeCurrentSongIndexAction, 
   changePlaylistAction,
   changeCurrentLyricAction,
-  changeLyricListAction,
   changePlayModeAction,
+  changeIsPlayingAction,
 } from "./reducer"
 
-import { 
-  fetchSongDetail,
-  fetchLyric,
-} from "@/pages/song/service/song";
+import {
+  fetchSongAsync,
+  fetchLyricAsync,
+} from "@/pages/song/service/song-storage";
+import {
+  fetchPlaylist,
+  storePlaylist,
+  fetchPlayMode,
+  storePlayMode,
+  fetchCurrentSongIndex,
+  storeCurrentSongIndex,
+} from "@/pages/player/service/player-storage";
 
-// 获取歌曲详情
-export const fetchSongDetailAsync = createAsyncThunk<
+// 获取播放器详情
+export const fetchPlayerDataAsync = createAsyncThunk(
+  "fetchPlayerData",
+  async (_, { dispatch }) => {
+    // 1. 请求播放列表
+    const playlist = await fetchPlaylist()
+    if (playlist) {
+      dispatch(changePlaylistAction(playlist))
+    }
+
+    // 2. 请求播放模式
+    const playMode = await fetchPlayMode()
+    if (playMode) {
+      dispatch(changePlayModeAction(playMode))
+    }
+
+    // 3. 请求当前播放歌词索引
+    let idx = await fetchCurrentSongIndex()
+    if (idx && idx < playlist.length) {
+      dispatch(changeCurrentSongIndexAction(idx))
+      dispatch(changeCurrentSongAction(playlist[idx]))
+    }
+  }
+)
+
+// 播放歌曲
+export const playSongAction = createAsyncThunk<
   // return type of payload creator
   void,
   // first argument to payload creator
@@ -27,7 +59,7 @@ export const fetchSongDetailAsync = createAsyncThunk<
   // types for ThunkAPI
   { state: RootState }
 >(
-  "fetchSongDetail",
+  "playSong",
   async (id: string, { dispatch, getState }) => {
     // 1. 根据 id 查找歌曲是否在 playlist 中
     const playlist = getState().player.playlist
@@ -35,67 +67,38 @@ export const fetchSongDetailAsync = createAsyncThunk<
 
     // 2. 如果在 playlist 中，就切换到该歌曲
     if (idx !== -1) {
-      dispatch(changeCurrentSongAction(playlist[idx]))
+      storeCurrentSongIndex(idx)
       dispatch(changeCurrentSongIndexAction(idx))
+      dispatch(changeCurrentSongAction(playlist[idx]))
+
       // 请求歌词
-      dispatch(fetchLyricAsync({ songIdx: idx, songId: id }))
+      const lyric = await fetchLyricAsync(id)
+      if (lyric) {
+        dispatch(changeCurrentLyricAction(lyric))
+      }
+      dispatch(changeIsPlayingAction(true))
       return
     }
 
     // 3. 如果不在 playlist 中，就请求歌曲详情
-    try {
-      const { songs } = await fetchSongDetail(id)
-      if (!songs || !songs.length) return
+    const song = await fetchSongAsync(id)
+    if (!song) return
 
-      // 4. 将歌曲添加到 playlist 中
-      const song = songs[0]
-      const newPlaylist = [...playlist, song]
-      dispatch(changePlaylistAction(newPlaylist))
-      dispatch(changeCurrentSongIndexAction(newPlaylist.length - 1))
-      dispatch(changeCurrentSongAction(song))
-    } catch (error) {
-      console.log("fetchSongDetail error: ", error)
-    }
+    // 4. 将歌曲添加到 playlist 中
+    const newPlaylist = [...playlist, song]
+    storePlaylist(newPlaylist)
+    storeCurrentSongIndex(newPlaylist.length - 1)
+    dispatch(changePlaylistAction(newPlaylist))
+    dispatch(changeCurrentSongIndexAction(newPlaylist.length - 1))
+    dispatch(changeCurrentSongAction(song))
 
     // 5. 请求歌词
-    dispatch(fetchLyricAsync({ songIdx: idx, songId: id }))
-  }
-)
-
-// 获取歌词详情
-interface IFetchLyricParams {
-  songIdx: number,
-  songId: string
-}
-const fetchLyricAsync = createAsyncThunk<
-  void,
-  IFetchLyricParams,
-  { state: RootState }
->(
-  "fetchLyric",
-  async (param: IFetchLyricParams, { dispatch, getState }) => {
-    // 获取歌词
-    const { songIdx, songId } = param
-    const lyricList = getState().player.lyricList
-    
-    if (songIdx !== -1 && songIdx < lyricList.length) {
-      // 歌词存在
-      dispatch(changeCurrentLyricAction(lyricList[songIdx]))
-      return
-    }
-
-    // 获取新的歌词
-    try {
-      const { lrc } = await fetchLyric(songId)
-      const lyric = parserLyric(lrc.lyric)
-
-      // 6. 将歌词添加到 lyricList 中
-      const newLyricList = [...lyricList, lyric]
-      dispatch(changeLyricListAction(newLyricList))
+    const lyric = await fetchLyricAsync(id)
+    if (lyric) {
       dispatch(changeCurrentLyricAction(lyric))
-    } catch (error) {
-      console.log("fetchLyric error: ", error)
     }
+    // 6. 播放歌曲
+    dispatch(changeIsPlayingAction(true))
   }
 )
 
@@ -114,6 +117,7 @@ export const addSongToPlaylistAction = createAsyncThunk<
 
     const newPlaylist = [...playlist, song]
     dispatch(changePlaylistAction(newPlaylist))
+    storePlaylist(newPlaylist)
   }
 )
 
@@ -129,6 +133,7 @@ export const switchPlayModeAction = createAsyncThunk<
 
     const newPlayMode = nextPlayMode(playMode)
     dispatch(changePlayModeAction(newPlayMode))
+    storePlayMode(newPlayMode)
   }
 )
 
@@ -170,9 +175,14 @@ export const switchSongAction = createAsyncThunk<
       newSongIndex = 0
     }
 
+    storeCurrentSongIndex(newSongIndex)
     dispatch(changeCurrentSongIndexAction(newSongIndex))
     dispatch(changeCurrentSongAction(playlist[newSongIndex]))
-    dispatch(fetchLyricAsync({ songIdx: newSongIndex, songId: playlist[newSongIndex].id }))
+    // 请求歌词
+    const lyric = await fetchLyricAsync(playlist[newSongIndex].id)
+    if (lyric) {
+      dispatch(changeCurrentLyricAction(lyric))
+    }
     return true
   }
 )

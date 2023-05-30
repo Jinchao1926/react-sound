@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { shallowEqual } from 'react-redux'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { 
+  fetchPlayerDataAsync,
   switchSongAction, 
   changeLyricLineIndexAction,
   changeIsPlayingAction,
@@ -59,6 +60,11 @@ const Player: FC<IProps> = () => {
   )
   const isPlayingRef = useRef(isPlaying)
   const dispatch = useAppDispatch()
+
+  // 获取缓存的播放器信息
+  useEffect(() => {
+    dispatch(fetchPlayerDataAsync())
+  }, [dispatch])
 
   // 监听 currentSong 变化
   useEffect(() => {

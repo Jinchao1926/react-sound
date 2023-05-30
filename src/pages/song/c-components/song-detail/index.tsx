@@ -6,9 +6,8 @@ import classNames from 'classnames'
 import { shallowEqual } from 'react-redux'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { 
-  fetchSongDetailAsync,
+  playSongAction,
   addSongToPlaylistAction,
-  changeIsPlayingAction,
 } from '@/pages/player/store'
 
 import { formatSizedImage } from '@/utils/format-utils'
@@ -67,8 +66,7 @@ const SongDetail: FC<IProps> = () => {
   // ========== Music Handlers ==========
   const dispatch = useAppDispatch()
   const playMusic = useCallback(() => {
-    dispatch(fetchSongDetailAsync(song.id))
-    dispatch(changeIsPlayingAction(true))
+    dispatch(playSongAction(song.id))
   }, [song, dispatch])
 
   const addMusicToPlaylist = useCallback(() => {
