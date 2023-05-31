@@ -17,5 +17,7 @@ export const SongLeft = styled.div`
 
 export const SongRight = styled.div`
   margin-left: 1px; 
-  width: 270px;
+  width: 271px;
+  padding: 20px 40px 40px 30px;
+  box-sizing: border-box;
 `

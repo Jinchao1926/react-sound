@@ -1,20 +1,54 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { shallowEqual } from 'react-redux'
+import { useAppSelector } from '@/store'
 
-import { SimilarPlaylistWrapper } from './style'
+import { formatSizedImage } from '@/utils/format-utils'
+
+import { 
+  SimilarPlaylistWrapper, 
+  SimilarPlaylistItem 
+} from './style'
+import { NavLink } from 'react-router-dom'
 
 interface IProps {
   children?: ReactNode
 }
 
 const SimilarPlaylist: FC<IProps> = () => {
+  // redux
+  const { similarPlaylists } = useAppSelector((state) => ({
+      similarPlaylists: state.song.similarPlaylists
+    }), 
+    shallowEqual
+  )
+
   return (
     <SimilarPlaylistWrapper>
       <div className='header'>
         <span className='title'>包含这首歌的歌单</span>
       </div>
       <div className='playlists'>
-        
+        {
+          similarPlaylists.map((item, index) => {
+            return (
+              <SimilarPlaylistItem key={item.id}>
+                <NavLink className='cover' to={`/playlist?id=${item.id}`}>
+                  <img src={formatSizedImage(item.coverImgUrl, 50)} alt={item.name} />
+                </NavLink>
+                <div className='info'>
+                  <NavLink className='playlist' to={`/playlist?id=${item.id}`}>{item.name}</NavLink>
+                  <p className='author'>
+                    by
+                    <NavLink className='author-name' to={`/user/home?id=${item.creator.id}`}>
+                        {item.creator.nickname}
+                    </NavLink>
+                  </p>
+                </div>
+              </SimilarPlaylistItem>
+            )
+          })
+        }
       </div>
     </SimilarPlaylistWrapper>
   )

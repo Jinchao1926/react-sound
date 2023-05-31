@@ -12,6 +12,7 @@ import {
 } from './style'
 import SongDetail from './c-components/song-detail'
 import SimilarPlaylist from './c-components/similar-playlist'
+import SimilarSong from './c-components/similar-song'
 
 interface IProps {
   children?: ReactNode
@@ -37,6 +38,7 @@ const Song: FC<IProps> = () => {
       </SongLeft>
       <SongRight>
         <SimilarPlaylist />
+        <SimilarSong />
       </SongRight>
     </SongWrapper>
   )
