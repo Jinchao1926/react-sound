@@ -1,15 +1,16 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { NavLink } from 'react-router-dom'
+
 import { shallowEqual } from 'react-redux'
 import { useAppSelector } from '@/store'
-
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { 
   SimilarPlaylistWrapper, 
   SimilarPlaylistItem 
 } from './style'
-import { NavLink } from 'react-router-dom'
+import SectionHeaderV3 from '@/components/section-header-v3'
 
 interface IProps {
   children?: ReactNode
@@ -25,9 +26,7 @@ const SimilarPlaylist: FC<IProps> = () => {
 
   return (
     <SimilarPlaylistWrapper>
-      <div className='header'>
-        <span className='title'>包含这首歌的歌单</span>
-      </div>
+      <SectionHeaderV3 title='包含这首歌的歌单'/>
       <div className='playlists'>
         {
           similarPlaylists.map((item, index) => {

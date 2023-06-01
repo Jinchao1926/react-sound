@@ -1,16 +1,7 @@
 import styled from "styled-components";
 
 export const SimilarSongWrapper = styled.div`
-  .header {
-    width: 100%;
-    height: 24px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ccc;
-
-    .title {
-      font-weight: bold;
-    }
-  }
+  margin-bottom: 25px;
 `
 
 export const SimilarSongItem = styled.div`

@@ -13,6 +13,8 @@ import {
 import SongDetail from './c-components/song-detail'
 import SimilarPlaylist from './c-components/similar-playlist'
 import SimilarSong from './c-components/similar-song'
+import MultiDownload from './c-components/multi-download'
+import UserWiki from './c-components/user-wiki'
 
 interface IProps {
   children?: ReactNode
@@ -39,6 +41,8 @@ const Song: FC<IProps> = () => {
       <SongRight>
         <SimilarPlaylist />
         <SimilarSong />
+        <MultiDownload />
+        <UserWiki songId={songId || ''}/>
       </SongRight>
     </SongWrapper>
   )
