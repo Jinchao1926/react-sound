@@ -10,7 +10,6 @@ export const AppHeaderWrapper = styled.div`
   .content {
     height: 70px;
     display: flex;
-    justify-content: space-between;
   }
 
   .divider {
@@ -26,7 +25,7 @@ export const HeaderLeft = styled.div`
   .logo-app {
     // a 元素默认不能修改宽高
     display: block;
-    width: 157px;
+    width: 156px;
     height: 100%;
     // 背景图片定位到元素的左上角
     background-position: 0 0;
@@ -67,6 +66,7 @@ export const HeaderLeft = styled.div`
         background-size: 120px auto;
       }
 
+      /*
       // Hot
       // 伪类选择器：作用于选择其同级别中最后一个特定类型的元素
       :last-of-type {
@@ -82,7 +82,7 @@ export const HeaderLeft = styled.div`
           top: 20px;
           right: -20px;
         }
-      }
+      }*/
     }
   }
 `
@@ -92,6 +92,7 @@ export const HeaderRight = styled.div`
   align-items: center;
   text-align: center;
   font-size: 12px;
+  margin-left: 5px;
 
   .search {
     width: 158px;

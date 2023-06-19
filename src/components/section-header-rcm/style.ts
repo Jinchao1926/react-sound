@@ -30,7 +30,7 @@ export const SectionHeaderRCMWrapper = styled.div`
         }
 
         .divider {
-          margin: 0 10px;
+          margin: 0 13px;
           color: #ccc;
         }
 

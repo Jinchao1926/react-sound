@@ -32,7 +32,7 @@ const AppHeader: FC<IProps> = () => {
         </NavLink>
       )
     } else if (item.type === 'link') {
-      return <a href={item.link}>{item.title}</a>
+      return <a href={item.link} target='_blank' rel="noreferrer">{item.title}</a>
     }
   }
 

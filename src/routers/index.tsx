@@ -2,6 +2,7 @@ import React, { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
 
+// Lazy 可以对自己的代码进行分包
 // Discover-related page
 const Discover = lazy(() => import('@/pages/discover'))
 const Recommend = lazy(() => import('@/pages/discover/c-pages/recommend'))
@@ -14,6 +15,7 @@ const Song = lazy(() => import('@/pages/song'))
 
 const Mine = lazy(() => import('@/pages/mine'))
 const Friend = lazy(() => import('@/pages/friend'))
+const Download = lazy(() => import('@/pages/download'))
 
 const routes: RouteObject[] = [
   {
@@ -67,6 +69,10 @@ const routes: RouteObject[] = [
     path: '/friend',
     element: <Friend />,
   },
+  {
+    path: '/download',
+    element: <Download />,
+  }
 ]
 
 export default routes

@@ -26,9 +26,14 @@ export const headerLinks = [
     link: 'https://music.163.com/nmusician/web/index#/'
   },
   {
-    title: '下载客户端',
+    title: '云推歌',
     type: 'link',
-    link: 'https://music.163.com/#/download'
+    link: 'https://music.163.com/st/ad-song'
+  },
+  {
+    title: '下载客户端',
+    type: 'path',
+    link: '/download'
   }
 ]
 

@@ -10,10 +10,12 @@ export const UserProfileWrapper = styled.div`
     margin: 0 auto;
     padding: 16px 0;
     line-height: 22px;
+    text-align: left;
     color: #666;
   }
 
   button {
+    text-align: center;
     display: inline-block;
     width: 100px;
     height: 31px;

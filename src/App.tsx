@@ -16,6 +16,7 @@ const App: FC<IProps> = () => {
   return (
     <div>
       <AppHeader />
+      {/* 懒加载后需要 Suspense */}
       <Suspense fallback="">
         <div>{ useRoutes(routes) }</div>
       </Suspense>
