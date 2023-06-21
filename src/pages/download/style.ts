@@ -15,6 +15,31 @@ export const DownloadContent = styled.div`
     display: flex;
     padding: 80px 0 84px;  
     text-align: center;
+    position: relative;
+
+    .other-clients {
+      position: absolute;
+      height: 60px;
+      line-height: 60px;
+      top: 0;
+      right: 0;
+      color: #fff;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+
+      .icon {
+        background: url(${require('@/assets/img/download/download_icon.png')});
+        background-size: 20px;
+        width: 20px;
+        height: 20px;
+        margin-right: 6px;
+      }
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
 
     .title {
       margin-bottom: 23px;

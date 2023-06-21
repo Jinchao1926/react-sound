@@ -1,5 +1,6 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 import type { FC, ReactNode } from 'react'
+import { Popover } from 'antd'
 
 import { 
   DownloadWrapper,
@@ -11,12 +12,20 @@ import {
   RecognizeContent,
   DescriptionContent
 } from './style'
+import QRcode from './qrcode'
+import ClientList from './client-list'
 
 interface IProps {
   children?: ReactNode
 }
 
 const Download: FC<IProps> = () => {
+  const [open, setOpen] = useState(false)
+
+  const handleOpenChange = (newOpen: boolean) => {
+    setOpen(newOpen)
+  }
+
   return (
     <DownloadWrapper>
       <DownloadContent>
@@ -46,6 +55,19 @@ const Download: FC<IProps> = () => {
             </div>
             <button className='download'>下载手机端</button>
           </div>
+          <Popover 
+            content={ <ClientList /> }
+            trigger="click"
+            placement='topRight'
+            open={open}
+            onOpenChange={handleOpenChange}
+          >
+            <div className='other-clients'>
+              <div className='icon'/>
+              其他操作系统客户端
+            </div>
+          </Popover>
+          
         </div>
       </DownloadContent>
       <MusicContent>
@@ -120,6 +142,7 @@ const Download: FC<IProps> = () => {
           <div className='recognize-right' />
         </div>
       </RecognizeContent>
+      <QRcode />
     </DownloadWrapper>
   )
 }
