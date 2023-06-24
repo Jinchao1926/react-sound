@@ -3,12 +3,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import type { TypedUseSelectorHook } from 'react-redux' 
 
 import { recommendReducer } from "@/pages/discover/c-pages/recommend/store"
+import { rankingReducer } from "@/pages/discover/c-pages/ranking/store"
 import { playerReducer } from "@/pages/player/store"
 import { songReducer } from "@/pages/song/store";
 
 const store = configureStore({
   reducer: {
     recommend: recommendReducer,
+    ranking: rankingReducer,
     player: playerReducer,
     song: songReducer,
   }

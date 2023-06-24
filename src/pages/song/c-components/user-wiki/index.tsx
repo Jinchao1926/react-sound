@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 
 import { UserWikiWrapper } from './style'
-import SectionHeaderV3 from '@/components/section-header-v3'
+import SectionHeaderMore from '@/components/section-header-more'
 
 interface IProps {
   children?: ReactNode,
@@ -13,9 +13,9 @@ const UserWiki: FC<IProps> = (props: IProps) => {
   const { songId } = props
   return (
     <UserWikiWrapper>
-      <SectionHeaderV3 title='用户wiki'/>
+      <SectionHeaderMore title='用户wiki'/>
       <a 
-        className='wiki' 
+        className='wiki song-data' 
         href={`https://music.163.com/#/wiki/song?songId=${songId}&type=1`}
         target='_blank'
         rel='noreferrer'

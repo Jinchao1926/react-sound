@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { HotAnchorWrapper } from './style'
-import SectionHeaderV2Wrapper from '@/components/section-header-v2'
+import SectionHeaderMore from '@/components/section-header-more'
 import { hotRadios } from '@/assets/data/local-data'
 
 interface IProps {
@@ -15,7 +15,9 @@ interface IProps {
 const HotAnchor: FC<IProps> = () => {
   return (
     <HotAnchorWrapper>
-      <SectionHeaderV2Wrapper title='热门主播'/>
+      <div className='header'>
+        <SectionHeaderMore title='热门主播'/>
+      </div>
       <div className='anchor-list'>
       {
         hotRadios.map(item => {

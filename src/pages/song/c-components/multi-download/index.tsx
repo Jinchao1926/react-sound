@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 
 import { MultiDownloadWrapper } from './style'
-import SectionHeaderV3 from '@/components/section-header-v3'
+import SectionHeaderMore from '@/components/section-header-more'
 
 interface IProps {
   children?: ReactNode
@@ -11,7 +11,7 @@ interface IProps {
 const MultiDownload: FC<IProps> = () => {
   return (
     <MultiDownloadWrapper>
-      <SectionHeaderV3 title='网易云音乐多端下载'/>
+      <SectionHeaderMore title='网易云音乐多端下载'/>
       <div className='list sprite_download'>
         <a className='iOS sprite_download' href='https://itunes.apple.com/cn/app/id590338362'>iPhone</a>
         <a className='pc sprite_download' href='https://music.163.com/api/pc/download/latest'>PC</a>

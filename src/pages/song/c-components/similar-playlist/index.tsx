@@ -10,7 +10,7 @@ import {
   SimilarPlaylistWrapper, 
   SimilarPlaylistItem 
 } from './style'
-import SectionHeaderV3 from '@/components/section-header-v3'
+import SectionHeaderMore from '@/components/section-header-more'
 
 interface IProps {
   children?: ReactNode
@@ -26,10 +26,10 @@ const SimilarPlaylist: FC<IProps> = () => {
 
   return (
     <SimilarPlaylistWrapper>
-      <SectionHeaderV3 title='包含这首歌的歌单'/>
+      <SectionHeaderMore title='包含这首歌的歌单'/>
       <div className='playlists'>
         {
-          similarPlaylists.map((item, index) => {
+          similarPlaylists.map(item => {
             return (
               <SimilarPlaylistItem key={item.id}>
                 <NavLink className='cover' to={`/playlist?id=${item.id}`}>

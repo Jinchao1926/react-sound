@@ -10,7 +10,7 @@ import {
   SimilarSongWrapper,
   SimilarSongItem
 } from './style'
-import SectionHeaderV3 from '@/components/section-header-v3'
+import SectionHeaderMore from '@/components/section-header-more'
 
 interface IProps {
   children?: ReactNode
@@ -35,7 +35,7 @@ const SimilarSong: FC<IProps> = () => {
 
   return (
     <SimilarSongWrapper>
-      <SectionHeaderV3 title='相似歌曲'/>
+      <SectionHeaderMore title='相似歌曲'/>
       <div className='songs'>
         {
           similarSongs.map((item: {id: string, name: string, artists: []}) => {

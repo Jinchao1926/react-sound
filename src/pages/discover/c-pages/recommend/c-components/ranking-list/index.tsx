@@ -5,7 +5,7 @@ import { useAppSelector } from '@/store'
 import { shallowEqual } from 'react-redux'
 
 import { RankingListWrapper } from './style'
-import SectionHeaderRCM from '@/components/section-header-rcm'
+import SectionHeaderRecommend from '@/components/section-header-recommend'
 import RankingColumn from '@/components/ranking-column'
 
 interface IProps {
@@ -22,7 +22,7 @@ const RankingList: FC<IProps> = () => {
 
   return (
     <RankingListWrapper>
-      <SectionHeaderRCM title='榜单' morePath='/discover/ranking'/>
+      <SectionHeaderRecommend title='榜单' morePath='/discover/ranking'/>
       <div className='ranking-list'>
         {
           rankings.map( item => {

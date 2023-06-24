@@ -6,7 +6,7 @@ import { useAppSelector } from '@/store'
 import {
   HotRecommendWrapper
 } from './style'
-import SectionHeaderRCM from '@/components/section-header-rcm'
+import SectionHeaderRecommend from '@/components/section-header-recommend'
 import SongCover from '@/components/song-cover'
 
 interface IProps {
@@ -25,7 +25,7 @@ const HotRecommend: FC<IProps> = () => {
   const keywords = ['华语', '流行', '摇滚', '民谣', '电子']
   return (
     <HotRecommendWrapper>
-      <SectionHeaderRCM 
+      <SectionHeaderRecommend 
         title='热门推荐' 
         keywords={keywords}
         morePath='/discover/songs'

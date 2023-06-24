@@ -24,11 +24,9 @@ const Song: FC<IProps> = () => {
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const songId = queryParams.get('id')
-  console.log("songId:", songId)
 
   const dispatch = useAppDispatch()
   useEffect(() => {
-    console.log("useEffect")
     if (!songId) return
     dispatch(fetchSongDatasAsync(songId))
   }, [dispatch, songId])

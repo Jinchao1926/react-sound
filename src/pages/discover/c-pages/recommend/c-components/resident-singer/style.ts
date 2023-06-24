@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const ResidentSingerWrapper = styled.div`
   margin-top: 15px;
 
+  .header {
+    margin: 0 20px;
+  }
+
   .singer-list {
     margin: 6px 0 14px 20px;
 

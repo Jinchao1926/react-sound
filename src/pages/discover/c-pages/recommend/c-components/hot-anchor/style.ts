@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const HotAnchorWrapper = styled.div`
   margin-top: 30px;
 
+  .header {
+    margin: 0 20px;
+  }
+
   .anchor-list {
     margin: 20px 0 0 20px;
 

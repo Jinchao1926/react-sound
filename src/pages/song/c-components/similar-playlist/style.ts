@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const SimilarPlaylistWrapper = styled.div`
   margin-bottom: 40px;
+
+  .playlists {
+    margin-top: 20px;
+  }
 `
 
 export const SimilarPlaylistItem = styled.div`

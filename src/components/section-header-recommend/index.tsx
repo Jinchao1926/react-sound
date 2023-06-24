@@ -11,7 +11,7 @@ interface IProps {
   morePath: string
 }
 
-const SectionHeaderRCM: FC<IProps> = (props: IProps) => {
+const SectionHeaderRecommend: FC<IProps> = (props: IProps) => {
   const { title, keywords, morePath } = props
 
   return (
@@ -39,4 +39,4 @@ const SectionHeaderRCM: FC<IProps> = (props: IProps) => {
   )
 }
 
-export default memo(SectionHeaderRCM)
+export default memo(SectionHeaderRecommend)

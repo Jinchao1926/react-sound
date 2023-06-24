@@ -6,7 +6,7 @@ import { useAppSelector } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { ResidentSingerWrapper } from './style'
-import SectionHeaderV2Wrapper from '@/components/section-header-v2'
+import SectionHeaderMore from '@/components/section-header-more'
 
 interface IProps {
   children?: ReactNode
@@ -23,7 +23,9 @@ const ResidentSinger: FC<IProps> = () => {
 
   return (
     <ResidentSingerWrapper>
-      <SectionHeaderV2Wrapper title='入驻歌手' morePath='/discover/artist'/>
+      <div className='header'>
+        <SectionHeaderMore title='入驻歌手' morePath='/discover/artist'/>
+      </div>
       <div className='singer-list'>
         {
           hotSingers.map(item => {

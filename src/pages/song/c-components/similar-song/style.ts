@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const SimilarSongWrapper = styled.div`
   margin-bottom: 25px;
+
+  .songs {
+    margin-top: 20px;
+  }
 `
 
 export const SimilarSongItem = styled.div`

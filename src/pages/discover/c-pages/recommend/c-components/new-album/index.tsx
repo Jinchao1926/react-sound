@@ -7,7 +7,7 @@ import { Carousel } from 'antd'
 import {
   NewAlbumWrapper
 } from './style'
-import SectionHeaderRCM from '@/components/section-header-rcm'
+import SectionHeaderRecommend from '@/components/section-header-recommend'
 import AlbumCover from '@/components/album-cover'
 
 interface IProps {
@@ -26,7 +26,7 @@ const NewAlbum: FC<IProps> = () => {
   const albumStyle = {width: 118, imgSize:100}
   return (
     <NewAlbumWrapper>
-      <SectionHeaderRCM title='新碟上架' morePath='/discover/album'/>
+      <SectionHeaderRecommend title='新碟上架' morePath='/discover/album'/>
       <div className='inner'>
         <div className='arrow arrow-left sprite_02' onClick={e => pageRef.current?.prev()}/>
         <Carousel 

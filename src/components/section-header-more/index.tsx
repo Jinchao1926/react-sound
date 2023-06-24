@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 
-import { SectionHeaderV2Wrapper } from './style'
+import { SectionHeaderMoreWrapper } from './style'
 
 interface IProps {
   children?: ReactNode,
@@ -9,16 +9,16 @@ interface IProps {
   morePath?: string
 }
 
-const SectionHeaderV2: FC<IProps> = (props: IProps) => {
+const SectionHeaderMore: FC<IProps> = (props: IProps) => {
   const { title, morePath } = props
   const showMorePath = (morePath !== null && morePath !== undefined)
 
   return (
-    <SectionHeaderV2Wrapper>
+    <SectionHeaderMoreWrapper>
       <span className='title'>{title}</span>
       { showMorePath && <a href={morePath}>查看更多 &gt;</a>}
-    </SectionHeaderV2Wrapper>
+    </SectionHeaderMoreWrapper>
   )
 }
 
-export default memo(SectionHeaderV2)
+export default memo(SectionHeaderMore)

@@ -6,7 +6,7 @@ export const MultiDownloadWrapper = styled.div`
   .list {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin: 20px 0 10px;
     height: 65px;
     background-position: 0 -392px;
 
