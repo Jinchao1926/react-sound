@@ -111,24 +111,3 @@ export function parserLyric(lyricText: string): ILyricLine[] {
   })
   return lyricLines
 }
-
-// function parseLyric(lyricText: string): LyricLine[] {
-//   const lines = lyricText.split('\n');
-//   const lyricLines: LyricLine[] = [];
-
-//   const timeRegExp = /^\[(\d{2}):(\d{2})\.(\d{2})\]\s*(.*?)$/;
-
-//   for (const line oflines) {
-//     const match = line.match(timeRegExp);
-//     if (match) {
-//       const minutes = parseInt(match[1]);
-//       const seconds = parseInt(match[2]);
-//       const milliseconds = parseInt(match[3]);
-//       const time = minutes * 60 * 1000 + seconds * 1000 + milliseconds;
-//       const text = match[4];
-//       lyricLines.push({ time, text });
-//     }
-//   }
-
-//   return lyricLines;
-// }

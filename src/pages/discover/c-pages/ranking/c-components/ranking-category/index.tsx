@@ -2,13 +2,13 @@ import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 import { shallowEqual } from 'react-redux'
-import { useAppSelector } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
+import { changeRankingFrequencyAction, fetchRankingDetailAsync } from '../../store'
 
-import { formatSizedImage } from '@/utils/format-utils'
 import classNames from 'classnames'
+import { formatSizedImage } from '@/utils/format-utils'
 
 import { RankingCategoryWrapper } from './style'
-
 
 interface IProps {
   children?: ReactNode,
@@ -26,6 +26,7 @@ const RankingCategory: FC<IProps> = (props: IProps) => {
     shallowEqual
   )
 
+  // select style
   useEffect(() => {
     if (initRankingId == null) {
       setSelectedIndex(0)
@@ -36,6 +37,16 @@ const RankingCategory: FC<IProps> = (props: IProps) => {
     if (idx === -1) idx = 0
     setSelectedIndex(idx)
   }, [topList, initRankingId])
+
+  // Fetch ranking detail
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    if (selectedIndex < topList.length) {
+      const item = topList[selectedIndex]
+      dispatch(fetchRankingDetailAsync(item.id))
+      dispatch(changeRankingFrequencyAction(item.updateFrequency))
+    }
+  }, [dispatch, topList, selectedIndex])
 
   return (
     <RankingCategoryWrapper>

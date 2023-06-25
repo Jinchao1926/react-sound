@@ -14,4 +14,6 @@ export const RankingLeft = styled.div`
 `
 
 export const RankingRight = styled.div`
+  width: 740px;
+  background-color: #fff;
 `

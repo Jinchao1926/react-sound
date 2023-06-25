@@ -12,3 +12,14 @@ export function formatCount(count: number) {
 export function formatSizedImage(imgUrl: string, size: number = 140) {
   return `${imgUrl}?param=${size}y${size}`
 }
+
+export function formatMonthDay(timestamp: number) {
+  const date = new Date(timestamp)
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return `${padLeft(month)}月${padLeft(day)}日`
+}
+
+function padLeft(num: number): string {
+  return num < 10 ? '0' + num : num + ''
+}

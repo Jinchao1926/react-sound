@@ -16,8 +16,8 @@ import {
   SongDetailWrapper,
   SongRecord,
   LyricList,
-  SongAction,
 } from './style'
+import SongOperationBar from '@/components/song-operation-bar'
 
 interface IProps {
   children?: ReactNode
@@ -113,22 +113,12 @@ const SongDetail: FC<IProps> = () => {
           所属专辑：
           <NavLink to={`/albumn?id=${song?.al.id}`}>{song?.al.name}</NavLink> 
         </p>
-        <SongAction>
-          <button className='play sprite_button' onClick={playMusic}>播放</button>
-          <button className='add sprite_button' onClick={addMusicToPlaylist}></button>
-          <button className='collect sprite_button' >
-            <span className='sprite_button'>收藏</span>
-          </button>
-          <button className='share sprite_button' >
-            <span className='sprite_button'>分享</span>
-          </button>
-          <button className='download sprite_button' >
-            <span className='sprite_button'>下载</span>
-          </button>
-          <button className='review sprite_button' >
-            <span className='sprite_button'>评论</span>
-          </button>
-        </SongAction>
+        <SongOperationBar 
+          callbacks={{ 
+            onPlayClick: playMusic, 
+            onAddClick: addMusicToPlaylist 
+          }}
+        />
         <span className='lyric-content' ref={lyricRef}>{lyricString}</span>
         <div className='lyric-control' onClick={e => handleShowingMore()}>
           {showingMore ? '收起' : '展开'}
