@@ -42,7 +42,7 @@ const SimilarSong: FC<IProps> = () => {
             return (
               <SimilarSongItem key={item.id}>
                 <div className='info'>
-                  <NavLink className='song' to={`/song?id=${item.id}`}>{item.name}</NavLink>
+                  <NavLink className='song' to={`/discover/song?id=${item.id}`}>{item.name}</NavLink>
                   <span className='singers'>
                     {
                       item.artists.map((jtem: {id: string, name: string}, jdx: number) => {

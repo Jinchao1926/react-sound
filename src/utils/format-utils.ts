@@ -13,6 +13,10 @@ export function formatSizedImage(imgUrl: string, size: number = 140) {
   return `${imgUrl}?param=${size}y${size}`
 }
 
+function padLeft(num: number): string {
+  return num < 10 ? '0' + num : num + ''
+}
+
 export function formatMonthDay(timestamp: number) {
   const date = new Date(timestamp)
   const month = date.getMonth() + 1
@@ -20,6 +24,9 @@ export function formatMonthDay(timestamp: number) {
   return `${padLeft(month)}月${padLeft(day)}日`
 }
 
-function padLeft(num: number): string {
-  return num < 10 ? '0' + num : num + ''
+export function formatMinuteSecond(timestamp: number) {
+  const date = new Date(timestamp)
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
+  return `${padLeft(minute)}:${padLeft(second)}`
 }

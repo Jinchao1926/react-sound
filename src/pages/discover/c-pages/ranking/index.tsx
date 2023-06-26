@@ -12,7 +12,7 @@ import {
 } from './style'
 import RankingCategory from './c-components/ranking-category'
 import RankingHeader from './c-components/ranking-header'
-// import SongList from ''
+import RankingList from './c-components/ranking-list'
 
 interface IProps {
   children?: ReactNode
@@ -35,6 +35,7 @@ const Ranking: FC<IProps> = () => {
       </RankingLeft>
       <RankingRight>
         <RankingHeader />
+        <RankingList />
       </RankingRight>
     </RankingWrapper>
   )
