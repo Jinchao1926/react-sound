@@ -36,8 +36,10 @@ const SimilarPlaylist: FC<IProps> = () => {
                   <img src={formatSizedImage(item.coverImgUrl, 50)} alt={item.name} />
                 </NavLink>
                 <div className='info'>
-                  <NavLink className='playlist' to={`/playlist?id=${item.id}`}>{item.name}</NavLink>
-                  <p className='author'>
+                  <NavLink className='playlist no-wrap' to={`/playlist?id=${item.id}`}>
+                    {item.name}
+                  </NavLink>
+                  <p className='author no-wrap'>
                     by
                     <NavLink className='author-name' to={`/user/home?id=${item.creator.id}`}>
                         {item.creator.nickname}

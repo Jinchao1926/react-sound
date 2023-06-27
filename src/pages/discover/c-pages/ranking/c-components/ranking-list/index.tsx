@@ -54,6 +54,7 @@ const RankingList: FC<IProps> = () => {
                 ar: [], 
                 al: {picUrl: string}, 
                 alia: string[],
+                tns?: string[],
                 mv: number
               }, 
               idx: number
@@ -73,6 +74,7 @@ const RankingList: FC<IProps> = () => {
                   <td>
                     <div className='song-name'>
                       {
+                        // 前三行显示 Image
                         idx < 3 ? (
                           <NavLink to={`/discover/song?id=${item.id}`}>
                             <img src={formatSizedImage(item.al.picUrl, 50)} alt='' /> 
@@ -80,11 +82,21 @@ const RankingList: FC<IProps> = () => {
                         ): null
                       }
                       <span className="play sprite_table"></span>
-                      <NavLink className="name" to={`/discover/song?id=${item.id}`}>{item.name}</NavLink>
+                      <NavLink className="name no-wrap" to={`/discover/song?id=${item.id}`}>
+                        {item.name}
+                      </NavLink>
                       {
-                        item.alia.length > 0 && <span className='alias'>&nbsp;-&nbsp;({item.alia[0]})</span>
+                        // 别名
+                        ( (item.tns && item.tns.length > 0) || item.alia.length > 0) && (
+                          <span className='alias no-wrap'>
+                            &nbsp;-&nbsp;({ 
+                            (item.tns && item.tns.length > 0 && item.tns[0]) || item.alia[0] 
+                            })
+                          </span>
+                        )
                       }
                       {
+                        // MV
                         item.mv !== 0 && (
                           <NavLink to={`/mv?id=${item.mv}`} title='播放mv'>
                             <span className='mv sprite_table' />
@@ -105,7 +117,7 @@ const RankingList: FC<IProps> = () => {
                   </td>
                   {/* singer */}
                   <td>
-                    <span className='singer-name' >
+                    <span className='singer-name no-wrap' >
                       {
                         item.ar?.map((singer: {id: string, name: string}, jdx: number) => {
                           return (

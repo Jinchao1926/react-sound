@@ -23,11 +23,6 @@ export const SimilarSongItem = styled.div`
     width: 156px;
     line-height: 16px;
 
-    .song, .singers{
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
     .singers {
       display: flex;
       color: #999;

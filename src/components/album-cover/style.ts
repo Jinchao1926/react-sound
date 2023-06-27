@@ -43,9 +43,6 @@ export const AlbumCoverWrapper = styled.div<IAlbumProps>`
   .name {
     width: ${props => props.imgSize + "px"};
     font-size: 12px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
     &:hover {
       text-decoration: underline;
     }

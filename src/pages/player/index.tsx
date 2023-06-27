@@ -200,7 +200,7 @@ const Player: FC<IProps> = () => {
           </div>
           <div className='info'>
             <div className='music'>
-              <NavLink className='name' to={songUrl}>{currentSong?.name}</NavLink>
+              <NavLink className='name no-wrap' to={songUrl}>{currentSong?.name}</NavLink>
               <span className='singer'>
                 {
                   currentSong?.ar.map((item: {id: string, name: string}, index: number) => {

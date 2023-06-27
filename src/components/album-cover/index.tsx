@@ -38,8 +38,8 @@ const AlbumCover: FC<IProps> = (prop: IProps) => {
         <NavLink className='background sprite_cover' to={albumUrl}> </NavLink>
         <button className='play sprite_icon' title='播放' onClick={handlePlayAlbumn} />
       </div>
-      <NavLink className='name album' to={albumUrl}>{info.name}</NavLink>
-      <NavLink className='name artist' to={artistUrl}>{info.artist.name}</NavLink>
+      <NavLink className='name no-wrap album' to={albumUrl}>{info.name}</NavLink>
+      <NavLink className='name no-wrap artist' to={artistUrl}>{info.artist.name}</NavLink>
     </AlbumCoverWrapper>
   )
 }

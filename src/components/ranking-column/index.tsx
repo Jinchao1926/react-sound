@@ -64,7 +64,7 @@ const RankingColumn: FC<IProps> = (props: IProps) => {
             return (
               <div className='item' key={item.id}>
                 <span className='index'>{index + 1}</span>
-                <NavLink className='name' to={`/discover/song?id=${item.id}`}>{item.name}</NavLink>
+                <NavLink className='name no-wrap' to={`/discover/song?id=${item.id}`}>{item.name}</NavLink>
                 <div className='actions'>
                   <button className='sprite_02 btn play' title='播放' onClick={e => playMusic(item)} />
                   <button className='sprite_icon2 btn addTo' title='添加到播放列表' onClick={e => addMusicToPlaylist(item)}/>

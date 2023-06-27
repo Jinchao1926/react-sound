@@ -32,11 +32,6 @@ export const SimilarPlaylistItem = styled.div`
     margin-left: 10px;
     width: 140px;
     
-    .playlist, .author {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
     .playlist {
       color: #000;
       font-size: 14px;

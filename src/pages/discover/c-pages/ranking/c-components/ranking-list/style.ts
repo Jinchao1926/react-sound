@@ -106,13 +106,13 @@ export const RankingTable = styled.div`
         .song-name {
           display: flex;
           align-items: center;
-
           img {
             width: 50px;
             height: 50px;
             margin-right: 10px;
           }
           .play {
+            flex-shrink: 0;
             background-position: 0 -103px;
             width: 17px;
             height: 17px;
@@ -122,10 +122,8 @@ export const RankingTable = styled.div`
             }
           }
           .name {
-            margin-left: 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            flex-shrink: 0;
+            margin-left: 8px;
             &:hover {
               text-decoration: underline;
             }
@@ -148,13 +146,13 @@ export const RankingTable = styled.div`
           padding: 0;
 
           .duration {
-            padding: 6px 10px;
+            padding: 0 10px;
           }
           .actions {
             display: none;
             justify-content: space-between;
             align-items: center;
-            padding: 6px 5px;
+            padding: 0 5px;
             
             .btn {
               width: 17px;
@@ -200,9 +198,6 @@ export const RankingTable = styled.div`
         .singer-name {
           width: 100%;
           display: inline-block;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
 
           a {
             display: inline-block;

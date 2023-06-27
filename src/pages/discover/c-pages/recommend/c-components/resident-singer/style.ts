@@ -39,9 +39,6 @@ export const ResidentSingerWrapper = styled.div`
         }
         .desc {
           color: #666;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
         }
       }
     }

@@ -94,9 +94,6 @@ export const RankingColumnListWrapper = styled.div`
       width: 170px;
       flex: 1;
       color: #000;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       &:hover {
         text-decoration: underline;
       }

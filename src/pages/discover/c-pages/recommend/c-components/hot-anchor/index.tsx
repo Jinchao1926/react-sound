@@ -26,7 +26,7 @@ const HotAnchor: FC<IProps> = () => {
               <img className='avatar' src={formatSizedImage(item.picUrl, 40)} alt=''/>
               <div className='info'>
                 <span className='name'>{item.name}</span>
-                <span className='desc'>{item.position}</span>
+                <span className='desc no-wrap'>{item.position}</span>
               </div>
             </NavLink>
           )

@@ -89,9 +89,6 @@ export const PlayerInfo = styled.div`
       .name {
         color: #e8e8e8;
         max-width: 300px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
         &:hover {
           text-decoration: underline;
         }

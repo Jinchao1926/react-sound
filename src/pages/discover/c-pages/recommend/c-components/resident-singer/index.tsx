@@ -34,7 +34,7 @@ const ResidentSinger: FC<IProps> = () => {
                 <img className='avatar' src={formatSizedImage(item.picUrl, 62)} alt=''/>
                 <div className='info'>
                   <h4 className='name'>{item.name}</h4>
-                  <p className='desc'>{item.alias.join(' ') || item.name}</p>
+                  <p className='desc no-wrap'>{item.alias.join(' ') || item.name}</p>
                 </div>
               </NavLink>
             )
