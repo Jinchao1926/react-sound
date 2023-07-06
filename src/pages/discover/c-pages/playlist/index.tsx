@@ -26,13 +26,10 @@ const Playlist: FC<IProps> = () => {
   const onMouseDown = () => {
 
   }
-  const onContentMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.stopPropagation()
-  }
 
   return (
     <PlaylistWrapper onMouseDown={onMouseDown}>
-      <div className='content wrap-v2' onMouseDown={onContentMouseDown}>
+      <div className='content wrap-v2' onMouseDown={e => e.stopPropagation()}>
         <PlaylistHeader />
         <PlaylistCovers />
       </div>

@@ -1,16 +1,19 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { NavLink } from 'react-router-dom'
+import classNames from 'classnames'
 
 import { SongCoverWrapper } from './style'
 import { formatCount, formatSizedImage } from '@/utils/format-utils'
 
 interface IProps {
   children?: ReactNode,
-  info: any
+  info: any,
+  showSource?: boolean
 }
 
 const SongCover: FC<IProps> = (props: IProps) => {
-  const { info } = props
+  const { info, showSource = false } = props
 
   return (
     <SongCoverWrapper className='item'>
@@ -24,7 +27,19 @@ const SongCover: FC<IProps> = (props: IProps) => {
           <a className='play sprite_icon' href='todo' title='播放'> </a>
         </div>
       </div>
-      <a className='cover-info' href={`/playlist?id=${info.id}`}>{info.name}</a>
+      <a className={classNames('cover-info', { 'no-wrap': showSource === true })} 
+        href={`/playlist?id=${info.id}`}>
+          {info.name}
+      </a>
+      { showSource && (
+        <div className='cover-source'>
+          by 
+          <NavLink className='name' to={`/user/home/id=${info.creator.userId}`}>
+            {info.creator.nickname}
+          </NavLink>
+          { info.creator.avatarDetail && <img src={info.creator.avatarDetail.identityIconUrl}/> }
+        </div> 
+      )}
     </SongCoverWrapper>
   )
 }

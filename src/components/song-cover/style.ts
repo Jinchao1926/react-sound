@@ -61,4 +61,21 @@ export const SongCoverWrapper = styled.div`
       text-decoration: underline;
     }
   }
+
+  .cover-source {
+    color: #999;
+    display: flex;
+
+    .name {
+      color: #666;
+      margin: 0 4px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    img {
+      height: 13px;
+      width: 13px;
+    }
+  }
 `

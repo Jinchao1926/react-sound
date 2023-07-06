@@ -50,7 +50,7 @@ const PlaylistCovers: FC<IProps> = () => {
         {
           playlists.map((item, index) => {
             return (
-              <SongCover key={item.id} info={item}/>
+              <SongCover key={item.id} info={item} showSource={true}/>
             )
           })
         }
