@@ -53,7 +53,7 @@ export const SongCoverWrapper = styled.div`
     margin: 8px 0 3px;
     font-size: 14px;
     color: #000;
-    max-width: 100%;
+    max-width: 140px;
     line-height: 1.4;
     cursor: pointer;
 

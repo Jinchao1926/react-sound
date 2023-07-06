@@ -13,12 +13,11 @@ const SongCover: FC<IProps> = (props: IProps) => {
   const { info } = props
 
   return (
-    <SongCoverWrapper>
+    <SongCoverWrapper className='item'>
       <div className='cover'>
         <a href={`/playlist?id=${info.id}`}> 
-          <img src={formatSizedImage(info.picUrl, 140)} alt={info.name} />
+          <img src={formatSizedImage(info.picUrl || info.coverImgUrl, 140)} alt={info.name} />
         </a>
-        
         <div className='panel sprite_cover'>
           <span className='headset sprite_icon' />
           <span className='play-count'>{formatCount(info.playCount)}</span>
