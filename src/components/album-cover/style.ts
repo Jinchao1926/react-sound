@@ -3,10 +3,10 @@ import styled from "styled-components";
 export interface IAlbumProps {
   width: number,
   imgSize: number,
+  position: string
 }
 export const AlbumCoverWrapper = styled.div<IAlbumProps>`
   width: ${props => props.width + "px"};
-  /* height: 150px; */
 
   .cover {
     width: ${props => props.imgSize + "px"};
@@ -15,11 +15,11 @@ export const AlbumCoverWrapper = styled.div<IAlbumProps>`
     position: relative;
 
     img {
-        width: 100%;
-        height: 100%;
+      width: 100%;
+      height: 100%;
     }
     .background {
-      background-position: 0 -570px;
+      background-position: 0 ${props => props.position};
       position: absolute;
       top: 0;
       left: 0;
@@ -49,6 +49,8 @@ export const AlbumCoverWrapper = styled.div<IAlbumProps>`
   }
   .album {
     color: #000;
+    font-size: ${props => props.imgSize > 100 ? '14px': '12px'};
+    margin-bottom: ${props => props.imgSize > 100 ? '4px': '0'};
   }
   .artist {
     color: #666;

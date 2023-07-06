@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { shallowEqual } from 'react-redux'
 import { useAppSelector } from '@/store'
@@ -15,6 +15,7 @@ interface IProps {
 
 // 热门推荐
 const HotRecommend: FC<IProps> = () => {
+  const [keywords] = useState(['华语', '流行', '摇滚', '民谣', '电子'])
   // 获取 redux 数据
   const { hotRecommends } = useAppSelector(state => ({
       hotRecommends: state.recommend.hotRecommends
@@ -22,13 +23,12 @@ const HotRecommend: FC<IProps> = () => {
     shallowEqual
   )
 
-  const keywords = ['华语', '流行', '摇滚', '民谣', '电子']
   return (
     <HotRecommendWrapper>
       <SectionHeaderRecommend 
         title='热门推荐' 
         keywords={keywords}
-        morePath='/discover/songs'
+        morePath='/discover/playlist'
       />
       <div className='recommend-list'>
         {

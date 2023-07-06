@@ -23,7 +23,7 @@ const NewAlbum: FC<IProps> = () => {
     }),
     shallowEqual
   )
-  const albumStyle = {width: 118, imgSize:100}
+  
   return (
     <NewAlbumWrapper>
       <SectionHeaderRecommend title='新碟上架' morePath='/discover/album'/>
@@ -39,7 +39,7 @@ const NewAlbum: FC<IProps> = () => {
             return (
               <div className='album-page' key={idx}>
                 {albums.slice(idx * 5, (idx + 1) * 5).map(item => {
-                  return <AlbumCover key={item.id} info={item} style={albumStyle}/>
+                  return <AlbumCover key={item.id} info={item} small={true}/>
                 })}
               </div>
             )

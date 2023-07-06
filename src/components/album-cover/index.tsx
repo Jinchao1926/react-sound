@@ -8,17 +8,29 @@ import { formatSizedImage } from '@/utils/format-utils'
 interface IProps {
   children?: ReactNode,
   info: any,
-  style?: IAlbumProps
+  small: boolean
 }
 
 const AlbumCover: FC<IProps> = (prop: IProps) => {
   // props & state
-  const { info, style = {width: 118, imgSize: 100} } = prop
+  const { info, small = true } = prop
+  
+  const [style, setStyle] = useState<IAlbumProps>(
+    {width: 118, imgSize: 100, position: '-570px'}
+  )
   const [coverUrl, setCoverUrl] = useState<string>('')
   const [albumUrl, setAlbumUrl] = useState<string>('')
   const [artistUrl, setArtistUrl] = useState<string>('')
 
   // useEffect
+  useEffect(() => {
+    if (small) {
+      setStyle({width: 118, imgSize: 100, position: '-570px'})
+    } else {
+      setStyle({width: 150, imgSize: 130, position: '-845px'})
+    }
+  }, [small])
+
   useEffect(() => {
     setCoverUrl(formatSizedImage(info.picUrl, style.imgSize))
     setAlbumUrl(`/album?id=${info.id}`)
@@ -32,7 +44,11 @@ const AlbumCover: FC<IProps> = (prop: IProps) => {
   }
 
   return (
-    <AlbumCoverWrapper width={style.width} imgSize={style.imgSize}>
+    <AlbumCoverWrapper className='album-cover' 
+      width={style.width} 
+      imgSize={style.imgSize} 
+      position={style.position}
+      >
       <div className='cover'>
         <img src={coverUrl} alt={info.name} />
         <NavLink className='background sprite_cover' to={albumUrl}> </NavLink>

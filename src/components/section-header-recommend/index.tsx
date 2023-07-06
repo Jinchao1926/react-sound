@@ -17,7 +17,7 @@ const SectionHeaderRecommend: FC<IProps> = (props: IProps) => {
   return (
     <SectionHeaderRCMWrapper className='sprite_02'>
       <div className='left'>
-        <NavLink className='title' to='/discover/playlist'>{title}</NavLink>
+        <NavLink className='title' to={morePath}>{title}</NavLink>
         <div className='keyword-list'>
           {
             keywords?.map(item => {
