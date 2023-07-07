@@ -4,9 +4,9 @@ import type { FC, ReactNode } from 'react'
 import { SectionHeaderMoreWrapper } from './style'
 
 interface IProps {
-  children?: ReactNode,
-  title: string,
-  morePath?: string
+  children?: ReactNode;
+  title: string;
+  morePath?: string;
 }
 
 const SectionHeaderMore: FC<IProps> = (props: IProps) => {

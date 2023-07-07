@@ -1,8 +1,7 @@
-import React, { memo, useCallback, useState, useEffect } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { shallowEqual } from 'react-redux'
 import { useAppSelector } from '@/store'
-import classNames from 'classnames'
 
 import { 
   PlaylistHeaderWrapper,

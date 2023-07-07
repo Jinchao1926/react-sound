@@ -12,9 +12,9 @@ import {
 import { headerLinks } from '@/assets/data/local-data'
 
 interface ITitleType {
-  title: string,
-  type: string,
-  link: string,
+  title: string;
+  type: string;
+  link: string;
 }
 
 interface IProps {

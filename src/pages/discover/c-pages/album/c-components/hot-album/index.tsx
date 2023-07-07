@@ -22,7 +22,7 @@ const HotAlbum: FC<IProps> = () => {
       <SectionHeaderNormal title='热门新碟'/>
       <div className='album-list'>
         {
-          hotAlbums.map(item => {
+          hotAlbums.slice(0, 10).map(item => {
             return (
               <AlbumCover key={item.id} 
                 info={item} 

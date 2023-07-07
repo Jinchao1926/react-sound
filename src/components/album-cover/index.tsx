@@ -6,9 +6,9 @@ import { IAlbumProps, AlbumCoverWrapper } from './style'
 import { formatSizedImage } from '@/utils/format-utils'
 
 interface IProps {
-  children?: ReactNode,
-  info: any,
-  small: boolean
+  children?: ReactNode;
+  info: any;
+  small: boolean;
 }
 
 const AlbumCover: FC<IProps> = (prop: IProps) => {
@@ -16,7 +16,7 @@ const AlbumCover: FC<IProps> = (prop: IProps) => {
   const { info, small = true } = prop
   
   const [style, setStyle] = useState<IAlbumProps>(
-    {width: 118, imgSize: 100, position: '-570px'}
+    new IAlbumProps(118, 100)
   )
   const [coverUrl, setCoverUrl] = useState<string>('')
   const [albumUrl, setAlbumUrl] = useState<string>('')
@@ -25,9 +25,9 @@ const AlbumCover: FC<IProps> = (prop: IProps) => {
   // useEffect
   useEffect(() => {
     if (small) {
-      setStyle({width: 118, imgSize: 100, position: '-570px'})
+      setStyle(new IAlbumProps(118, 100))
     } else {
-      setStyle({width: 150, imgSize: 130, position: '-845px'})
+      setStyle(new IAlbumProps(150, 130))
     }
   }, [small])
 
@@ -45,9 +45,9 @@ const AlbumCover: FC<IProps> = (prop: IProps) => {
 
   return (
     <AlbumCoverWrapper className='album-cover' 
-      width={style.width} 
-      imgSize={style.imgSize} 
-      position={style.position}
+      width={style.width}
+      imgSize={style.imgSize}
+      isLarge={style.isLarge}
       >
       <div className='cover'>
         <img src={coverUrl} alt={info.name} />

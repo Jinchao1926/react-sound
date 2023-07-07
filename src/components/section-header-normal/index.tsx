@@ -4,8 +4,8 @@ import type { FC, ReactNode } from 'react'
 import { SectionHeaderNormalWrapper } from './style'
 
 interface IProps {
-  children?: ReactNode,
-  title: string,
+  children?: ReactNode
+  title: string
   keywords?: string[]
 }
 

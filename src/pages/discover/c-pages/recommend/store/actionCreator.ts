@@ -10,12 +10,10 @@ import {
 import { 
   fetchBanners,
   fetchHotRecommends,
-  fetchTopAlbums,
   fetchTopArtists
-} from "../service/recommend";
-import {
-  fetchPlaylistDetail
-} from "@/services/ranking"
+} from "../service/recommend"
+import { fetchTopAlbums } from "@/services/album"
+import { fetchPlaylistDetail } from "@/services/ranking"
 
 // 定义获取推荐列表数据的异步 Action
 export const fetchRecommendDataAsync = createAsyncThunk(

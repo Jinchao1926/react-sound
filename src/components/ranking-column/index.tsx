@@ -18,8 +18,8 @@ import {
 } from './style'
 
 interface IProps {
-  children?: ReactNode,
-  info: any
+  children?: ReactNode;
+  info: any;
 }
 
 const RankingColumn: FC<IProps> = (props: IProps) => {

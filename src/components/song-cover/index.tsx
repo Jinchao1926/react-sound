@@ -37,7 +37,7 @@ const SongCover: FC<IProps> = (props: IProps) => {
           <NavLink className='name' to={`/user/home/id=${info.creator.userId}`}>
             {info.creator.nickname}
           </NavLink>
-          { info.creator.avatarDetail && <img src={info.creator.avatarDetail.identityIconUrl}/> }
+          { info.creator.avatarDetail && <img src={info.creator.avatarDetail.identityIconUrl} alt=''/> }
         </div> 
       )}
     </SongCoverWrapper>
