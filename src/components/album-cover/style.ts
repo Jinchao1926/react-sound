@@ -66,4 +66,7 @@ export const AlbumCoverWrapper = styled.div<IAlbumProps>`
     color: #666;
     font-size: 12px;
   }
+  .user-links {
+    width: ${props => props.imgSize + "px"} !important;
+  }
 `

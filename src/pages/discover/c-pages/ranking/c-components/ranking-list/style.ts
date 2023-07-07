@@ -195,17 +195,6 @@ export const RankingTable = styled.div`
         }
 
         // 歌手名称
-        .singer-name {
-          width: 100%;
-          display: inline-block;
-
-          a {
-            display: inline-block;
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-        }
       }
     }
   }

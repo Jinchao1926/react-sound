@@ -94,15 +94,11 @@ export const PlayerInfo = styled.div`
           text-decoration: underline;
         }
       }
-      .singer {
-        display: flex;
+      .user-links {
         margin-left: 15px;
         color: #9b9b9b;
         a {
           color: #9b9b9b;
-          &:hover {
-            text-decoration: underline;
-          }
         }
       }
     }

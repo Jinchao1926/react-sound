@@ -7,6 +7,7 @@ import { useAppSelector } from '@/store'
 import { formatMinuteSecond, formatSizedImage } from '@/utils/format-utils'
 
 import { RankingListWrapper, RankingTable } from './style'
+import UserLink from '@/components/user-link'
 
 interface IProps {
   children?: ReactNode
@@ -117,18 +118,7 @@ const RankingList: FC<IProps> = () => {
                   </td>
                   {/* singer */}
                   <td>
-                    <span className='singer-name no-wrap' >
-                      {
-                        item.ar?.map((singer: {id: string, name: string}, jdx: number) => {
-                          return (
-                            <React.Fragment key={singer.id}>
-                              { jdx > 0 && '/'}
-                              <NavLink to={`/artist?id=${singer.id}`}>{singer.name}</NavLink>
-                            </React.Fragment>
-                          )
-                        })
-                      }
-                    </span>
+                    <UserLink users={item.ar} />
                   </td>
                 </tr>
               )

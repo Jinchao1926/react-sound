@@ -18,6 +18,7 @@ import {
   LyricList,
 } from './style'
 import SongOperationBar from '@/components/song-operation-bar'
+import UserLink from '@/components/user-link'
 
 interface IProps {
   children?: ReactNode
@@ -98,16 +99,7 @@ const SongDetail: FC<IProps> = () => {
         </div>
         <p className='singer'>
           歌手：
-          {
-            song?.ar.map((item: {id: string, name: string}, index: number) => {
-              return (
-                <React.Fragment key={item.id}>
-                  { index > 0 && ' / '}
-                  <NavLink to={`/artist?id=${item.id}`}>{item.name}</NavLink> 
-                </React.Fragment>
-              )
-            })
-          }
+          { song?.ar && <UserLink users={song?.ar} showSpace={true} />}
         </p>
         <p className='album'>
           所属专辑：

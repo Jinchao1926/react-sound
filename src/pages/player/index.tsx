@@ -23,6 +23,7 @@ import {
 } from './style'
 import ProgressBar from './progress-bar'
 import PlayerAction from './player-action'
+import UserLink from '@/components/user-link'
 
 interface IProps {
   children?: ReactNode
@@ -201,18 +202,7 @@ const Player: FC<IProps> = () => {
           <div className='info'>
             <div className='music'>
               <NavLink className='name no-wrap' to={songUrl}>{currentSong?.name}</NavLink>
-              <span className='singer'>
-                {
-                  currentSong?.ar.map((item: {id: string, name: string}, index: number) => {
-                    return (
-                      <React.Fragment key={item.id}>
-                        { index > 0 && '/'}
-                        <NavLink to={`/artist?id=${item.id}`}>{item.name}</NavLink>
-                      </React.Fragment>
-                    )
-                  })
-                }
-              </span>
+              { currentSong?.ar && <UserLink users={currentSong?.ar}/> }
             </div>
             <PlayerProgressBar>
               <ProgressBar 

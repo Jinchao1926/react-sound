@@ -22,14 +22,6 @@ export const SimilarSongItem = styled.div`
   .info {
     width: 156px;
     line-height: 16px;
-
-    .singers {
-      display: flex;
-      color: #999;
-      .singer-name {
-        color: #999;
-      }
-    }
   }
   
   .control {

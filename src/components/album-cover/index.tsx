@@ -2,8 +2,9 @@ import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import { IAlbumProps, AlbumCoverWrapper } from './style'
 import { formatSizedImage } from '@/utils/format-utils'
+import { IAlbumProps, AlbumCoverWrapper } from './style'
+import UserLink from '@/components/user-link'
 
 interface IProps {
   children?: ReactNode;
@@ -20,7 +21,6 @@ const AlbumCover: FC<IProps> = (prop: IProps) => {
   )
   const [coverUrl, setCoverUrl] = useState<string>('')
   const [albumUrl, setAlbumUrl] = useState<string>('')
-  const [artistUrl, setArtistUrl] = useState<string>('')
 
   // useEffect
   useEffect(() => {
@@ -34,7 +34,6 @@ const AlbumCover: FC<IProps> = (prop: IProps) => {
   useEffect(() => {
     setCoverUrl(formatSizedImage(info.picUrl, style.imgSize))
     setAlbumUrl(`/album?id=${info.id}`)
-    setArtistUrl(`/artist?id=${info.artist.id}`)
   }, [info, style.imgSize])
 
   // other handlers
@@ -55,7 +54,7 @@ const AlbumCover: FC<IProps> = (prop: IProps) => {
         <button className='play sprite_icon' title='播放' onClick={handlePlayAlbumn} />
       </div>
       <NavLink className='name no-wrap album' to={albumUrl}>{info.name}</NavLink>
-      <NavLink className='name no-wrap artist' to={artistUrl}>{info.artist.name}</NavLink>
+      <UserLink users={info.artists} showSpace={true}/>
     </AlbumCoverWrapper>
   )
 }

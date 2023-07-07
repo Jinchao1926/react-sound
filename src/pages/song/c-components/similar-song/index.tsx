@@ -11,6 +11,7 @@ import {
   SimilarSongItem
 } from './style'
 import SectionHeaderMore from '@/components/section-header-more'
+import UserLink from '@/components/user-link'
 
 interface IProps {
   children?: ReactNode
@@ -45,18 +46,7 @@ const SimilarSong: FC<IProps> = () => {
                   <NavLink className='song no-wrap' to={`/discover/song?id=${item.id}`}>
                     {item.name}
                   </NavLink>
-                  <span className='singers no-wrap'>
-                    {
-                      item.artists.map((jtem: {id: string, name: string}, jdx: number) => {
-                        return (
-                          <React.Fragment key={jtem.id}>
-                            { jdx > 0 && '/'}
-                            <NavLink className='singer-name' to={`/artist?id=${jtem.id}`}>{jtem.name}</NavLink>
-                          </React.Fragment>
-                        )
-                      })
-                    }
-                  </span>
+                  <UserLink users={item.artists} />
                 </div>
                 <div className='control'>
                   <button className='btn sprite_icon3 play' onClick={e => playMusic(item.id)}/>
