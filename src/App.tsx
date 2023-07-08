@@ -6,7 +6,7 @@ import routes from '@/routers'
 
 import AppHeader from '@/components/app-header'
 import AppFooter from '@/components/app-footer'
-import Player from '@/pages/player'
+import LockablePlayer from '@/pages/player'
 
 interface IProps {
   children?: ReactNode
@@ -21,7 +21,7 @@ const App: FC<IProps> = () => {
         <div>{ useRoutes(routes) }</div>
       </Suspense>
       <AppFooter />
-      <Player />
+      <LockablePlayer />
     </div>
   )
 }

@@ -1,122 +1,46 @@
 import styled from "styled-components";
 
-export const PlayerWrapper = styled.div`
+export const LockablePlayerWrapper = styled.div`
   position: fixed;
   z-index: 100;
   left: 0;
   right: 0;
   bottom: 0;
   height: 53px;
-  background-position: 0 0;
-  background-repeat: repeat-x;
+  transition: bottom 0.5s ease-in-out;
 
-  .content {
-    margin-top: 6px;
-    height: 47px;
-    display: flex;
-  }
-`
-
-export const PlayerControl = styled.div`
-  display: flex;
-  padding-top: 6px;
-  width: 137px;
-
-  .prev, .next {
-    margin-top: 5px;
-    width: 28px;
-    height: 28px;
-  }
-
-  .prev {
-    background-position: 0 -130px;
-    &:hover {
-      background-position: -30px -130px;
-    }
-  }
-  .next {
-    background-position: -80px -130px;
-    &:hover {
-      background-position: -110px -130px;
-    }
-  }
-`
-
-interface IPlayButton {
-  isPlaying: Boolean
-}
-export const PlayButton = styled.button<IPlayButton>`
-  width: 36px;
-  height: 36px;
-  margin: 0 8px;
-  background-position: ${props => props.isPlaying ? '0 -165px' : '0 -204px'};
-  &:hover {
-    background-position: ${props => props.isPlaying ? '-40px -165px' : '-40px -204px'};
-  }
-`
-
-export const PlayerInfo = styled.div`
-  display: flex;
-  align-items: center;
-
-  .avatar {
-    width: 34px;
-    height: 34px;
-    position: relative;
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
-    .sprite_player_bar {
-      background-position: 0 -80px;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-    }
-  }
-  .info {
-    width: 581px;
-    height: 100%;
-    margin-left: 15px;
-
-    .music {
-      display: flex;
-      height: 28px;
-      line-height: 28px;
-
-      .name {
-        color: #e8e8e8;
-        max-width: 300px;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-      .user-links {
-        margin-left: 15px;
-        color: #9b9b9b;
-        a {
-          color: #9b9b9b;
-        }
-      }
-    }
-  }
-`
-
-export const PlayerProgressBar = styled.div`
-  position: relative;
-
-  .time {
+  .player {
     position: absolute;
-    top: -3px;
-    left: 480px;
-    color: #797979;
-    text-shadow: 0 1px 0 #121212;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 
-    .now-time {
-      color: #a1a1a1
+  .lock {
+    position: absolute;
+    top: -14px;
+    right: 15px;
+    width: 52px;
+    height: 20px;
+    background-position: 0 -380px;
+
+    .lock-icon, .unlock-icon {
+      display: block;
+      width: 18px;
+      height: 18px;
+      margin: 6px 0 0 17px;
+    }
+    .lock-icon {
+      background-position: -100px -380px;
+      &:hover {
+        background-position: -100px -400px;
+      }
+    }
+    .unlock-icon {
+      background-position: -80px -380px;
+      &:hover {
+        background-position: -80px -400px;
+      }
     }
   }
 `
