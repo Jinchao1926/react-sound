@@ -5,6 +5,7 @@ import type { TypedUseSelectorHook } from 'react-redux'
 import { recommendReducer } from "@/pages/discover/c-pages/recommend/store"
 import { rankingReducer } from "@/pages/discover/c-pages/ranking/store"
 import { playlistReducer } from "@/pages/discover/c-pages/playlist/store"
+import { albumReducer } from "@/pages/discover/c-pages/album/store"
 import { playerReducer } from "@/pages/player/store"
 import { songReducer } from "@/pages/song/store";
 
@@ -13,6 +14,7 @@ const store = configureStore({
     recommend: recommendReducer,
     ranking: rankingReducer,
     playlist: playlistReducer,
+    album: albumReducer,
     player: playerReducer,
     song: songReducer,
   }

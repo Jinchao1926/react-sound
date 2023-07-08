@@ -1,5 +1,8 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
+
+import { useAppDispatch } from '@/store'
+import { fetchHotAlbumsAsync, fetchAllAlbumsAsync } from './store'
 
 import { AlbumWrapper } from './style'
 import HotAlbum from './c-components/hot-album'
@@ -10,6 +13,12 @@ interface IProps {
 }
 
 const Album: FC<IProps> = () => {
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(fetchHotAlbumsAsync())
+    dispatch(fetchAllAlbumsAsync(0))
+  }, [dispatch])
+
   return (
     <AlbumWrapper className='wrap-v2'>
       <HotAlbum />

@@ -13,7 +13,7 @@ interface IProps {
 
 const HotAlbum: FC<IProps> = () => {
   const hotAlbums = useAppSelector(
-    state => state.recommend.newAlbums, 
+    state => state.album.hotAlbums, 
     shallowEqual
   )
 

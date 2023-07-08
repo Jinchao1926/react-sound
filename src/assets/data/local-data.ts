@@ -214,3 +214,28 @@ export const platforms = [
     picUrl: require("@/assets/img/platform/tv.png"),
   }
 ]
+
+// Area
+// ALL:全部,ZH:华语,EA:欧美,KR:韩国,JP:日本
+export const areas = [
+  {
+    code: "ALL",
+    name: "全部",
+  },
+  {
+    code: "ZH",
+    name: "华语",
+  },
+  {
+    code: "EA",
+    name: "欧美",
+  },
+  {
+    code: "KR",
+    name: "韩国",
+  },
+  {
+    code: "JP",
+    name: "日本",
+  },
+]

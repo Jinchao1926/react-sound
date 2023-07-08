@@ -58,7 +58,8 @@ number,
       const pageSize = 35
       const currentCategory = getState().playlist.currentCategory
       const currentTotal = getState().playlist.total
-      const { playlists, total } = await fetchPlaylists(currentCategory, page, pageSize)
+      const offset = page * pageSize
+      const { playlists, total } = await fetchPlaylists(currentCategory, offset, pageSize)
 
       // 初始化 pagePlaylists
       if (total !== currentTotal) {

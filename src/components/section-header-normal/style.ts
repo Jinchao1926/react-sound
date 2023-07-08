@@ -19,6 +19,9 @@ export const SectionHeaderNormalWrapper = styled.div`
       .keyword {
         color: #666;
         cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
       }
 
       .divider {

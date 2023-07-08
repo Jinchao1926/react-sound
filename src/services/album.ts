@@ -72,13 +72,13 @@ export function fetchTopAlbums() {
 }
 
 // 全部新碟
-export function fetchAlbums(offset: number = 0, limit: number = 10, type: string = 'hot') {
+export function fetchAlbums(area: string, offset: number = 0, limit: number = 10) {
   return rsRequest.get({
     url: '/album/new',
     params: {
+      area,
       offset,
-      limit,
-      type
+      limit
     }
   })
 }
