@@ -5,10 +5,10 @@ import { NavLink } from 'react-router-dom'
 import { SectionHeaderRCMWrapper } from './style'
 
 interface IProps {
-  children?: ReactNode
-  title: string
-  keywords?: string[]
-  morePath: string
+  children?: ReactNode;
+  title: string;
+  keywords?: string[];
+  morePath: string;
 }
 
 const SectionHeaderRecommend: FC<IProps> = (props: IProps) => {
@@ -23,7 +23,7 @@ const SectionHeaderRecommend: FC<IProps> = (props: IProps) => {
             keywords?.map(item => {
               return (
                 <div className='item' key={item}>
-                  <span className='keyword'>{item}</span>
+                  <NavLink className='keyword' to={`${morePath}${item}`}>{item}</NavLink>
                   <span className='divider'>|</span>
                 </div>
               )

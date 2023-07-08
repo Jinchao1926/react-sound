@@ -1,10 +1,12 @@
 import React, { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import { useAppDispatch } from '@/store'
 import { 
   fetchPlaylistCategoriesAsync,
-  fetchPlaylistsAsync
+  fetchPlaylistsAsync,
+  changeCurrentCategoryAsync
 } from './store'
 
 import { PlaylistWrapper } from './style'
@@ -16,8 +18,18 @@ interface IProps {
 }
 
 const Playlist: FC<IProps> = () => {
-  // Fetch categories
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search)
+  const category = queryParams.get('cat')
+
+  // Change category from query params
   const dispatch = useAppDispatch()
+  useEffect(() => {
+    if (!category) return
+    dispatch(changeCurrentCategoryAsync(category))
+  }, [dispatch, category])
+
+  // Fetch categories
   useEffect(() => {
     dispatch(fetchPlaylistCategoriesAsync())
     dispatch(fetchPlaylistsAsync(0))

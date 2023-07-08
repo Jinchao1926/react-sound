@@ -26,7 +26,7 @@ const PlaylistHeader: FC<IProps> = () => {
   const switchCategory = useCallback(() => {
     setShowCategory(!showCategory)
   }, [showCategory])
-  const onSelectedCategory = useCallback((name: string) => {
+  const onSelectedCategory = useCallback(() => {
     setShowCategory(false)
   }, [])
 

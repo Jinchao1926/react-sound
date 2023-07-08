@@ -25,8 +25,12 @@ export const SectionHeaderRCMWrapper = styled.div`
 
       .item {
         .keyword {
+          display: inline;
           color: #666;
           cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
         }
 
         .divider {

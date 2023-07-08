@@ -9,7 +9,7 @@ import { PlaylistCategoryWrapper } from './style'
 
 interface IProps {
   children?: ReactNode,
-  onCategorySelect?: (name: string) => void
+  onCategorySelect?: () => void
 }
 
 const PlaylistCategory: FC<IProps> = (props: IProps) => {
@@ -29,18 +29,23 @@ const PlaylistCategory: FC<IProps> = (props: IProps) => {
     dispatch(fetchPlaylistsAsync(0))
 
     if (onCategorySelect) {
-      onCategorySelect(name)
+      onCategorySelect()
     }
   }
 
   return (
-    <PlaylistCategoryWrapper>
+    <PlaylistCategoryWrapper onMouseDown={onCategorySelect}>
       <div className='header sprite_category_bg'>
         <div className='arrow sprite_icon'/>
       </div>
       <div className='body sprite_category_bg'>
         <div className='all'>
-          <button className='sprite_button2' onClick={e => handleCategory('全部')}>全部风格</button>
+          <button className='sprite_button2' 
+            onClick={e => handleCategory('全部')}
+            onMouseDown={e => e.stopPropagation()}
+            >
+            全部风格
+          </button>
         </div>
         {
             categories.map((category, index) => {

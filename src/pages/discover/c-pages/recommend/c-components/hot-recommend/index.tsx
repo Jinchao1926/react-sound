@@ -28,7 +28,7 @@ const HotRecommend: FC<IProps> = () => {
       <SectionHeaderRecommend 
         title='热门推荐' 
         keywords={keywords}
-        morePath='/discover/playlist'
+        morePath='/discover/playlist?cat='
       />
       <div className='recommend-list'>
         {
