@@ -72,7 +72,6 @@ string,
       if (idx === -1) return
 
       const areaCode = areas[idx].code
-      console.log("areaCode:", areaCode)
       const currentArea = getState().album.currentArea
       if (currentArea === areaCode) return
 

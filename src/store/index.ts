@@ -2,19 +2,25 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from 'react-redux'
 import type { TypedUseSelectorHook } from 'react-redux' 
 
+// Discover
 import { recommendReducer } from "@/pages/discover/c-pages/recommend/store"
 import { rankingReducer } from "@/pages/discover/c-pages/ranking/store"
 import { playlistReducer } from "@/pages/discover/c-pages/playlist/store"
+import { radioReducer } from "@/pages/discover/c-pages/djradio/store";
 import { albumReducer } from "@/pages/discover/c-pages/album/store"
+// Player
 import { playerReducer } from "@/pages/player/store"
 import { songReducer } from "@/pages/song/store";
 
 const store = configureStore({
   reducer: {
+    // discover
     recommend: recommendReducer,
     ranking: rankingReducer,
     playlist: playlistReducer,
+    radio: radioReducer,
     album: albumReducer,
+    // detail
     player: playerReducer,
     song: songReducer,
   }

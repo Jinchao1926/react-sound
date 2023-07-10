@@ -10,7 +10,7 @@ export const PlaylistCoversWrapper = styled.div`
     margin-right: -50px;
     margin-bottom: 40px;
 
-    .item {
+    .song-cover {
       flex-basis: 20%;
     }
   }

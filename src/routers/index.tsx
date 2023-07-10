@@ -2,9 +2,13 @@ import React, { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
 
-// Lazy 可以对自己的代码进行分包
-// Discover-related page
+// 一级路由
 const Discover = lazy(() => import('@/pages/discover'))
+const Mine = lazy(() => import('@/pages/mine'))
+const Friend = lazy(() => import('@/pages/friend'))
+const Download = lazy(() => import('@/pages/download'))
+
+// Discover 二级路由
 const Recommend = lazy(() => import('@/pages/discover/c-pages/recommend'))
 const Ranking = lazy(() => import('@/pages/discover/c-pages/ranking'))
 const Playlist = lazy(() => import('@/pages/discover/c-pages/playlist'))
@@ -13,9 +17,11 @@ const Artist = lazy(() => import('@/pages/discover/c-pages/artist'))
 const Album = lazy(() => import('@/pages/discover/c-pages/album'))
 const Song = lazy(() => import('@/pages/song'))
 
-const Mine = lazy(() => import('@/pages/mine'))
-const Friend = lazy(() => import('@/pages/friend'))
-const Download = lazy(() => import('@/pages/download'))
+// Discover - DJRadio 三级路由
+const DJRadioProgram = lazy(() => import('@/pages/discover/c-pages/djradio/c-pages/program'))
+const DJRadioCategory = lazy(() => import('@/pages/discover/c-pages/djradio/c-pages/category'))
+const DJRadioRecommend = lazy(() => import('@/pages/discover/c-pages/djradio/c-pages/program-recommend'))
+const DJRadioRanking = lazy(() => import('@/pages/discover/c-pages/djradio/c-pages/program-ranking'))
 
 const routes: RouteObject[] = [
   {
@@ -46,6 +52,28 @@ const routes: RouteObject[] = [
       {
         path: '/discover/djradio',
         element: <DJRadio />,
+        children: [
+          {
+            path: '/discover/djradio',
+            element: <Navigate to="/discover/djradio/program" />,
+          },
+          {
+            path: '/discover/djradio/program',
+            element: <DJRadioProgram />,
+          },
+          {
+            path: '/discover/djradio/category',
+            element: <DJRadioCategory />,
+          },
+          {
+            path: '/discover/djradio/recommend',
+            element: <DJRadioRecommend />,
+          },
+          {
+            path: '/discover/djradio/ranking',
+            element: <DJRadioRanking />,
+          }
+        ]
       },
       {
         path: '/discover/artist',

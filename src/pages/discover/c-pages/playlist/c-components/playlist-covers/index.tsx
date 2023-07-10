@@ -48,7 +48,7 @@ const PlaylistCovers: FC<IProps> = () => {
     <PlaylistCoversWrapper>
       <div className='list'>
         {
-          playlists.map((item, index) => {
+          playlists.map(item => {
             return (
               <SongCover key={item.id} info={item} showSource={true}/>
             )

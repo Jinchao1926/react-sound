@@ -16,7 +16,7 @@ const SongCover: FC<IProps> = (props: IProps) => {
   const { info, showSource = false } = props
 
   return (
-    <SongCoverWrapper className='item'>
+    <SongCoverWrapper className='song-cover'>
       <div className='cover'>
         <a href={`/playlist?id=${info.id}`}> 
           <img src={formatSizedImage(info.picUrl || info.coverImgUrl, 140)} alt={info.name} />
