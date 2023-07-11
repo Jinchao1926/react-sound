@@ -12,6 +12,7 @@ import {
   changeRecommendPrograms,
   changeRankedPrograms,
 } from "./reducer"
+import { resolve4 } from "dns";
 
 // Fetch radio categories
 export const fetchRadioCategorysAsync = createAsyncThunk<
@@ -61,12 +62,12 @@ export const fetchRankedProgramsAsync = createAsyncThunk<
 >(
   "fetchRankedPrograms",
   async (_, { dispatch, getState }) => {
-    const programs = getState().radio.rankedPrograms
-    if (programs.length > 0) return
+    const programs = getState().radio.rankedProgram
+    if (programs.toplist.length > 0) return
     
     try {
-      const { toplist } = await fetchRankedPrograms()
-      dispatch(changeRankedPrograms(toplist))
+      const { updateTime, toplist} = await fetchRankedPrograms()
+      dispatch(changeRankedPrograms({ updateTime, toplist }))
     } catch (error) {
       console.log("fetchRankedPrograms error: ", error)
     }

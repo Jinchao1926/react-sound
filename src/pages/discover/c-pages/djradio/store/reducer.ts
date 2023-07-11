@@ -3,13 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 interface IRadioState {
   categories: any[];
   recommendPrograms: any[];
-  rankedPrograms: any[];
+  rankedProgram: {updateTime: number, toplist: any[]};
   radios: any[];
 }
 const initialState: IRadioState = {
   categories: [],
   recommendPrograms: [],
-  rankedPrograms: [],
+  rankedProgram: {updateTime: 0, toplist: []},
   radios: []
 }
 
@@ -24,7 +24,7 @@ const radioSlice = createSlice({
       state.recommendPrograms = action.payload
     },
     changeRankedPrograms(state, action) {
-      state.rankedPrograms = action.payload
+      state.rankedProgram = action.payload
     },
     changeRadios(state, action) {
       state.radios = action.payload

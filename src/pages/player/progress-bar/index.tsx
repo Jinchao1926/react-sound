@@ -6,11 +6,11 @@ import { roundToDecimal } from '@/utils/format-player'
 import { ProgressBarWrapper } from './style'
 
 interface IProps {
-  children?: ReactNode,
-  width?: number,   // the width of the progress bar, defaults to 466
-  percent: number,  //50 means 50%
-  onChange?: (percent: number) => void, // callback function when the progress bar changes, 50 means 50%
-  onAfterChange?: (percent: number) => void // callback function after the progress bar changes, 50 means 50%
+  children?: ReactNode;
+  width?: number;   // the width of the progress bar, defaults to 466
+  percent: number;  //50 means 50%
+  onChange?: (percent: number) => void; // callback function when the progress bar changes, 50 means 50%
+  onAfterChange?: (percent: number) => void; // callback function after the progress bar changes, 50 means 50%
 }
 
 const ProgressBar: FC<IProps> = (props: IProps) => {

@@ -9,7 +9,6 @@ interface IProps {
 }
 
 const DJRadio: FC<IProps> = () => {
-  console.log("DJRadio Render")
   return (
     <DJRadioWrapper className='wrap-v2'>
       <Suspense fallback="">

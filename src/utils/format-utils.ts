@@ -13,7 +13,7 @@ export function formatSizedImage(imgUrl: string, size: number = 140) {
   return `${imgUrl}?param=${size}y${size}`
 }
 
-function padLeft(num: number): string {
+export function padLeft(num: number): string {
   return num < 10 ? '0' + num : num + ''
 }
 

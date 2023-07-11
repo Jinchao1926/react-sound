@@ -41,7 +41,7 @@ export function fetchRecommendedPrograms(limit: number = 50) {
 }
 
 // 电台 - 节目榜
-export function fetchRankedPrograms(limit: number = 50) {
+export function fetchRankedPrograms(limit: number = 100) {
   return rsRequest.get({
     url: '/dj/program/toplist',
     params: {

@@ -8,6 +8,7 @@ export const ProgramRecommendWrapper = styled.div`
 
   .program-item {
     padding: 10px 0;
+    height: 40px;
     display: flex;
     align-items: center;
     // 奇偶
@@ -21,30 +22,10 @@ export const ProgramRecommendWrapper = styled.div`
       background-color: #eee;
     }
 
-    .cover {
-      position: relative;
-      width: 40px;
-      height: 40px;
+    .radio-cover {
       margin-left: 20px;
-      cursor: pointer;
-      img {
-        width: 100%;
-        height: 100%;
-      }
-      .play {
-        background-position: 0 -85px;
-        position: absolute;
-        right: 8px;
-        bottom: 8px;
-        width: 22px;
-        height: 22px;
-        cursor: pointer;
-        display: none;
-      }
-      &:hover .play {
-        display: block;
-      }
     }
+
     // Simple Version
     .content {
       width: 254px;

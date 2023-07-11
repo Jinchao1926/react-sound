@@ -9,6 +9,7 @@ import { formatSizedImage } from '@/utils/format-utils';
 
 import { ProgramRecommendWrapper } from './style'
 import SectionHeaderNormal from '@/components/section-header-normal'
+import RadioCover from '@/components/radio-cover';
 
 interface IProps {
   children?: ReactNode;
@@ -19,6 +20,7 @@ const ProgramRecommend: FC<IProps> = (props: IProps) => {
   const { simpleVersion = false } = props
   const [subTitle, setSubTitle] = useState<string | undefined>()
   const [morePath, setMorePath] = useState<string | undefined>()
+  const [datas, setDatas] = useState<any[]>([])
 
   // redux
   const programs = useAppSelector(
@@ -35,7 +37,8 @@ const ProgramRecommend: FC<IProps> = (props: IProps) => {
   useEffect(() => {
     setSubTitle(simpleVersion ? undefined : '（每日更新）')
     setMorePath(simpleVersion ? '/discover/djradio/recommend' : undefined)
-  }, [simpleVersion])
+    setDatas(simpleVersion ? programs.slice(0, 10) : programs)
+  }, [simpleVersion, programs])
 
   return (
     <ProgramRecommendWrapper className='program-recommend'>
@@ -46,13 +49,10 @@ const ProgramRecommend: FC<IProps> = (props: IProps) => {
       />
       <div className='program-list'>
         {
-          programs.map(item => {
+          datas.map(item => {
             return (
               <div className='program-item' key={item.id}>
-                <a className='cover' href='/#'>
-                  <img src={formatSizedImage(item.coverUrl, 40)} alt='' />
-                  <button className='play sprite_icon' title='播放' />
-                </a>
+                <RadioCover coverUrl={item.coverUrl}/>
                 { 
                   simpleVersion ? (
                     <div className='content'>
