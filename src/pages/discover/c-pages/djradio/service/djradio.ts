@@ -31,7 +31,7 @@ export function fetchHotRadios(cateId: number, offset: number, limit: number) {
 }
 
 // 推荐节目
-export function fetchRecommendedPrograms(limit: number = 49) {
+export function fetchRecommendedPrograms(limit: number = 50) {
   return rsRequest.get({
     url: '/program/recommend',
     params: {
@@ -41,7 +41,7 @@ export function fetchRecommendedPrograms(limit: number = 49) {
 }
 
 // 电台 - 节目榜
-export function fetchRankedPrograms(limit: number = 49) {
+export function fetchRankedPrograms(limit: number = 50) {
   return rsRequest.get({
     url: '/dj/program/toplist',
     params: {

@@ -71,7 +71,7 @@ export const RankingTable = styled.div`
         &:nth-child(odd) {
           background-color: #f7f7f7;
         }
-        &:last-child(even) {
+        &:nth-child(even) {
           background-color: white;
         }
 
