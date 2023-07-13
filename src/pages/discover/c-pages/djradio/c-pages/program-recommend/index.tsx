@@ -5,8 +5,6 @@ import { shallowEqual } from 'react-redux';
 import { useAppSelector, useAppDispatch } from '@/store';
 import { fetchRecommendProgramsAsync } from '../../store';
 
-import { formatSizedImage } from '@/utils/format-utils';
-
 import { ProgramRecommendWrapper } from './style'
 import SectionHeaderNormal from '@/components/section-header-normal'
 import RadioCover from '@/components/radio-cover';
@@ -30,8 +28,8 @@ const ProgramRecommend: FC<IProps> = (props: IProps) => {
 
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(fetchRecommendProgramsAsync())
-  }, [dispatch])
+    dispatch(fetchRecommendProgramsAsync(simpleVersion))
+  }, [dispatch, simpleVersion])
 
   // Custom Header
   useEffect(() => {

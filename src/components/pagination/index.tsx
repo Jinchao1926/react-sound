@@ -7,14 +7,15 @@ import { PaginationWrapper } from './style'
 interface IProps {
   children?: ReactNode;
   current: number;
+  pageSize: number;
   total: number;
   onPageChange: (page: number) => void;
 }
 
 const JCPagination: FC<IProps> = (props: IProps) => {
-  const { current, total, onPageChange } = props
+  const { current, pageSize, total, onPageChange } = props
 
-  const itemRender = useCallback((page: number, type: string, originalElement: React.ReactNode) => {
+  const itemRender = useCallback((_: number, type: string, originalElement: React.ReactNode) => {
     if (type === 'prev') {
       return <button className='prev btn sprite_button2'>上一页</button>
     }
@@ -29,7 +30,7 @@ const JCPagination: FC<IProps> = (props: IProps) => {
       <Pagination className='pagination'
         size='small'
         showSizeChanger={false}
-        pageSize={35}
+        pageSize={pageSize}
         total={total}
         current={current} 
         itemRender={itemRender}

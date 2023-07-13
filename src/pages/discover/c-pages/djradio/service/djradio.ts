@@ -19,7 +19,7 @@ export function fetchRecommendedRadios(type: number) {
 }
 
 // 电台 - 类别热门电台（上升最快没有接口）
-export function fetchHotRadios(cateId: number, offset: number, limit: number) {
+export function fetchHotRadios(cateId: number, offset: number, limit: number=25) {
   return rsRequest.get({
     url: '/dj/radio/hot',
     params: {

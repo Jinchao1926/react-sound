@@ -21,8 +21,8 @@ const RadioProgram: FC<IProps> = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(fetchRadioCategorysAsync())
-    dispatch(fetchRecommendProgramsAsync())
-    dispatch(fetchRankedProgramsAsync())
+    dispatch(fetchRecommendProgramsAsync(true))
+    dispatch(fetchRankedProgramsAsync(true))
   }, [dispatch])
 
   return (

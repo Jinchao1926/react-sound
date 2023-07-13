@@ -33,8 +33,8 @@ const ProgramRanking: FC<IProps> = (props: IProps) => {
 
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(fetchRankedProgramsAsync())
-  }, [dispatch])
+    dispatch(fetchRankedProgramsAsync(simpleVersion))
+  }, [dispatch, simpleVersion])
 
   // Custom Header
   useEffect(() => {

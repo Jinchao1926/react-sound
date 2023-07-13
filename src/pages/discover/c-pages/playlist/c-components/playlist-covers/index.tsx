@@ -57,6 +57,7 @@ const PlaylistCovers: FC<IProps> = () => {
       </div>
       <JCPagination 
         total={total}
+        pageSize={35}
         current={currentPage} 
         onPageChange={handlePageChange}
       />

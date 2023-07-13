@@ -3,7 +3,12 @@ import type { FC, ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { useAppDispatch } from '@/store'
-import { fetchRadioCategorysAsync } from '../../store'
+import { 
+  fetchRadioCategorysAsync, 
+  fetchRecommendedRadiosAsync,
+  fetchHotRadiosAsync,
+  changeHotTotalAction,
+} from '../../store'
 
 import { DJRadioCategoryWrapper } from './style'
 import RadioCategory from '../../radio-category-header'
@@ -21,14 +26,18 @@ const DJRadioCategory: FC<IProps> = () => {
   
   const dispatch = useAppDispatch()
   useEffect(() => {
+    const id = Number(categoryId)
     dispatch(fetchRadioCategorysAsync())
-  }, [dispatch])
+    dispatch(changeHotTotalAction(0))
+    dispatch(fetchRecommendedRadiosAsync(id))
+    dispatch(fetchHotRadiosAsync({categoryId: id, page: 0}))
+  }, [dispatch, categoryId])
 
   return (
     <DJRadioCategoryWrapper>
       <RadioCategory id={Number(categoryId)}/>
       <RadioRecommend />
-      <RadioRanking />
+      <RadioRanking categoryId={Number(categoryId)}/>
     </DJRadioCategoryWrapper>
   )
 }

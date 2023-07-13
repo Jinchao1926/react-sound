@@ -1,7 +1,12 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { NavLink } from 'react-router-dom'
+import { shallowEqual } from 'react-redux'
+import { useAppSelector } from '@/store'
 
-import { RadioRecommendWrapper } from './style'
+import { formatSizedImage } from '@/utils/format-utils'
+
+import { RadioRecommendWrapper, RadioItemWrapper } from './style'
 import SectionHeaderNormal from '@/components/section-header-normal'
 
 interface IProps {
@@ -9,9 +14,30 @@ interface IProps {
 }
 
 const RadioRecommend: FC<IProps> = () => {
+  const recommendedRadios = useAppSelector(
+    state => state.radio.recommendRadios, 
+    shallowEqual
+  )
   return (
     <RadioRecommendWrapper>
       <SectionHeaderNormal title='优秀新电台' />
+      <div className='radio-list'>
+      {
+        recommendedRadios.slice(0, 5).map(item => {
+          return (
+            <RadioItemWrapper key={item.id}>
+              <NavLink className='cover' to={`/discover/radio?id=${item.id}`}>
+                <img src={formatSizedImage(item.picUrl, 150)} alt=''/>
+              </NavLink>
+              <NavLink className='name' to={`/discover/radio?id=${item.id}`}>
+                {item.name}
+              </NavLink>
+              <p className='desc'>{item.rcmdtext}</p>
+            </RadioItemWrapper>
+          )
+        })
+      }
+      </div>
     </RadioRecommendWrapper>
   )
 }
