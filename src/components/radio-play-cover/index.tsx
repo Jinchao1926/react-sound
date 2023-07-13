@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { formatSizedImage } from '@/utils/format-utils';
 
-import { RadioCoverWrapper } from './style'
+import { RadioPlayCoverWrapper } from './style'
 
 interface IProps {
   children?: ReactNode;
@@ -10,7 +10,7 @@ interface IProps {
   onPlayClick?: () => void;
 }
 
-const RadioCover: FC<IProps> = (props: IProps) => {
+const RadioPlayCover: FC<IProps> = (props: IProps) => {
   const { coverUrl, onPlayClick } = props
   const handlePlayClick = () => {
     if (onPlayClick) {
@@ -19,11 +19,11 @@ const RadioCover: FC<IProps> = (props: IProps) => {
   }
 
   return (
-    <RadioCoverWrapper className='radio-cover'>
+    <RadioPlayCoverWrapper className='radio-cover'>
       <img src={formatSizedImage(coverUrl, 40)} alt='' />
       <button className='play sprite_icon' title='播放' onClick={handlePlayClick} />
-    </RadioCoverWrapper>
+    </RadioPlayCoverWrapper>
   )
 }
 
-export default memo(RadioCover)
+export default memo(RadioPlayCover)

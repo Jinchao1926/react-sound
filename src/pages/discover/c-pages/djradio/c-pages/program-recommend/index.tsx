@@ -7,7 +7,7 @@ import { fetchRecommendProgramsAsync } from '../../store';
 
 import { ProgramRecommendWrapper } from './style'
 import SectionHeaderNormal from '@/components/section-header-normal'
-import RadioCover from '@/components/radio-cover';
+import RadioPlayCover from '@/components/radio-play-cover';
 
 interface IProps {
   children?: ReactNode;
@@ -50,7 +50,7 @@ const ProgramRecommend: FC<IProps> = (props: IProps) => {
           datas.map(item => {
             return (
               <div className='program-item' key={item.id}>
-                <RadioCover coverUrl={item.coverUrl}/>
+                <RadioPlayCover coverUrl={item.coverUrl}/>
                 { 
                   simpleVersion ? (
                     <div className='content'>

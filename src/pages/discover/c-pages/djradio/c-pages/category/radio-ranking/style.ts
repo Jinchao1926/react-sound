@@ -51,10 +51,15 @@ export const RadioItemWrapper = styled.div`
       }
       .user-name {
         display: inline-block;
-        margin-left: 8px;
+        margin: 0 3px 0 8px;
         &:hover {
           text-decoration: underline;
         }
+      }
+      .vip {
+        height: 13px;
+        width: 13px;
+        display: inline-block;
       }
     }
     .desc {

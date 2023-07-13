@@ -65,6 +65,11 @@ const RadioRanking: FC<IProps> = (props: IProps) => {
                   <NavLink className='user-name' to={`/user/home?=${item.dj.userId}`}>
                     {item.dj.nickname}
                   </NavLink>
+                  {
+                    item.dj.avatarDetail &&
+                    <img className='vip' src={item.dj.avatarDetail.identityIconUrl} alt=''/>
+                  }
+                  
                 </div>
                 <p className='desc'>
                   {`共${item.programCount}期`}    {`订阅${item.subCount}次`}

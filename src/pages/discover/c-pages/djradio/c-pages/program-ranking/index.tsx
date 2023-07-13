@@ -11,7 +11,7 @@ import { padLeft, formatMonthDay } from '@/utils/format-utils';
 import { Tooltip } from 'antd';
 import { ProgramRankingWrapper, RankingHotWrapper } from './style'
 import SectionHeaderNormal from '@/components/section-header-normal'
-import RadioCover from '@/components/radio-cover';
+import RadioPlayCover from '@/components/radio-play-cover';
 import RankingTrend from '@/components/ranking-trend';
 
 interface IProps {
@@ -70,7 +70,7 @@ const ProgramRanking: FC<IProps> = (props: IProps) => {
                 <span className={classNames('index', {red: index < 3})}>{padLeft(index + 1)}</span>
                 <RankingTrend rank={rank} lastRank={lastRank}/>
               </div>
-              <RadioCover coverUrl={program.coverUrl}/>
+              <RadioPlayCover coverUrl={program.coverUrl}/>
               {
                 simpleVersion ? (
                   <div className='content'>
