@@ -30,6 +30,13 @@ export function fetchHotRadios(cateId: number, offset: number, limit: number=25)
   })
 }
 
+// 电台 - 推荐分类
+export function fetchRecommendedRadioCategories() {
+  return rsRequest.get({
+    url: '/dj/category/recommend',
+  })
+}
+
 // 推荐节目
 export function fetchRecommendedPrograms(limit: number = 50) {
   return rsRequest.get({

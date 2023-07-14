@@ -3,6 +3,7 @@ import { RootState } from "@/store";
 
 import { 
   fetchRadioCategories, 
+  // fetchRecommendedRadioCategories,
   fetchRecommendedPrograms,
   fetchRankedPrograms,
   fetchRecommendedRadios,
@@ -10,6 +11,7 @@ import {
 } from "../service/djradio"
 import { 
   changeRadioCategoriesAction,
+  changeRecommendRadioCategoriesAction,
   changeRecommendProgramsAction,
   changeRankedProgramsAction,
   changeRecommendedRadiosAction,
@@ -18,7 +20,7 @@ import {
 } from "./reducer"
 
 // Fetch radio categories
-export const fetchRadioCategorysAsync = createAsyncThunk<
+export const fetchRadioCategoriesAsync = createAsyncThunk<
   void,
   void,
   { state: RootState }
@@ -37,6 +39,37 @@ export const fetchRadioCategorysAsync = createAsyncThunk<
   }
 )
 
+// Fetch recommended categories
+export const fetchRecommendedRadioCategoriesAsync = createAsyncThunk(
+  "fetchRecommendedRadioCategories",
+  async (_, { dispatch }) => {
+    const recommendedIds = [2, 6, 3, 2001, 11]
+    const promises = recommendedIds.map(id => fetchRecommendedRadios(id))
+    Promise.all(promises).then((res) => {
+      let array = res.map(item => item.djRadios)
+      dispatch(changeRecommendRadioCategoriesAction(array))
+    }).catch((error) => {
+      console.log("fetchRecommendedRadios error: ", error)
+    })
+
+    /*
+    try {
+      const { data } = await fetchRecommendedRadioCategories()
+
+      let categories: any[] = []
+      recommendedIds.forEach(id => {
+        const el = data.find((item: {categoryId: number}) => item.categoryId === id)
+        categories.push(el)
+      })
+
+      dispatch(changeRecommendRadioCategoriesAction(categories))
+      
+    } catch (error) {
+      console.log("fetchRecommendedRadioCategories error: ", error)
+    }*/
+  }
+)
+
 // Programs
 // Fetch recommend programs
 export const fetchRecommendProgramsAsync = createAsyncThunk<
@@ -50,7 +83,7 @@ export const fetchRecommendProgramsAsync = createAsyncThunk<
     if (programs.length > 10) return
     
     try {
-      const limit = small ? 10 : 50
+      const limit = small ? 11 : 50
       const { programs } = await fetchRecommendedPrograms(limit)
       dispatch(changeRecommendProgramsAction(programs))
     } catch (error) {
