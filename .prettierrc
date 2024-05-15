@@ -1,0 +1,21 @@
+{
+  "semi": false,
+  "printWidth": 80,
+  "arrowParens": "always",
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "useTabs": false,
+  "overrides": [
+    {
+      "files": "*.{css,scss}",
+      "options": {
+        "tabWidth": 1,
+        "useTabs": true,
+        "singleQuote": true,
+        "parser": "scss"
+      }
+    }
+  ],
+  "editorconfig": true
+}
