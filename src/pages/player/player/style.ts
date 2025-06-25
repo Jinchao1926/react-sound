@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-export const PlayerWrapper = styled.div`  
+export const PlayerWrapper = styled.div`
   height: 53px;
   background-position: 0 0;
   background-repeat: repeat-x;
@@ -17,7 +17,8 @@ export const PlayerControl = styled.div`
   padding-top: 6px;
   width: 137px;
 
-  .prev, .next {
+  .prev,
+  .next {
     margin-top: 5px;
     width: 28px;
     height: 28px;
@@ -44,9 +45,11 @@ export const PlayButton = styled.button<IPlayButton>`
   width: 36px;
   height: 36px;
   margin: 0 8px;
-  background-position: ${props => props.isPlaying ? '0 -165px' : '0 -204px'};
+  background-position: ${(props) =>
+    props.isPlaying ? '0 -165px' : '0 -204px'};
   &:hover {
-    background-position: ${props => props.isPlaying ? '-40px -165px' : '-40px -204px'};
+    background-position: ${(props) =>
+      props.isPlaying ? '-40px -165px' : '-40px -204px'};
   }
 `
 
@@ -111,7 +114,7 @@ export const PlayerProgressBar = styled.div`
     text-shadow: 0 1px 0 #121212;
 
     .now-time {
-      color: #a1a1a1
+      color: #a1a1a1;
     }
   }
 `

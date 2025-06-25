@@ -1,7 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const HotAlbumWrapper = styled.div`
-  
   .album-list {
     margin: 20px -30px 0 0;
     display: flex;

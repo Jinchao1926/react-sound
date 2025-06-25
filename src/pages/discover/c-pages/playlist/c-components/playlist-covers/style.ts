@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const PlaylistCoversWrapper = styled.div`
   margin-top: 10px;
@@ -14,4 +14,4 @@ export const PlaylistCoversWrapper = styled.div`
       flex-basis: 20%;
     }
   }
-`;
+`

@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
-import { shallowEqual } from 'react-redux'
 
-import { useAppSelector } from '@/store'
-import { formatSizedImage, formatMonthDay } from '@/utils/format-utils'
+import { shallowEqual } from 'react-redux'
 
 import { RankingInfoWrapper } from './style'
 import SongOperationBar from '@/components/song-operation-bar'
+import { useAppSelector } from '@/store'
+import { formatSizedImage, formatMonthDay } from '@/utils/format-utils'
 
 interface IProps {
   children?: ReactNode
@@ -14,40 +14,40 @@ interface IProps {
 
 const RankingHeader: FC<IProps> = () => {
   const { playlist, frequency } = useAppSelector(
-    state => ({
+    (state) => ({
       playlist: state.ranking.currentPlaylist,
-      frequency: state.ranking.currentFrequency
-    }), 
+      frequency: state.ranking.currentFrequency,
+    }),
     shallowEqual
   )
 
   return (
     <RankingInfoWrapper>
-      {
-        playlist && 
+      {playlist && (
         <>
-          <div className='cover'>
-            <img src={formatSizedImage(playlist.coverImgUrl, 150)} alt=""/>
-            <span className='sprite_cover' />
+          <div className="cover">
+            <img src={formatSizedImage(playlist.coverImgUrl, 150)} alt="" />
+            <span className="sprite_cover" />
           </div>
-          <div className='info'>
-            <div className='title'>{playlist.name}</div>
-            <div className='update'>
-              <span className='icon sprite_icon2' />
-              <span className='time'>最近更新：{formatMonthDay(playlist.updateTime)}</span>
-              <span className='frequency'>（{frequency}）</span>
+          <div className="info">
+            <div className="title">{playlist.name}</div>
+            <div className="update">
+              <span className="icon sprite_icon2" />
+              <span className="time">
+                最近更新：{formatMonthDay(playlist.updateTime)}
+              </span>
+              <span className="frequency">（{frequency}）</span>
             </div>
-            <SongOperationBar 
+            <SongOperationBar
               titles={{
                 collectTitle: `(${playlist.subscribedCount})`,
                 shareTitle: `(${playlist.shareCount})`,
-                commentTitle: `(${playlist.commentCount})`
+                commentTitle: `(${playlist.commentCount})`,
               }}
             />
           </div>
         </>
-      }
-      
+      )}
     </RankingInfoWrapper>
   )
 }

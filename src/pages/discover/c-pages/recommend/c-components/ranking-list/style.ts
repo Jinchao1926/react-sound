@@ -1,7 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const RankingListWrapper = styled.div`
-
   .ranking-list {
     width: 689px;
     height: 472px;

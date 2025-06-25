@@ -1,4 +1,4 @@
-import { rsRequest } from "@/services";
+import { rsRequest } from '@/services'
 
 // 获取歌曲详情
 export function fetchSongDetail(id: string) {
@@ -6,8 +6,8 @@ export function fetchSongDetail(id: string) {
   return rsRequest.get({
     url: '/song/detail',
     params: {
-      ids
-    }
+      ids,
+    },
   })
 }
 export function fetchSongsDetail(songIds: string[]) {
@@ -15,8 +15,8 @@ export function fetchSongsDetail(songIds: string[]) {
   return rsRequest.get({
     url: '/song/detail',
     params: {
-      ids
-    }
+      ids,
+    },
   })
 }
 
@@ -26,8 +26,8 @@ export function fetchLyric(songId: string) {
   return rsRequest.get({
     url: '/lyric',
     params: {
-      id
-    }
+      id,
+    },
   })
 }
 
@@ -37,8 +37,8 @@ export function fetchSimilarPlaylists(songId: string) {
   return rsRequest.get({
     url: '/simi/playlist',
     params: {
-      id
-    }
+      id,
+    },
   })
 }
 
@@ -48,7 +48,7 @@ export function fetchSimilarSongs(songId: string) {
   return rsRequest.get({
     url: '/simi/song',
     params: {
-      id
-    }
+      id,
+    },
   })
 }

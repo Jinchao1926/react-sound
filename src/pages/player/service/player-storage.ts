@@ -1,12 +1,12 @@
-import { getStorage, setStorage } from "@/utils/local-storage";
-import { PlayMode } from "@/pages/player/type/PlayMode";
+import { PlayMode, PlayModeType } from '@/pages/player/type/PlayMode'
+import { getStorage, setStorage } from '@/utils/local-storage'
 
-enum PlayerStorageKey {
-  playlist = "playlist",
-  playMode = "playMode",
-  volume = "volume",
-  currentSongIndex = "currentSongIndex",
-}
+const PlayerStorageKey = {
+  playlist: 'playlist',
+  playMode: 'playMode',
+  volume: 'volume',
+  currentSongIndex: 'currentSongIndex',
+} as const
 
 // 播放列表
 export const fetchPlaylist = () => {
@@ -22,7 +22,7 @@ export const fetchPlayMode = () => {
   const storedPlayMode = getStorage(PlayerStorageKey.playMode)
   return storedPlayMode || PlayMode.Loop
 }
-export const storePlayMode = (playMode: PlayMode) => {
+export const storePlayMode = (playMode: PlayModeType) => {
   setStorage(PlayerStorageKey.playMode, playMode)
 }
 

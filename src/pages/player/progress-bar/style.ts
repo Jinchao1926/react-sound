@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ProgressBarWrapper = styled.div`
   width: 466px;
   height: 9px;
   position: relative;
   background-position: right 0;
-  
+
   .full {
     width: 100%;
     height: 100%;

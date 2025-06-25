@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const DiscoverWrapper = styled.div`
   .top {
     height: 30px;
     box-sizing: border-box;
-    background-color: #C20C0C;
+    background-color: #c20c0c;
     border-bottom: 1px solid #a40011;
 
     .nav-list {
@@ -19,11 +19,12 @@ export const DiscoverWrapper = styled.div`
         padding: 0 13px;
         margin: 2px 17px 0;
         border-radius: 20px;
-        color: #FFF;
+        color: #fff;
         font-size: 12px;
 
-        &:hover, &.active {
-          background: #9B0909;
+        &:hover,
+        &.active {
+          background: #9b0909;
         }
       }
       :first-of-type {

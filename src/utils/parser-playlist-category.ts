@@ -794,22 +794,24 @@
 }
 */
 export interface IPlaylistCategory {
-  type: string,
+  type: string
   categories: any[]
 }
-export function parserPlaylistCategory(
-  data: {categories: {[key: string]: string},
-  sub: any[]}
-  ): IPlaylistCategory[] {
-  const { categories, sub } = data;
+export function parserPlaylistCategory(data: {
+  categories: { [key: string]: string }
+  sub: any[]
+}): IPlaylistCategory[] {
+  const { categories, sub } = data
 
-  let array = Object.entries(categories).map(([k, v]) => {
-    return {
-      type: v,
-      categories: new Array()
+  const array: IPlaylistCategory[] = Object.entries(categories).map(
+    ([k, v]) => {
+      return {
+        type: v,
+        categories: [],
+      }
     }
-  })
-  sub.forEach( item => {
+  )
+  sub.forEach((item) => {
     array[item.category].categories.push(item)
   })
 

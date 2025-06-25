@@ -1,13 +1,13 @@
-import { 
-  fetchAllAlbumsAsync, 
+import {
+  fetchAllAlbumsAsync,
   fetchHotAlbumsAsync,
-  changeCurrentAreaAsync
-} from "./actionCreator";
-import albumReducer  from "./reducer";
+  changeCurrentAreaAsync,
+} from './actionCreator'
+import albumReducer from './reducer'
 
 export {
   fetchAllAlbumsAsync,
   fetchHotAlbumsAsync,
   changeCurrentAreaAsync,
-  albumReducer
+  albumReducer,
 }

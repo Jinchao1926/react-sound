@@ -2,12 +2,12 @@ import React, { memo, useState, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
-import { useAppSelector, useAppDispatch } from '@/store'
-import { fetchPlaylistsAsync } from '../../store'
 
 import { PlaylistCoversWrapper } from './style'
-import SongCover from '@/components/song-cover'
+import { fetchPlaylistsAsync } from '../../store'
 import JCPagination from '@/components/pagination'
+import SongCover from '@/components/song-cover'
+import { useAppSelector, useAppDispatch } from '@/store'
 
 interface IProps {
   children?: ReactNode
@@ -17,16 +17,16 @@ const PlaylistCovers: FC<IProps> = () => {
   // state
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [playlists, setPlaylists] = useState<any[]>([])
-  // redux 
+  // redux
   const { currentCategory, pages, total } = useAppSelector(
     (state) => ({
       currentCategory: state.playlist.currentCategory,
       pages: state.playlist.pagePlaylists,
-      total: state.playlist.total
-    }), 
+      total: state.playlist.total,
+    }),
     shallowEqual
   )
-  
+
   // 切换分类时，重置当前页码
   useEffect(() => {
     setCurrentPage(1)
@@ -46,19 +46,15 @@ const PlaylistCovers: FC<IProps> = () => {
 
   return (
     <PlaylistCoversWrapper>
-      <div className='list'>
-        {
-          playlists.map(item => {
-            return (
-              <SongCover key={item.id} info={item} showSource={true}/>
-            )
-          })
-        }
+      <div className="list">
+        {playlists.map((item) => {
+          return <SongCover key={item.id} info={item} showSource={true} />
+        })}
       </div>
-      <JCPagination 
+      <JCPagination
         total={total}
         pageSize={35}
-        current={currentPage} 
+        current={currentPage}
         onPageChange={handlePageChange}
       />
     </PlaylistCoversWrapper>

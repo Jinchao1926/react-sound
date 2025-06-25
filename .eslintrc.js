@@ -27,6 +27,8 @@ module.exports = {
       'error',
       {
         ignoreRestSiblings: true,
+        args: 'none',
+        vars: 'all',
       },
     ],
     'prefer-const': [

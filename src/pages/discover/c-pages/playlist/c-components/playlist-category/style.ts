@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const PlaylistCategoryWrapper = styled.div`
   position: absolute;
@@ -29,7 +29,7 @@ export const PlaylistCategoryWrapper = styled.div`
       padding-left: 26px;
       border-bottom: 1px solid #e6e6e6;
 
-      &>button {
+      & > button {
         background-position: 0 -64px;
         width: 75px;
         height: 26px;

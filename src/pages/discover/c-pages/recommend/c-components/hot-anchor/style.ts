@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const HotAnchorWrapper = styled.div`
   margin-top: 30px;
@@ -15,7 +15,7 @@ export const HotAnchorWrapper = styled.div`
       height: 40px;
       margin-bottom: 10px;
       display: flex;
-      
+
       .avatar {
         width: 40px;
         height: 40px;

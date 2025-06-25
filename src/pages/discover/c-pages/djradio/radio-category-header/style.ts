@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const RadioCategoryHeaderWrapper = styled.div`
   /* margin: 0 -40px; */
@@ -8,7 +8,7 @@ export const RadioCategoryHeaderWrapper = styled.div`
   .category-page {
     display: flex !important;
     flex-wrap: wrap;
-    
+
     .category-item {
       width: 70px;
       height: 72px;
@@ -59,7 +59,7 @@ export const RadioCategoryHeaderWrapper = styled.div`
 
     li.slick-active {
       button {
-        background-color: #C20C0C;
+        background-color: #c20c0c;
       }
     }
   }
@@ -89,9 +89,9 @@ export const RadioCategoryHeaderWrapper = styled.div`
   }
 `
 
-export const RadioCategoryImage = styled.div<{bgImage: string}>`
+export const RadioCategoryImage = styled.div<{ bgImage: string }>`
   width: 48px;
   height: 48px;
   margin: 0 auto;
-  background-image: url(${props => props.bgImage});
+  background-image: url(${(props) => props.bgImage});
 `

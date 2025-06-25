@@ -1,5 +1,6 @@
 import React, { Suspense, memo } from 'react'
 import type { FC, ReactNode } from 'react'
+
 import { NavLink, Outlet } from 'react-router-dom'
 
 import { DiscoverWrapper } from './style'
@@ -13,17 +14,15 @@ interface IProps {
 const Discover: FC<IProps> = () => {
   return (
     <DiscoverWrapper>
-      <div className='top'>
-        <div className='nav-list wrap-v1'>
-          {
-            discoverMenu.map((item, index) => {
-              return (
-                <div className='nav-item' key={item.title}>
-                  <NavLink to={item.link}>{item.title}</NavLink>
-                </div>
-              )
-            })
-          }
+      <div className="top">
+        <div className="nav-list wrap-v1">
+          {discoverMenu.map((item) => {
+            return (
+              <div className="nav-item" key={item.title}>
+                <NavLink to={item.link}>{item.title}</NavLink>
+              </div>
+            )
+          })}
         </div>
       </div>
       <Suspense fallback="">

@@ -8,14 +8,21 @@ interface IProps {
 }
 
 const MineLogin: FC<IProps> = () => {
-  function handleLogin() {
-    console.log("Login")
-  }
+  function handleLogin() {}
 
   return (
-    <MineLoginWrapper className='wrap-v2'>
-      <div className='background'>
-        <a className='login' href='/#' onClick={e => {e.preventDefault(); handleLogin()}}>立即登录</a>
+    <MineLoginWrapper className="wrap-v2">
+      <div className="background">
+        <a
+          className="login"
+          href="/#"
+          onClick={(e) => {
+            e.preventDefault()
+            handleLogin()
+          }}
+        >
+          立即登录
+        </a>
       </div>
     </MineLoginWrapper>
   )

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const AppFooterWrapper = styled.div`
   height: 325px;
@@ -39,7 +39,7 @@ export const FooterBottom = styled.div`
 
     .line {
       margin: 0 10px;
-      color: #D9D9D9;
+      color: #d9d9d9;
     }
     .line:last-child {
       display: none;

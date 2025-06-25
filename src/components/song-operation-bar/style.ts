@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SongOperationBarWrapper = styled.div`
   display: flex;
@@ -9,7 +9,10 @@ export const SongOperationBarWrapper = styled.div`
     padding: 0 5px 0 0;
     cursor: pointer;
   }
-  .collect, .share, .download, .comment {
+  .collect,
+  .share,
+  .download,
+  .comment {
     background-position: right -1020px;
     margin-right: 6px;
 
@@ -54,13 +57,13 @@ export const SongOperationBarWrapper = styled.div`
       background-position: 0 -1268px;
     }
   }
-  .download > span  {
+  .download > span {
     background-position: 0 -2761px;
     &:hover {
       background-position: 0 -2805px;
     }
   }
-  .comment > span  {
+  .comment > span {
     background-position: 0 -1465px;
     &:hover {
       background-position: 0 -1508px;

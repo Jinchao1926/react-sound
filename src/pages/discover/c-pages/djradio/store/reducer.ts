@@ -1,22 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 interface IRadioState {
-  categories: any[];          // 电台分类
-  recommendCategories: any[]; // 推荐电台分类
-  recommendPrograms: any[];   // 推荐节目
-  rankedProgram: {updateTime: number, toplist: any[]};  // 节目排行榜
-  recommendRadios: any[];     // 推荐电台
-  pageHotRadios: any[][];     // 热门电台，二维数组，存放每一页的新碟
-  hotTotal: number;           // 热门电台总数
+  categories: any[] // 电台分类
+  recommendCategories: any[] // 推荐电台分类
+  recommendPrograms: any[] // 推荐节目
+  rankedProgram: { updateTime: number; toplist: any[] } // 节目排行榜
+  recommendRadios: any[] // 推荐电台
+  pageHotRadios: any[][] // 热门电台，二维数组，存放每一页的新碟
+  hotTotal: number // 热门电台总数
 }
 const initialState: IRadioState = {
   categories: [],
   recommendCategories: [],
   recommendPrograms: [],
-  rankedProgram: {updateTime: 0, toplist: []},
+  rankedProgram: { updateTime: 0, toplist: [] },
   recommendRadios: [],
   pageHotRadios: [],
-  hotTotal: 0
+  hotTotal: 0,
 }
 
 const radioSlice = createSlice({
@@ -43,17 +43,17 @@ const radioSlice = createSlice({
     },
     changeHotTotalAction(state, action) {
       state.hotTotal = action.payload
-    }
-  }
+    },
+  },
 })
 
-export const { 
-  changeRadioCategoriesAction, 
+export const {
+  changeRadioCategoriesAction,
   changeRecommendRadioCategoriesAction,
   changeRecommendProgramsAction,
   changeRankedProgramsAction,
   changeRecommendedRadiosAction,
   changePageHotRadiosAction,
-  changeHotTotalAction
+  changeHotTotalAction,
 } = radioSlice.actions
 export default radioSlice.reducer

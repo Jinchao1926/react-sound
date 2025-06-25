@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 
-import { MineWrapper } from './style'
 import MineLogin from './c-pages/mine-login'
+import { MineWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

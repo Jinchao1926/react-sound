@@ -1,7 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const PaginationWrapper = styled.div`
-
   .pagination {
     margin: 20px 0;
     text-align: center;
@@ -44,7 +43,7 @@ export const PaginationWrapper = styled.div`
       }
 
       &.ant-pagination-item-active {
-        border-color: #A2161B !important;
+        border-color: #a2161b !important;
         a {
           background-position: 0 -650px;
           color: #fff;
@@ -52,6 +51,4 @@ export const PaginationWrapper = styled.div`
       }
     }
   }
-
-  
 `

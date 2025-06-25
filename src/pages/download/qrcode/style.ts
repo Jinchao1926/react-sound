@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const QRcodeWrapper = styled.div`
   padding: 16px 18px 9px;

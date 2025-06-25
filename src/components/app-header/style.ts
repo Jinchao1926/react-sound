@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const AppHeaderWrapper = styled.div`
   height: 75px;
@@ -14,7 +14,7 @@ export const AppHeaderWrapper = styled.div`
 
   .divider {
     height: 5px;
-    background-color: #C20C0C;
+    background-color: #c20c0c;
   }
 `
 
@@ -60,8 +60,8 @@ export const HeaderLeft = styled.div`
         width: 12px;
         height: 7px;
         bottom: -1px;
-        left: 50%;  // 元素左边距位于父元素中心
-        transform: translate(-50%, 0);  // 元素左移自身宽度的一半
+        left: 50%; // 元素左边距位于父元素中心
+        transform: translate(-50%, 0); // 元素左移自身宽度的一半
         background-position: -105px -70px;
         background-size: 120px auto;
       }
@@ -112,7 +112,7 @@ export const HeaderRight = styled.div`
     height: 32px;
     // 元素的宽高包含边距和内边距
     box-sizing: border-box;
-    border: 1px solid #4F4F4F;
+    border: 1px solid #4f4f4f;
     line-height: 33px;
     color: #ccc;
     border-radius: 32px;

@@ -1,9 +1,9 @@
-import { rsRequest } from "@/services";
+import { rsRequest } from '@/services'
 
 // 电台 - 分类
 export function fetchRadioCategories() {
   return rsRequest.get({
-    url: '/dj/catelist'
+    url: '/dj/catelist',
   })
 }
 
@@ -13,20 +13,24 @@ export function fetchRecommendedRadios(type: number) {
   return rsRequest.get({
     url: '/dj/recommend/type',
     params: {
-      type
-    }
+      type,
+    },
   })
 }
 
 // 电台 - 类别热门电台（上升最快没有接口）
-export function fetchHotRadios(cateId: number, offset: number, limit: number=25) {
+export function fetchHotRadios(
+  cateId: number,
+  offset: number,
+  limit: number = 25
+) {
   return rsRequest.get({
     url: '/dj/radio/hot',
     params: {
       cateId,
       limit,
-      offset
-    }
+      offset,
+    },
   })
 }
 
@@ -42,8 +46,8 @@ export function fetchRecommendedPrograms(limit: number = 50) {
   return rsRequest.get({
     url: '/program/recommend',
     params: {
-      limit
-    }
+      limit,
+    },
   })
 }
 
@@ -52,7 +56,7 @@ export function fetchRankedPrograms(limit: number = 100) {
   return rsRequest.get({
     url: '/dj/program/toplist',
     params: {
-      limit
-    }
+      limit,
+    },
   })
 }

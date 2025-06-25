@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const RankingListWrapper = styled.div`
   padding: 0 30px 40px 40px;
@@ -63,7 +63,7 @@ export const RankingTable = styled.div`
         height: 30px;
 
         // 前三行
-        &:nth-of-type(-n+3) {
+        &:nth-of-type(-n + 3) {
           height: 70px;
         }
 
@@ -89,7 +89,6 @@ export const RankingTable = styled.div`
           .num {
             width: 25px;
             color: #999;
-            
           }
           .trend {
             width: 32px;
@@ -139,7 +138,7 @@ export const RankingTable = styled.div`
             background-position: 0 -151px;
           }
         }
-        
+
         // 时长
         .duration-item {
           color: #666;
@@ -153,7 +152,7 @@ export const RankingTable = styled.div`
             justify-content: space-between;
             align-items: center;
             padding: 0 5px;
-            
+
             .btn {
               width: 17px;
               height: 17px;

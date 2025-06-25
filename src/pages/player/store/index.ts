@@ -1,17 +1,12 @@
-import { 
+import {
   fetchPlayerDataAsync,
   playSongAction,
   addSongToPlaylistAction,
   switchPlayModeAction,
   switchSongAction,
-} from "./actionCreator"
-
-import {
-  changeLyricLineIndexAction,
-  changeIsPlayingAction,
-} from "./reducer"
-
-import playerReducer from "./reducer"
+} from './actionCreator'
+import { changeLyricLineIndexAction, changeIsPlayingAction } from './reducer'
+import playerReducer from './reducer'
 
 export {
   fetchPlayerDataAsync,

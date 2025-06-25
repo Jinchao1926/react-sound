@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const RadioMoreWrapper = styled.div`
   margin-top: 35px;
@@ -17,10 +17,10 @@ export const RadioMoreItemWrapper = styled.div`
   padding: 20px 0;
   border-bottom: 1px solid #e7e7e7;
 
-  :nth-last-child(-n+2) {
+  :nth-last-child(-n + 2) {
     border-bottom: none;
   }
-  
+
   .left {
     width: 120px;
     height: 120px;

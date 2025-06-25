@@ -1,11 +1,12 @@
+export const PlayMode = {
+  Loop: 'loop',
+  Random: 'random',
+  SingleLoop: 'single-loop',
+} as const
 
-export enum PlayMode {
-  Loop = "loop",
-  Random = "random",
-  SingleLoop = "single-loop",
-}
+export type PlayModeType = (typeof PlayMode)[keyof typeof PlayMode]
 
-export function nextPlayMode(mode: PlayMode) {
+export function nextPlayMode(mode: PlayModeType) {
   switch (mode) {
     case PlayMode.Loop:
       return PlayMode.Random

@@ -1,9 +1,9 @@
-import { rsRequest } from "@/services"
+import { rsRequest } from '@/services'
 
 // 获取轮播图
 export function fetchBanners() {
   return rsRequest.get({
-    url: '/banner'
+    url: '/banner',
   })
 }
 
@@ -26,8 +26,8 @@ export function fetchHotRecommends(limit: number = 8) {
   return rsRequest.get({
     url: '/personalized',
     params: {
-      limit
-    }
+      limit,
+    },
   })
 }
 
@@ -37,8 +37,8 @@ export function fetchTopArtists(offset: number = 0, limit: number = 5) {
     url: '/top/artists',
     params: {
       offset,
-      limit
-    }
+      limit,
+    },
   })
 }
 

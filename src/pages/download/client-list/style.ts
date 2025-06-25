@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ClientListWrapper = styled.div`
   width: 236px;

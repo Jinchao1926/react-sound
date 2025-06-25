@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ProgramRankingWrapper = styled.div`
   position: relative;
@@ -28,7 +28,7 @@ export const ProgramRankingWrapper = styled.div`
     align-items: center;
     // 奇偶
     :nth-child(odd) {
-      background-color: white;  
+      background-color: white;
     }
     :nth-child(even) {
       background-color: #f7f7f7;
@@ -58,7 +58,8 @@ export const ProgramRankingWrapper = styled.div`
       width: 208px;
       margin: 1px 0 0 10px;
       // 重写 css
-      .name, .brand {
+      .name,
+      .brand {
         margin: 0;
         width: 100%;
         line-height: 20px;
@@ -102,10 +103,10 @@ export const ProgramRankingWrapper = styled.div`
   }
 `
 
-export const RankingHotWrapper = styled.div<{marginLeft: number}>`
+export const RankingHotWrapper = styled.div<{ marginLeft: number }>`
   display: block;
   position: relative;
-  margin-left: ${props => props.marginLeft}px;
+  margin-left: ${(props) => props.marginLeft}px;
   width: 100px;
   height: 8px;
   background-position: 0 -240px;

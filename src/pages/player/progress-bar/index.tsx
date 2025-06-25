@@ -1,16 +1,15 @@
 import React, { memo, useState, useEffect, useRef } from 'react'
 import type { FC, ReactNode } from 'react'
 
+import { ProgressBarWrapper } from './style'
 import { roundToDecimal } from '@/utils/format-player'
 
-import { ProgressBarWrapper } from './style'
-
 interface IProps {
-  children?: ReactNode;
-  width?: number;   // the width of the progress bar, defaults to 466
-  percent: number;  //50 means 50%
-  onChange?: (percent: number) => void; // callback function when the progress bar changes, 50 means 50%
-  onAfterChange?: (percent: number) => void; // callback function after the progress bar changes, 50 means 50%
+  children?: ReactNode
+  width?: number // the width of the progress bar, defaults to 466
+  percent: number //50 means 50%
+  onChange?: (percent: number) => void // callback function when the progress bar changes, 50 means 50%
+  onAfterChange?: (percent: number) => void // callback function after the progress bar changes, 50 means 50%
 }
 
 const ProgressBar: FC<IProps> = (props: IProps) => {
@@ -36,7 +35,7 @@ const ProgressBar: FC<IProps> = (props: IProps) => {
 
     curRef.current!.style.width = `${newPercent}%`
   }, [percent])
-  
+
   // Mouse events
   function moveProgress(e: React.MouseEvent) {
     if (!fullRef.current) return
@@ -71,15 +70,23 @@ const ProgressBar: FC<IProps> = (props: IProps) => {
   // Mouse events Ends
 
   return (
-    <ProgressBarWrapper className='sprite_progress_bar progress' ref={barRef}>
-      <div className='sprite_progress_bar full' ref={fullRef} onClick={e => handleProgressClick(e)} />
-      <div className='sprite_progress_bar cur' ref={curRef} onClick={e => handleProgressClick(e)}>
-        <span 
-          className='sprite_icon dot' 
-          onMouseDown={ e => handleMouseDown() }
-          onMouseMove={ e => handleMouseMove(e) }
-          onMouseUp={ e => handleMouseUp() }
-          onMouseLeave={ e => handleMouseUp() }
+    <ProgressBarWrapper className="sprite_progress_bar progress" ref={barRef}>
+      <div
+        className="sprite_progress_bar full"
+        ref={fullRef}
+        onClick={(e) => handleProgressClick(e)}
+      />
+      <div
+        className="sprite_progress_bar cur"
+        ref={curRef}
+        onClick={(e) => handleProgressClick(e)}
+      >
+        <span
+          className="sprite_icon dot"
+          onMouseDown={() => handleMouseDown()}
+          onMouseMove={(e) => handleMouseMove(e)}
+          onMouseUp={() => handleMouseUp()}
+          onMouseLeave={() => handleMouseUp()}
         />
       </div>
     </ProgressBarWrapper>

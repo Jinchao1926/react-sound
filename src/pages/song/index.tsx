@@ -1,20 +1,16 @@
 import React, { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
+
 import { useLocation } from 'react-router-dom'
 
-import { useAppDispatch } from '@/store'
-import { fetchSongDatasAsync } from './store'
-
-import { 
-  SongWrapper,
-  SongLeft,
-  SongRight
-} from './style'
-import SongDetail from './c-components/song-detail'
+import MultiDownload from './c-components/multi-download'
 import SimilarPlaylist from './c-components/similar-playlist'
 import SimilarSong from './c-components/similar-song'
-import MultiDownload from './c-components/multi-download'
+import SongDetail from './c-components/song-detail'
 import UserWiki from './c-components/user-wiki'
+import { fetchSongDatasAsync } from './store'
+import { SongWrapper, SongLeft, SongRight } from './style'
+import { useAppDispatch } from '@/store'
 
 interface IProps {
   children?: ReactNode
@@ -32,7 +28,7 @@ const Song: FC<IProps> = () => {
   }, [dispatch, songId])
 
   return (
-    <SongWrapper className='wrap-v2'>
+    <SongWrapper className="wrap-v2">
       <SongLeft>
         <SongDetail />
       </SongLeft>
@@ -40,7 +36,7 @@ const Song: FC<IProps> = () => {
         <SimilarPlaylist />
         <SimilarSong />
         <MultiDownload />
-        <UserWiki songId={songId || ''}/>
+        <UserWiki songId={songId || ''} />
       </SongRight>
     </SongWrapper>
   )

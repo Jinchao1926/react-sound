@@ -1,15 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { ILyric } from "@/utils/parser-lyric";
+import { createSlice } from '@reduxjs/toolkit'
+
+import { ILyric } from '@/utils/parser-lyric'
 
 interface ISongState {
   // 当前歌曲
-  song?: any,
+  song?: any
   // 当前歌词
-  lyric?: ILyric,
+  lyric?: ILyric
   // 歌曲评论
-  comments: any[],
+  comments: any[]
   // 相似歌单
-  similarPlaylists: any[],
+  similarPlaylists: any[]
   // 相似歌曲
   similarSongs: any[]
 }
@@ -18,11 +19,11 @@ const initialState: ISongState = {
   lyric: undefined,
   comments: [],
   similarPlaylists: [],
-  similarSongs: []
+  similarSongs: [],
 }
 
 const songSlice = createSlice({
-  name: "song",
+  name: 'song',
   initialState,
   reducers: {
     changeSongAction(state, action) {
@@ -39,15 +40,15 @@ const songSlice = createSlice({
     },
     changeSimilarSongsAction(state, action) {
       state.similarSongs = action.payload
-    }
-  }
+    },
+  },
 })
 
-export const { 
+export const {
   changeSongAction,
   changeLyricAction,
   changeCommentsAction,
   changeSimilarPlaylistsAction,
-  changeSimilarSongsAction
+  changeSimilarSongsAction,
 } = songSlice.actions
 export default songSlice.reducer

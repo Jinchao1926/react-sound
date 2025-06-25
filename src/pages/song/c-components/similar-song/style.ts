@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SimilarSongWrapper = styled.div`
   margin-bottom: 25px;
@@ -23,7 +23,7 @@ export const SimilarSongItem = styled.div`
     width: 156px;
     line-height: 16px;
   }
-  
+
   .control {
     width: 36px;
     display: flex;

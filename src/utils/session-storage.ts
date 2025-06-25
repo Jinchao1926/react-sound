@@ -1,4 +1,3 @@
-
 function set(key: any, value: string) {
   const serialized = JSON.stringify(value)
   sessionStorage.setItem(key, serialized)

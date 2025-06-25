@@ -1,25 +1,28 @@
 import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
-import classNames from 'classnames';
+
+import classNames from 'classnames'
 
 import { RankingTrendWrapper } from './style'
 
 interface IProps {
-  children?: ReactNode;
-  lastRank: number;
-  rank: number;
+  children?: ReactNode
+  lastRank: number
+  rank: number
 }
 
-enum Trend {
-  NEW = 'new',
-  KEEP = 'keep',
-  UP = 'up',
-  DOWN = 'down'
-}
+const Trend = {
+  NEW: 'new',
+  KEEP: 'keep',
+  UP: 'up',
+  DOWN: 'down',
+} as const
+
+type TrendType = (typeof Trend)[keyof typeof Trend]
 
 const RankingTrend: FC<IProps> = (props: IProps) => {
   const { lastRank, rank } = props
-  const [trend, setTrend] = useState<Trend>(Trend.NEW)
+  const [trend, setTrend] = useState<TrendType>(Trend.NEW)
 
   useEffect(() => {
     if (lastRank <= 0) {
@@ -36,7 +39,8 @@ const RankingTrend: FC<IProps> = (props: IProps) => {
   return (
     <RankingTrendWrapper className={trend}>
       <span className={classNames('sprite_icon2', trend)} />
-      {trend !== Trend.NEW && (trend === Trend.KEEP ? 0 : Math.abs(rank - lastRank))}
+      {trend !== Trend.NEW &&
+        (trend === Trend.KEEP ? 0 : Math.abs(rank - lastRank))}
     </RankingTrendWrapper>
   )
 }

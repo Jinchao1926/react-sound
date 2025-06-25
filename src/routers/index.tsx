@@ -1,4 +1,5 @@
 import React, { lazy } from 'react'
+
 import { Navigate } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
 
@@ -18,10 +19,18 @@ const Album = lazy(() => import('@/pages/discover/c-pages/album'))
 const Song = lazy(() => import('@/pages/song'))
 
 // Discover - DJRadio 三级路由
-const DJRadioProgram = lazy(() => import('@/pages/discover/c-pages/djradio/c-pages/program'))
-const DJRadioCategory = lazy(() => import('@/pages/discover/c-pages/djradio/c-pages/category'))
-const DJRadioRecommend = lazy(() => import('@/pages/discover/c-pages/djradio/c-pages/program-recommend'))
-const DJRadioRanking = lazy(() => import('@/pages/discover/c-pages/djradio/c-pages/program-ranking'))
+const DJRadioProgram = lazy(
+  () => import('@/pages/discover/c-pages/djradio/c-pages/program')
+)
+const DJRadioCategory = lazy(
+  () => import('@/pages/discover/c-pages/djradio/c-pages/category')
+)
+const DJRadioRecommend = lazy(
+  () => import('@/pages/discover/c-pages/djradio/c-pages/program-recommend')
+)
+const DJRadioRanking = lazy(
+  () => import('@/pages/discover/c-pages/djradio/c-pages/program-ranking')
+)
 
 const routes: RouteObject[] = [
   {
@@ -72,8 +81,8 @@ const routes: RouteObject[] = [
           {
             path: '/discover/djradio/ranking',
             element: <DJRadioRanking />,
-          }
-        ]
+          },
+        ],
       },
       {
         path: '/discover/artist',
@@ -87,7 +96,7 @@ const routes: RouteObject[] = [
         path: '/discover/song',
         element: <Song />,
       },
-    ]
+    ],
   },
   {
     path: '/mine',
@@ -100,7 +109,7 @@ const routes: RouteObject[] = [
   {
     path: '/download',
     element: <Download />,
-  }
+  },
 ]
 
 export default routes
