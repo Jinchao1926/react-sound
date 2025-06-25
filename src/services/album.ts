@@ -1,4 +1,4 @@
-import { rsRequest } from "@/services"
+import { rsRequest } from '@/services'
 
 /*
 {
@@ -67,18 +67,22 @@ import { rsRequest } from "@/services"
 // 最新专辑
 export function fetchTopAlbums() {
   return rsRequest.get({
-    url: '/album/newest'
+    url: '/album/newest',
   })
 }
 
 // 全部新碟
-export function fetchAlbums(area: string, offset: number = 0, limit: number = 10) {
+export function fetchAlbums(
+  area: string,
+  offset: number = 0,
+  limit: number = 10
+) {
   return rsRequest.get({
     url: '/album/new',
     params: {
       area,
       offset,
-      limit
-    }
+      limit,
+    },
   })
 }

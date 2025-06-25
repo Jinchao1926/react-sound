@@ -1,11 +1,12 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+
 import { shallowEqual } from 'react-redux'
-import { useAppSelector } from '@/store'
 
 import { HotAlbumWrapper } from './style'
-import SectionHeaderNormal from '@/components/section-header-normal'
 import AlbumCover from '@/components/album-cover'
+import SectionHeaderNormal from '@/components/section-header-normal'
+import { useAppSelector } from '@/store'
 
 interface IProps {
   children?: ReactNode
@@ -13,24 +14,17 @@ interface IProps {
 
 const HotAlbum: FC<IProps> = () => {
   const hotAlbums = useAppSelector(
-    state => state.album.hotAlbums, 
+    (state) => state.album.hotAlbums,
     shallowEqual
   )
 
   return (
     <HotAlbumWrapper>
-      <SectionHeaderNormal title='热门新碟'/>
-      <div className='album-list'>
-        {
-          hotAlbums.slice(0, 10).map(item => {
-            return (
-              <AlbumCover key={item.id} 
-                info={item} 
-                small={false}
-              />
-            )
-          })
-        }
+      <SectionHeaderNormal title="热门新碟" />
+      <div className="album-list">
+        {hotAlbums.slice(0, 10).map((item) => {
+          return <AlbumCover key={item.id} info={item} small={false} />
+        })}
       </div>
     </HotAlbumWrapper>
   )

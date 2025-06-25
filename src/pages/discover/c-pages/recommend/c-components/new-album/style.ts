@@ -1,7 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const NewAlbumWrapper = styled.div`
-
   .inner {
     height: 186px;
     margin: 20px 0 37px;

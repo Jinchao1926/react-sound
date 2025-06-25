@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const RankingTrendWrapper = styled.div`
   text-align: center;
@@ -23,7 +23,9 @@ export const RankingTrendWrapper = styled.div`
     height: 17px;
     background-position: -67px -283px;
   }
-  .keep, .up, .down {
+  .keep,
+  .up,
+  .down {
     width: 6px;
     height: 6px;
   }
@@ -36,6 +38,4 @@ export const RankingTrendWrapper = styled.div`
   .down {
     background-position: -74px -324px;
   }
-
-
 `

@@ -1,7 +1,7 @@
 import {
   fetchPlaylistCategoriesAsync,
   fetchPlaylistsAsync,
-  changeCurrentCategoryAsync
+  changeCurrentCategoryAsync,
 } from './actionCreator'
 import playlistReducer from './reducer'
 
@@ -9,5 +9,5 @@ export {
   fetchPlaylistCategoriesAsync,
   fetchPlaylistsAsync,
   changeCurrentCategoryAsync,
-  playlistReducer
+  playlistReducer,
 }

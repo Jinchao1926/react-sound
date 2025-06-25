@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const RadioRankingWrapper = styled.div`
   margin-top: 35px;
-  
+
   .radio-list {
     display: flex;
     flex-wrap: wrap;

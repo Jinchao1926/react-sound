@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const DownloadWrapper = styled.div`
   /* background: url(${require('@/assets/img/download/download_bg.png')}) repeat-x; */
@@ -13,7 +13,7 @@ export const DownloadContent = styled.div`
 
   .content {
     display: flex;
-    padding: 80px 0 84px;  
+    padding: 80px 0 84px;
     text-align: center;
     position: relative;
 
@@ -60,7 +60,7 @@ export const DownloadContent = styled.div`
       height: 65px;
       border-radius: 65px;
       background-color: #fff;
-      color: #D10000;
+      color: #d10000;
       font-size: 22px;
       cursor: pointer;
       &:hover {
@@ -82,7 +82,8 @@ export const DownloadContent = styled.div`
         background: url(${require('@/assets/img/download/windows.png')});
         margin-left: 40px;
       }
-      .mac, .windows {
+      .mac,
+      .windows {
         width: 154px;
         height: 44px;
         background-size: 154px 44px;
@@ -93,7 +94,8 @@ export const DownloadContent = styled.div`
         font-size: 14px;
         color: #fff;
         opacity: 0.6;
-        .win64, .win32 {
+        .win64,
+        .win32 {
           display: inline-block;
           color: #fff;
           text-decoration: underline;
@@ -117,7 +119,8 @@ export const DownloadContent = styled.div`
         background: url(${require('@/assets/img/download/android.png')});
         margin-left: 40px;
       }
-      .iOS, .android {
+      .iOS,
+      .android {
         width: 120px;
         height: 44px;
         background-size: 120px 44px;
@@ -147,7 +150,7 @@ export const MusicContent = styled.div`
   height: 437px;
   border-bottom: 1px solid #e3e3e3;
   background: white;
-  
+
   .content {
     padding-top: 120px;
 
@@ -163,12 +166,12 @@ export const MusicContent = styled.div`
   }
 `
 
-export const StarContent= styled.div`
+export const StarContent = styled.div`
   height: 437px;
   border-bottom: 1px solid #e3e3e3;
 
   .content {
-    padding-top: 106px; 
+    padding-top: 106px;
 
     .star-left {
       margin-left: 30px;
@@ -183,7 +186,7 @@ export const SocialContent = styled.div`
   height: 437px;
   border-bottom: 1px solid #e3e3e3;
   background: white;
-  
+
   .content {
     padding-top: 72px;
 
@@ -203,7 +206,7 @@ export const CloudContent = styled.div`
   border-bottom: 1px solid #e3e3e3;
 
   .content {
-    padding-top: 95px; 
+    padding-top: 95px;
 
     .cloud-left {
       margin-left: 30px;
@@ -218,7 +221,7 @@ export const RecognizeContent = styled.div`
   height: 437px;
   border-bottom: 1px solid #e3e3e3;
   background: white;
-  
+
   .content {
     padding-top: 53px;
 

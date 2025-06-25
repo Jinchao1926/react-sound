@@ -10,7 +10,10 @@ interface IProps {
 const QRCode: FC<IProps> = () => {
   return (
     <QRcodeWrapper>
-      <img src={require('@/assets/img/download/qrcode.png')} alt='移动端下载'></img>
+      <img
+        src={require('@/assets/img/download/qrcode.png')}
+        alt="移动端下载"
+      ></img>
       <p>扫描二维码下载</p>
     </QRcodeWrapper>
   )

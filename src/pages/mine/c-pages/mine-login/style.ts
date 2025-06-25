@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const MineLoginWrapper = styled.div`
   background-color: #fff;
@@ -21,7 +21,8 @@ export const MineLoginWrapper = styled.div`
       height: 45px;
       margin: 202px 0 0 482px;
       text-indent: -9999px;
-      background: url(${require('@/assets/img/login_01.png')}) no-repeat 0 9999px;
+      background: url(${require('@/assets/img/login_01.png')}) no-repeat 0
+        9999px;
       background-position: -482px -202px;
       &:hover {
         background-position: 0 -278px;

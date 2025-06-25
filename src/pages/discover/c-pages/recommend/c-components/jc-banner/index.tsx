@@ -1,17 +1,17 @@
 import React, { memo, useRef, useState, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
-import { shallowEqual } from 'react-redux'
-import { useAppSelector } from '@/store'
-import { SwitchTransition, CSSTransition } from 'react-transition-group'
 
 import classNames from 'classnames'
+import { shallowEqual } from 'react-redux'
+import { SwitchTransition, CSSTransition } from 'react-transition-group'
 
-import { 
+import {
   JCBannerControl,
   JCBannerLeft,
   JCBannerRight,
-  JCBannerWrapper 
+  JCBannerWrapper,
 } from './style'
+import { useAppSelector } from '@/store'
 
 interface IProps {
   children?: ReactNode
@@ -36,7 +36,7 @@ const JCBanner: FC<IProps> = () => {
   // 从 redux 中获取数据
   const { banners } = useAppSelector(
     (state) => ({
-      banners: state.recommend.banners
+      banners: state.recommend.banners,
     }),
     shallowEqual
   )
@@ -55,14 +55,16 @@ const JCBanner: FC<IProps> = () => {
 
   // Timer
   useEffect(() => {
-    console.log("useEffect isPaused:", isPaused)
+    // eslint-disable-next-line no-console
+    console.log('useEffect isPaused:', isPaused)
     if (isPaused) return
     timerRef.current = setInterval(() => {
       handleTimer()
     }, 3000)
 
     return () => {
-      console.log("useEffect return ")
+      // eslint-disable-next-line no-console
+      console.log('useEffect return ')
       if (timerRef.current) clearInterval(timerRef.current)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,47 +109,53 @@ const JCBanner: FC<IProps> = () => {
 
   return (
     <JCBannerWrapper bgImage={bgImage}>
-      <div className='banner wrap-v2'>
+      <div className="banner wrap-v2">
         <JCBannerLeft>
-          <div 
-            className='banner-list' 
-            onMouseEnter={e => handleMouseEnter()} 
-            onMouseLeave={e => handleMouseLeave()}
-            >
+          <div
+            className="banner-list"
+            onMouseEnter={() => handleMouseEnter()}
+            onMouseLeave={() => handleMouseLeave()}
+          >
             <SwitchTransition>
-              <CSSTransition 
-                classNames='fade'
+              <CSSTransition
+                classNames="fade"
                 timeout={300}
                 key={currentIndex}
-                onExit={e => handleAfterChange()}
+                onExit={() => handleAfterChange()}
               >
-                <div className='banner-item'>
-                  <img className='image' src={imageUrl} alt=''/>
+                <div className="banner-item">
+                  <img className="image" src={imageUrl} alt="" />
                 </div>
               </CSSTransition>
             </SwitchTransition>
           </div>
-          <ul className='dots'>
-            {
-              banners.map((item, idx) => {
-                return (
-                  <li key={item.imageUrl}>
-                    <button 
-                      className={classNames('item', {active: currentIndex === idx})}
-                      onClick={e => handleGoPressed(idx)}
-                    />
-                  </li>
-                )
-              })
-            }
+          <ul className="dots">
+            {banners.map((item, idx) => {
+              return (
+                <li key={item.imageUrl}>
+                  <button
+                    className={classNames('item', {
+                      active: currentIndex === idx,
+                    })}
+                    onClick={() => handleGoPressed(idx)}
+                  />
+                </li>
+              )
+            })}
           </ul>
         </JCBannerLeft>
         <JCBannerRight>
           <p>PC 安卓 iPhone WP iPad Mac 六大客户端</p>
         </JCBannerRight>
         <JCBannerControl>
-          <button className='btn left' onClick={e => handlePreviousPressed()}></button>
-          <button className='btn right' onClick={e => handleNextPressed()}></button>
+          <button
+            className="btn left"
+            onClick={() => handlePreviousPressed()}
+          ></button>
+          <button
+            className="btn right"
+            onClick={() => handleNextPressed()}
+          ></button>
         </JCBannerControl>
       </div>
     </JCBannerWrapper>

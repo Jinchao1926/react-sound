@@ -1,4 +1,4 @@
-import { rsRequest } from "@/services"
+import { rsRequest } from '@/services'
 
 /* 获取所有榜单
 19723756: 云音乐飙升榜,
@@ -7,7 +7,7 @@ import { rsRequest } from "@/services"
 */
 export function fetchTopList() {
   return rsRequest.get({
-    url: '/toplist'
+    url: '/toplist',
   })
 }
 
@@ -16,7 +16,7 @@ export function fetchPlaylistDetail(id: number) {
   return rsRequest.get({
     url: '/playlist/detail',
     params: {
-      id
-    }
+      id,
+    },
   })
 }

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const FriendLoginWrapper = styled.div`
   background-color: #fff;
@@ -27,7 +27,8 @@ export const FriendLoginWrapper = styled.div`
       height: 48px;
       margin: 36px 0 0 535px;
       text-indent: -9999px;
-      background: url(${require('@/assets/img/login_02.png')}) no-repeat 0 9999px;
+      background: url(${require('@/assets/img/login_02.png')}) no-repeat 0
+        9999px;
       background-position: -535px -260px;
       &:hover {
         background-position: 0 -430px;

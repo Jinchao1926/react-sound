@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 
-import { FriendWrapper } from './style'
 import FriendLogin from './c-pages/friend-login'
+import { FriendWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

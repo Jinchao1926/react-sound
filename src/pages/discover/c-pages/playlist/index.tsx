@@ -1,17 +1,17 @@
 import React, { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
+
 import { useLocation } from 'react-router-dom'
 
-import { useAppDispatch } from '@/store'
-import { 
+import PlaylistCovers from './c-components/playlist-covers'
+import PlaylistHeader from './c-components/playlist-header'
+import {
   fetchPlaylistCategoriesAsync,
   fetchPlaylistsAsync,
-  changeCurrentCategoryAsync
+  changeCurrentCategoryAsync,
 } from './store'
-
 import { PlaylistWrapper } from './style'
-import PlaylistHeader from './c-components/playlist-header'
-import PlaylistCovers from './c-components/playlist-covers'
+import { useAppDispatch } from '@/store'
 
 interface IProps {
   children?: ReactNode
@@ -35,13 +35,11 @@ const Playlist: FC<IProps> = () => {
     dispatch(fetchPlaylistsAsync(0))
   }, [dispatch])
 
-  const onMouseDown = () => {
-
-  }
+  const onMouseDown = () => {}
 
   return (
     <PlaylistWrapper onMouseDown={onMouseDown}>
-      <div className='content wrap-v2' onMouseDown={e => e.stopPropagation()}>
+      <div className="content wrap-v2" onMouseDown={(e) => e.stopPropagation()}>
         <PlaylistHeader />
         <PlaylistCovers />
       </div>

@@ -1,7 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const UserLinkWrapper = styled.div`
-
   .user-links {
     width: 100%;
     display: inline-block;

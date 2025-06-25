@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SectionHeaderMoreWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   height: 23px;
   border-bottom: 1px solid #ccc;
-  
+
   .title {
     font-weight: bold;
   }

@@ -1,21 +1,21 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const SectionHeaderRCMWrapper = styled.div`
   background-position: -225px -156px;
   padding: 0 10px 0 34px;
-  border-bottom: 2px solid #C10D0C;
+  border-bottom: 2px solid #c10d0c;
   height: 33px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
+
   .left {
     display: flex;
     margin-bottom: 4px;
 
     .title {
       font-size: 20px;
-      font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+      font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
       margin-right: 20px;
     }
 
@@ -40,7 +40,7 @@ export const SectionHeaderRCMWrapper = styled.div`
 
         &:last-child .divider {
           display: none;
-       }
+        }
       }
     }
   }

@@ -1,22 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { PlayMode } from "../type/PlayMode";
-import { ILyric } from "@/utils/parser-lyric";
+import { createSlice } from '@reduxjs/toolkit'
+
+import { PlayMode, PlayModeType } from '../type/PlayMode'
+import { ILyric } from '@/utils/parser-lyric'
 
 interface IPlayerState {
   // 当前歌曲
-  currentSong?: any,
+  currentSong?: any
   // 播放列表
-  playlist: any[],
+  playlist: any[]
   // 当前歌曲索引
-  currentSongIndex: number,
+  currentSongIndex: number
   // 当前歌词
-  currentLyric?: ILyric,
+  currentLyric?: ILyric
   // 当前播放歌词索引（第几行）
-  lyricLineIndex: number,
+  lyricLineIndex: number
   // 播放模式
-  playMode: PlayMode,
+  playMode: PlayModeType
   // 是否正在播放音乐
-  isPlaying: boolean,
+  isPlaying: boolean
 }
 const initialState: IPlayerState = {
   // 歌曲 & 歌词
@@ -30,7 +31,7 @@ const initialState: IPlayerState = {
 }
 
 const playerSlice = createSlice({
-  name: "player",
+  name: 'player',
   initialState,
   reducers: {
     changeCurrentSongAction(state, action) {
@@ -54,10 +55,10 @@ const playerSlice = createSlice({
     changeIsPlayingAction(state, action) {
       state.isPlaying = action.payload
     },
-  }
+  },
 })
 
-export const { 
+export const {
   changeCurrentSongAction,
   changePlaylistAction,
   changeCurrentSongIndexAction,

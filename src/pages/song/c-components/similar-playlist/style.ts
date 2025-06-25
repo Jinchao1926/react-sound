@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SimilarPlaylistWrapper = styled.div`
   margin-bottom: 40px;
@@ -31,7 +31,7 @@ export const SimilarPlaylistItem = styled.div`
   .info {
     margin-left: 10px;
     width: 140px;
-    
+
     .playlist {
       color: #000;
       font-size: 14px;

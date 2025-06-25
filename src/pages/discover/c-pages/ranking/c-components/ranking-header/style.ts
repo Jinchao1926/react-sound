@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const RankingInfoWrapper = styled.div`
   padding: 40px;
@@ -27,7 +27,7 @@ export const RankingInfoWrapper = styled.div`
 
   .info {
     margin-left: 30px;
-    
+
     .title {
       margin: 16px 0 4px;
       font-size: 20px;
@@ -37,7 +37,7 @@ export const RankingInfoWrapper = styled.div`
       height: 35px;
       display: flex;
       align-items: center;
-      
+
       .icon {
         display: inline-block;
         background-position: -18px -682px;

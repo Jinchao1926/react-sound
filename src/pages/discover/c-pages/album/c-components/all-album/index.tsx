@@ -1,15 +1,15 @@
 import React, { memo, useState, useEffect, useCallback } from 'react'
 import type { FC, ReactNode } from 'react'
-import { shallowEqual } from 'react-redux'
-import { useAppDispatch, useAppSelector } from '@/store'
 
-import { areas } from '@/assets/data/local-data'
-import { fetchAllAlbumsAsync, changeCurrentAreaAsync } from '../../store'
+import { shallowEqual } from 'react-redux'
 
 import { AllAlbumWrapper } from './style'
-import SectionHeaderNormal from '@/components/section-header-normal'
+import { fetchAllAlbumsAsync, changeCurrentAreaAsync } from '../../store'
+import { areas } from '@/assets/data/local-data'
 import AlbumCover from '@/components/album-cover'
 import JCPagination from '@/components/pagination'
+import SectionHeaderNormal from '@/components/section-header-normal'
+import { useAppDispatch, useAppSelector } from '@/store'
 
 interface IProps {
   children?: ReactNode
@@ -19,13 +19,13 @@ const AllAlbum: FC<IProps> = () => {
   // state
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [albums, setAlbums] = useState<any[]>([])
-  const [areaNames] = useState<string[]>(areas.map(item => item.name))
-  // redux 
-  const { pageAlbums, total, currentArea }= useAppSelector(
-    state => ({
+  const [areaNames] = useState<string[]>(areas.map((item) => item.name))
+  // redux
+  const { pageAlbums, total, currentArea } = useAppSelector(
+    (state) => ({
       pageAlbums: state.album.pageAlbums,
       total: state.album.total,
-      currentArea: state.album.currentArea
+      currentArea: state.album.currentArea,
     }),
     shallowEqual
   )
@@ -41,36 +41,39 @@ const AllAlbum: FC<IProps> = () => {
 
   // handles
   const dispatch = useAppDispatch()
-  const handlePageChange = useCallback((page: number) => {
-    setCurrentPage(page)
+  const handlePageChange = useCallback(
+    (page: number) => {
+      setCurrentPage(page)
 
-    dispatch(fetchAllAlbumsAsync(page - 1))
-  }, [dispatch])
+      dispatch(fetchAllAlbumsAsync(page - 1))
+    },
+    [dispatch]
+  )
 
-  const handleSwitchArea = useCallback((area: string) => {
-    dispatch(changeCurrentAreaAsync(area))
-    dispatch(fetchAllAlbumsAsync(currentPage - 1))
-  }, [dispatch, currentPage])
+  const handleSwitchArea = useCallback(
+    (area: string) => {
+      dispatch(changeCurrentAreaAsync(area))
+      dispatch(fetchAllAlbumsAsync(currentPage - 1))
+    },
+    [dispatch, currentPage]
+  )
 
   return (
     <AllAlbumWrapper>
-      <SectionHeaderNormal title='全部新碟' keywords={areaNames} onKeywordClick={handleSwitchArea}/>
-      <div className='album-list'>
-        {
-          albums.map(item => {
-            return (
-              <AlbumCover key={item.id} 
-                info={item} 
-                small={false}
-              />
-            )
-          })
-        }
+      <SectionHeaderNormal
+        title="全部新碟"
+        keywords={areaNames}
+        onKeywordClick={handleSwitchArea}
+      />
+      <div className="album-list">
+        {albums.map((item) => {
+          return <AlbumCover key={item.id} info={item} small={false} />
+        })}
       </div>
-      <JCPagination 
+      <JCPagination
         total={total}
         pageSize={35}
-        current={currentPage} 
+        current={currentPage}
         onPageChange={handlePageChange}
       />
     </AllAlbumWrapper>

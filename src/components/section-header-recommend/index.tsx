@@ -1,39 +1,42 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+
 import { NavLink } from 'react-router-dom'
 
 import { SectionHeaderRCMWrapper } from './style'
 
 interface IProps {
-  children?: ReactNode;
-  title: string;
-  keywords?: string[];
-  morePath: string;
+  children?: ReactNode
+  title: string
+  keywords?: string[]
+  morePath: string
 }
 
 const SectionHeaderRecommend: FC<IProps> = (props: IProps) => {
   const { title, keywords, morePath } = props
 
   return (
-    <SectionHeaderRCMWrapper className='sprite_02'>
-      <div className='left'>
-        <NavLink className='title' to={morePath}>{title}</NavLink>
-        <div className='keyword-list'>
-          {
-            keywords?.map(item => {
-              return (
-                <div className='item' key={item}>
-                  <NavLink className='keyword' to={`${morePath}${item}`}>{item}</NavLink>
-                  <span className='divider'>|</span>
-                </div>
-              )
-            })
-          }
+    <SectionHeaderRCMWrapper className="sprite_02">
+      <div className="left">
+        <NavLink className="title" to={morePath}>
+          {title}
+        </NavLink>
+        <div className="keyword-list">
+          {keywords?.map((item) => {
+            return (
+              <div className="item" key={item}>
+                <NavLink className="keyword" to={`${morePath}${item}`}>
+                  {item}
+                </NavLink>
+                <span className="divider">|</span>
+              </div>
+            )
+          })}
         </div>
       </div>
-      <div className='right'>
+      <div className="right">
         <NavLink to={morePath}>更多</NavLink>
-        <i className='icon sprite_02' />
+        <i className="icon sprite_02" />
       </div>
     </SectionHeaderRCMWrapper>
   )

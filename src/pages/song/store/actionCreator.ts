@@ -1,23 +1,22 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { 
+import {
   changeSongAction,
   changeLyricAction,
   // changeCommentsAction,
   changeSimilarPlaylistsAction,
-  changeSimilarSongsAction
-} from "./reducer"
-
+  changeSimilarSongsAction,
+} from './reducer'
 import {
   fetchSongAsync,
   fetchLyricAsync,
   fetchSimilarPlaylistsAsync,
-  fetchSimilarSongsAsync
-} from "../service/song-storage";
+  fetchSimilarSongsAsync,
+} from '../service/song-storage'
 
 // 获取歌曲详情
 export const fetchSongDatasAsync = createAsyncThunk(
-  "fetchSongDatas",
+  'fetchSongDatas',
   async (id: string, { dispatch }) => {
     // 1. 请求歌曲详情
     const song = await fetchSongAsync(id)

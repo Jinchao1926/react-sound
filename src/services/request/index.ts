@@ -1,6 +1,7 @@
-import axios from "axios"
-import type { AxiosInstance } from "axios"
-import type { RSRequestInterceptors, RSRequestConfig } from "./type"
+import axios from 'axios'
+import type { AxiosInstance } from 'axios'
+
+import type { RSRequestInterceptors, RSRequestConfig } from './type'
 
 class RSRequest {
   private instance: AxiosInstance
@@ -24,14 +25,17 @@ class RSRequest {
       (res) => {
         const data = res.data
         if (data.returnCode === '-1001') {
+          // eslint-disable-next-line no-console
           console.log('请求失败~, 错误信息')
-        } 
+        }
         return data
       },
       (error) => {
         if (error.response.status === 404) {
+          // eslint-disable-next-line no-console
           console.log('404的错误~')
         }
+        // eslint-disable-next-line no-console
         console.log('其他网络错误~')
         return error
       }
@@ -57,11 +61,12 @@ class RSRequest {
           }
           this.showLoading = false
           resolve(res)
-      }).catch((err) => {
-        this.showLoading = false
-        reject(err)
-        return err
-      })
+        })
+        .catch((err) => {
+          this.showLoading = false
+          reject(err)
+          return err
+        })
     })
   }
 

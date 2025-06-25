@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SongCoverWrapper = styled.div`
   margin: 20px 0 10px;
@@ -33,7 +33,7 @@ export const SongCoverWrapper = styled.div`
         background-position: 0 -24px;
         width: 14px;
         height: 11px;
-        margin: 9px 5px 9px 10px
+        margin: 9px 5px 9px 10px;
       }
       .play-count {
         margin: 7px 0 0 0;

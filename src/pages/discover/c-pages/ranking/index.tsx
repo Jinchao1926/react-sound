@@ -1,18 +1,14 @@
 import React, { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
+
 import { useLocation } from 'react-router-dom'
 
-import { fetchRankingDatasAsync } from './store'
-import { useAppDispatch } from '@/store'
-
-import { 
-  RankingWrapper,
-  RankingLeft,
-  RankingRight
-} from './style'
 import RankingCategory from './c-components/ranking-category'
 import RankingHeader from './c-components/ranking-header'
 import RankingList from './c-components/ranking-list'
+import { fetchRankingDatasAsync } from './store'
+import { RankingWrapper, RankingLeft, RankingRight } from './style'
+import { useAppDispatch } from '@/store'
 
 interface IProps {
   children?: ReactNode
@@ -29,9 +25,9 @@ const Ranking: FC<IProps> = () => {
   }, [dispatch])
 
   return (
-    <RankingWrapper className='wrap-v2'>
+    <RankingWrapper className="wrap-v2">
       <RankingLeft>
-        <RankingCategory initRankingId={Number(rankingId)}/>
+        <RankingCategory initRankingId={Number(rankingId)} />
       </RankingLeft>
       <RankingRight>
         <RankingHeader />

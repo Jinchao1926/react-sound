@@ -1,24 +1,16 @@
 import React, { memo, useEffect, useState, useRef, useCallback } from 'react'
 import type { FC, ReactNode } from 'react'
-import { NavLink } from 'react-router-dom'
 
 import classNames from 'classnames'
 import { shallowEqual } from 'react-redux'
-import { useAppDispatch, useAppSelector } from '@/store'
-import { 
-  playSongAction,
-  addSongToPlaylistAction,
-} from '@/pages/player/store'
+import { NavLink } from 'react-router-dom'
 
-import { formatSizedImage } from '@/utils/format-utils'
-
-import { 
-  SongDetailWrapper,
-  SongRecord,
-  LyricList,
-} from './style'
+import { SongDetailWrapper, SongRecord, LyricList } from './style'
 import SongOperationBar from '@/components/song-operation-bar'
 import UserLink from '@/components/user-link'
+import { playSongAction, addSongToPlaylistAction } from '@/pages/player/store'
+import { useAppDispatch, useAppSelector } from '@/store'
+import { formatSizedImage } from '@/utils/format-utils'
 
 interface IProps {
   children?: ReactNode
@@ -30,10 +22,11 @@ const SongDetail: FC<IProps> = () => {
   const [showingMore, setShowingMore] = useState<boolean>(false)
   const lyricRef = useRef<HTMLDivElement>(null)
   // redux
-  const { song, lyric } = useAppSelector(state => ({
+  const { song, lyric } = useAppSelector(
+    (state) => ({
       song: state.song.song,
       lyric: state.song.lyric,
-    }), 
+    }),
     shallowEqual
   )
 
@@ -43,7 +36,7 @@ const SongDetail: FC<IProps> = () => {
       setLyricString('')
       return
     }
-    let lyricContents = lyric.map((item: {text: string}) => item.text)
+    let lyricContents = lyric.map((item: { text: string }) => item.text)
     if (!showingMore) {
       lyricContents = lyricContents.slice(0, 13)
     }
@@ -83,38 +76,47 @@ const SongDetail: FC<IProps> = () => {
   return (
     <SongDetailWrapper>
       <SongRecord>
-        <div className='cover'>
-          <img src={formatSizedImage(song?.al.picUrl, 130)} alt=''/>
-          <span className='record sprite_cover' />
+        <div className="cover">
+          <img src={formatSizedImage(song?.al.picUrl, 130)} alt="" />
+          <span className="record sprite_cover" />
         </div>
-        <div className='link'>
-          <span className='icon sprite_icon2' />
-          <a href='/#' onClick={e => e.preventDefault()}>生成外链播放器</a>
+        <div className="link">
+          <span className="icon sprite_icon2" />
+          <a href="/#" onClick={(e) => e.preventDefault()}>
+            生成外链播放器
+          </a>
         </div>
       </SongRecord>
       <LyricList>
-        <div className='header'>
-          <span className='icon sprite_icon2' />
+        <div className="header">
+          <span className="icon sprite_icon2" />
           <span>{song?.name}</span>
         </div>
-        <p className='singer'>
+        <p className="singer">
           歌手：
-          { song?.ar && <UserLink users={song?.ar} showSpace={true} />}
+          {song?.ar && <UserLink users={song?.ar} showSpace={true} />}
         </p>
-        <p className='album'>
+        <p className="album">
           所属专辑：
-          <NavLink to={`/albumn?id=${song?.al.id}`}>{song?.al.name}</NavLink> 
+          <NavLink to={`/albumn?id=${song?.al.id}`}>{song?.al.name}</NavLink>
         </p>
-        <SongOperationBar 
-          callbacks={{ 
-            onPlayClick: playMusic, 
-            onAddClick: addMusicToPlaylist 
+        <SongOperationBar
+          callbacks={{
+            onPlayClick: playMusic,
+            onAddClick: addMusicToPlaylist,
           }}
         />
-        <span className='lyric-content' ref={lyricRef}>{lyricString}</span>
-        <div className='lyric-control' onClick={e => handleShowingMore()}>
+        <span className="lyric-content" ref={lyricRef}>
+          {lyricString}
+        </span>
+        <div className="lyric-control" onClick={() => handleShowingMore()}>
           {showingMore ? '收起' : '展开'}
-          <span className={classNames('sprite_icon2 icon', {collapse: showingMore, expand: !showingMore})}/>
+          <span
+            className={classNames('sprite_icon2 icon', {
+              collapse: showingMore,
+              expand: !showingMore,
+            })}
+          />
         </div>
       </LyricList>
     </SongDetailWrapper>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SectionHeaderNormalWrapper = styled.div`
   height: 40px;
@@ -44,7 +44,7 @@ export const SectionHeaderNormalWrapper = styled.div`
       }
     }
   }
-  
+
   .right {
     margin-top: 16px;
     color: #666;

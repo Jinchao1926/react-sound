@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ResidentSingerWrapper = styled.div`
   margin-top: 15px;
@@ -16,7 +16,7 @@ export const ResidentSingerWrapper = styled.div`
       height: 62px;
       background: #fafafa;
       display: flex;
-  
+
       :hover {
         background-color: #f4f4f4;
       }

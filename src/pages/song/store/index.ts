@@ -1,9 +1,4 @@
-import { 
-  fetchSongDatasAsync,
-} from "./actionCreator"
-import songReducer from "./reducer"
+import { fetchSongDatasAsync } from './actionCreator'
+import songReducer from './reducer'
 
-export {
-  fetchSongDatasAsync,
-  songReducer,
-}
+export { fetchSongDatasAsync, songReducer }

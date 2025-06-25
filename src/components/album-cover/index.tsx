@@ -1,24 +1,23 @@
 import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
+
 import { NavLink } from 'react-router-dom'
 
-import { formatSizedImage } from '@/utils/format-utils'
 import { IAlbumProps, AlbumCoverWrapper } from './style'
 import UserLink from '@/components/user-link'
+import { formatSizedImage } from '@/utils/format-utils'
 
 interface IProps {
-  children?: ReactNode;
-  info: any;
-  small: boolean;
+  children?: ReactNode
+  info: any
+  small: boolean
 }
 
 const AlbumCover: FC<IProps> = (prop: IProps) => {
   // props & state
   const { info, small = true } = prop
-  
-  const [style, setStyle] = useState<IAlbumProps>(
-    new IAlbumProps(118, 100)
-  )
+
+  const [style, setStyle] = useState<IAlbumProps>(new IAlbumProps(118, 100))
   const [coverUrl, setCoverUrl] = useState<string>('')
   const [albumUrl, setAlbumUrl] = useState<string>('')
 
@@ -39,22 +38,32 @@ const AlbumCover: FC<IProps> = (prop: IProps) => {
   // other handlers
   function handlePlayAlbumn() {
     // 这是唱片，如何播放？
+    // eslint-disable-next-line no-console
     console.log('handlePlayAlbumn')
   }
 
   return (
-    <AlbumCoverWrapper className='album-cover' 
+    <AlbumCoverWrapper
+      className="album-cover"
       width={style.width}
       imgSize={style.imgSize}
       isLarge={style.isLarge}
-      >
-      <div className='cover'>
+    >
+      <div className="cover">
         <img src={coverUrl} alt={info.name} />
-        <NavLink className='background sprite_cover' to={albumUrl}> </NavLink>
-        <button className='play sprite_icon' title='播放' onClick={handlePlayAlbumn} />
+        <NavLink className="background sprite_cover" to={albumUrl}>
+          {' '}
+        </NavLink>
+        <button
+          className="play sprite_icon"
+          title="播放"
+          onClick={handlePlayAlbumn}
+        />
       </div>
-      <NavLink className='name no-wrap album' to={albumUrl}>{info.name}</NavLink>
-      <UserLink users={info.artists} showSpace={true}/>
+      <NavLink className="name no-wrap album" to={albumUrl}>
+        {info.name}
+      </NavLink>
+      <UserLink users={info.artists} showSpace={true} />
     </AlbumCoverWrapper>
   )
 }

@@ -1,18 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 interface IRankingState {
-  topList: any[],
-  currentFrequency: string | null,
-  currentPlaylist: any,
+  topList: any[]
+  currentFrequency: string | null
+  currentPlaylist: any
 }
 const initState: IRankingState = {
   topList: [],
   currentFrequency: null,
-  currentPlaylist: null
+  currentPlaylist: null,
 }
 
 const rankingSlice = createSlice({
-  name: "ranking",
+  name: 'ranking',
   initialState: initState,
   reducers: {
     changeTopListAction(state, action) {
@@ -23,13 +23,13 @@ const rankingSlice = createSlice({
     },
     changeRankingPlaylistAction(state, action) {
       state.currentPlaylist = action.payload
-    }
-  }
+    },
+  },
 })
 
 export const {
   changeTopListAction,
   changeRankingFrequencyAction,
-  changeRankingPlaylistAction
+  changeRankingPlaylistAction,
 } = rankingSlice.actions
 export default rankingSlice.reducer

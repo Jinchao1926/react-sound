@@ -1,21 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 /* Reducer */
 interface IAlbumState {
-  hotAlbums: any[];
-  pageAlbums: any[][]; // 二维数组，存放每一页的新碟
-  currentArea: string;
-  total: number;
+  hotAlbums: any[]
+  pageAlbums: any[][] // 二维数组，存放每一页的新碟
+  currentArea: string
+  total: number
 }
 const initialState: IAlbumState = {
   hotAlbums: [],
   pageAlbums: [],
-  currentArea: "ALL",
-  total: 0
+  currentArea: 'ALL',
+  total: 0,
 }
 
 const albumSlice = createSlice({
-  name: "album",
+  name: 'album',
   initialState: initialState,
   reducers: {
     changeHotAlbumsAction(state, action) {
@@ -29,14 +29,14 @@ const albumSlice = createSlice({
     },
     changeAlbumAmountAction(state, action) {
       state.total = action.payload
-    }
-  }
+    },
+  },
 })
 
 export const {
   changeHotAlbumsAction,
   changePageAlbumsAction,
   changeCurrentAreaAction,
-  changeAlbumAmountAction
+  changeAlbumAmountAction,
 } = albumSlice.actions
 export default albumSlice.reducer

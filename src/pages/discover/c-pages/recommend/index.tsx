@@ -1,29 +1,25 @@
 import React, { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
 
-// Store
-import { useAppDispatch } from '@/store'
-import { 
-  fetchRecommendDataAsync,
-  fetchRankingDataAsync,
-  fetchSingerDataAsync
-} from './store'
-
-// UIs
-import { 
-  RecommendWrapper,
-  RecommendSection,
-  RecommendLeft,
-  RecommendRight
-} from './style'
 import Banner from './c-components/banner'
-// import JCBanner from './c-components/jc-banner'
-import UserProfile from './c-components/user-profile'
+import HotAnchor from './c-components/hot-anchor'
 import HotRecommend from './c-components/hot-recommend'
 import NewAlbum from './c-components/new-album'
 import RankingList from './c-components/ranking-list'
 import ResidentSinger from './c-components/resident-singer'
-import HotAnchor from './c-components/hot-anchor'
+import UserProfile from './c-components/user-profile'
+import {
+  fetchRecommendDataAsync,
+  fetchRankingDataAsync,
+  fetchSingerDataAsync,
+} from './store'
+import {
+  RecommendWrapper,
+  RecommendSection,
+  RecommendLeft,
+  RecommendRight,
+} from './style'
+import { useAppDispatch } from '@/store'
 
 interface IProps {
   children?: ReactNode

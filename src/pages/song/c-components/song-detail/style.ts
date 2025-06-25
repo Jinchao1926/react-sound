@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SongDetailWrapper = styled.div`
   display: flex;
@@ -62,8 +62,9 @@ export const LyricList = styled.div`
     }
   }
 
-  .singer, .album {
-    margin: 10px 0; 
+  .singer,
+  .album {
+    margin: 10px 0;
     color: #999;
     display: flex;
     // 保留元素内部的空白和换行符
@@ -86,7 +87,7 @@ export const LyricList = styled.div`
 
   .lyric-control {
     margin-top: 5px;
-    color: #0c73c2;;
+    color: #0c73c2;
     cursor: pointer;
     &:hover {
       text-decoration: underline;

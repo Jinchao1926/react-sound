@@ -4,7 +4,7 @@ import {
   fetchRecommendProgramsAsync,
   fetchRankedProgramsAsync,
   fetchRecommendedRadiosAsync,
-  fetchHotRadiosAsync
+  fetchHotRadiosAsync,
 } from './actionCreator'
 import radioReducer, { changeHotTotalAction } from './reducer'
 
@@ -16,5 +16,5 @@ export {
   fetchRecommendedRadiosAsync,
   fetchHotRadiosAsync,
   changeHotTotalAction,
-  radioReducer
+  radioReducer,
 }

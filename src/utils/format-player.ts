@@ -1,4 +1,3 @@
-
 export function formatTime(time: number) {
   // 0.将毫秒转成秒
   time = time / 1000

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const LockablePlayerWrapper = styled.div`
   position: fixed;
@@ -24,7 +24,8 @@ export const LockablePlayerWrapper = styled.div`
     height: 20px;
     background-position: 0 -380px;
 
-    .lock-icon, .unlock-icon {
+    .lock-icon,
+    .unlock-icon {
       display: block;
       width: 18px;
       height: 18px;

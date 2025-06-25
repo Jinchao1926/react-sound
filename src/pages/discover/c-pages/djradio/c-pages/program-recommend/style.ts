@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ProgramRecommendWrapper = styled.div`
   .program-list {
@@ -13,7 +13,7 @@ export const ProgramRecommendWrapper = styled.div`
     align-items: center;
     // 奇偶
     :nth-child(odd) {
-      background-color: white;  
+      background-color: white;
     }
     :nth-child(even) {
       background-color: #f7f7f7;
@@ -31,7 +31,8 @@ export const ProgramRecommendWrapper = styled.div`
       width: 254px;
       margin: 1px 0 0 10px;
       // 重写 css
-      .name, .brand {
+      .name,
+      .brand {
         margin: 0;
         width: 100%;
         line-height: 20px;

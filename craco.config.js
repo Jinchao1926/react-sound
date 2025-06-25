@@ -1,6 +1,7 @@
-const path = require("path");
-const resolve = (dir) => path.resolve(__dirname, dir);
-const CracoLessPlugin = require("craco-less");
+const path = require('path')
+
+const resolve = (dir) => path.resolve(__dirname, dir)
+const CracoLessPlugin = require('craco-less')
 
 module.exports = {
   plugins: [
@@ -14,16 +15,16 @@ module.exports = {
               // "@primary-color": "#1DA57A",
             },
             javascriptEnabled: true,
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    },
   ],
   // https://craco.js.org/docs/configuration/webpack/
   webpack: {
     alias: {
-      "@": resolve("src"),
-      "components": resolve("src/components"),
+      '@': resolve('src'),
+      components: resolve('src/components'),
     },
-  }
+  },
 }

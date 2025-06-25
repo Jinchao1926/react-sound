@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const RankingColumnWrapper = styled.div`
   width: 230px;
@@ -102,7 +102,7 @@ export const RankingColumnListWrapper = styled.div`
     .actions {
       display: none;
       width: 82px;
-  
+
       .btn {
         width: 17px;
         height: 17px;
@@ -134,7 +134,6 @@ export const RankingColumnListWrapper = styled.div`
       display: flex;
     }
   }
-  
 `
 
 export const RankingColumnFootererWrapper = styled.div`

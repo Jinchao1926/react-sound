@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SongWrapper = styled.div`
   background-color: #fff;
@@ -16,7 +16,7 @@ export const SongLeft = styled.div`
 `
 
 export const SongRight = styled.div`
-  margin-left: 1px; 
+  margin-left: 1px;
   width: 271px;
   padding: 20px 40px 40px 30px;
   box-sizing: border-box;

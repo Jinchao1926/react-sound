@@ -1,16 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit'
 import { useSelector, useDispatch } from 'react-redux'
-import type { TypedUseSelectorHook } from 'react-redux' 
+import type { TypedUseSelectorHook } from 'react-redux'
 
 // Discover
-import { recommendReducer } from "@/pages/discover/c-pages/recommend/store"
-import { rankingReducer } from "@/pages/discover/c-pages/ranking/store"
-import { playlistReducer } from "@/pages/discover/c-pages/playlist/store"
-import { radioReducer } from "@/pages/discover/c-pages/djradio/store";
-import { albumReducer } from "@/pages/discover/c-pages/album/store"
+import { albumReducer } from '@/pages/discover/c-pages/album/store'
+import { radioReducer } from '@/pages/discover/c-pages/djradio/store'
+import { playlistReducer } from '@/pages/discover/c-pages/playlist/store'
+import { rankingReducer } from '@/pages/discover/c-pages/ranking/store'
+import { recommendReducer } from '@/pages/discover/c-pages/recommend/store'
 // Player
-import { playerReducer } from "@/pages/player/store"
-import { songReducer } from "@/pages/song/store";
+import { playerReducer } from '@/pages/player/store'
+import { songReducer } from '@/pages/song/store'
 
 const store = configureStore({
   reducer: {
@@ -23,11 +23,11 @@ const store = configureStore({
     // detail
     player: playerReducer,
     song: songReducer,
-  }
+  },
 })
 
 // https://stackoverflow.com/questions/70143816/argument-of-type-asyncthunkactionany-void-is-not-assignable-to-paramete
-// Fix：Argument of type 'AsyncThunkAction<void, void, AsyncThunkConfig>' is not assignable 
+// Fix：Argument of type 'AsyncThunkAction<void, void, AsyncThunkConfig>' is not assignable
 // to parameter of type 'AnyAction'.
 type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>

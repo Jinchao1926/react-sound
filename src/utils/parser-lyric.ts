@@ -74,38 +74,38 @@
  */
 
 export interface ILyricLine {
-  time: number; // 单位为毫秒
-  text: string; // 歌词内容
+  time: number // 单位为毫秒
+  text: string // 歌词内容
 }
-export type ILyric = ILyricLine[];
+export type ILyric = ILyricLine[]
 
 // 正则，以 / 开始和结束
 // \[ 和 \]，表示 [ 和 ] 字符，特殊字符需要转义
 // \d，表示数字
 // {2}，表示匹配 2 个
-const lyricExp = /^\[(\d{2}):(\d{2})\.(\d{2,3})\]\s*(.*?)$/;
+const lyricExp = /^\[(\d{2}):(\d{2})\.(\d{2,3})\]\s*(.*?)$/
 export function parserLyric(lyricText: string): ILyricLine[] {
-  const lines = lyricText.split('\n');
-  const lyricLines: ILyricLine[] = [];
+  const lines = lyricText.split('\n')
+  const lyricLines: ILyricLine[] = []
 
   lines.forEach((line) => {
     if (line) {
-      const result = lyricExp.exec(line);
+      const result = lyricExp.exec(line)
       if (result) {
         // 0: "[00:00.97] 原唱 : 孙燕姿"
         // 1: "00"
         // 2: "00"
         // 3: "97"
         // 4: "原唱 : 孙燕姿"
-        const minutes = parseInt(result[1]);
-        const seconds = parseInt(result[2]);
-        let milliseconds = parseInt(result[3]);
+        const minutes = parseInt(result[1])
+        const seconds = parseInt(result[2])
+        let milliseconds = parseInt(result[3])
         if (result[3].length === 2) {
-          milliseconds *= 10;
+          milliseconds *= 10
         }
-        const time = minutes * 60 * 1000 + seconds * 1000 + milliseconds;
-        const text = result[4];
-        lyricLines.push({ time, text });
+        const time = minutes * 60 * 1000 + seconds * 1000 + milliseconds
+        const text = result[4]
+        lyricLines.push({ time, text })
       }
     }
   })

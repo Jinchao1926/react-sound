@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 // 这种方式会重新渲染
 interface BannerProps {
@@ -6,7 +6,7 @@ interface BannerProps {
 }
 
 export const BannerWrapper = styled.div<BannerProps>`
-  background: url(${ props => props.bgImage });
+  background: url(${(props) => props.bgImage});
   background-size: 6000px;
   background-position: center;
 
@@ -41,7 +41,7 @@ export const BannerLeft = styled.div`
 
     > li {
       margin: 0 2px;
-  
+
       .item {
         display: inline-block;
         width: 20px;
@@ -50,7 +50,8 @@ export const BannerLeft = styled.div`
         background-position: 3px -343px;
         cursor: pointer;
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
           background-position: -16px -343px;
         }
       }
@@ -60,7 +61,7 @@ export const BannerLeft = styled.div`
 
 export const BannerRight = styled.a.attrs({
   href: 'https://music.163.com/#/download',
-  target: '_blank' // 会导致页面跳转
+  target: '_blank', // 会导致页面跳转
 })`
   background: url(${require('@/assets/img/download.png')});
   position: absolute;
@@ -98,7 +99,7 @@ export const BannerControl = styled.div`
     cursor: pointer;
 
     &:hover {
-      background-color: rgba(0, 0, 0, .2);
+      background-color: rgba(0, 0, 0, 0.2);
     }
   }
 

@@ -1,23 +1,23 @@
 // Service 统一出口
 
-import RSRequest from "./request";
-import { BASE_URL, TIME_OUT } from "./request/config";
+import RSRequest from './request'
+import { BASE_URL, TIME_OUT } from './request/config'
 
 export const rsRequest = new RSRequest({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
   interceptors: {
     requestInterceptor(config) {
-      return config;
+      return config
     },
     requestInterceptorCatch(error) {
-      return error;
+      return error
     },
     responseInterceptor(res) {
-      return res;
+      return res
     },
     responseInterceptorCatch(error) {
-      return error;
+      return error
     },
-  }
+  },
 })

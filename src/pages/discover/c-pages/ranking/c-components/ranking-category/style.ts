@@ -1,9 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const RankingCategoryWrapper = styled.div`
   margin-top: 40px;
 
-  .header1, .header2 {
+  .header1,
+  .header2 {
     padding: 0 10px 12px 15px;
     font-size: 14px;
     line-height: 20px;
@@ -21,7 +22,7 @@ export const RankingCategoryWrapper = styled.div`
     &.selected {
       background-color: #e6e6e6;
     }
-    
+
     .content {
       display: flex;
       align-items: center;
