@@ -6,12 +6,22 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: ['builtin', 'external', 'internal'],
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          ['sibling', 'parent'],
+          'index',
+        ],
         pathGroups: [
           {
             pattern: 'react',
             group: 'external',
             position: 'before',
+          },
+          {
+            pattern: '@/**',
+            group: 'internal',
           },
         ],
         pathGroupsExcludedImportTypes: ['react'],
@@ -22,7 +32,7 @@ module.exports = {
         },
       },
     ],
-    'no-console': 'error',
+    'no-console': 'warn',
     'no-unused-vars': [
       'error',
       {
