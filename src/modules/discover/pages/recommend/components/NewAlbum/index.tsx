@@ -4,8 +4,8 @@ import type { FC, ReactNode } from 'react'
 import { Carousel } from 'antd'
 import { shallowEqual } from 'react-redux'
 
-import AlbumCover from '@/components/album-cover'
-import SectionHeaderRecommend from '@/components/section-header-recommend'
+import AlbumCover from '@/components/AlbumCover'
+import SectionHeaderRecommend from '@/components/SectionHeaderRecommend'
 import { useAppSelector } from '@/store'
 
 import { NewAlbumWrapper } from './style'

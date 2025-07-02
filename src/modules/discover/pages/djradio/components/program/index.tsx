@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/store'
 
 import RadioMore from './radio-more'
 import { RadioProgramWrapper } from './style'
-import RadioCategoryHeader from '../../radio-category-header'
+import RadioCategoryHeader from '../../RadioCategoryHeader'
 import {
   fetchRadioCategoriesAsync,
   fetchRecommendProgramsAsync,

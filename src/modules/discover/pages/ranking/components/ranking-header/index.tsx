@@ -3,7 +3,7 @@ import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import SongOperationBar from '@/components/song-operation-bar'
+import SongOperationBar from '@/components/SongOperationBar'
 import { useAppSelector } from '@/store'
 import { formatSizedImage, formatMonthDay } from '@/utils/format-utils'
 

@@ -5,11 +5,11 @@ import { useLocation } from 'react-router-dom'
 
 import { useAppDispatch } from '@/store'
 
-import MultiDownload from './components/multi-download'
-import SimilarPlaylist from './components/similar-playlist'
-import SimilarSong from './components/similar-song'
-import SongDetail from './components/song-detail'
-import UserWiki from './components/user-wiki'
+import MultiDownload from './components/MultiDownload'
+import SimilarPlaylist from './components/SimilarPlaylist'
+import SimilarSong from './components/SimilarSong'
+import SongDetail from './components/SongDetail'
+import UserWiki from './components/UserWiki'
 import { fetchSongDatasAsync } from './store'
 import { SongLeft, SongRight, SongWrapper } from './style'
 

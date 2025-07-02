@@ -4,7 +4,7 @@ import type { FC, ReactNode } from 'react'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import SectionHeaderMore from '@/components/section-header-more'
+import SectionHeaderMore from '@/components/SectionHeaderMore'
 import { useAppSelector } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
 

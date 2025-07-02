@@ -5,8 +5,8 @@ import { useLocation } from 'react-router-dom'
 
 import { useAppDispatch } from '@/store'
 
-import PlaylistCovers from './components/playlist-covers'
-import PlaylistHeader from './components/playlist-header'
+import PlaylistCovers from './components/PlaylistCovers'
+import PlaylistHeader from './components/PlaylistHeader'
 import {
   fetchPlaylistCategoriesAsync,
   fetchPlaylistsAsync,

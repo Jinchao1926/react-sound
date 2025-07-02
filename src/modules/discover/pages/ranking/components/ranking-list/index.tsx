@@ -4,7 +4,7 @@ import type { FC, ReactNode } from 'react'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import UserLink from '@/components/user-link'
+import UserLink from '@/components/UserLink'
 import { useAppSelector } from '@/store'
 import { formatMinuteSecond, formatSizedImage } from '@/utils/format-utils'
 

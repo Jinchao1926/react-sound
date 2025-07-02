@@ -6,7 +6,7 @@ import { shallowEqual } from 'react-redux'
 import { useAppSelector } from '@/store'
 
 import { PlaylistHeaderWrapper, HeaderLeft, HeaderRight } from './style'
-import PlaylistCategory from '../playlist-category'
+import PlaylistCategory from '../PlaylistCategory'
 
 interface IProps {
   children?: ReactNode

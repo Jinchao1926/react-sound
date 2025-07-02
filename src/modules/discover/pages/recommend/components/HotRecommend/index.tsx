@@ -3,8 +3,8 @@ import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import SectionHeaderRecommend from '@/components/section-header-recommend'
-import SongCover from '@/components/song-cover'
+import SectionHeaderRecommend from '@/components/SectionHeaderRecommend'
+import SongCover from '@/components/SongCover'
 import { useAppSelector } from '@/store'
 
 import { HotRecommendWrapper } from './style'

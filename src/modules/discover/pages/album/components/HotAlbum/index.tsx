@@ -3,8 +3,8 @@ import { memo } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import AlbumCover from '@/components/album-cover'
-import SectionHeaderNormal from '@/components/section-header-normal'
+import AlbumCover from '@/components/AlbumCover'
+import SectionHeaderNormal from '@/components/SectionHeaderNormal'
 import { useAppSelector } from '@/store'
 
 import { HotAlbumWrapper } from './style'

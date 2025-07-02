@@ -3,8 +3,8 @@ import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import RankingColumn from '@/components/ranking-column'
-import SectionHeaderRecommend from '@/components/section-header-recommend'
+import RankingColumn from '@/components/RankingColumn'
+import SectionHeaderRecommend from '@/components/SectionHeaderRecommend'
 import { useAppSelector } from '@/store'
 
 import { RankingListWrapper } from './style'

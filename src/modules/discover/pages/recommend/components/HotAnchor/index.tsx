@@ -4,7 +4,7 @@ import type { FC, ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { hotRadios } from '@/assets/data/local-data'
-import SectionHeaderMore from '@/components/section-header-more'
+import SectionHeaderMore from '@/components/SectionHeaderMore'
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { HotAnchorWrapper } from './style'

@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from 'react'
 import { memo } from 'react'
 
-import SectionHeaderMore from '@/components/section-header-more'
+import SectionHeaderMore from '@/components/SectionHeaderMore'
 
 import { MultiDownloadWrapper } from './style'
 

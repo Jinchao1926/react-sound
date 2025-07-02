@@ -4,8 +4,8 @@ import { memo } from 'react'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import SectionHeaderMore from '@/components/section-header-more'
-import UserLink from '@/components/user-link'
+import SectionHeaderMore from '@/components/SectionHeaderMore'
+import UserLink from '@/components/UserLink'
 import { addSongToPlaylistAction, playSongAction } from '@/modules/player/store'
 import { useAppDispatch, useAppSelector } from '@/store'
 

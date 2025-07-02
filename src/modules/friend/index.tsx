@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 
-import FriendLogin from './friend-login'
+import FriendLogin from './FriendLogin'
 import { FriendWrapper } from './style'
 
 interface IProps {

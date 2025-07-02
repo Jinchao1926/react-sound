@@ -3,7 +3,7 @@ import { memo, useEffect, useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import UserLink from '@/components/user-link'
+import UserLink from '@/components/UserLink'
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { AlbumCoverWrapper, IAlbumProps } from './style'

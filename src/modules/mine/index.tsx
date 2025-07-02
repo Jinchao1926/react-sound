@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 
-import MineLogin from './mine-login'
+import MineLogin from './MineLogin'
 import { MineWrapper } from './style'
 
 interface IProps {

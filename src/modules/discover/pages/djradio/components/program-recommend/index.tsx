@@ -4,8 +4,8 @@ import type { FC, ReactNode } from 'react'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import RadioPlayCover from '@/components/radio-play-cover'
-import SectionHeaderNormal from '@/components/section-header-normal'
+import RadioPlayCover from '@/components/RadioPlayCover'
+import SectionHeaderNormal from '@/components/SectionHeaderNormal'
 import { useAppSelector, useAppDispatch } from '@/store'
 
 import { ProgramRecommendWrapper } from './style'

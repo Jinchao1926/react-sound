@@ -3,8 +3,8 @@ import type { FC, ReactNode } from 'react'
 
 import { Popover } from 'antd'
 
-import ClientList from './client-list'
-import QRcode from './qrcode'
+import ClientList from './ClientList'
+import QRcode from './QRCode'
 import {
   DownloadWrapper,
   DownloadContent,

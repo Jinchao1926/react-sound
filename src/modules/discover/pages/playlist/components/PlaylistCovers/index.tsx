@@ -3,8 +3,8 @@ import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import JCPagination from '@/components/pagination'
-import SongCover from '@/components/song-cover'
+import JCPagination from '@/components/Pagination'
+import SongCover from '@/components/SongCover'
 import { useAppSelector, useAppDispatch } from '@/store'
 
 import { PlaylistCoversWrapper } from './style'

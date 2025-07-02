@@ -5,24 +5,24 @@ import type { RouteObject } from 'react-router-dom'
 
 // Discover 模块页面组件
 const Discover = lazy(() => import('../index'))
-const Recommend = lazy(() => import('../pages/recommend'))
-const Ranking = lazy(() => import('../pages/ranking'))
-const Playlist = lazy(() => import('../pages/playlist'))
-const DJRadio = lazy(() => import('../pages/djradio'))
-const Artist = lazy(() => import('../pages/artist'))
-const Album = lazy(() => import('../pages/album'))
+const Recommend = lazy(() => import('../pages/Recommend'))
+const Ranking = lazy(() => import('../pages/Ranking'))
+const Playlist = lazy(() => import('../pages/Playlist'))
+const DJRadio = lazy(() => import('../pages/DJRadio'))
+const Artist = lazy(() => import('../pages/Artist'))
+const Album = lazy(() => import('../pages/Album'))
 const Song = lazy(() => import('../../song'))
 
 // DJRadio 三级路由组件
-const DJRadioProgram = lazy(() => import('../pages/djradio/components/program'))
+const DJRadioProgram = lazy(() => import('../pages/DJRadio/components/program'))
 const DJRadioCategory = lazy(
-  () => import('../pages/djradio/components/category')
+  () => import('../pages/DJRadio/components/category')
 )
 const DJRadioRecommend = lazy(
-  () => import('../pages/djradio/components/program-recommend')
+  () => import('../pages/DJRadio/components/program-recommend')
 )
 const DJRadioRanking = lazy(
-  () => import('../pages/djradio/components/program-ranking')
+  () => import('../pages/DJRadio/components/program-ranking')
 )
 
 export const discoverRoutes: RouteObject = {

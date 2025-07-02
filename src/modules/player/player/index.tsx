@@ -4,7 +4,7 @@ import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import UserLink from '@/components/user-link'
+import UserLink from '@/components/UserLink'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { formatTime, getMusicUrl } from '@/utils/format-player'
 import { formatSizedImage } from '@/utils/format-utils'

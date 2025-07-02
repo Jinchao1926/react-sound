@@ -3,14 +3,14 @@ import React, { FC, memo, useEffect } from 'react'
 import { useAppDispatch } from '@/store'
 
 import Banner from './components/Banner'
-import HotAnchor from './components/hot-anchor'
-import HotRecommend from './components/hot-recommend'
-import NewAlbum from './components/new-album'
-import RankingList from './components/ranking-list'
-import ResidentSinger from './components/resident-singer'
-import UserProfile from './components/user-profile'
+import HotAnchor from './components/HotAnchor'
+import HotRecommend from './components/HotRecommend'
+import NewAlbum from './components/NewAlbum'
+import RankingList from './components/RankingList'
+import ResidentSinger from './components/ResidentSinger'
+import UserProfile from './components/UserProfile'
 import {
-  fetchRecommendDataAsync,
+  // fetchRecommendDataAsync,
   fetchRankingDataAsync,
   fetchSingerDataAsync,
 } from './store'
@@ -25,7 +25,7 @@ import {
 const Recommend: FC = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(fetchRecommendDataAsync())
+    // dispatch(fetchRecommendDataAsync())
     dispatch(fetchRankingDataAsync())
     dispatch(fetchSingerDataAsync())
     // eslint-disable-next-line react-hooks/exhaustive-deps

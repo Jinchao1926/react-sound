@@ -4,9 +4,9 @@ import { memo, useCallback, useEffect, useState } from 'react'
 import { shallowEqual } from 'react-redux'
 
 import { areas } from '@/assets/data/local-data'
-import AlbumCover from '@/components/album-cover'
-import JCPagination from '@/components/pagination'
-import SectionHeaderNormal from '@/components/section-header-normal'
+import AlbumCover from '@/components/AlbumCover'
+import JCPagination from '@/components/Pagination'
+import SectionHeaderNormal from '@/components/SectionHeaderNormal'
 import { useAppDispatch, useAppSelector } from '@/store'
 
 import { AllAlbumWrapper } from './style'

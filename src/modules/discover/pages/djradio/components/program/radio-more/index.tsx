@@ -3,7 +3,7 @@ import type { FC, ReactNode } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import SectionHeaderNormal from '@/components/section-header-normal'
+import SectionHeaderNormal from '@/components/SectionHeaderNormal'
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { RadioMoreWrapper, RadioMoreItemWrapper } from './style'
