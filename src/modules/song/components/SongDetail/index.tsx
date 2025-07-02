@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 
 import SongOperationBar from '@/components/SongOperationBar'
 import UserLink from '@/components/UserLink'
-import { addSongToPlaylistAction, playSongAction } from '@/modules/player/store'
+import { addSongToPlaylistAction, playSongAction } from '@/modules/Player/store'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
 

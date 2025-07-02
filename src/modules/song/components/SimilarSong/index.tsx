@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 
 import SectionHeaderMore from '@/components/SectionHeaderMore'
 import UserLink from '@/components/UserLink'
-import { addSongToPlaylistAction, playSongAction } from '@/modules/player/store'
+import { addSongToPlaylistAction, playSongAction } from '@/modules/Player/store'
 import { useAppDispatch, useAppSelector } from '@/store'
 
 import { SimilarSongItem, SimilarSongWrapper } from './style'
@@ -41,10 +41,7 @@ const SimilarSong: FC<IProps> = () => {
           return (
             <SimilarSongItem key={item.id}>
               <div className="info">
-                <NavLink
-                  className="song no-wrap"
-                  to={`/discover/song?id=${item.id}`}
-                >
+                <NavLink className="song no-wrap" to={`/song?id=${item.id}`}>
                   {item.name}
                 </NavLink>
                 <UserLink users={item.artists} />

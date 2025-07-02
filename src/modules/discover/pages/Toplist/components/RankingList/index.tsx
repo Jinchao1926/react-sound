@@ -77,7 +77,7 @@ const RankingList: FC<IProps> = () => {
                         {
                           // 前三行显示 Image
                           idx < 3 ? (
-                            <NavLink to={`/discover/song?id=${item.id}`}>
+                            <NavLink to={`/song?id=${item.id}`}>
                               <img
                                 src={formatSizedImage(item.al.picUrl, 50)}
                                 alt=""
@@ -88,7 +88,7 @@ const RankingList: FC<IProps> = () => {
                         <span className="play sprite_table"></span>
                         <NavLink
                           className="name no-wrap"
-                          to={`/discover/song?id=${item.id}`}
+                          to={`/song?id=${item.id}`}
                         >
                           {item.name}
                         </NavLink>

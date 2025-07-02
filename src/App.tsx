@@ -4,7 +4,7 @@ import { useRoutes } from 'react-router-dom'
 
 import AppFooter from '@/components/AppFooter'
 import AppHeader from '@/components/AppHeader'
-import LockablePlayer from '@/modules/player'
+import LockablePlayer from '@/modules/Player'
 import routes from '@/routers'
 
 const App: FC = () => {

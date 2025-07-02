@@ -1,27 +1,22 @@
-import React, { memo, useEffect } from 'react'
-import type { FC, ReactNode } from 'react'
+import React, { FC, memo, useEffect } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
 import { useAppDispatch, useAppSelector } from '@/store'
 
-import RadioMore from './radio-more'
+import RadioMore from './RadioMore'
 import { RadioProgramWrapper } from './style'
-import RadioCategoryHeader from '../../RadioCategoryHeader'
+import CategoryHeader from '../../components/CategoryHeader'
 import {
   fetchRadioCategoriesAsync,
   fetchRecommendProgramsAsync,
   fetchRankedProgramsAsync,
   fetchRecommendedRadioCategoriesAsync,
 } from '../../store'
-import ProgramRanking from '../program-ranking'
-import ProgramRecommend from '../program-recommend'
+import ProgramRanking from '../ProgramRanking'
+import ProgramRecommend from '../ProgramRecommend'
 
-interface IProps {
-  children?: ReactNode
-}
-
-const RadioProgram: FC<IProps> = () => {
+const Program: FC = () => {
   const categories = useAppSelector(
     (state) => state.radio.recommendCategories,
     shallowEqual
@@ -37,7 +32,7 @@ const RadioProgram: FC<IProps> = () => {
 
   return (
     <RadioProgramWrapper>
-      <RadioCategoryHeader />
+      <CategoryHeader />
       <div className="programs">
         <ProgramRecommend simpleVersion={true} />
         <ProgramRanking simpleVersion={true} />
@@ -49,4 +44,4 @@ const RadioProgram: FC<IProps> = () => {
   )
 }
 
-export default memo(RadioProgram)
+export default memo(Program)

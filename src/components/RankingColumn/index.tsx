@@ -3,7 +3,7 @@ import { memo } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { addSongToPlaylistAction, playSongAction } from '@/modules/player/store'
+import { addSongToPlaylistAction, playSongAction } from '@/modules/Player/store'
 import { useAppDispatch } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
 
@@ -23,7 +23,7 @@ const RankingColumn: FC<IProps> = (props: IProps) => {
   const { info } = props
   const { tracks = [] } = info
 
-  const rankingUrl = `/discover/ranking?id=${info.id}`
+  const rankingUrl = `/discover/toplist?id=${info.id}`
   const dispatch = useAppDispatch()
 
   // Playlist music handlers
@@ -64,10 +64,7 @@ const RankingColumn: FC<IProps> = (props: IProps) => {
           return (
             <div className="item" key={item.id}>
               <span className="index">{index + 1}</span>
-              <NavLink
-                className="name no-wrap"
-                to={`/discover/song?id=${item.id}`}
-              >
+              <NavLink className="name no-wrap" to={`/song?id=${item.id}`}>
                 {item.name}
               </NavLink>
               <div className="actions">

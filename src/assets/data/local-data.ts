@@ -116,14 +116,14 @@ export const discoverMenu = [
   },
   {
     title: '排行榜',
-    link: '/discover/ranking',
+    link: '/discover/toplist',
   },
   {
     title: '歌单',
     link: '/discover/playlist',
   },
   {
-    title: '主播电台',
+    title: '博客',
     link: '/discover/djradio',
   },
   {

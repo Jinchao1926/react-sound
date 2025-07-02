@@ -1,14 +1,13 @@
-import type { FC, ReactNode } from 'react'
-import { memo, useEffect } from 'react'
+import { FC, memo, useEffect } from 'react'
 
 import { useLocation } from 'react-router-dom'
 
 import { useAppDispatch } from '@/store'
 
-import RadioRanking from './radio-ranking'
-import RadioRecommend from './radio-recommend'
+import RadioRanking from './RadioRanking'
+import RadioRecommend from './RadioRecommend'
 import { DJRadioCategoryWrapper } from './style'
-import RadioCategory from '../../RadioCategoryHeader'
+import CategoryHeader from '../../components/CategoryHeader'
 import {
   changeHotTotalAction,
   fetchHotRadiosAsync,
@@ -16,11 +15,7 @@ import {
   fetchRecommendedRadiosAsync,
 } from '../../store'
 
-interface IProps {
-  children?: ReactNode
-}
-
-const DJRadioCategory: FC<IProps> = () => {
+const RadioCategory: FC = () => {
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const categoryId = queryParams.get('id')
@@ -36,11 +31,11 @@ const DJRadioCategory: FC<IProps> = () => {
 
   return (
     <DJRadioCategoryWrapper>
-      <RadioCategory id={Number(categoryId)} />
+      <CategoryHeader id={Number(categoryId)} />
       <RadioRecommend />
       <RadioRanking categoryId={Number(categoryId)} />
     </DJRadioCategoryWrapper>
   )
 }
 
-export default memo(DJRadioCategory)
+export default memo(RadioCategory)

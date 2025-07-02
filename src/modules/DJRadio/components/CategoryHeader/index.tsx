@@ -23,7 +23,7 @@ interface IProps {
 }
 const pageSize = 18
 
-const RadioCategoryHeader: FC<IProps> = (props: IProps) => {
+const CategoryHeader: FC<IProps> = (props: IProps) => {
   const { id } = props
   const [pages, setPages] = useState<number[]>([])
   const [currentPage, setCurrentPage] = useState<number>(0)
@@ -95,4 +95,4 @@ const RadioCategoryHeader: FC<IProps> = (props: IProps) => {
   )
 }
 
-export default memo(RadioCategoryHeader)
+export default memo(CategoryHeader)

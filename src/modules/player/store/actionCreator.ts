@@ -7,11 +7,11 @@ import {
   storeCurrentSongIndex,
   storePlayMode,
   storePlaylist,
-} from '@/modules/player/service/player-storage'
+} from '@/modules/Player/service/player-storage'
 import {
   fetchLyricAsync,
   fetchSongAsync,
-} from '@/modules/song/service/song-storage'
+} from '@/modules/Song/service/song-storage'
 import { RootState } from '@/store'
 
 import {

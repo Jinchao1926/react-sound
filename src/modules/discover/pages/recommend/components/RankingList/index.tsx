@@ -24,7 +24,7 @@ const RankingList: FC<IProps> = () => {
 
   return (
     <RankingListWrapper>
-      <SectionHeaderRecommend title="榜单" morePath="/discover/ranking" />
+      <SectionHeaderRecommend title="榜单" morePath="/discover/toplist" />
       <div className="ranking-list">
         {rankings.map((item) => {
           return <RankingColumn key={item.id} info={item} />

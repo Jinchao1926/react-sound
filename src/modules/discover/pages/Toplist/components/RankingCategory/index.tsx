@@ -71,7 +71,7 @@ const RankingCategory: FC<IProps> = (props: IProps) => {
               className={classNames('category', {
                 selected: selectedIndex === idx,
               })}
-              to={`/discover/ranking?id=${item.id}`}
+              to={`/discover/toplist?id=${item.id}`}
             >
               <div className="content">
                 <img src={formatSizedImage(item.coverImgUrl, 40)} alt="" />
