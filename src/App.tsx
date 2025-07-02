@@ -1,5 +1,4 @@
-import React, { Suspense, memo } from 'react'
-import type { FC, ReactNode } from 'react'
+import React, { FC, Suspense, memo } from 'react'
 
 import { useRoutes } from 'react-router-dom'
 
@@ -8,11 +7,7 @@ import AppHeader from '@/components/app-header'
 import LockablePlayer from '@/pages/player'
 import routes from '@/routers'
 
-interface IProps {
-  children?: ReactNode
-}
-
-const App: FC<IProps> = () => {
+const App: FC = () => {
   return (
     <div>
       <AppHeader />

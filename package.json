@@ -64,6 +64,7 @@
     ]
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.81.2",
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",

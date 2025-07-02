@@ -10,26 +10,26 @@ const Friend = lazy(() => import('@/pages/friend'))
 const Download = lazy(() => import('@/pages/download'))
 
 // Discover 二级路由
-const Recommend = lazy(() => import('@/pages/discover/c-pages/recommend'))
-const Ranking = lazy(() => import('@/pages/discover/c-pages/ranking'))
-const Playlist = lazy(() => import('@/pages/discover/c-pages/playlist'))
-const DJRadio = lazy(() => import('@/pages/discover/c-pages/djradio'))
-const Artist = lazy(() => import('@/pages/discover/c-pages/artist'))
-const Album = lazy(() => import('@/pages/discover/c-pages/album'))
+const Recommend = lazy(() => import('@/pages/discover/components/recommend'))
+const Ranking = lazy(() => import('@/pages/discover/components/ranking'))
+const Playlist = lazy(() => import('@/pages/discover/components/playlist'))
+const DJRadio = lazy(() => import('@/pages/discover/components/djradio'))
+const Artist = lazy(() => import('@/pages/discover/components/artist'))
+const Album = lazy(() => import('@/pages/discover/components/album'))
 const Song = lazy(() => import('@/pages/song'))
 
 // Discover - DJRadio 三级路由
 const DJRadioProgram = lazy(
-  () => import('@/pages/discover/c-pages/djradio/c-pages/program')
+  () => import('@/pages/discover/components/djradio/c-pages/program')
 )
 const DJRadioCategory = lazy(
-  () => import('@/pages/discover/c-pages/djradio/c-pages/category')
+  () => import('@/pages/discover/components/djradio/c-pages/category')
 )
 const DJRadioRecommend = lazy(
-  () => import('@/pages/discover/c-pages/djradio/c-pages/program-recommend')
+  () => import('@/pages/discover/components/djradio/c-pages/program-recommend')
 )
 const DJRadioRanking = lazy(
-  () => import('@/pages/discover/c-pages/djradio/c-pages/program-ranking')
+  () => import('@/pages/discover/components/djradio/c-pages/program-ranking')
 )
 
 const routes: RouteObject[] = [

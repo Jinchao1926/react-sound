@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import type { TypedUseSelectorHook } from 'react-redux'
 
 // Discover
-import { albumReducer } from '@/pages/discover/c-pages/album/store'
-import { radioReducer } from '@/pages/discover/c-pages/djradio/store'
-import { playlistReducer } from '@/pages/discover/c-pages/playlist/store'
-import { rankingReducer } from '@/pages/discover/c-pages/ranking/store'
-import { recommendReducer } from '@/pages/discover/c-pages/recommend/store'
+import { albumReducer } from '@/pages/discover/components/album/store'
+import { radioReducer } from '@/pages/discover/components/djradio/store'
+import { playlistReducer } from '@/pages/discover/components/playlist/store'
+import { rankingReducer } from '@/pages/discover/components/ranking/store'
+import { recommendReducer } from '@/pages/discover/components/recommend/store'
 // Player
 import { playerReducer } from '@/pages/player/store'
 import { songReducer } from '@/pages/song/store'

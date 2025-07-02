@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
 
-import Banner from './c-components/banner'
+import Banner from './c-components/Banner'
 import HotAnchor from './c-components/hot-anchor'
 import HotRecommend from './c-components/hot-recommend'
 import NewAlbum from './c-components/new-album'

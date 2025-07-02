@@ -5,15 +5,27 @@ import { Provider } from 'react-redux'
 import { HashRouter } from 'react-router-dom'
 
 import App from './App'
+import { AxiosProvider } from './providers/AxiosProvider'
+import { QueryClientProvider } from './providers/QueryClientProvider'
 import store from './store'
+
 import 'normalize.css'
 import '@/assets/css/index.less'
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+const rootElement = document.getElementById('root')
+if (!rootElement) {
+  throw new Error('Root element not found')
+}
+const root = ReactDOM.createRoot(rootElement)
+
 root.render(
-  <Provider store={store}>
-    <HashRouter>
-      <App />
-    </HashRouter>
-  </Provider>
+  <QueryClientProvider>
+    <AxiosProvider>
+      <Provider store={store}>
+        <HashRouter>
+          <App />
+        </HashRouter>
+      </Provider>
+    </AxiosProvider>
+  </QueryClientProvider>
 )
