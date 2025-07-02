@@ -1,23 +1,19 @@
-import type { FC, ReactNode } from 'react'
-import { memo, useEffect, useState } from 'react'
+import { FC, memo, useEffect, useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
 import UserLink from '@/components/UserLink'
+import { Album } from '@/types/music'
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { AlbumCoverWrapper, IAlbumProps } from './style'
 
-interface IProps {
-  children?: ReactNode
-  info: any
+interface AlbumCoverProps {
+  info: Album
   small: boolean
 }
 
-const AlbumCover: FC<IProps> = (prop: IProps) => {
-  // props & state
-  const { info, small = true } = prop
-
+const AlbumCover: FC<AlbumCoverProps> = ({ info, small = true }) => {
   const [style, setStyle] = useState<IAlbumProps>(new IAlbumProps(118, 100))
   const [coverUrl, setCoverUrl] = useState<string>('')
   const [albumUrl, setAlbumUrl] = useState<string>('')
@@ -64,7 +60,23 @@ const AlbumCover: FC<IProps> = (prop: IProps) => {
       <NavLink className="name no-wrap album" to={albumUrl}>
         {info.name}
       </NavLink>
-      <UserLink users={info.artists} showSpace={true} />
+      {/* 处理兼容类型 */}
+      <UserLink
+        users={
+          info.artists
+            ? info.artists.map((artist) => ({
+                id: String(artist.id),
+                name: artist.name,
+              }))
+            : [
+                {
+                  id: String(info.artist.id),
+                  name: info.artist.name,
+                },
+              ]
+        }
+        showSpace={true}
+      />
     </AlbumCoverWrapper>
   )
 }

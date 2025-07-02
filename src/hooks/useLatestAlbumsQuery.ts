@@ -1,21 +1,21 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { Banner } from '@/types/banner'
+import { Album } from '@/types/music'
 
-interface BannersResponse {
-  banners: Banner[]
+interface LatestAlbumsResponse {
+  albums: Album[]
   code: number
 }
 
-export const useBannersQuery = () => {
+export const useLatestAlbumsQuery = () => {
   const axios = useAxios()
 
   const queryResult = useQuery({
-    queryKey: ['banners'],
+    queryKey: ['latestAlbums'],
     queryFn: async () => {
-      const { data } = await axios.get<BannersResponse>('/banner')
-      return data.banners || []
+      const { data } = await axios.get<LatestAlbumsResponse>('/album/newest')
+      return data.albums || []
     },
     retry: false,
   })
