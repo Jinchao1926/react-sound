@@ -3,10 +3,11 @@ import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import { RankingInfoWrapper } from './style'
 import SongOperationBar from '@/components/song-operation-bar'
 import { useAppSelector } from '@/store'
 import { formatSizedImage, formatMonthDay } from '@/utils/format-utils'
+
+import { RankingInfoWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

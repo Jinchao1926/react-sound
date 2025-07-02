@@ -3,8 +3,9 @@ import type { FC, ReactNode } from 'react'
 
 import { NavLink, Outlet } from 'react-router-dom'
 
-import { DiscoverWrapper } from './style'
 import { discoverMenu } from '@/assets/data/local-data'
+
+import { DiscoverWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

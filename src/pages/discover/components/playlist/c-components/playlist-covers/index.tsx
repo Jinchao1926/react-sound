@@ -3,11 +3,12 @@ import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import { PlaylistCoversWrapper } from './style'
-import { fetchPlaylistsAsync } from '../../store'
 import JCPagination from '@/components/pagination'
 import SongCover from '@/components/song-cover'
 import { useAppSelector, useAppDispatch } from '@/store'
+
+import { PlaylistCoversWrapper } from './style'
+import { fetchPlaylistsAsync } from '../../store'
 
 interface IProps {
   children?: ReactNode

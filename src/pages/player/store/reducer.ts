@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { PlayMode, PlayModeType } from '../type/PlayMode'
 import { ILyric } from '@/utils/parser-lyric'
+
+import { PlayMode, PlayModeType } from '../type/PlayMode'
 
 interface IPlayerState {
   // 当前歌曲

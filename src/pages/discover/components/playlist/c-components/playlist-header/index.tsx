@@ -3,9 +3,10 @@ import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
+import { useAppSelector } from '@/store'
+
 import { PlaylistHeaderWrapper, HeaderLeft, HeaderRight } from './style'
 import PlaylistCategory from '../playlist-category'
-import { useAppSelector } from '@/store'
 
 interface IProps {
   children?: ReactNode

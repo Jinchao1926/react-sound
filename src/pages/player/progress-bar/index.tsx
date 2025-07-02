@@ -1,8 +1,9 @@
-import React, { memo, useState, useEffect, useRef } from 'react'
 import type { FC, ReactNode } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
+
+import { roundToDecimal } from '@/utils/format-player'
 
 import { ProgressBarWrapper } from './style'
-import { roundToDecimal } from '@/utils/format-player'
 
 interface IProps {
   children?: ReactNode

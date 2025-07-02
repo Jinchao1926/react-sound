@@ -1,8 +1,9 @@
-import React, { Fragment, memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { Fragment, memo } from 'react'
+
+import { footerCopyRights, footerLinks } from '@/assets/data/local-data'
 
 import { AppFooterWrapper, FooterBottom, FooterTop } from './style'
-import { footerLinks, footerCopyRights } from '@/assets/data/local-data'
 
 interface IProps {
   children?: ReactNode

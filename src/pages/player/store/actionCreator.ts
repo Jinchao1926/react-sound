@@ -1,27 +1,28 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import {
-  changeCurrentSongAction,
-  changeCurrentSongIndexAction,
-  changePlaylistAction,
-  changeCurrentLyricAction,
-  changePlayModeAction,
-  changeIsPlayingAction,
-} from './reducer'
-import { PlayMode, nextPlayMode } from '../type/PlayMode'
-import {
-  fetchPlaylist,
-  storePlaylist,
-  fetchPlayMode,
-  storePlayMode,
   fetchCurrentSongIndex,
+  fetchPlayMode,
+  fetchPlaylist,
   storeCurrentSongIndex,
+  storePlayMode,
+  storePlaylist,
 } from '@/pages/player/service/player-storage'
 import {
-  fetchSongAsync,
   fetchLyricAsync,
+  fetchSongAsync,
 } from '@/pages/song/service/song-storage'
 import { RootState } from '@/store'
+
+import {
+  changeCurrentLyricAction,
+  changeCurrentSongAction,
+  changeCurrentSongIndexAction,
+  changeIsPlayingAction,
+  changePlayModeAction,
+  changePlaylistAction,
+} from './reducer'
+import { PlayMode, nextPlayMode } from '../type/PlayMode'
 
 // 获取播放器详情
 export const fetchPlayerDataAsync = createAsyncThunk(

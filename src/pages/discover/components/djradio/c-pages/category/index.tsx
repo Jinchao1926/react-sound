@@ -1,7 +1,9 @@
-import React, { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo, useEffect } from 'react'
 
 import { useLocation } from 'react-router-dom'
+
+import { useAppDispatch } from '@/store'
 
 import RadioRanking from './radio-ranking'
 import RadioRecommend from './radio-recommend'
@@ -9,11 +11,10 @@ import { DJRadioCategoryWrapper } from './style'
 import RadioCategory from '../../radio-category-header'
 import {
   changeHotTotalAction,
+  fetchHotRadiosAsync,
   fetchRadioCategoriesAsync,
   fetchRecommendedRadiosAsync,
-  fetchHotRadiosAsync,
 } from '../../store'
-import { useAppDispatch } from '@/store'
 
 interface IProps {
   children?: ReactNode

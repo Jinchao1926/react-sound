@@ -4,9 +4,10 @@ import type { FC, ReactNode } from 'react'
 import classNames from 'classnames'
 import { shallowEqual } from 'react-redux'
 
+import { useAppSelector, useAppDispatch } from '@/store'
+
 import { PlaylistCategoryWrapper } from './style'
 import { changeCurrentCategoryAsync, fetchPlaylistsAsync } from '../../store'
-import { useAppSelector, useAppDispatch } from '@/store'
 
 interface IProps {
   children?: ReactNode

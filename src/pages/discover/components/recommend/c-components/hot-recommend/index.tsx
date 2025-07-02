@@ -3,10 +3,11 @@ import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import { HotRecommendWrapper } from './style'
 import SectionHeaderRecommend from '@/components/section-header-recommend'
 import SongCover from '@/components/song-cover'
 import { useAppSelector } from '@/store'
+
+import { HotRecommendWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

@@ -3,10 +3,11 @@ import type { FC, ReactNode } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { HotAnchorWrapper } from './style'
 import { hotRadios } from '@/assets/data/local-data'
 import SectionHeaderMore from '@/components/section-header-more'
 import { formatSizedImage } from '@/utils/format-utils'
+
+import { HotAnchorWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

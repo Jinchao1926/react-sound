@@ -1,11 +1,12 @@
-import React, { memo, useEffect, useState } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo, useEffect, useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { IAlbumProps, AlbumCoverWrapper } from './style'
 import UserLink from '@/components/user-link'
 import { formatSizedImage } from '@/utils/format-utils'
+
+import { AlbumCoverWrapper, IAlbumProps } from './style'
 
 interface IProps {
   children?: ReactNode

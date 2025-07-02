@@ -1,15 +1,16 @@
-import React, { memo, useState, useEffect, useCallback } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import { AllAlbumWrapper } from './style'
-import { fetchAllAlbumsAsync, changeCurrentAreaAsync } from '../../store'
 import { areas } from '@/assets/data/local-data'
 import AlbumCover from '@/components/album-cover'
 import JCPagination from '@/components/pagination'
 import SectionHeaderNormal from '@/components/section-header-normal'
 import { useAppDispatch, useAppSelector } from '@/store'
+
+import { AllAlbumWrapper } from './style'
+import { changeCurrentAreaAsync, fetchAllAlbumsAsync } from '../../store'
 
 interface IProps {
   children?: ReactNode

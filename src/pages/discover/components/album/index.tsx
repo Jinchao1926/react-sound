@@ -1,11 +1,12 @@
-import React, { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo, useEffect } from 'react'
+
+import { useAppDispatch } from '@/store'
 
 import AllAlbum from './c-components/all-album'
 import HotAlbum from './c-components/hot-album'
-import { fetchHotAlbumsAsync, fetchAllAlbumsAsync } from './store'
+import { fetchAllAlbumsAsync, fetchHotAlbumsAsync } from './store'
 import { AlbumWrapper } from './style'
-import { useAppDispatch } from '@/store'
 
 interface IProps {
   children?: ReactNode

@@ -1,14 +1,15 @@
-import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo } from 'react'
 
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { SimilarSongWrapper, SimilarSongItem } from './style'
 import SectionHeaderMore from '@/components/section-header-more'
 import UserLink from '@/components/user-link'
-import { playSongAction, addSongToPlaylistAction } from '@/pages/player/store'
+import { addSongToPlaylistAction, playSongAction } from '@/pages/player/store'
 import { useAppDispatch, useAppSelector } from '@/store'
+
+import { SimilarSongItem, SimilarSongWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

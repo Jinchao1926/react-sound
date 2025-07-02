@@ -1,14 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
+import { areas } from '@/assets/data/local-data'
+import { fetchTopAlbums, fetchAlbums } from '@/services/album'
+import { RootState } from '@/store'
+
 import {
   changeHotAlbumsAction,
   changePageAlbumsAction,
   changeCurrentAreaAction,
   changeAlbumAmountAction,
 } from './reducer'
-import { areas } from '@/assets/data/local-data'
-import { fetchTopAlbums, fetchAlbums } from '@/services/album'
-import { RootState } from '@/store'
 
 export const fetchHotAlbumsAsync = createAsyncThunk(
   'fetchHotAlbums',

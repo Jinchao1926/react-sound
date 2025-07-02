@@ -4,10 +4,11 @@ import type { FC, ReactNode } from 'react'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { RankingListWrapper, RankingTable } from './style'
 import UserLink from '@/components/user-link'
 import { useAppSelector } from '@/store'
 import { formatMinuteSecond, formatSizedImage } from '@/utils/format-utils'
+
+import { RankingListWrapper, RankingTable } from './style'
 
 interface IProps {
   children?: ReactNode

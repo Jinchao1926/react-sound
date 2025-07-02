@@ -1,28 +1,29 @@
-import React, { memo, useState, useEffect, useRef, useCallback } from 'react'
 import type { FC, ReactNode } from 'react'
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import {
-  PlayerWrapper,
-  PlayerControl,
-  PlayButton,
-  PlayerInfo,
-  PlayerProgressBar,
-} from './style'
-import PlayerAction from '../player-action'
-import ProgressBar from '../progress-bar'
-import {
-  fetchPlayerDataAsync,
-  switchSongAction,
-  changeLyricLineIndexAction,
-  changeIsPlayingAction,
-} from '../store'
 import UserLink from '@/components/user-link'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { formatTime, getMusicUrl } from '@/utils/format-player'
 import { formatSizedImage } from '@/utils/format-utils'
+
+import {
+  PlayButton,
+  PlayerControl,
+  PlayerInfo,
+  PlayerProgressBar,
+  PlayerWrapper,
+} from './style'
+import PlayerAction from '../player-action'
+import ProgressBar from '../progress-bar'
+import {
+  changeIsPlayingAction,
+  changeLyricLineIndexAction,
+  fetchPlayerDataAsync,
+  switchSongAction,
+} from '../store'
 
 interface IProps {
   children?: ReactNode

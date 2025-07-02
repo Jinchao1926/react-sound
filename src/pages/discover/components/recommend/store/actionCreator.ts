@@ -1,19 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
+import { fetchTopAlbums } from '@/services/album'
+import { fetchPlaylistDetail } from '@/services/ranking'
+
 import {
   changeBannersAction,
   changeHotRecommendsAction,
+  changeHotSingersAction,
   changeNewAlbumsAction,
   changeRankingsAction,
-  changeHotSingersAction,
 } from './reducer'
 import {
   fetchBanners,
   fetchHotRecommends,
   fetchTopArtists,
 } from '../service/recommend'
-import { fetchTopAlbums } from '@/services/album'
-import { fetchPlaylistDetail } from '@/services/ranking'
 
 // 定义获取推荐列表数据的异步 Action
 export const fetchRecommendDataAsync = createAsyncThunk(

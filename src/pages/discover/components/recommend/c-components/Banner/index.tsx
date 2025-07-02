@@ -1,30 +1,18 @@
-import React, { ElementRef, memo, useState, useEffect, useRef } from 'react'
-import type { FC, ReactNode } from 'react'
+import { ElementRef, FC, memo, useEffect, useRef, useState } from 'react'
 
 import { Carousel } from 'antd'
 import classNames from 'classnames'
-import { shallowEqual } from 'react-redux'
 
-import { BannerWrapper, BannerLeft, BannerRight, BannerControl } from './style'
-import { useAppSelector } from '@/store'
+import { useBannersQuery } from '@/hooks/useBannersQuery'
 
-interface IProps {
-  children?: ReactNode
-}
+import { BannerControl, BannerLeft, BannerRight, BannerWrapper } from './style'
 
-const Banner: FC<IProps> = () => {
-  // 定义组件内部数据
+const Banner: FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const bannerRef = useRef<ElementRef<typeof Carousel>>(null)
   const bgRef = useRef<HTMLDivElement>(null)
 
-  // 从 redux 中获取数据
-  const { banners } = useAppSelector(
-    (state) => ({
-      banners: state.recommend.banners,
-    }),
-    shallowEqual
-  )
+  const { data: banners } = useBannersQuery()
 
   useEffect(() => {
     if (currentIndex >= 0 && banners.length > 0) {

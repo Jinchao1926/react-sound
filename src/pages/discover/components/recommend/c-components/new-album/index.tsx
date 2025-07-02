@@ -4,10 +4,11 @@ import type { FC, ReactNode } from 'react'
 import { Carousel } from 'antd'
 import { shallowEqual } from 'react-redux'
 
-import { NewAlbumWrapper } from './style'
 import AlbumCover from '@/components/album-cover'
 import SectionHeaderRecommend from '@/components/section-header-recommend'
 import { useAppSelector } from '@/store'
+
+import { NewAlbumWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

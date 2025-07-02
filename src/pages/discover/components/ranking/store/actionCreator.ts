@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { changeTopListAction, changeRankingPlaylistAction } from './reducer'
 import { fetchTopList, fetchPlaylistDetail } from '@/services/ranking'
+
+import { changeTopListAction, changeRankingPlaylistAction } from './reducer'
 
 export const fetchRankingDatasAsync = createAsyncThunk(
   'fetchRankingDatas',

@@ -3,12 +3,13 @@ import type { FC, ReactNode } from 'react'
 
 import { useLocation } from 'react-router-dom'
 
+import { useAppDispatch } from '@/store'
+
 import RankingCategory from './c-components/ranking-category'
 import RankingHeader from './c-components/ranking-header'
 import RankingList from './c-components/ranking-list'
 import { fetchRankingDatasAsync } from './store'
 import { RankingWrapper, RankingLeft, RankingRight } from './style'
-import { useAppDispatch } from '@/store'
 
 interface IProps {
   children?: ReactNode

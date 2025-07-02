@@ -1,8 +1,9 @@
-import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo } from 'react'
+
+import SectionHeaderMore from '@/components/section-header-more'
 
 import { UserWikiWrapper } from './style'
-import SectionHeaderMore from '@/components/section-header-more'
 
 interface IProps {
   children?: ReactNode
