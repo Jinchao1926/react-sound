@@ -65,7 +65,7 @@ const Player: FC<IProps> = () => {
   // 监听 currentSong 变化
   useEffect(() => {
     if (currentSong) {
-      setSongUrl(`/discover/song?id=${currentSong.id}`)
+      setSongUrl(`/song?id=${currentSong.id}`)
       setSongAvatar(formatSizedImage(currentSong.al.picUrl, 35))
       setDuration(currentSong.dt)
 

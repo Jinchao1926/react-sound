@@ -5,9 +5,9 @@ import { useLocation } from 'react-router-dom'
 
 import { useAppDispatch } from '@/store'
 
-import RankingCategory from './components/ranking-category'
-import RankingHeader from './components/ranking-header'
-import RankingList from './components/ranking-list'
+import RankingCategory from './components/RankingCategory'
+import RankingHeader from './components/RankingHeader'
+import RankingList from './components/RankingList'
 import { fetchRankingDatasAsync } from './store'
 import { RankingWrapper, RankingLeft, RankingRight } from './style'
 
