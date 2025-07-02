@@ -3,7 +3,7 @@ import { memo } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { addSongToPlaylistAction, playSongAction } from '@/pages/player/store'
+import { addSongToPlaylistAction, playSongAction } from '@/modules/player/store'
 import { useAppDispatch } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
 

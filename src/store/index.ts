@@ -3,14 +3,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import type { TypedUseSelectorHook } from 'react-redux'
 
 // Discover
-import { albumReducer } from '@/pages/discover/components/album/store'
-import { radioReducer } from '@/pages/discover/components/djradio/store'
-import { playlistReducer } from '@/pages/discover/components/playlist/store'
-import { rankingReducer } from '@/pages/discover/components/ranking/store'
-import { recommendReducer } from '@/pages/discover/components/recommend/store'
+import { albumReducer } from '@/modules/discover/pages/album/store'
+import { radioReducer } from '@/modules/discover/pages/djradio/store'
+import { playlistReducer } from '@/modules/discover/pages/playlist/store'
+import { rankingReducer } from '@/modules/discover/pages/ranking/store'
+import { recommendReducer } from '@/modules/discover/pages/recommend/store'
 // Player
-import { playerReducer } from '@/pages/player/store'
-import { songReducer } from '@/pages/song/store'
+import { playerReducer } from '@/modules/player/store'
+import { songReducer } from '@/modules/song/store'
 
 const store = configureStore({
   reducer: {
