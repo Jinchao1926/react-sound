@@ -1,7 +1,9 @@
-import React, { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo, useEffect } from 'react'
 
 import { useLocation } from 'react-router-dom'
+
+import { useAppDispatch } from '@/store'
 
 import MultiDownload from './c-components/multi-download'
 import SimilarPlaylist from './c-components/similar-playlist'
@@ -9,8 +11,7 @@ import SimilarSong from './c-components/similar-song'
 import SongDetail from './c-components/song-detail'
 import UserWiki from './c-components/user-wiki'
 import { fetchSongDatasAsync } from './store'
-import { SongWrapper, SongLeft, SongRight } from './style'
-import { useAppDispatch } from '@/store'
+import { SongLeft, SongRight, SongWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

@@ -1,13 +1,14 @@
-import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo } from 'react'
 
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { SimilarPlaylistWrapper, SimilarPlaylistItem } from './style'
 import SectionHeaderMore from '@/components/section-header-more'
 import { useAppSelector } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
+
+import { SimilarPlaylistItem, SimilarPlaylistWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

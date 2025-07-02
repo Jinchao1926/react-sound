@@ -6,13 +6,14 @@ import classNames from 'classnames'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { ProgramRankingWrapper, RankingHotWrapper } from './style'
-import { fetchRankedProgramsAsync } from '../../store'
 import RadioPlayCover from '@/components/radio-play-cover'
 import RankingTrend from '@/components/ranking-trend'
 import SectionHeaderNormal from '@/components/section-header-normal'
 import { useAppSelector, useAppDispatch } from '@/store'
 import { padLeft, formatMonthDay } from '@/utils/format-utils'
+
+import { ProgramRankingWrapper, RankingHotWrapper } from './style'
+import { fetchRankedProgramsAsync } from '../../store'
 
 interface IProps {
   children?: ReactNode

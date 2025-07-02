@@ -4,10 +4,11 @@ import type { FC, ReactNode } from 'react'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { ResidentSingerWrapper } from './style'
 import SectionHeaderMore from '@/components/section-header-more'
 import { useAppSelector } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
+
+import { ResidentSingerWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

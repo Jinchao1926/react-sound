@@ -1,8 +1,9 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 
-import { ClientListWrapper } from './style'
 import { platforms } from '@/assets/data/local-data'
+
+import { ClientListWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
+import { RootState } from '@/store'
+
 import {
   changeRadioCategoriesAction,
   changeRecommendRadioCategoriesAction,
@@ -17,7 +19,6 @@ import {
   fetchRecommendedRadios,
   fetchHotRadios,
 } from '../service/djradio'
-import { RootState } from '@/store'
 
 // Fetch radio categories
 export const fetchRadioCategoriesAsync = createAsyncThunk<

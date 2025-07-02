@@ -1,12 +1,13 @@
-import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import { HotAlbumWrapper } from './style'
 import AlbumCover from '@/components/album-cover'
 import SectionHeaderNormal from '@/components/section-header-normal'
 import { useAppSelector } from '@/store'
+
+import { HotAlbumWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

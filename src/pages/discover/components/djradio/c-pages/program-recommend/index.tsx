@@ -4,11 +4,12 @@ import type { FC, ReactNode } from 'react'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { ProgramRecommendWrapper } from './style'
-import { fetchRecommendProgramsAsync } from '../../store'
 import RadioPlayCover from '@/components/radio-play-cover'
 import SectionHeaderNormal from '@/components/section-header-normal'
 import { useAppSelector, useAppDispatch } from '@/store'
+
+import { ProgramRecommendWrapper } from './style'
+import { fetchRecommendProgramsAsync } from '../../store'
 
 interface IProps {
   children?: ReactNode

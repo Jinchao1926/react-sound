@@ -1,11 +1,12 @@
+import { parserLyric } from '@/utils/parser-lyric'
+import { getStorage, setStorage } from '@/utils/session-storage'
+
 import {
-  fetchSongDetail,
   fetchLyric,
   fetchSimilarPlaylists,
   fetchSimilarSongs,
+  fetchSongDetail,
 } from './song'
-import { parserLyric } from '@/utils/parser-lyric'
-import { getStorage, setStorage } from '@/utils/session-storage'
 
 const SongStorageTable = {
   song: 'song',

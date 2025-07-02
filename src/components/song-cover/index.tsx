@@ -1,11 +1,12 @@
-import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo } from 'react'
 
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
 
-import { SongCoverWrapper } from './style'
 import { formatCount, formatSizedImage } from '@/utils/format-utils'
+
+import { SongCoverWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

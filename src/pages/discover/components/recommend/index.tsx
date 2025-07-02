@@ -1,6 +1,8 @@
 import React, { memo, useEffect } from 'react'
 import type { FC, ReactNode } from 'react'
 
+import { useAppDispatch } from '@/store'
+
 import Banner from './c-components/Banner'
 import HotAnchor from './c-components/hot-anchor'
 import HotRecommend from './c-components/hot-recommend'
@@ -19,7 +21,6 @@ import {
   RecommendLeft,
   RecommendRight,
 } from './style'
-import { useAppDispatch } from '@/store'
 
 interface IProps {
   children?: ReactNode

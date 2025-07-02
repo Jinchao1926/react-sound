@@ -1,5 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
+import { RootState } from '@/store'
+import { parserPlaylistCategory } from '@/utils/parser-playlist-category'
+
 import {
   changeCategories,
   changeCurrentCategory,
@@ -7,8 +10,6 @@ import {
   changePagePlaylists,
 } from './reducer'
 import { fetchPlaylistCategories, fetchPlaylists } from '../service/playlist'
-import { RootState } from '@/store'
-import { parserPlaylistCategory } from '@/utils/parser-playlist-category'
 
 export const fetchPlaylistCategoriesAsync = createAsyncThunk(
   'fetchPlaylistCategories',

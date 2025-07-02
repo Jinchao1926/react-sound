@@ -5,13 +5,14 @@ import classNames from 'classnames'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
+import { useAppDispatch, useAppSelector } from '@/store'
+import { formatSizedImage } from '@/utils/format-utils'
+
 import { RankingCategoryWrapper } from './style'
 import {
   changeRankingFrequencyAction,
   fetchRankingDetailAsync,
 } from '../../store'
-import { useAppDispatch, useAppSelector } from '@/store'
-import { formatSizedImage } from '@/utils/format-utils'
 
 interface IProps {
   children?: ReactNode

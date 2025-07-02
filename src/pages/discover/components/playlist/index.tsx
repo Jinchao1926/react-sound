@@ -3,6 +3,8 @@ import type { FC, ReactNode } from 'react'
 
 import { useLocation } from 'react-router-dom'
 
+import { useAppDispatch } from '@/store'
+
 import PlaylistCovers from './c-components/playlist-covers'
 import PlaylistHeader from './c-components/playlist-header'
 import {
@@ -11,7 +13,6 @@ import {
   changeCurrentCategoryAsync,
 } from './store'
 import { PlaylistWrapper } from './style'
-import { useAppDispatch } from '@/store'
 
 interface IProps {
   children?: ReactNode

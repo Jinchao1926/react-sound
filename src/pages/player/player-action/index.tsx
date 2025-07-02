@@ -1,11 +1,12 @@
-import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
+import { useAppDispatch, useAppSelector } from '@/store'
+
 import { PlayerActionWrapper } from './style'
 import { switchPlayModeAction } from '../store'
-import { useAppDispatch, useAppSelector } from '@/store'
 
 interface IProps {
   children?: ReactNode

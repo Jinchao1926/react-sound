@@ -1,16 +1,17 @@
-import React, { memo, useEffect, useState, useRef, useCallback } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 
 import classNames from 'classnames'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { SongDetailWrapper, SongRecord, LyricList } from './style'
 import SongOperationBar from '@/components/song-operation-bar'
 import UserLink from '@/components/user-link'
-import { playSongAction, addSongToPlaylistAction } from '@/pages/player/store'
+import { addSongToPlaylistAction, playSongAction } from '@/pages/player/store'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
+
+import { LyricList, SongDetailWrapper, SongRecord } from './style'
 
 interface IProps {
   children?: ReactNode

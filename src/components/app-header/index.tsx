@@ -1,12 +1,13 @@
-import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo } from 'react'
 
 import { SearchOutlined } from '@ant-design/icons'
 import { Input } from 'antd'
 import { NavLink } from 'react-router-dom'
 
-import { AppHeaderWrapper, HeaderLeft, HeaderRight } from './style'
 import { headerLinks } from '@/assets/data/local-data'
+
+import { AppHeaderWrapper, HeaderLeft, HeaderRight } from './style'
 
 interface ITitleType {
   title: string

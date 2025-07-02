@@ -13,8 +13,9 @@ import classNames from 'classnames'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { RadioCategoryHeaderWrapper, RadioCategoryImage } from './style'
 import { useAppSelector } from '@/store'
+
+import { RadioCategoryHeaderWrapper, RadioCategoryImage } from './style'
 
 interface IProps {
   children?: ReactNode

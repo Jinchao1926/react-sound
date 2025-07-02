@@ -3,6 +3,8 @@ import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
+import { useAppDispatch, useAppSelector } from '@/store'
+
 import RadioMore from './radio-more'
 import { RadioProgramWrapper } from './style'
 import RadioCategoryHeader from '../../radio-category-header'
@@ -14,7 +16,6 @@ import {
 } from '../../store'
 import ProgramRanking from '../program-ranking'
 import ProgramRecommend from '../program-recommend'
-import { useAppDispatch, useAppSelector } from '@/store'
 
 interface IProps {
   children?: ReactNode

@@ -3,10 +3,11 @@ import type { FC, ReactNode } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import { RankingListWrapper } from './style'
 import RankingColumn from '@/components/ranking-column'
 import SectionHeaderRecommend from '@/components/section-header-recommend'
 import { useAppSelector } from '@/store'
+
+import { RankingListWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

@@ -4,10 +4,11 @@ import type { FC, ReactNode } from 'react'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { RadioRecommendWrapper, RadioItemWrapper } from './style'
 import SectionHeaderNormal from '@/components/section-header-normal'
 import { useAppSelector } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
+
+import { RadioRecommendWrapper, RadioItemWrapper } from './style'
 
 interface IProps {
   children?: ReactNode

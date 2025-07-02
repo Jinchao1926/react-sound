@@ -1,17 +1,18 @@
-import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
+import { memo } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import {
-  RankingColumnWrapper,
-  RankingColumnHeaderWrapper,
-  RankingColumnListWrapper,
-  RankingColumnFootererWrapper,
-} from './style'
-import { playSongAction, addSongToPlaylistAction } from '@/pages/player/store'
+import { addSongToPlaylistAction, playSongAction } from '@/pages/player/store'
 import { useAppDispatch } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
+
+import {
+  RankingColumnFootererWrapper,
+  RankingColumnHeaderWrapper,
+  RankingColumnListWrapper,
+  RankingColumnWrapper,
+} from './style'
 
 interface IProps {
   children?: ReactNode
