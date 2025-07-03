@@ -5,9 +5,9 @@ import { useAppDispatch } from '@/store'
 import Banner from './components/Banner'
 import HotAnchor from './components/HotAnchor'
 import NewAlbum from './components/NewAlbum'
-import { PopularPlaylist } from './components/PopularPlaylist/PopularPlaylist'
-import RankingList from './components/RankingList'
+import { PopularPlaylists } from './components/PopularPlaylist/PopularPlaylists'
 import ResidentSinger from './components/ResidentSinger'
+import { TopPlaylists } from './components/TopPlaylists/TopPlaylists'
 import UserProfile from './components/UserProfile'
 import {
   RecommendSection,
@@ -16,7 +16,7 @@ import {
 } from './Recommend.styles'
 import {
   // fetchRecommendDataAsync,
-  fetchRankingDataAsync,
+  // fetchRankingDataAsync,
   fetchSingerDataAsync,
 } from './store'
 
@@ -25,7 +25,7 @@ export const Recommend: FC = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     // dispatch(fetchRecommendDataAsync())
-    dispatch(fetchRankingDataAsync())
+    // dispatch(fetchRankingDataAsync())
     dispatch(fetchSingerDataAsync())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -36,9 +36,9 @@ export const Recommend: FC = () => {
       {/* <JCBanner /> */}
       <RecommendSection>
         <RecommendLeft>
-          <PopularPlaylist />
+          <PopularPlaylists />
           <NewAlbum />
-          <RankingList />
+          <TopPlaylists />
         </RecommendLeft>
         <RecommendRight>
           <UserProfile />

@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-export const RankingColumnWrapper = styled.div`
+export const PlaylistWrapper = styled.div`
   width: 230px;
 `
 
-export const RankingColumnHeaderWrapper = styled.div`
+export const PlaylistHeaderWrapper = styled.div`
   height: 100px;
   padding: 20px 0 0 19px;
   display: flex;
@@ -70,7 +70,7 @@ export const RankingColumnHeaderWrapper = styled.div`
   }
 `
 
-export const RankingColumnListWrapper = styled.div`
+export const PlaylistSongListWrapper = styled.div`
   .item {
     position: relative;
     display: flex;
@@ -136,7 +136,7 @@ export const RankingColumnListWrapper = styled.div`
   }
 `
 
-export const RankingColumnFootererWrapper = styled.div`
+export const PlaylistFooterWrapper = styled.div`
   height: 32px;
   margin-right: 32px;
   text-align: right;

@@ -1,1 +1,1 @@
-export { PopularPlaylist } from './PopularPlaylist'
+export { PopularPlaylists } from './PopularPlaylists'
