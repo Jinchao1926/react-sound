@@ -3,8 +3,8 @@ import { memo, useEffect } from 'react'
 
 import { useAppDispatch } from '@/store'
 
-import AllAlbum from './components/AllAlbum'
-import HotAlbum from './components/HotAlbum'
+import { AllAlbum } from './components/AllAlbum'
+import { HotAlbum } from './components/HotAlbum'
 import { fetchAllAlbumsAsync, fetchHotAlbumsAsync } from './store'
 import { AlbumWrapper } from './style'
 

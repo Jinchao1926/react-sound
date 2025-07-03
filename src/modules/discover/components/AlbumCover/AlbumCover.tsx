@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
@@ -6,14 +6,14 @@ import UserLink from '@/components/UserLink'
 import { Album } from '@/types/music'
 import { formatSizedImage } from '@/utils/format-utils'
 
-import { AlbumCoverWrapper, IAlbumProps } from './style'
+import { AlbumCoverWrapper, IAlbumProps } from './AlbumCover.styles'
 
 interface AlbumCoverProps {
-  info: Album
-  small: boolean
+  album: Album
+  small?: boolean
 }
 
-const AlbumCover: FC<AlbumCoverProps> = ({ info, small = true }) => {
+export const AlbumCover: FC<AlbumCoverProps> = ({ album, small = true }) => {
   const [style, setStyle] = useState<IAlbumProps>(new IAlbumProps(118, 100))
   const [coverUrl, setCoverUrl] = useState<string>('')
   const [albumUrl, setAlbumUrl] = useState<string>('')
@@ -28,9 +28,9 @@ const AlbumCover: FC<AlbumCoverProps> = ({ info, small = true }) => {
   }, [small])
 
   useEffect(() => {
-    setCoverUrl(formatSizedImage(info.picUrl, style.imgSize))
-    setAlbumUrl(`/album?id=${info.id}`)
-  }, [info, style.imgSize])
+    setCoverUrl(formatSizedImage(album.picUrl, style.imgSize))
+    setAlbumUrl(`/album?id=${album.id}`)
+  }, [album, style.imgSize])
 
   // other handlers
   function handlePlayAlbumn() {
@@ -47,7 +47,7 @@ const AlbumCover: FC<AlbumCoverProps> = ({ info, small = true }) => {
       isLarge={style.isLarge}
     >
       <div className="cover">
-        <img src={coverUrl} alt={info.name} />
+        <img src={coverUrl} alt={album.name} />
         <NavLink className="background sprite_cover" to={albumUrl}>
           {' '}
         </NavLink>
@@ -58,20 +58,20 @@ const AlbumCover: FC<AlbumCoverProps> = ({ info, small = true }) => {
         />
       </div>
       <NavLink className="name no-wrap album" to={albumUrl}>
-        {info.name}
+        {album.name}
       </NavLink>
       {/* 处理兼容类型 */}
       <UserLink
         users={
-          info.artists
-            ? info.artists.map((artist) => ({
+          album.artists
+            ? album.artists.map((artist) => ({
                 id: String(artist.id),
                 name: artist.name,
               }))
             : [
                 {
-                  id: String(info.artist.id),
-                  name: info.artist.name,
+                  id: String(album.artist.id),
+                  name: album.artist.name,
                 },
               ]
         }
@@ -80,5 +80,3 @@ const AlbumCover: FC<AlbumCoverProps> = ({ info, small = true }) => {
     </AlbumCoverWrapper>
   )
 }
-
-export default memo(AlbumCover)

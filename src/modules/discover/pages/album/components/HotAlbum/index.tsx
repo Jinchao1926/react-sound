@@ -1,19 +1,14 @@
-import type { FC, ReactNode } from 'react'
-import { memo } from 'react'
+import type { FC } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import AlbumCover from '@/components/AlbumCover'
 import SectionHeaderNormal from '@/components/SectionHeaderNormal'
+import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 import { useAppSelector } from '@/store'
 
 import { HotAlbumWrapper } from './style'
 
-interface IProps {
-  children?: ReactNode
-}
-
-const HotAlbum: FC<IProps> = () => {
+export const HotAlbum: FC = () => {
   const hotAlbums = useAppSelector(
     (state) => state.album.hotAlbums,
     shallowEqual
@@ -24,11 +19,9 @@ const HotAlbum: FC<IProps> = () => {
       <SectionHeaderNormal title="热门新碟" />
       <div className="album-list">
         {hotAlbums.slice(0, 10).map((item) => {
-          return <AlbumCover key={item.id} info={item} small={false} />
+          return <AlbumCover key={item.id} album={item} small={false} />
         })}
       </div>
     </HotAlbumWrapper>
   )
 }
-
-export default memo(HotAlbum)

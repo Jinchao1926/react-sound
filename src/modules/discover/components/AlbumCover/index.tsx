@@ -1,0 +1,1 @@
+export { AlbumCover } from './AlbumCover'
