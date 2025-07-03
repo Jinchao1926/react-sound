@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const SectionHeaderRCMWrapper = styled.div`
+export const SectionHeaderWrapper = styled.div`
   background-position: -225px -156px;
   padding: 0 10px 0 34px;
   border-bottom: 2px solid #c10d0c;
