@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-export const RecommendWrapper = styled.div``
-
 export const RecommendSection = styled.div`
   width: 980px;
   margin: 0 auto;

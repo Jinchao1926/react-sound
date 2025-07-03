@@ -1,0 +1,32 @@
+import { useQuery } from '@tanstack/react-query'
+
+import { useAxios } from '@/providers/AxiosProvider'
+import { PopularPlaylist } from '@/types/music'
+
+interface PopularPlaylistsResponse {
+  result: PopularPlaylist[]
+  code: number
+}
+
+export const usePopularPlaylistsQuery = (limit: number = 8) => {
+  const axios = useAxios()
+
+  const queryResult = useQuery({
+    queryKey: ['popularPlaylists', { limit }],
+    queryFn: async () => {
+      const { data } = await axios.get<PopularPlaylistsResponse>(
+        '/personalized',
+        {
+          params: {
+            limit,
+          },
+        }
+      )
+      return data.result || []
+    },
+  })
+  return {
+    ...queryResult,
+    data: queryResult.data || [],
+  }
+}

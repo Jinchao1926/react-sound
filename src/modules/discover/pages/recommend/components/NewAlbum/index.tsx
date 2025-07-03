@@ -2,11 +2,10 @@ import React, { ElementRef, memo, useRef } from 'react'
 import type { FC, ReactNode } from 'react'
 
 import { Carousel } from 'antd'
-import { shallowEqual } from 'react-redux'
 
 import AlbumCover from '@/components/AlbumCover'
 import SectionHeaderRecommend from '@/components/SectionHeaderRecommend'
-import { useAppSelector } from '@/store'
+import { useLatestAlbumsQuery } from '@/hooks/useLatestAlbumsQuery'
 
 import { NewAlbumWrapper } from './style'
 
@@ -17,13 +16,8 @@ interface IProps {
 // 新碟上架
 const NewAlbum: FC<IProps> = () => {
   const pageRef = useRef<ElementRef<typeof Carousel>>(null)
-  // redux
-  const { albums } = useAppSelector(
-    (state) => ({
-      albums: state.recommend.newAlbums,
-    }),
-    shallowEqual
-  )
+
+  const { data: albums } = useLatestAlbumsQuery()
 
   return (
     <NewAlbumWrapper>
