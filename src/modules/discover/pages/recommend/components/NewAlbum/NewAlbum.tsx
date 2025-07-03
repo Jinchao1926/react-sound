@@ -31,8 +31,10 @@ export const NewAlbum: FC = () => {
           {[0, 1].map((idx) => {
             return (
               <div className="album-page" key={idx}>
-                {albums.slice(idx * 5, (idx + 1) * 5).map((item) => {
-                  return <AlbumCover key={item.id} album={item} />
+                {albums.slice(idx * 5, (idx + 1) * 5).map((album) => {
+                  return (
+                    <AlbumCover key={album.id} album={album} isLarge={false} />
+                  )
                 })}
               </div>
             )

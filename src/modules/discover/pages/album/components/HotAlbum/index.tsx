@@ -19,7 +19,7 @@ export const HotAlbum: FC = () => {
       <SectionHeaderNormal title="热门新碟" />
       <div className="album-list">
         {hotAlbums.slice(0, 10).map((item) => {
-          return <AlbumCover key={item.id} album={item} small={false} />
+          return <AlbumCover key={item.id} album={item} />
         })}
       </div>
     </HotAlbumWrapper>

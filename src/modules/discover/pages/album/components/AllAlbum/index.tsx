@@ -63,7 +63,7 @@ export const AllAlbum: FC = () => {
       />
       <div className="album-list">
         {albums.map((item) => {
-          return <AlbumCover key={item.id} album={item} small={false} />
+          return <AlbumCover key={item.id} album={item} />
         })}
       </div>
       <JCPagination

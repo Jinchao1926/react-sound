@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useMemo } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
@@ -6,31 +6,28 @@ import UserLink from '@/components/UserLink'
 import { Album } from '@/types/music'
 import { formatSizedImage } from '@/utils/format-utils'
 
-import { AlbumCoverWrapper, IAlbumProps } from './AlbumCover.styles'
+import {
+  AlbumCoverWrapper,
+  IAlbumStyleConfig,
+  getAlbumStyleConfig,
+} from './AlbumCover.styles'
 
 interface AlbumCoverProps {
   album: Album
-  small?: boolean
+  isLarge?: boolean
 }
 
-export const AlbumCover: FC<AlbumCoverProps> = ({ album, small = true }) => {
-  const [style, setStyle] = useState<IAlbumProps>(new IAlbumProps(118, 100))
-  const [coverUrl, setCoverUrl] = useState<string>('')
-  const [albumUrl, setAlbumUrl] = useState<string>('')
+export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
+  const style = useMemo<IAlbumStyleConfig>(
+    () => getAlbumStyleConfig(isLarge),
+    [isLarge]
+  )
 
-  // useEffect
-  useEffect(() => {
-    if (small) {
-      setStyle(new IAlbumProps(118, 100))
-    } else {
-      setStyle(new IAlbumProps(150, 130))
-    }
-  }, [small])
-
-  useEffect(() => {
-    setCoverUrl(formatSizedImage(album.picUrl, style.imgSize))
-    setAlbumUrl(`/album?id=${album.id}`)
-  }, [album, style.imgSize])
+  const coverUrl = useMemo(
+    () => formatSizedImage(album.picUrl, style.imgSize),
+    [album.picUrl, style.imgSize]
+  )
+  const albumUrl = useMemo(() => `/album?id=${album.id}`, [album.id])
 
   // other handlers
   function handlePlayAlbumn() {
