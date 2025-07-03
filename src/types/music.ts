@@ -84,48 +84,6 @@ export interface Album {
   company: string
 }
 
-/** 播放列表 */
-export interface Playlist {
-  id: number
-  name: string
-  coverImgUrl: string
-  trackCount: number
-  playCount: number
-  creator: {
-    userId: number
-    nickname: string
-  }
-}
-
-/*
-{
-    "id": 171037362,
-    "type": 0,
-    "name": "香港电影中的50首经典歌曲 [追忆录]",
-    "copywriter": "",
-    "picUrl": "https://p1.music.126.net/aRMEx-fiTudOmPIhkOe41g==/109951165493447833.jpg",
-    "canDislike": true,
-    "trackNumberUpdateTime": 1683686598757,
-    "playCount": 42034440,
-    "trackCount": 52,
-    "highQuality": false,
-    "alg": "alg_high_quality"
-}
-*/
-/** 热门推荐歌单 */
-export interface PopularPlaylist {
-  id: number
-  type: number
-  name: string
-  copywriter: string
-  picUrl: string
-  canDislike: boolean
-  trackNumberUpdateTime: number
-  playCount: number
-  trackCount: number
-  highQuality: boolean
-}
-
 /** 歌曲 */
 export interface Song {
   id: number

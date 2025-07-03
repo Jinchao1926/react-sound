@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { PopularPlaylist } from '@/types/music'
+import { PopularPlaylist } from '@/types/playlist'
 
 interface PopularPlaylistsResponse {
   result: PopularPlaylist[]
