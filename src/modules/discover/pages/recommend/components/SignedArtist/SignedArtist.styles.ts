@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ResidentSingerWrapper = styled.div`
+export const SignedArtistWrapper = styled.div`
   margin-top: 15px;
 
   .header {

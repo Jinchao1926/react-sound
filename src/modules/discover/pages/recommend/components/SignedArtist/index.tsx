@@ -1,0 +1,1 @@
+export { SignedArtist } from './SignedArtist'

@@ -1,22 +1,19 @@
-import React, { memo } from 'react'
-import type { FC, ReactNode } from 'react'
+import React, { FC, memo } from 'react'
+
+import { NavLink } from 'react-router-dom'
 
 import { SectionHeaderMoreWrapper } from './style'
 
-interface IProps {
-  children?: ReactNode
+interface SectionHeaderMoreProps {
   title: string
   morePath?: string
 }
 
-const SectionHeaderMore: FC<IProps> = (props: IProps) => {
-  const { title, morePath } = props
-  const showMorePath = morePath !== null && morePath !== undefined
-
+const SectionHeaderMore: FC<SectionHeaderMoreProps> = ({ title, morePath }) => {
   return (
     <SectionHeaderMoreWrapper>
       <span className="title">{title}</span>
-      {showMorePath && <a href={morePath}>查看更多 &gt;</a>}
+      {morePath && <NavLink to={morePath}>查看更多 &gt;</NavLink>}
     </SectionHeaderMoreWrapper>
   )
 }
