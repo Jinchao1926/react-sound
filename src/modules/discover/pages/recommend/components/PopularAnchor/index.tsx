@@ -1,0 +1,1 @@
+export { PopularAnchor } from './PopularAnchor'

@@ -2,9 +2,9 @@ import { FC, useCallback, useEffect, useState } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
-import { areas } from '@/assets/data/local-data'
 import JCPagination from '@/components/Pagination'
 import SectionHeaderNormal from '@/components/SectionHeaderNormal'
+import { areas } from '@/constants/region'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 import { useAppDispatch, useAppSelector } from '@/store'
 

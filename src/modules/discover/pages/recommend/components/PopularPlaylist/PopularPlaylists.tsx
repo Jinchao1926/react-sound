@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react'
 
 import SongCover from '@/components/SongCover'
-import { usePopularPlaylistsQuery } from '@/hooks/usePopularPlaylistsQuery'
+import { usePopularPlaylistsQuery } from '@/hooks/playlist/usePopularPlaylistsQuery'
 import { SectionHeader } from '@/modules/Discover/components/SectionHeader'
 
 import { PopularPlaylistContainer } from './PopularPlaylists.styles'

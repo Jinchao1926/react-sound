@@ -1,26 +1,21 @@
-import React, { memo } from 'react'
-import type { FC, ReactNode } from 'react'
+import React, { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { hotRadios } from '@/assets/data/local-data'
 import SectionHeaderMore from '@/components/SectionHeaderMore'
+import { popularAnchors } from '@/constants/anchor'
 import { formatSizedImage } from '@/utils/format-utils'
 
-import { HotAnchorWrapper } from './style'
+import { PopularAnchorWrapper } from './PopularAnchor.styles'
 
-interface IProps {
-  children?: ReactNode
-}
-
-const HotAnchor: FC<IProps> = () => {
+export const PopularAnchor: FC = () => {
   return (
-    <HotAnchorWrapper>
+    <PopularAnchorWrapper>
       <div className="header">
         <SectionHeaderMore title="热门主播" />
       </div>
       <div className="anchor-list">
-        {hotRadios.map((item) => {
+        {popularAnchors.map((item) => {
           return (
             <NavLink className="anchor" key={item.picUrl} to={item.url}>
               <img
@@ -36,8 +31,6 @@ const HotAnchor: FC<IProps> = () => {
           )
         })}
       </div>
-    </HotAnchorWrapper>
+    </PopularAnchorWrapper>
   )
 }
-
-export default memo(HotAnchor)

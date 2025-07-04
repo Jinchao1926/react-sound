@@ -2,7 +2,7 @@ import React, { FC, ElementRef, useRef } from 'react'
 
 import { Carousel } from 'antd'
 
-import { useNewAlbumsQuery } from '@/hooks/useNewAlbumsQuery'
+import { useNewAlbumsQuery } from '@/hooks/album/useNewAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 import { SectionHeader } from '@/modules/Discover/components/SectionHeader'
 

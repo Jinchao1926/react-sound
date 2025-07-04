@@ -14,6 +14,7 @@ const TopPlaylistType = {
   ORIGINAL: 2884035, // 原创榜
 } as const
 
+// 榜单
 export const useTopPlaylistsQuery = () => {
   // Create individual query hooks for each playlist ID
   const soaringQuery = usePlaylistDetailQuery(TopPlaylistType.SOARING)
