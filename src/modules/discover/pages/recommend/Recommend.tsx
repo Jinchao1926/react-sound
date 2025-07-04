@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 
 import { Banner } from './components/Banner'
-import HotAnchor from './components/HotAnchor'
 import { NewAlbum } from './components/NewAlbum'
+import { PopularAnchor } from './components/PopularAnchor'
 import { PopularPlaylists } from './components/PopularPlaylist'
 import { SignedArtist } from './components/SignedArtist'
 import { TopPlaylists } from './components/TopPlaylists'
@@ -28,7 +28,7 @@ export const Recommend: FC = () => {
         <RecommendRight>
           <UserProfile />
           <SignedArtist />
-          <HotAnchor />
+          <PopularAnchor />
         </RecommendRight>
       </RecommendSection>
     </div>

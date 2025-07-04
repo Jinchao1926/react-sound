@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from 'react'
 import { Fragment, memo } from 'react'
 
-import { footerCopyRights, footerLinks } from '@/assets/data/local-data'
+import { footerCopyRights, footerLinks } from '@/constants/footer'
 
 import { AppFooterWrapper, FooterBottom, FooterTop } from './style'
 

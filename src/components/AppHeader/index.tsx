@@ -5,7 +5,7 @@ import { SearchOutlined } from '@ant-design/icons'
 import { Input } from 'antd'
 import { NavLink } from 'react-router-dom'
 
-import { headerLinks } from '@/assets/data/local-data'
+import { rootNavigations } from '@/constants/navigation'
 
 import { AppHeaderWrapper, HeaderLeft, HeaderRight } from './style'
 
@@ -45,7 +45,7 @@ const AppHeader: FC<IProps> = () => {
             网易云音乐
           </a>
           <div className="nav-list">
-            {headerLinks.map((item) => {
+            {rootNavigations.map((item) => {
               return (
                 <div className="nav-item" key={item.title}>
                   {showNavItem(item)}

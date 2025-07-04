@@ -1,11 +1,9 @@
-import React, { memo, useRef, useState, useEffect } from 'react'
-import type { FC, ReactNode } from 'react'
+import React, { FC, useRef, useState, useEffect } from 'react'
 
 import classNames from 'classnames'
-import { shallowEqual } from 'react-redux'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
 
-import { useAppSelector } from '@/store'
+import { useBannersQuery } from '@/hooks/useBannersQuery'
 
 import {
   JCBannerControl,
@@ -14,11 +12,7 @@ import {
   JCBannerWrapper,
 } from './style'
 
-interface IProps {
-  children?: ReactNode
-}
-
-const JCBanner: FC<IProps> = () => {
+export const JCBanner: FC = () => {
   // 定义组件内部数据
   const [currentIndex, setCurrentIndex] = useState(0)
   const [imageUrl, setImageUrl] = useState('')
@@ -35,12 +29,7 @@ const JCBanner: FC<IProps> = () => {
   const timerRef = useRef<ReturnType<typeof setInterval>>()
 
   // 从 redux 中获取数据
-  const { banners } = useAppSelector(
-    (state) => ({
-      banners: state.recommend.banners,
-    }),
-    shallowEqual
-  )
+  const { data: banners } = useBannersQuery()
   // 更新 bgImage
   useEffect(() => {
     if (banners.length === 0) return
@@ -162,5 +151,3 @@ const JCBanner: FC<IProps> = () => {
     </JCBannerWrapper>
   )
 }
-
-export default memo(JCBanner)

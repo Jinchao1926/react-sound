@@ -3,7 +3,7 @@ import type { FC, ReactNode } from 'react'
 
 import { NavLink, Outlet } from 'react-router-dom'
 
-import { discoverMenu } from '@/assets/data/local-data'
+import { discoverNavigations } from '@/constants/navigation'
 
 import { DiscoverWrapper } from './style'
 
@@ -17,7 +17,7 @@ const Discover: FC<IProps> = () => {
     <DiscoverWrapper>
       <div className="top">
         <div className="nav-list wrap-v1">
-          {discoverMenu.map((item) => {
+          {discoverNavigations.map((item) => {
             return (
               <div className="nav-item" key={item.title}>
                 <NavLink to={item.link}>{item.title}</NavLink>

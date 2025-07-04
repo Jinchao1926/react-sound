@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const HotAnchorWrapper = styled.div`
+export const PopularAnchorWrapper = styled.div`
   margin-top: 30px;
 
   .header {
