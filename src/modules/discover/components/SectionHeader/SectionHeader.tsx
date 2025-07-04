@@ -1,22 +1,22 @@
-import React, { memo } from 'react'
-import type { FC, ReactNode } from 'react'
+import React, { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { SectionHeaderRCMWrapper } from './style'
+import { SectionHeaderWrapper } from './SectionHeader.styles'
 
-interface IProps {
-  children?: ReactNode
+interface SectionHeaderProps {
   title: string
   keywords?: string[]
   morePath: string
 }
 
-const SectionHeaderRecommend: FC<IProps> = (props: IProps) => {
-  const { title, keywords, morePath } = props
-
+export const SectionHeader: FC<SectionHeaderProps> = ({
+  title,
+  keywords,
+  morePath,
+}) => {
   return (
-    <SectionHeaderRCMWrapper className="sprite_02">
+    <SectionHeaderWrapper className="sprite_02">
       <div className="left">
         <NavLink className="title" to={morePath}>
           {title}
@@ -38,8 +38,6 @@ const SectionHeaderRecommend: FC<IProps> = (props: IProps) => {
         <NavLink to={morePath}>更多</NavLink>
         <i className="icon sprite_02" />
       </div>
-    </SectionHeaderRCMWrapper>
+    </SectionHeaderWrapper>
   )
 }
-
-export default memo(SectionHeaderRecommend)

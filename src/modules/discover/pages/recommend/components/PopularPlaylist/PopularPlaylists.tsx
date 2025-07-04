@@ -1,8 +1,8 @@
 import React, { FC, useMemo } from 'react'
 
-import SectionHeaderRecommend from '@/components/SectionHeaderRecommend'
 import SongCover from '@/components/SongCover'
 import { usePopularPlaylistsQuery } from '@/hooks/usePopularPlaylistsQuery'
+import { SectionHeader } from '@/modules/Discover/components/SectionHeader'
 
 import { PopularPlaylistContainer } from './PopularPlaylists.styles'
 
@@ -13,7 +13,7 @@ export const PopularPlaylists: FC = () => {
 
   return (
     <div>
-      <SectionHeaderRecommend
+      <SectionHeader
         title="热门推荐"
         keywords={keywords}
         morePath="/discover/playlist?cat="

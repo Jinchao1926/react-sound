@@ -1,20 +1,19 @@
 import styled from 'styled-components'
 
-export class IAlbumProps {
+export interface IAlbumStyleConfig {
   width: number
   imgSize: number
-
-  get isLarge() {
-    return this.imgSize > 100
-  }
-
-  constructor(width: number, imgSize: number) {
-    this.width = width
-    this.imgSize = imgSize
-  }
+  isLarge: boolean
 }
 
-export const AlbumCoverWrapper = styled.div<IAlbumProps>`
+export const getAlbumStyleConfig = (isLarge: boolean): IAlbumStyleConfig => {
+  const imgSize = isLarge ? 130 : 100
+  const width = isLarge ? 150 : 118
+
+  return { width, imgSize, isLarge }
+}
+
+export const AlbumCoverWrapper = styled.div<IAlbumStyleConfig>`
   width: ${(props) => props.width + 'px'};
 
   .cover {

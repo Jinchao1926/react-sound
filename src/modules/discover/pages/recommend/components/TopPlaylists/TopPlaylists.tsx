@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
-import SectionHeaderRecommend from '@/components/SectionHeaderRecommend'
 import { useTopPlaylistsQuery } from '@/hooks/useTopPlaylistsQuery'
+import { SectionHeader } from '@/modules/Discover/components/SectionHeader'
 
 import { Playlist } from './Playlist'
 import { TopPlaylistContainer } from './TopPlaylists.styles'
@@ -12,7 +12,7 @@ export const TopPlaylists: FC = () => {
 
   return (
     <div>
-      <SectionHeaderRecommend title="榜单" morePath="/discover/toplist" />
+      <SectionHeader title="榜单" morePath="/discover/toplist" />
       <TopPlaylistContainer>
         {data.map((playlist) => {
           return <Playlist key={playlist.id} playlist={playlist} />

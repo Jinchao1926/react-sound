@@ -2,9 +2,9 @@ import React, { FC, useEffect } from 'react'
 
 import { useAppDispatch } from '@/store'
 
-import Banner from './components/Banner'
+import { Banner } from './components/Banner/Banner'
 import HotAnchor from './components/HotAnchor'
-import NewAlbum from './components/NewAlbum'
+import { NewAlbum } from './components/NewAlbum/NewAlbum'
 import { PopularPlaylists } from './components/PopularPlaylist/PopularPlaylists'
 import ResidentSinger from './components/ResidentSinger'
 import { TopPlaylists } from './components/TopPlaylists/TopPlaylists'

@@ -1,22 +1,17 @@
-import type { FC, ReactNode } from 'react'
-import { memo, useCallback, useEffect, useState } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
 
 import { shallowEqual } from 'react-redux'
 
 import { areas } from '@/assets/data/local-data'
-import AlbumCover from '@/components/AlbumCover'
 import JCPagination from '@/components/Pagination'
 import SectionHeaderNormal from '@/components/SectionHeaderNormal'
+import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 import { useAppDispatch, useAppSelector } from '@/store'
 
 import { AllAlbumWrapper } from './style'
 import { changeCurrentAreaAsync, fetchAllAlbumsAsync } from '../../store'
 
-interface IProps {
-  children?: ReactNode
-}
-
-const AllAlbum: FC<IProps> = () => {
+export const AllAlbum: FC = () => {
   // state
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [albums, setAlbums] = useState<any[]>([])
@@ -68,7 +63,7 @@ const AllAlbum: FC<IProps> = () => {
       />
       <div className="album-list">
         {albums.map((item) => {
-          return <AlbumCover key={item.id} info={item} small={false} />
+          return <AlbumCover key={item.id} album={item} />
         })}
       </div>
       <JCPagination
@@ -80,5 +75,3 @@ const AllAlbum: FC<IProps> = () => {
     </AllAlbumWrapper>
   )
 }
-
-export default memo(AllAlbum)
