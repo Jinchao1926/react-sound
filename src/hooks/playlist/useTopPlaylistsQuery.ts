@@ -4,7 +4,7 @@ import { useAxios } from '@/providers/AxiosProvider'
 import { PlaylistDetail } from '@/types/playlist'
 
 interface TopPlaylistsApiResponse {
-  playlist: PlaylistDetail[]
+  playlists: PlaylistDetail[]
   code: number
   total: number
   more: boolean
@@ -12,32 +12,34 @@ interface TopPlaylistsApiResponse {
 }
 
 export const useTopPlaylistsQuery = (options: {
-  cat: string
+  category: string
   offset?: number
   limit?: number
 }) => {
-  const { cat, offset = 0, limit = 35 } = options
+  const { category, offset = 0, limit = 35 } = options
   const axios = useAxios()
 
   const queryResult = useQuery({
-    queryKey: ['topPlaylists', { cat, offset, limit }],
+    queryKey: ['topPlaylists', { category, offset, limit }],
     queryFn: async () => {
       const { data } = await axios.get<TopPlaylistsApiResponse>(
         '/top/playlist',
         {
           params: {
-            cat,
+            cat: category,
             offset,
             limit,
           },
         }
       )
-      return data.playlist
+      return data
     },
   })
 
   return {
     ...queryResult,
-    data: queryResult.data || [],
+    data: queryResult.data?.playlists || [],
+    total: queryResult.data?.total || 0,
+    more: queryResult.data?.more || false,
   }
 }
