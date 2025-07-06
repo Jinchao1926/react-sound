@@ -3,34 +3,31 @@ import React, { FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
 
-import { PlaylistDetail } from '@/types/playlist'
+import { TopPlaylist } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { ToplistCategoryWrapper } from './ToplistCategory.styles'
 
 interface ToplistCategoryProps {
   id?: number
-  data: PlaylistDetail[]
+  toplists: TopPlaylist[]
 }
 
-export const ToplistCategory: FC<ToplistCategoryProps> = ({ id, data }) => {
+export const ToplistCategory: FC<ToplistCategoryProps> = ({ id, toplists }) => {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   useEffect(() => {
     if (id) {
-      const idx = data.findIndex((item) => item.id === id)
+      const idx = toplists.findIndex((item) => item.id === id)
       if (idx !== -1) {
         setSelectedIndex(idx)
-        return
       }
     }
-
-    setSelectedIndex(0)
-  }, [data, id])
+  }, [toplists, id])
 
   return (
     <ToplistCategoryWrapper>
-      {data.map((item, idx) => {
+      {toplists.map((item, idx) => {
         let header
         if (idx === 0 || idx === 4) {
           header =

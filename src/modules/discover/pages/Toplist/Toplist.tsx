@@ -1,7 +1,8 @@
-import React, { FC } from 'react'
+import React, { FC, useMemo } from 'react'
 
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
 import { useSelectedToplist } from '@/modules/Discover/pages/Toplist/hooks/useSelectedToplist'
+import { PlaylistDetail } from '@/types/playlist'
 
 import { ToplistCategory } from './components/ToplistCategory'
 import { ToplistDetail } from './components/ToplistDetail'
@@ -9,18 +10,27 @@ import { ToplistDetailHeader } from './components/ToplistDetailHeader'
 import { ToplistWrapper, ToplistLeft, ToplistRight } from './Toplist.styles'
 
 export const Toplist: FC = () => {
-  const { selectedId, toplists } = useSelectedToplist()
-  const { data } = usePlaylistDetailQuery(selectedId)
+  const { selectedToplist, toplists } = useSelectedToplist()
+  const { data } = usePlaylistDetailQuery(selectedToplist?.id)
+
+  const playlistDetail = useMemo((): PlaylistDetail | undefined => {
+    if (data) {
+      return {
+        ...data,
+        updateFrequency: selectedToplist?.updateFrequency,
+      }
+    }
+  }, [data, selectedToplist])
 
   return (
     <ToplistWrapper className="wrap-v2">
       <ToplistLeft>
-        <ToplistCategory id={selectedId} data={toplists} />
+        <ToplistCategory id={selectedToplist?.id} toplists={toplists} />
       </ToplistLeft>
-      {data && (
+      {playlistDetail && (
         <ToplistRight>
-          <ToplistDetailHeader playlist={data} />
-          <ToplistDetail playlist={data} />
+          <ToplistDetailHeader playlist={playlistDetail} />
+          <ToplistDetail playlist={playlistDetail} />
         </ToplistRight>
       )}
     </ToplistWrapper>
