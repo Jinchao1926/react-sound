@@ -22,7 +22,9 @@ export const ToplistDetailHeader: FC<{ playlist: PlaylistDetail }> = ({
           <span className="time">
             最近更新：{formatMonthDay(playlist.updateTime)}
           </span>
-          <span className="frequency">（{playlist.updateFrequency}）</span>
+          {playlist.updateFrequency && (
+            <span className="frequency">（{playlist.updateFrequency}）</span>
+          )}
         </div>
         <SongOperationBar
           titles={{

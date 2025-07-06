@@ -29,6 +29,66 @@ export interface PopularPlaylist {
 
 /*
 {
+  "subscribers": [],
+  "subscribed": null,
+  "creator": null,
+  "artists": null,
+  "tracks": null,
+  "updateFrequency": "刚刚更新",
+  "backgroundCoverId": 0,
+  "backgroundCoverUrl": null,
+  "titleImage": 0,
+  "coverText": null,
+  "titleImageUrl": null,
+  "coverImageUrl": null,
+  "iconImageUrl": null,
+  "englishTitle": null,
+  "opRecommend": false,
+  "recommendInfo": null,
+  "socialPlaylistCover": null,
+  "tsSongCount": 0,
+  "algType": null,
+  "originalCoverId": 0,
+  "topTrackIds": null,
+  "playlistType": "UGC",
+  "specialType": 10,
+  "highQuality": false,
+  "coverImgId": 109951170048506930,
+  "newImported": false,
+  "anonimous": false,
+  "updateTime": 1751764264484,
+  "coverImgUrl": "https://p1.music.126.net/rIi7Qzy2i2Y_1QD7cd0MYA==/109951170048506929.jpg",
+  "trackCount": 99,
+  "commentThreadId": "A_PL_0_19723756",
+  "trackUpdateTime": 1751782405491,
+  "totalDuration": 0,
+  "playCount": 6267637248,
+  "trackNumberUpdateTime": 1751764044988,
+  "privacy": 0,
+  "adType": 0,
+  "cloudTrackCount": 0,
+  "subscribedCount": 4156734,
+  "createTime": 1404115136883,
+  "ordered": true,
+  "description": "云音乐中每天热度上升最快的100首单曲，每日更新。",
+  "status": 0,
+  "tags": [],
+  "userId": 1,
+  "name": "飙升榜",
+  "id": 19723756,
+  "coverImgId_str": "109951170048506929",
+  "ToplistType": "S"
+}*/
+export interface TopPlaylist {
+  id: number
+  name: string
+  coverImgUrl: string
+  updateFrequency: string
+  updateTime: number
+}
+
+/*
+{
   "id": 19723756,
   "name": "飙升榜",
   "coverImgId": 109951170048506930,
@@ -135,7 +195,7 @@ export interface PlaylistDetail {
     userId: number
     nickname: string
   }
-  updateFrequency?: string | null
+  updateFrequency?: string
   updateTime: number
   trackUpdateTime: number
   trackNumberUpdateTime: number

@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { PlaylistDetail } from '@/types/playlist'
+import { TopPlaylist } from '@/types/playlist'
 
 interface ToplistsResponse {
-  list: PlaylistDetail[]
+  list: TopPlaylist[]
   code: number
 }
 
