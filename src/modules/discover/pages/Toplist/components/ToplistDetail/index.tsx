@@ -1,0 +1,1 @@
+export { ToplistDetail } from './ToplistDetail'

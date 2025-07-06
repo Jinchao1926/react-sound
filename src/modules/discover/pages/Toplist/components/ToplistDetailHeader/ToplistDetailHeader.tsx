@@ -1,29 +1,16 @@
-import React, { memo } from 'react'
-import type { FC, ReactNode } from 'react'
-
-import { shallowEqual } from 'react-redux'
+import React, { FC } from 'react'
 
 import SongOperationBar from '@/components/SongOperationBar'
-import { useAppSelector } from '@/store'
+import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
 import { formatSizedImage, formatMonthDay } from '@/utils/format-utils'
 
-import { RankingInfoWrapper } from './style'
+import { ToplistDetailWrapper } from './ToplistDetailHeader.styles'
 
-interface IProps {
-  children?: ReactNode
-}
-
-const RankingHeader: FC<IProps> = () => {
-  const { playlist, frequency } = useAppSelector(
-    (state) => ({
-      playlist: state.ranking.currentPlaylist,
-      frequency: state.ranking.currentFrequency,
-    }),
-    shallowEqual
-  )
+export const ToplistDetailHeader: FC<{ id: number }> = ({ id }) => {
+  const { data: playlist } = usePlaylistDetailQuery(id)
 
   return (
-    <RankingInfoWrapper>
+    <ToplistDetailWrapper>
       {playlist && (
         <>
           <div className="cover">
@@ -37,7 +24,7 @@ const RankingHeader: FC<IProps> = () => {
               <span className="time">
                 最近更新：{formatMonthDay(playlist.updateTime)}
               </span>
-              <span className="frequency">（{frequency}）</span>
+              <span className="frequency">（{playlist.updateFrequency}）</span>
             </div>
             <SongOperationBar
               titles={{
@@ -49,8 +36,6 @@ const RankingHeader: FC<IProps> = () => {
           </div>
         </>
       )}
-    </RankingInfoWrapper>
+    </ToplistDetailWrapper>
   )
 }
-
-export default memo(RankingHeader)

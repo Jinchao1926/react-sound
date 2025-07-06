@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const RankingCategoryWrapper = styled.div`
+export const ToplistCategoryWrapper = styled.div`
   margin-top: 40px;
 
   .header1,

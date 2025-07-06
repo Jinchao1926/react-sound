@@ -135,11 +135,16 @@ export interface PlaylistDetail {
     userId: number
     nickname: string
   }
+  updateFrequency?: string | null
+  updateTime: number
+  trackUpdateTime: number
+  trackNumberUpdateTime: number
   tracks: Track[]
   trackCount: number
   playCount: number
   shareCount: number
   commentCount: number
+  subscribedCount: number
 }
 
 /*
@@ -243,4 +248,24 @@ export interface PlaylistDetail {
 export interface Track {
   id: number
   name: string
+  dt: number
+  // 歌手信息
+  ar: {
+    id: number
+    name: string
+    tns: string[]
+    alias: string[]
+  }[]
+  // 专辑信息
+  al: {
+    id: number
+    name: string
+    picUrl: string
+    tns: string[]
+    alias: string[]
+  }
+  // Track Name Supplement - 曲目名称补充
+  tns?: string[]
+  alia: string[]
+  mv: number
 }

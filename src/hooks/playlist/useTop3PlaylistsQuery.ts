@@ -8,18 +8,18 @@ import { usePlaylistDetailQuery } from './usePlaylistDetailQuery'
  * - NEW_SONG: 新歌榜 (3779629)
  * - ORIGINAL: 原创榜 (2884035)
  */
-const TopPlaylistType = {
+const Top3PlaylistType = {
   SOARING: 19723756, // 飙升榜
   NEW_SONG: 3779629, // 新歌榜
   ORIGINAL: 2884035, // 原创榜
 } as const
 
 // 榜单
-export const useTopPlaylistsQuery = () => {
+export const useTop3PlaylistsQuery = () => {
   // Create individual query hooks for each playlist ID
-  const soaringQuery = usePlaylistDetailQuery(TopPlaylistType.SOARING)
-  const newSongQuery = usePlaylistDetailQuery(TopPlaylistType.NEW_SONG)
-  const originalQuery = usePlaylistDetailQuery(TopPlaylistType.ORIGINAL)
+  const soaringQuery = usePlaylistDetailQuery(Top3PlaylistType.SOARING)
+  const newSongQuery = usePlaylistDetailQuery(Top3PlaylistType.NEW_SONG)
+  const originalQuery = usePlaylistDetailQuery(Top3PlaylistType.ORIGINAL)
   const queryResults = [soaringQuery, newSongQuery, originalQuery]
 
   // Check if all queries are successful

@@ -59,19 +59,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
       </NavLink>
       {/* 处理兼容类型 */}
       <UserLink
-        users={
-          album.artists
-            ? album.artists.map((artist) => ({
-                id: String(artist.id),
-                name: artist.name,
-              }))
-            : [
-                {
-                  id: String(album.artist.id),
-                  name: album.artist.name,
-                },
-              ]
-        }
+        users={album.artists ? album.artists : [album.artist]}
         showSpace={true}
       />
     </AlbumCoverWrapper>
