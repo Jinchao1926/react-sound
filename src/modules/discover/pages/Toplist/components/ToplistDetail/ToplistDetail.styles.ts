@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const RankingListWrapper = styled.div`
+export const ToplistDetailWrapper = styled.div`
   padding: 0 30px 40px 40px;
 
   .section-header {
@@ -24,7 +24,7 @@ export const RankingListWrapper = styled.div`
   }
 `
 
-export const RankingTable = styled.div`
+export const ToplistTracksTable = styled.div`
   table {
     width: 100%;
     border-collapse: collapse;

@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { useTopPlaylistsQuery } from '@/hooks/playlist/useTopPlaylistsQuery'
+import { useTop3PlaylistsQuery } from '@/hooks/playlist/useTop3PlaylistsQuery'
 import { SectionHeader } from '@/modules/Discover/components/SectionHeader'
 
 import { Playlist } from './Playlist'
@@ -8,7 +8,7 @@ import { TopPlaylistContainer } from './TopPlaylists.styles'
 
 // 榜单
 export const TopPlaylists: FC = () => {
-  const { data } = useTopPlaylistsQuery()
+  const { data } = useTop3PlaylistsQuery()
 
   return (
     <div>

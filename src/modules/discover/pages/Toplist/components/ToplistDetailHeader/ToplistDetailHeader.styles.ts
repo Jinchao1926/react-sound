@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const RankingInfoWrapper = styled.div`
+export const ToplistDetailWrapper = styled.div`
   padding: 40px;
   display: flex;
 

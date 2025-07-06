@@ -7,7 +7,7 @@ import { UserLinkWrapper } from './style'
 
 interface IProps {
   children?: ReactNode
-  users: { id: string; name: string }[]
+  users: { id: number; name: string }[]
   showSpace?: boolean
 }
 
@@ -16,7 +16,7 @@ const UserLink: FC<IProps> = (props: IProps) => {
   return (
     <UserLinkWrapper>
       <span className="user-links no-wrap">
-        {users.map((item: { id: string; name: string }, idx: number) => {
+        {users.map((item, idx) => {
           return (
             <React.Fragment key={item.id}>
               {idx > 0 && (showSpace ? ' / ' : '/')}
