@@ -3,29 +3,29 @@ import React, { FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
 
-import { useToplistsQuery } from '@/hooks/playlist/useToplistsQuery'
+import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { ToplistCategoryWrapper } from './ToplistCategory.styles'
 
 interface ToplistCategoryProps {
   id?: number
-  onSelect?: (id: number) => void
+  data: PlaylistDetail[]
 }
 
-export const ToplistCategory: FC<ToplistCategoryProps> = ({ id, onSelect }) => {
+export const ToplistCategory: FC<ToplistCategoryProps> = ({ id, data }) => {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
-  const { data } = useToplistsQuery()
-
-  // select style
   useEffect(() => {
     if (id) {
       const idx = data.findIndex((item) => item.id === id)
       if (idx !== -1) {
         setSelectedIndex(idx)
+        return
       }
     }
+
+    setSelectedIndex(0)
   }, [data, id])
 
   return (

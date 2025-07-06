@@ -8,7 +8,7 @@ interface PlaylistDetailResponse {
   code: number
 }
 
-export const usePlaylistDetailQuery = (id: number) => {
+export const usePlaylistDetailQuery = (id?: number) => {
   const axios = useAxios()
 
   const queryResult = useQuery({
@@ -24,6 +24,7 @@ export const usePlaylistDetailQuery = (id: number) => {
       )
       return data.playlist
     },
+    enabled: !!id,
   })
 
   return queryResult

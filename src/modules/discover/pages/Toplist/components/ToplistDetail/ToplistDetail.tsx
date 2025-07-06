@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import UserLink from '@/components/UserLink'
-import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
+import { PlaylistDetail } from '@/types/playlist'
 import { formatMinuteSecond, formatSizedImage } from '@/utils/format-utils'
 
 import {
@@ -11,10 +11,9 @@ import {
   ToplistTracksTable,
 } from './ToplistDetail.styles'
 
-export const ToplistDetail: FC<{ id: number }> = ({ id }) => {
-  const { data: playlist } = usePlaylistDetailQuery(id)
-
-  if (!playlist) return null
+export const ToplistDetail: FC<{ playlist: PlaylistDetail }> = ({
+  playlist,
+}) => {
   return (
     <ToplistDetailWrapper>
       <div className="section-header">
