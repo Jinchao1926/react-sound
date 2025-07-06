@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useAxios } from '@/providers/AxiosProvider'
 import { TopPlaylist } from '@/types/playlist'
 
-interface ToplistsResponse {
+interface ToplistsApiResponse {
   list: TopPlaylist[]
   code: number
 }
@@ -14,7 +14,7 @@ export const useToplistsQuery = () => {
   const queryResult = useQuery({
     queryKey: ['toplists'],
     queryFn: async () => {
-      const { data } = await axios.get<ToplistsResponse>('/toplist')
+      const { data } = await axios.get<ToplistsApiResponse>('/toplist')
       return data.list
     },
   })

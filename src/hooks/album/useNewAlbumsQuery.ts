@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useAxios } from '@/providers/AxiosProvider'
 import { Album } from '@/types/music'
 
-interface NewAlbumsResponse {
+interface NewAlbumsApiResponse {
   albums: Album[]
   code: number
 }
@@ -14,7 +14,7 @@ export const useNewAlbumsQuery = () => {
   const queryResult = useQuery({
     queryKey: ['newAlbums'],
     queryFn: async () => {
-      const { data } = await axios.get<NewAlbumsResponse>('/album/newest')
+      const { data } = await axios.get<NewAlbumsApiResponse>('/album/newest')
       return data.albums || []
     },
     retry: false,

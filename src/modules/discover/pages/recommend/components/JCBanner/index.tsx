@@ -3,7 +3,7 @@ import React, { FC, useRef, useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
 
-import { useBannersQuery } from '@/hooks/banner/useBannersQuery'
+import { useBannersQuery } from '@/hooks/recommend/useBannersQuery'
 
 import {
   JCBannerControl,

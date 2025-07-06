@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { useTop3PlaylistsQuery } from '@/hooks/playlist/useTop3PlaylistsQuery'
+import { useTop3PlaylistsQuery } from '@/hooks/recommend/useTop3PlaylistsQuery'
 import { SectionHeader } from '@/modules/Discover/components/SectionHeader'
 
 import { Playlist } from './Playlist'

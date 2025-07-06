@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useAxios } from '@/providers/AxiosProvider'
 import { Banner } from '@/types/banner'
 
-interface BannersResponse {
+interface BannersApiResponse {
   banners: Banner[]
   code: number
 }
@@ -14,7 +14,7 @@ export const useBannersQuery = () => {
   const queryResult = useQuery({
     queryKey: ['banners'],
     queryFn: async () => {
-      const { data } = await axios.get<BannersResponse>('/banner')
+      const { data } = await axios.get<BannersApiResponse>('/banner')
       return data.banners || []
     },
     retry: false,

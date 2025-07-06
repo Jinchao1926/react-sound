@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useAxios } from '@/providers/AxiosProvider'
 import { Artist } from '@/types/music'
 
-interface TopArtistsResponse {
+interface TopArtistsApiResponse {
   artists: Artist[]
   code: number
   more: boolean
@@ -16,7 +16,7 @@ export const useTopArtistQuery = (offset: number = 0, limit: number = 5) => {
   const queryResult = useQuery({
     queryKey: ['topArtists', { offset, limit }],
     queryFn: async () => {
-      const { data } = await axios.get<TopArtistsResponse>('/top/artists', {
+      const { data } = await axios.get<TopArtistsApiResponse>('/top/artists', {
         params: {
           offset,
           limit,

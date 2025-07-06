@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { useToplistsQuery } from '@/hooks/playlist/useToplistsQuery'
+import { useToplistsQuery } from '@/hooks/recommend/useToplistsQuery'
 import { useUrlParams } from '@/hooks/useUrlParams'
 import { TopPlaylist } from '@/types/playlist'
 
