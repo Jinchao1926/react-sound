@@ -1,8 +1,8 @@
 import React, { FC, useMemo } from 'react'
 
+import { SectionHeader } from '@/components/SectionHeader'
 import SongCover from '@/components/SongCover'
 import { usePopularPlaylistsQuery } from '@/hooks/recommend/usePopularPlaylistsQuery'
-import { SectionHeader } from '@/modules/Discover/components/SectionHeader'
 
 import { PopularPlaylistContainer } from './PopularPlaylists.styles'
 
@@ -14,9 +14,10 @@ export const PopularPlaylists: FC = () => {
   return (
     <div>
       <SectionHeader
+        variant="primary"
         title="热门推荐"
-        keywords={keywords}
-        morePath="/discover/playlist?cat="
+        tags={keywords}
+        moreHref="/discover/playlist"
       />
       <PopularPlaylistContainer>
         {data.map((item) => {

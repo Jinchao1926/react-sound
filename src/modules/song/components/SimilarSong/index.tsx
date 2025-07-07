@@ -4,7 +4,7 @@ import { memo } from 'react'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import SectionHeaderMore from '@/components/SectionHeaderMore'
+import { SectionHeader } from '@/components/SectionHeader'
 import UserLink from '@/components/UserLink'
 import { addSongToPlaylistAction, playSongAction } from '@/modules/Player/store'
 import { useAppDispatch, useAppSelector } from '@/store'
@@ -35,7 +35,7 @@ const SimilarSong: FC<IProps> = () => {
 
   return (
     <SimilarSongWrapper>
-      <SectionHeaderMore title="相似歌曲" />
+      <SectionHeader variant="simple" title="相似歌曲" />
       <div className="songs">
         {similarSongs.map((item: { id: string; name: string; artists: [] }) => {
           return (

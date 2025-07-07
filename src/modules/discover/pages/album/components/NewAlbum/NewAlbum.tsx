@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import SectionHeaderNormal from '@/components/SectionHeaderNormal'
+import { SectionHeader } from '@/components/SectionHeader'
 import { useNewAlbumsQuery } from '@/hooks/album/useNewAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 
@@ -11,7 +11,7 @@ export const NewAlbum: FC = () => {
 
   return (
     <NewAlbumWrapper>
-      <SectionHeaderNormal title="热门新碟" />
+      <SectionHeader title="热门新碟" />
       <div className="album-list">
         {data.slice(0, 10).map((item) => {
           return <AlbumCover key={item.id} album={item} />

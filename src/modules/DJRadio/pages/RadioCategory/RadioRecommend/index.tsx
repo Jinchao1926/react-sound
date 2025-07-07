@@ -4,7 +4,7 @@ import type { FC, ReactNode } from 'react'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import SectionHeaderNormal from '@/components/SectionHeaderNormal'
+import { SectionHeader } from '@/components/SectionHeader'
 import { useAppSelector } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
 
@@ -21,7 +21,7 @@ const RadioRecommend: FC<IProps> = () => {
   )
   return (
     <RadioRecommendWrapper>
-      <SectionHeaderNormal title="优秀新电台" />
+      <SectionHeader title="优秀新电台" />
       <div className="radio-list">
         {recommendedRadios.slice(0, 5).map((item) => {
           return (

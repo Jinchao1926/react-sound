@@ -5,7 +5,7 @@ import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import RadioPlayCover from '@/components/RadioPlayCover'
-import SectionHeaderNormal from '@/components/SectionHeaderNormal'
+import { SectionHeader } from '@/components/SectionHeader'
 import { useAppSelector, useAppDispatch } from '@/store'
 
 import { ProgramRecommendWrapper } from './style'
@@ -42,11 +42,7 @@ const ProgramRecommend: FC<IProps> = (props: IProps) => {
 
   return (
     <ProgramRecommendWrapper className="program-recommend">
-      <SectionHeaderNormal
-        title="推荐节目"
-        subTitle={subTitle}
-        morePath={morePath}
-      />
+      <SectionHeader title="推荐节目" subtitle={subTitle} moreHref={morePath} />
       <div className="program-list">
         {datas.map((item) => {
           return (

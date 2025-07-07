@@ -4,7 +4,7 @@ import { memo } from 'react'
 import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import SectionHeaderMore from '@/components/SectionHeaderMore'
+import { SectionHeader } from '@/components/SectionHeader'
 import { useAppSelector } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
 
@@ -25,7 +25,7 @@ const SimilarPlaylist: FC<IProps> = () => {
 
   return (
     <SimilarPlaylistWrapper>
-      <SectionHeaderMore title="包含这首歌的歌单" />
+      <SectionHeader variant="simple" title="包含这首歌的歌单" />
       <div className="playlists">
         {similarPlaylists.map((item) => {
           return (
