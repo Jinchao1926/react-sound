@@ -9,20 +9,24 @@ import { SectionHeaderVariant } from './types'
 interface SectionHeaderProps {
   variant?: SectionHeaderVariant
   title: string
-  titleLink?: string
-  subTitle?: string
-  keywords?: string[]
-  moreLink?: string
+  titleHref?: string
+  subtitle?: string
+  tags?: string[]
+  tagsHref?: string
+  moreHref?: string
 }
 
 const SectionHeader: FC<SectionHeaderProps> = ({
   variant = 'default',
   title,
-  titleLink,
-  subTitle,
-  keywords,
-  moreLink,
+  titleHref,
+  subtitle,
+  tags,
+  tagsHref,
+  moreHref,
 }) => {
+  const tagLinkHref = tagsHref || moreHref
+
   const moreLinkText = useMemo(() => {
     switch (variant) {
       case 'primary':
@@ -41,34 +45,32 @@ const SectionHeader: FC<SectionHeaderProps> = ({
     >
       <div className="left">
         {/* Title */}
-        {titleLink ? (
-          <NavLink className="title" to={titleLink}>
+        {titleHref ? (
+          <NavLink className="title" to={titleHref}>
             {title}
           </NavLink>
         ) : (
           <span className="title">{title}</span>
         )}
         {/* Sub Title */}
-        {subTitle && <span className="sub-title">{subTitle}</span>}
+        {subtitle && <span className="sub-title">{subtitle}</span>}
         {/* Keywords */}
-        {keywords && (
+        {tags && tagLinkHref && (
           <div className="keyword-list">
-            {keywords.map((item) => {
-              return (
-                <div className="item" key={item}>
-                  <NavLink className="keyword" to={`${moreLink}${item}`}>
-                    {item}
-                  </NavLink>
-                  <span className="divider">|</span>
-                </div>
-              )
-            })}
+            {tags.map((item) => (
+              <div className="item" key={item}>
+                <NavLink className="keyword" to={`${tagLinkHref}${item}`}>
+                  {item}
+                </NavLink>
+                <span className="divider">|</span>
+              </div>
+            ))}
           </div>
         )}
       </div>
-      {moreLink && (
+      {moreHref && (
         <div className="right">
-          <NavLink className="more-link" to={moreLink}>
+          <NavLink className="more-link" to={moreHref}>
             {moreLinkText}
           </NavLink>
           {variant === 'primary' && <i className="icon sprite_02" />}

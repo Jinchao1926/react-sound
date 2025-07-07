@@ -15,7 +15,7 @@ export const TopPlaylists: FC = () => {
       <SectionHeader
         variant="primary"
         title="榜单"
-        moreLink="/discover/toplist"
+        moreHref="/discover/toplist"
       />
       <TopPlaylistContainer>
         {data.map((playlist) => {

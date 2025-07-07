@@ -5,7 +5,7 @@ import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import JCPagination from '@/components/Pagination'
-import SectionHeaderNormal from '@/components/SectionHeaderNormal'
+import { SectionHeader } from '@/components/SectionHeader'
 import { useAppSelector, useAppDispatch } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
 
@@ -53,7 +53,7 @@ const RadioRanking: FC<IProps> = (props: IProps) => {
 
   return (
     <RadioRankingWrapper>
-      <SectionHeaderNormal title="电台排行榜" />
+      <SectionHeader title="电台排行榜" />
       <div className="radio-list">
         {radios.map((item) => {
           return (

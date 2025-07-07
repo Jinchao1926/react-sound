@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom'
 
 import RadioPlayCover from '@/components/RadioPlayCover'
 import RankingTrend from '@/components/RankingTrend'
-import SectionHeaderNormal from '@/components/SectionHeaderNormal'
+import { SectionHeader } from '@/components/SectionHeader'
 import { useAppSelector, useAppDispatch } from '@/store'
 import { padLeft, formatMonthDay } from '@/utils/format-utils'
 
@@ -47,10 +47,10 @@ const ProgramRanking: FC<IProps> = (props: IProps) => {
 
   return (
     <ProgramRankingWrapper className="program-ranking">
-      <SectionHeaderNormal
+      <SectionHeader
         title="节目排行榜"
-        subTitle={subTitle}
-        morePath={morePath}
+        subtitle={subTitle}
+        moreHref={morePath}
       />
       {!simpleVersion && (
         <Tooltip

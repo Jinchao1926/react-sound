@@ -1,7 +1,7 @@
 import { FC, useCallback, useState } from 'react'
 
 import JCPagination from '@/components/Pagination'
-import SectionHeaderNormal from '@/components/SectionHeaderNormal'
+import { SectionHeader } from '@/components/SectionHeader'
 import { areas } from '@/constants/region'
 import { useAllAlbumsQuery } from '@/hooks/album/useAllAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
@@ -12,7 +12,7 @@ const PAGE_SIZE = 35
 
 export const AllAlbum: FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [currentArea, setCurrentArea] = useState<string>('ALL')
+  const [currentArea] = useState<string>('ALL')
   const [areaNames] = useState<string[]>(areas.map((item) => item.name))
 
   const { data: albums, total } = useAllAlbumsQuery({
@@ -25,20 +25,20 @@ export const AllAlbum: FC = () => {
     setCurrentPage(page)
   }, [])
 
-  const handleSwitchArea = useCallback((areaName: string) => {
-    const area = areas.find((item) => item.name === areaName)
-    if (area) {
-      setCurrentArea(area.code)
-      setCurrentPage(1)
-    }
-  }, [])
+  // const handleSwitchArea = useCallback((areaName: string) => {
+  //   const area = areas.find((item) => item.name === areaName)
+  //   if (area) {
+  //     setCurrentArea(area.code)
+  //     setCurrentPage(1)
+  //   }
+  // }, [])
 
   return (
     <AllAlbumWrapper>
-      <SectionHeaderNormal
+      <SectionHeader
         title="全部新碟"
-        keywords={areaNames}
-        onKeywordClick={handleSwitchArea}
+        tags={areaNames}
+        tagsHref="/discover/album?area="
       />
       <div className="album-list">
         {albums.map((item) => {

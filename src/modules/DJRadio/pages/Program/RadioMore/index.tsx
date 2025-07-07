@@ -3,7 +3,7 @@ import type { FC, ReactNode } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import SectionHeaderNormal from '@/components/SectionHeaderNormal'
+import { SectionHeader } from '@/components/SectionHeader'
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { RadioMoreWrapper, RadioMoreItemWrapper } from './style'
@@ -17,9 +17,9 @@ const RadioMore: FC<IProps> = (props: IProps) => {
   const { items } = props
   return (
     <RadioMoreWrapper>
-      <SectionHeaderNormal
+      <SectionHeader
         title={`${items.length > 0 && items[0].category}·电台`}
-        morePath={`/discover/djradio/category?id=${items.length > 0 && items[0].id}`}
+        moreHref={`/discover/djradio/category?id=${items.length > 0 && items[0].id}`}
       />
       <div className="radio-list">
         {items.slice(0, 4).map((item) => {

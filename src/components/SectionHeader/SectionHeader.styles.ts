@@ -39,7 +39,7 @@ const defaultStyles = css`
     }
 
     .sub-title {
-      margin-left: 10px;
+      margin: 10px 0 0 10px;
       color: #999;
     }
 
@@ -75,10 +75,10 @@ export const SectionHeaderWrapper = styled.div<{
 
   .left {
     display: flex;
+    align-items: center;
 
     .keyword-list {
       display: flex;
-      align-items: center;
 
       .item {
         .keyword {

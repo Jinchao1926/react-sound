@@ -16,8 +16,8 @@ export const PopularPlaylists: FC = () => {
       <SectionHeader
         variant="primary"
         title="热门推荐"
-        keywords={keywords}
-        moreLink="/discover/playlist"
+        tags={keywords}
+        moreHref="/discover/playlist"
       />
       <PopularPlaylistContainer>
         {data.map((item) => {

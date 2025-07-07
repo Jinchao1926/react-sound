@@ -19,7 +19,7 @@ export const NewAlbum: FC = () => {
       <SectionHeader
         variant="primary"
         title="新碟上架"
-        moreLink="/discover/album"
+        moreHref="/discover/album"
       />
       <div className="inner">
         <div
