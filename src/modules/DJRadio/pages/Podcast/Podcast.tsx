@@ -4,9 +4,9 @@ import { shallowEqual } from 'react-redux'
 
 import { useAppDispatch, useAppSelector } from '@/store'
 
+import { RadioProgramWrapper } from './Podcast.styles'
 import RadioMore from './RadioMore'
-import { RadioProgramWrapper } from './style'
-import CategoryHeader from '../../components/CategoryHeader'
+import { PodcastCategoryHeader } from '../../components/PodcastCategoryHeader'
 import {
   fetchRadioCategoriesAsync,
   fetchRecommendProgramsAsync,
@@ -16,7 +16,7 @@ import {
 import ProgramRanking from '../ProgramRanking'
 import ProgramRecommend from '../ProgramRecommend'
 
-const Program: FC = () => {
+const Podcast: FC = () => {
   const categories = useAppSelector(
     (state) => state.radio.recommendCategories,
     shallowEqual
@@ -32,7 +32,7 @@ const Program: FC = () => {
 
   return (
     <RadioProgramWrapper>
-      <CategoryHeader />
+      <PodcastCategoryHeader />
       <div className="programs">
         <ProgramRecommend simpleVersion={true} />
         <ProgramRanking simpleVersion={true} />
@@ -44,4 +44,4 @@ const Program: FC = () => {
   )
 }
 
-export default memo(Program)
+export default memo(Podcast)
