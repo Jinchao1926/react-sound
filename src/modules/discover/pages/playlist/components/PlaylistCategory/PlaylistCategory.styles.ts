@@ -29,7 +29,8 @@ export const PlaylistCategoryWrapper = styled.div`
       padding-left: 26px;
       border-bottom: 1px solid #e6e6e6;
 
-      & > button {
+      & > button,
+      & > a {
         background-position: 0 -64px;
         width: 75px;
         height: 26px;
@@ -37,6 +38,12 @@ export const PlaylistCategoryWrapper = styled.div`
         &:hover {
           text-decoration: underline;
         }
+      }
+
+      & > a {
+        display: inline-block;
+        line-height: 26px;
+        text-align: center;
       }
     }
 
@@ -85,8 +92,12 @@ export const PlaylistCategoryWrapper = styled.div`
         border-left: 1px solid #e6e6e6;
         line-height: 24px;
 
-        .name {
+        .item-wrapper {
+          display: inline-block;
           white-space: nowrap;
+        }
+        .name {
+          display: inline-block;
           cursor: pointer;
           &:hover {
             text-decoration: underline;

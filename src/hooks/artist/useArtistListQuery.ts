@@ -22,7 +22,7 @@ export const ArtistAreaEnum = {
 type ArtistType = (typeof ArtistTypeEnum)[keyof typeof ArtistTypeEnum]
 type ArtistArea = (typeof ArtistAreaEnum)[keyof typeof ArtistAreaEnum]
 
-interface ArtistListResponse {
+interface ArtistListApiResponse {
   artists: Artist[]
   code: number
   more: boolean
@@ -41,7 +41,7 @@ export const useArtistListQuery = (options: {
   const queryResult = useQuery({
     queryKey: ['artistList', { type, area, offset, limit }],
     queryFn: async () => {
-      const { data } = await axios.get<ArtistListResponse>('/artist/list', {
+      const { data } = await axios.get<ArtistListApiResponse>('/artist/list', {
         params: { type, area, offset, limit, initial },
       })
       return data.artists || []

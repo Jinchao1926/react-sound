@@ -1,6 +1,6 @@
 import { PlaylistDetail } from '@/types/playlist'
 
-import { usePlaylistDetailQuery } from './usePlaylistDetailQuery'
+import { usePlaylistDetailQuery } from '../playlist/usePlaylistDetailQuery'
 
 /**
  * 榜单类型枚举

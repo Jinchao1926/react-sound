@@ -3,7 +3,7 @@ import { ElementRef, FC, useEffect, useRef, useState } from 'react'
 import { Carousel } from 'antd'
 import classNames from 'classnames'
 
-import { useBannersQuery } from '@/hooks/banner/useBannersQuery'
+import { useBannersQuery } from '@/hooks/recommend/useBannersQuery'
 
 import {
   BannerControl,

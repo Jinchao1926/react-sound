@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useAxios } from '@/providers/AxiosProvider'
 import { PlaylistDetail } from '@/types/playlist'
 
-interface PlaylistDetailResponse {
+interface PlaylistDetailApiResponse {
   playlist: PlaylistDetail
   code: number
 }
@@ -14,7 +14,7 @@ export const usePlaylistDetailQuery = (id?: number) => {
   const queryResult = useQuery({
     queryKey: ['playlistDetail', { id }],
     queryFn: async () => {
-      const { data } = await axios.get<PlaylistDetailResponse>(
+      const { data } = await axios.get<PlaylistDetailApiResponse>(
         '/playlist/detail',
         {
           params: {
