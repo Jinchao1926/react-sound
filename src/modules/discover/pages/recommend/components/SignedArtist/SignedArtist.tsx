@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import SectionHeaderMore from '@/components/SectionHeaderMore'
+import { SectionHeader } from '@/components/SectionHeader'
 import { useTopArtistQuery } from '@/hooks/artist/useTopArtistQuery'
 import { formatSizedImage } from '@/utils/format-utils'
 
@@ -14,7 +14,11 @@ export const SignedArtist: FC = () => {
   return (
     <SignedArtistWrapper>
       <div className="header">
-        <SectionHeaderMore title="入驻歌手" morePath="/discover/artist" />
+        <SectionHeader
+          variant="simple"
+          title="入驻歌手"
+          moreHref="/discover/artist"
+        />
       </div>
       <div className="singer-list">
         {data.map((item) => {

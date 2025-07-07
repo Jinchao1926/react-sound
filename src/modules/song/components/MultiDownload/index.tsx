@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from 'react'
 import { memo } from 'react'
 
-import SectionHeaderMore from '@/components/SectionHeaderMore'
+import { SectionHeader } from '@/components/SectionHeader'
 
 import { MultiDownloadWrapper } from './style'
 
@@ -12,7 +12,7 @@ interface IProps {
 const MultiDownload: FC<IProps> = () => {
   return (
     <MultiDownloadWrapper>
-      <SectionHeaderMore title="网易云音乐多端下载" />
+      <SectionHeader variant="simple" title="网易云音乐多端下载" />
       <div className="list sprite_download">
         <a
           className="iOS sprite_download"

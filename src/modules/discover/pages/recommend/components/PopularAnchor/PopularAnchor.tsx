@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import SectionHeaderMore from '@/components/SectionHeaderMore'
+import { SectionHeader } from '@/components/SectionHeader'
 import { popularAnchors } from '@/constants/anchor'
 import { formatSizedImage } from '@/utils/format-utils'
 
@@ -12,7 +12,7 @@ export const PopularAnchor: FC = () => {
   return (
     <PopularAnchorWrapper>
       <div className="header">
-        <SectionHeaderMore title="热门主播" />
+        <SectionHeader variant="simple" title="热门主播" />
       </div>
       <div className="anchor-list">
         {popularAnchors.map((item) => {
