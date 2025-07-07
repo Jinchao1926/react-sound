@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { areas } from '@/constants/region'
+import { areas } from '@/constants/area'
 import { fetchTopAlbums, fetchAlbums } from '@/services/album'
 import { RootState } from '@/store'
 

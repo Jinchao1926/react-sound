@@ -1,46 +1,37 @@
-import { FC, useState, useMemo, useEffect } from 'react'
+import { FC, useState, useEffect } from 'react'
 
 import JCPagination from '@/components/Pagination'
 import { SectionHeader } from '@/components/SectionHeader'
-import { areas } from '@/constants/region'
 import { useAllAlbumsQuery } from '@/hooks/album/useAllAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 
 import { AllAlbumWrapper } from './AllAlbum.styles'
-import { useSelectedArea } from '../../hooks/useSelectedArea'
+import { useAreas, useSelectedArea } from '../../hooks'
 
 const PAGE_SIZE = 35
 
 export const AllAlbum: FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1)
 
-  const tagData = useMemo(
-    () =>
-      areas.map((item) => ({
-        name: item.name,
-        href: `/discover/album?area=${item.code}`,
-      })),
-    []
-  )
-
+  const { areaTags } = useAreas()
   const { selectedArea } = useSelectedArea()
-  useEffect(() => {
-    setCurrentPage(1) // Reset to first page when area changes
-  }, [selectedArea])
-
   const { data: albums, total } = useAllAlbumsQuery({
     area: selectedArea,
     offset: (currentPage - 1) * PAGE_SIZE,
     limit: PAGE_SIZE,
   })
 
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [selectedArea])
+
   return (
     <AllAlbumWrapper>
-      <SectionHeader title="全部新碟" tags={tagData} />
+      <SectionHeader title="全部新碟" tags={areaTags} />
       <div className="album-list">
-        {albums.map((item) => {
-          return <AlbumCover key={item.id} album={item} />
-        })}
+        {albums.map((item) => (
+          <AlbumCover key={item.id} album={item} />
+        ))}
       </div>
       <JCPagination
         total={total}
