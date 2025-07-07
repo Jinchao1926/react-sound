@@ -2,9 +2,9 @@ import React, { FC, ElementRef, useRef } from 'react'
 
 import { Carousel } from 'antd'
 
+import { SectionHeader } from '@/components/SectionHeader'
 import { useNewAlbumsQuery } from '@/hooks/album/useNewAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
-import { SectionHeader } from '@/modules/Discover/components/SectionHeader'
 
 import { NewAlbumWrapper } from './NewAlbum.styles'
 
@@ -16,7 +16,11 @@ export const NewAlbum: FC = () => {
 
   return (
     <NewAlbumWrapper>
-      <SectionHeader title="新碟上架" morePath="/discover/album" />
+      <SectionHeader
+        variant="primary"
+        title="新碟上架"
+        moreLink="/discover/album"
+      />
       <div className="inner">
         <div
           className="arrow arrow-left sprite_02"
