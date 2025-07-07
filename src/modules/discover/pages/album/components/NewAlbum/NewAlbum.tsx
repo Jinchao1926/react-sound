@@ -1,27 +1,22 @@
 import type { FC } from 'react'
 
-import { shallowEqual } from 'react-redux'
-
 import SectionHeaderNormal from '@/components/SectionHeaderNormal'
+import { useNewAlbumsQuery } from '@/hooks/album/useNewAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
-import { useAppSelector } from '@/store'
 
-import { HotAlbumWrapper } from './style'
+import { NewAlbumWrapper } from './NewAlbum.styles'
 
-export const HotAlbum: FC = () => {
-  const hotAlbums = useAppSelector(
-    (state) => state.album.hotAlbums,
-    shallowEqual
-  )
+export const NewAlbum: FC = () => {
+  const { data } = useNewAlbumsQuery()
 
   return (
-    <HotAlbumWrapper>
+    <NewAlbumWrapper>
       <SectionHeaderNormal title="热门新碟" />
       <div className="album-list">
-        {hotAlbums.slice(0, 10).map((item) => {
+        {data.slice(0, 10).map((item) => {
           return <AlbumCover key={item.id} album={item} />
         })}
       </div>
-    </HotAlbumWrapper>
+    </NewAlbumWrapper>
   )
 }

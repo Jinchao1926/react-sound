@@ -1,0 +1,1 @@
+export { NewAlbum } from './NewAlbum'
