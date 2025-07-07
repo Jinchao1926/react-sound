@@ -43,7 +43,7 @@ const defaultStyles = css`
       color: #999;
     }
 
-    .keyword-list {
+    .tag-list {
       margin-left: 20px;
 
       .item .divider {
@@ -77,11 +77,11 @@ export const SectionHeaderWrapper = styled.div<{
     display: flex;
     align-items: center;
 
-    .keyword-list {
+    .tag-list {
       display: flex;
 
       .item {
-        .keyword {
+        .tag {
           display: inline;
           color: #666;
           &:hover {

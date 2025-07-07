@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 
-import { platforms } from '@/constants/region'
+import { platforms } from '@/constants/platform'
 
 import { ClientListWrapper } from './style'
 
