@@ -1,1 +1,1 @@
-export { PlaylistHeader } from './PlaylistHeader'
+export { default as PlaylistHeader } from './PlaylistHeader'

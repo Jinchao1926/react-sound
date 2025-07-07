@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { usePlaylistCategoriesQuery } from '@/hooks/playlist/usePlaylistCategori
 
 import { PlaylistCategoryWrapper } from './PlaylistCategory.styles'
 
-export const PlaylistCategory: FC<{ category: string }> = ({
+const PlaylistCategory: FC<{ category: string }> = ({
   category: currentCategory,
 }) => {
   const { data: categories } = usePlaylistCategoriesQuery()
@@ -55,3 +55,5 @@ export const PlaylistCategory: FC<{ category: string }> = ({
     </PlaylistCategoryWrapper>
   )
 }
+
+export default memo(PlaylistCategory)

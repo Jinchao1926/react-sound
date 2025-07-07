@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC, useState, useEffect, useMemo, useCallback } from 'react'
 
 import JCPagination from '@/components/Pagination'
 import SongCover from '@/components/SongCover'
@@ -6,19 +6,30 @@ import { useTopPlaylistsQuery } from '@/hooks/playlist/useTopPlaylistsQuery'
 
 import { PlaylistCoversWrapper } from './PlaylistCovers.styles'
 
+const PAGE_SIZE = 35
+
 export const PlaylistCovers: FC<{ category: string }> = ({ category }) => {
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const pageSize = 35
-  const { data: playlists, total } = useTopPlaylistsQuery({
-    category,
-    offset: (currentPage - 1) * pageSize,
-    limit: pageSize,
-  })
+
+  const queryOptions = useMemo(
+    () => ({
+      category,
+      offset: (currentPage - 1) * PAGE_SIZE,
+      limit: PAGE_SIZE,
+    }),
+    [category, currentPage]
+  )
+
+  const { data: playlists, total } = useTopPlaylistsQuery(queryOptions)
 
   // Reset current page when category changes
   useEffect(() => {
     setCurrentPage(1)
   }, [category])
+
+  const handlePageChange = useCallback((page: number) => {
+    setCurrentPage(page)
+  }, [])
 
   return (
     <PlaylistCoversWrapper>
@@ -29,9 +40,9 @@ export const PlaylistCovers: FC<{ category: string }> = ({ category }) => {
       </div>
       <JCPagination
         total={total}
-        pageSize={35}
+        pageSize={PAGE_SIZE}
         current={currentPage}
-        onPageChange={(page) => setCurrentPage(page)}
+        onPageChange={handlePageChange}
       />
     </PlaylistCoversWrapper>
   )

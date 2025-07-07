@@ -15,6 +15,7 @@ export const usePlaylistCategoriesQuery = () => {
 
       return parsePlaylistCategories(data)
     },
+    staleTime: Infinity,
   })
   return {
     ...queryResult,

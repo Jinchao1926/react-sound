@@ -1,14 +1,15 @@
-// import { usePlaylistCategoriesQuery } from '@/hooks/playlist/usePlaylistCategoriesQuery'
+import { useMemo } from 'react'
+
 import { useUrlParams } from '@/hooks/useUrlParams'
 
 export const useSelectedPlaylistCategory = () => {
   const queryParams = useUrlParams()
-  const category = queryParams.get('cat')
-
-  // const { data: categories } = usePlaylistCategoriesQuery()
+  const category = useMemo(
+    () => queryParams.get('cat') || '全部',
+    [queryParams]
+  )
 
   return {
-    selectedCategory: category || '全部',
-    // categories,
+    selectedCategory: category,
   }
 }

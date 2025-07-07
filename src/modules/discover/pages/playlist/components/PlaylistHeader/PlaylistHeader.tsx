@@ -1,4 +1,11 @@
-import React, { FC, useCallback, useState, useEffect, useRef } from 'react'
+import React, {
+  FC,
+  useCallback,
+  useState,
+  useEffect,
+  useRef,
+  memo,
+} from 'react'
 
 import { useLocation } from 'react-router-dom'
 
@@ -7,16 +14,16 @@ import {
   HeaderLeft,
   HeaderRight,
 } from './PlaylistHeader.styles'
-import PlaylistCategory from '../PlaylistCategory'
+import { PlaylistCategory } from '../PlaylistCategory'
 
-export const PlaylistHeader: FC<{ category: string }> = ({ category }) => {
+const PlaylistHeader: FC<{ category: string }> = ({ category }) => {
   const location = useLocation()
   const [showCategory, setShowCategory] = useState<boolean>(false)
   const categoryRef = useRef<HTMLDivElement>(null)
 
   const switchCategory = useCallback(() => {
-    setShowCategory(!showCategory)
-  }, [showCategory])
+    setShowCategory((prev) => !prev)
+  }, [])
 
   // Hide category when query params change
   useEffect(() => {
@@ -36,10 +43,9 @@ export const PlaylistHeader: FC<{ category: string }> = ({ category }) => {
 
     if (showCategory) {
       document.addEventListener('mousedown', handleClickOutside)
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
     }
   }, [showCategory])
 
@@ -63,3 +69,5 @@ export const PlaylistHeader: FC<{ category: string }> = ({ category }) => {
     </PlaylistHeaderWrapper>
   )
 }
+
+export default memo(PlaylistHeader)
