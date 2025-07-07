@@ -11,7 +11,7 @@ interface SectionHeaderProps {
   title: string
   titleHref?: string
   subtitle?: string
-  tags?: string[]
+  tags?: string[] | Array<{ name: string; href: string }>
   tagsHref?: string
   moreHref?: string
 }
@@ -54,17 +54,23 @@ const SectionHeader: FC<SectionHeaderProps> = ({
         )}
         {/* Sub Title */}
         {subtitle && <span className="sub-title">{subtitle}</span>}
-        {/* Keywords */}
-        {tags && tagLinkHref && (
-          <div className="keyword-list">
-            {tags.map((item) => (
-              <div className="item" key={item}>
-                <NavLink className="keyword" to={`${tagLinkHref}${item}`}>
-                  {item}
-                </NavLink>
-                <span className="divider">|</span>
-              </div>
-            ))}
+        {/* Tags */}
+        {tags && (
+          <div className="tag-list">
+            {tags.map((item) => {
+              const isObject = typeof item === 'object'
+              return (
+                <div className="item" key={isObject ? item.name : item}>
+                  <NavLink
+                    className="tag"
+                    to={isObject ? item.href : `${tagLinkHref}${item}`}
+                  >
+                    {isObject ? item.name : item}
+                  </NavLink>
+                  <span className="divider">|</span>
+                </div>
+              )
+            })}
           </div>
         )}
       </div>
