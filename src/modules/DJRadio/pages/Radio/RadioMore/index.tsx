@@ -1,16 +1,16 @@
 import React, { memo } from 'react'
-import type { FC, ReactNode } from 'react'
+import type { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
 import { SectionHeader } from '@/components/SectionHeader'
+import { Radio } from '@/types/djradio'
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { RadioMoreWrapper, RadioMoreItemWrapper } from './style'
 
 interface IProps {
-  children?: ReactNode
-  items: any[]
+  items: Radio[]
 }
 
 const RadioMore: FC<IProps> = (props: IProps) => {

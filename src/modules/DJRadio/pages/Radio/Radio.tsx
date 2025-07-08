@@ -4,11 +4,10 @@ import { shallowEqual } from 'react-redux'
 
 import { useAppDispatch, useAppSelector } from '@/store'
 
-import { RadioProgramWrapper } from './Podcast.styles'
+import { RadioWrapper } from './Radio.styles'
 import RadioMore from './RadioMore'
-import { PodcastCategoryHeader } from '../../components/PodcastCategoryHeader'
+import { RadioCategoryHeader } from '../../components/RadioCategoryHeader'
 import {
-  fetchRadioCategoriesAsync,
   fetchRecommendProgramsAsync,
   fetchRankedProgramsAsync,
   fetchRecommendedRadioCategoriesAsync,
@@ -16,7 +15,7 @@ import {
 import ProgramRanking from '../ProgramRanking'
 import ProgramRecommend from '../ProgramRecommend'
 
-const Podcast: FC = () => {
+const Radio: FC = () => {
   const categories = useAppSelector(
     (state) => state.radio.recommendCategories,
     shallowEqual
@@ -24,15 +23,14 @@ const Podcast: FC = () => {
 
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(fetchRadioCategoriesAsync())
     dispatch(fetchRecommendProgramsAsync(true))
     dispatch(fetchRankedProgramsAsync(true))
     dispatch(fetchRecommendedRadioCategoriesAsync())
   }, [dispatch])
 
   return (
-    <RadioProgramWrapper>
-      <PodcastCategoryHeader />
+    <RadioWrapper>
+      <RadioCategoryHeader />
       <div className="programs">
         <ProgramRecommend simpleVersion={true} />
         <ProgramRanking simpleVersion={true} />
@@ -40,8 +38,8 @@ const Podcast: FC = () => {
       {categories.map((item) => (
         <RadioMore key={item.length > 0 && item[0].id} items={item} />
       ))}
-    </RadioProgramWrapper>
+    </RadioWrapper>
   )
 }
 
-export default memo(Podcast)
+export default memo(Radio)

@@ -1,21 +1,21 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { PodcastCategory } from '@/types/djradio'
+import { RadioCategory } from '@/types/djradio'
 
-interface PodcastCategoriesApiResponse {
-  categories: PodcastCategory[]
+interface RadioCategoriesApiResponse {
+  categories: RadioCategory[]
   code: number
 }
 
-export const usePodcastCategoriesQuery = () => {
+export const useRadioCategoriesQuery = () => {
   const axios = useAxios()
 
   const queryResult = useQuery({
-    queryKey: ['podcastCategories'],
+    queryKey: ['radioCategories'],
     queryFn: async () => {
       const { data } =
-        await axios.get<PodcastCategoriesApiResponse>('/dj/catelist')
+        await axios.get<RadioCategoriesApiResponse>('/dj/catelist')
 
       return data.categories
     },

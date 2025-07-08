@@ -7,7 +7,7 @@ import { useAppDispatch } from '@/store'
 import RadioRanking from './RadioRanking'
 import RadioRecommend from './RadioRecommend'
 import { DJRadioCategoryWrapper } from './style'
-import { PodcastCategoryHeader } from '../../components/PodcastCategoryHeader'
+import { RadioCategoryHeader } from '../../components/RadioCategoryHeader'
 import {
   changeHotTotalAction,
   fetchHotRadiosAsync,
@@ -31,7 +31,7 @@ const RadioCategory: FC = () => {
 
   return (
     <DJRadioCategoryWrapper>
-      <PodcastCategoryHeader id={Number(categoryId)} />
+      <RadioCategoryHeader id={Number(categoryId)} />
       <RadioRecommend />
       <RadioRanking categoryId={Number(categoryId)} />
     </DJRadioCategoryWrapper>
