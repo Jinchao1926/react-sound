@@ -6,7 +6,7 @@ import type { RouteObject } from 'react-router-dom'
 const DJRadio = lazy(() => import('../index'))
 
 // DJRadio 子页面组件
-const Program = lazy(() => import('../pages/Program'))
+const Podcast = lazy(() => import('../pages/Podcast'))
 const ProgramRecommend = lazy(() => import('../pages/ProgramRecommend'))
 const ProgramRanking = lazy(() => import('../pages/ProgramRanking'))
 const RadioCategory = lazy(() => import('../pages/RadioCategory'))
@@ -17,7 +17,7 @@ export const djRadioRoutes: RouteObject = {
   children: [
     {
       path: '/discover/djradio',
-      element: <Program />,
+      element: <Podcast />,
     },
     {
       path: '/discover/djradio/recommend',
