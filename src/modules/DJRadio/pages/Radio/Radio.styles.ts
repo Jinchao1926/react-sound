@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const RadioProgramWrapper = styled.div`
+export const RadioWrapper = styled.div`
   .programs {
     margin-top: 20px;
     display: flex;

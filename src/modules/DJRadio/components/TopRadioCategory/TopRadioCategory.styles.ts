@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const RadioMoreWrapper = styled.div`
+export const TopRadioCategoryWrapper = styled.div`
   margin-top: 35px;
 
   .radio-list {
@@ -10,7 +10,7 @@ export const RadioMoreWrapper = styled.div`
   }
 `
 
-export const RadioMoreItemWrapper = styled.div`
+export const TopRadioCategoryItem = styled.div`
   display: flex;
   width: 435px;
   height: 120px;

@@ -35,11 +35,11 @@ export function fetchHotRadios(
 }
 
 // 电台 - 推荐分类
-export function fetchRecommendedRadioCategories() {
-  return rsRequest.get({
-    url: '/dj/category/recommend',
-  })
-}
+// export function fetchRecommendedRadioCategories() {
+//   return rsRequest.get({
+//     url: '/dj/category/recommend',
+//   })
+// }
 
 // 推荐节目
 export function fetchRecommendedPrograms(limit: number = 50) {

@@ -1,11 +1,11 @@
 import { useMemo } from 'react'
 
-import { usePodcastCategoriesQuery } from '@/hooks/djradio/usePodcastCategoriesQuery'
+import { useRadioCategoriesQuery } from '@/hooks/djradio/useRadioCategoriesQuery'
 
 const PAGE_SIZE = 18
 
-export const usePodcastCategories = () => {
-  const { data: categories } = usePodcastCategoriesQuery()
+export const useRadioCategories = () => {
+  const { data: categories } = useRadioCategoriesQuery()
 
   const paginatedCategories = useMemo(() => {
     if (categories.length === 0) return []

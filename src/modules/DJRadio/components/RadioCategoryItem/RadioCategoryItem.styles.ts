@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const PodcastCategoryLink = styled(NavLink)`
+export const RadioCategoryLink = styled(NavLink)`
   width: 70px;
   height: 72px;
   text-align: center;
@@ -25,14 +25,14 @@ export const PodcastCategoryLink = styled(NavLink)`
   }
 `
 
-export const PodcastCategoryImage = styled.div<{ bgImage: string }>`
+export const RadioCategoryImage = styled.div<{ bgImage: string }>`
   width: 48px;
   height: 48px;
   margin: 0 auto;
   background-image: url(${(props) => props.bgImage});
 `
 
-export const PodcastCategoryName = styled.span`
+export const RadioCategoryName = styled.span`
   display: block;
   margin-top: -1px;
 `

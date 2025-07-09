@@ -2,18 +2,18 @@ import React, { FC, useState, useRef, ElementRef } from 'react'
 
 import { Carousel } from 'antd'
 
-import { PodcastCategoryHeaderWrapper } from './PodcastCategoryHeader.styles'
-import { usePodcastCategories } from '../../hooks/usePodcastCategories'
-import { PodcastCategoryItem } from '../PodcastCategoryItem'
+import { RadioCategoryHeaderWrapper } from './RadioCategoryHeader.styles'
+import { useRadioCategories } from '../../hooks/useRadioCategories'
+import { RadioCategoryItem } from '../RadioCategoryItem'
 
-export const PodcastCategoryHeader: FC<{ id?: number }> = ({ id }) => {
+export const RadioCategoryHeader: FC<{ id?: number }> = ({ id }) => {
   const [currentPage, setCurrentPage] = useState<number>(0)
   const pageRef = useRef<ElementRef<typeof Carousel>>(null)
 
-  const { paginatedCategories } = usePodcastCategories()
+  const { paginatedCategories } = useRadioCategories()
 
   return (
-    <PodcastCategoryHeaderWrapper>
+    <RadioCategoryHeaderWrapper>
       <button
         className="sprite_radio_slider arrow left"
         disabled={currentPage === 0}
@@ -28,7 +28,7 @@ export const PodcastCategoryHeader: FC<{ id?: number }> = ({ id }) => {
         {paginatedCategories.map((pageCategories, pageIndex) => (
           <div className="category-page" key={pageIndex}>
             {pageCategories.map((item) => (
-              <PodcastCategoryItem
+              <RadioCategoryItem
                 key={item.id}
                 category={item}
                 selected={id === item.id}
@@ -42,6 +42,6 @@ export const PodcastCategoryHeader: FC<{ id?: number }> = ({ id }) => {
         onClick={() => pageRef.current?.next()}
         disabled={currentPage === paginatedCategories.length - 1}
       />
-    </PodcastCategoryHeaderWrapper>
+    </RadioCategoryHeaderWrapper>
   )
 }

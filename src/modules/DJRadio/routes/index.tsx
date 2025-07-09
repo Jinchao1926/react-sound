@@ -6,7 +6,7 @@ import type { RouteObject } from 'react-router-dom'
 const DJRadio = lazy(() => import('../index'))
 
 // DJRadio 子页面组件
-const Podcast = lazy(() => import('../pages/Podcast'))
+const Podcast = lazy(() => import('../pages/Radio'))
 const ProgramRecommend = lazy(() => import('../pages/ProgramRecommend'))
 const ProgramRanking = lazy(() => import('../pages/ProgramRanking'))
 const RadioCategory = lazy(() => import('../pages/RadioCategory'))

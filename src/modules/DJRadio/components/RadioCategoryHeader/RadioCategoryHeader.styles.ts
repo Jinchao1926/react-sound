@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const PodcastCategoryHeaderWrapper = styled.div`
+export const RadioCategoryHeaderWrapper = styled.div`
   /* margin: 0 -40px; */
   /* display: flex; */
   position: relative;
