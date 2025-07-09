@@ -1,31 +1,22 @@
 import React, { FC, memo, useEffect } from 'react'
 
-import { shallowEqual } from 'react-redux'
-
-import { useAppDispatch, useAppSelector } from '@/store'
+import { useAppDispatch } from '@/store'
 
 import { RadioWrapper } from './Radio.styles'
-import RadioMore from './RadioMore'
 import { RadioCategoryHeader } from '../../components/RadioCategoryHeader'
+import { TopRadioCategory } from '../../components/TopRadioCategory'
 import {
   fetchRecommendProgramsAsync,
   fetchRankedProgramsAsync,
-  fetchRecommendedRadioCategoriesAsync,
 } from '../../store'
 import ProgramRanking from '../ProgramRanking'
 import ProgramRecommend from '../ProgramRecommend'
 
 const Radio: FC = () => {
-  const categories = useAppSelector(
-    (state) => state.radio.recommendCategories,
-    shallowEqual
-  )
-
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(fetchRecommendProgramsAsync(true))
     dispatch(fetchRankedProgramsAsync(true))
-    dispatch(fetchRecommendedRadioCategoriesAsync())
   }, [dispatch])
 
   return (
@@ -35,9 +26,7 @@ const Radio: FC = () => {
         <ProgramRecommend simpleVersion={true} />
         <ProgramRanking simpleVersion={true} />
       </div>
-      {categories.map((item) => (
-        <RadioMore key={item.length > 0 && item[0].id} items={item} />
-      ))}
+      <TopRadioCategory />
     </RadioWrapper>
   )
 }
