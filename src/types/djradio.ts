@@ -142,15 +142,7 @@ export interface Radio {
   categoryId: number
   category: string
   secondCategory: string
+  lastProgramId: number
+  lastProgramName: string
+  lastProgramCreateTime: number
 }
-
-/** 电台节目 */
-// export interface Program {
-//   id: number
-//   name: string
-//   coverUrl: string
-//   createTime: number
-//   duration: number
-//   listenerCount: number
-//   radio: Radio
-// }

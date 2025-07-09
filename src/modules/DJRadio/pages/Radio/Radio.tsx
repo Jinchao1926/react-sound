@@ -6,16 +6,16 @@ import { RadioWrapper } from './Radio.styles'
 import { RadioCategoryHeader } from '../../components/RadioCategoryHeader'
 import { TopRadioCategory } from '../../components/TopRadioCategory'
 import {
-  fetchRecommendProgramsAsync,
+  // fetchRecommendProgramsAsync,
   fetchRankedProgramsAsync,
 } from '../../store'
 import ProgramRanking from '../ProgramRanking'
-import ProgramRecommend from '../ProgramRecommend'
+import { ProgramRecommend } from '../ProgramRecommend/ProgramRecommend'
 
 const Radio: FC = () => {
   const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(fetchRecommendProgramsAsync(true))
+    // dispatch(fetchRecommendProgramsAsync(true))
     dispatch(fetchRankedProgramsAsync(true))
   }, [dispatch])
 
@@ -23,7 +23,7 @@ const Radio: FC = () => {
     <RadioWrapper>
       <RadioCategoryHeader />
       <div className="programs">
-        <ProgramRecommend simpleVersion={true} />
+        <ProgramRecommend isCompact={true} />
         <ProgramRanking simpleVersion={true} />
       </div>
       <TopRadioCategory />

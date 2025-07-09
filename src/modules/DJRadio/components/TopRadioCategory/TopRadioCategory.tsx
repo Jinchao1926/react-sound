@@ -25,10 +25,7 @@ export const TopRadioCategory: FC = () => {
           <div className="radio-list">
             {category.djRadios.map((radio) => (
               <TopRadioCategoryItem key={radio.id}>
-                <NavLink
-                  className="left"
-                  to={`/discover/djradio?id=${radio.id}`}
-                >
+                <NavLink className="left" to={`/djradio?id=${radio.id}`}>
                   <img src={formatSizedImage(radio.picUrl, 120)} alt="" />
                 </NavLink>
                 <div className="right">
