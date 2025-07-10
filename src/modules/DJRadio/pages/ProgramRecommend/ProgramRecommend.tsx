@@ -12,7 +12,6 @@ export const ProgramRecommend: FC<{ isCompact?: boolean }> = ({
   isCompact = false,
 }) => {
   const { data } = useRecommendedProgramsQuery()
-
   const { subTitle, morePath, programs } = useMemo(
     () => ({
       subTitle: isCompact ? undefined : '（每日更新）',

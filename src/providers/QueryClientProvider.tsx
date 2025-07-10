@@ -20,8 +20,8 @@ const defaultOptions: DefaultOptions = {
     retry: (failureCount, error) =>
       failureCount < 3 &&
       !(axios.isAxiosError(error) && error?.response?.status === 401),
-    staleTime: 2 * 60 * 1000, // 2 mins
-    gcTime: 15 * 60 * 1000, // 15 mins
+    staleTime: 5 * 60 * 1000, // 5 mins
+    gcTime: 30 * 60 * 1000, // 30 mins
   },
 }
 
