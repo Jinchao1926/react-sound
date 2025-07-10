@@ -8,6 +8,7 @@ import RadioPlayCover from '@/components/RadioPlayCover'
 import RankingTrend from '@/components/RankingTrend'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useTopProgramsQuery } from '@/hooks/program/useTopProgramsQuery'
+import { Program } from '@/types/program'
 import { padLeft, formatMonthDay } from '@/utils/format-utils'
 
 import {
@@ -30,22 +31,19 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
     [isCompact, data, updateTime]
   )
 
-  const renderProgramContent = (item: any, index: number) => {
+  const renderProgramContent = (program: Program) => {
     const nameLink = (
-      <NavLink
-        className="item name no-wrap"
-        to={`/program?id=${item.program.radio.lastProgramId}`}
-      >
-        {item.program.name}
+      <NavLink className="item name no-wrap" to={`/program?id=${program.id}`}>
+        {program.name}
       </NavLink>
     )
 
-    const brandLink = (
+    const radioLink = (
       <NavLink
         className="item brand no-wrap"
-        to={`/radio?id=${item.program.radio.id}`}
+        to={`/djradio?id=${program.radio.id}`}
       >
-        {item.program.dj.brand}
+        {program.radio.name}
       </NavLink>
     )
 
@@ -53,7 +51,7 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
       return (
         <div className="content">
           {nameLink}
-          {brandLink}
+          {radioLink}
         </div>
       )
     }
@@ -61,12 +59,12 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
     return (
       <>
         {nameLink}
-        {brandLink}
+        {radioLink}
         <div className="category">
           <NavLink
-            to={`/discover/djradio/category?id=${item.program.radio.categoryId}`}
+            to={`/discover/djradio/category?id=${program.radio.categoryId}`}
           >
-            {item.program.radio.category}
+            {program.radio.category}
           </NavLink>
         </div>
       </>
@@ -100,14 +98,14 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
               <RankingTrend rank={item.rank} lastRank={item.lastRank} />
             </div>
             <RadioPlayCover coverUrl={item.program.coverUrl} />
-            {renderProgramContent(item, index)}
+            {renderProgramContent(item.program)}
             <RankingHotWrapper
               className="sprite_table"
               marginLeft={isCompact ? 0 : 28}
             >
               <i
                 className="sprite_table"
-                style={{ width: `${item.score / 600}%` }}
+                style={{ width: `${item.score / 1800}%` }}
               />
             </RankingHotWrapper>
           </div>

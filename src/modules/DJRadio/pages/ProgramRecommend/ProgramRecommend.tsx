@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 import RadioPlayCover from '@/components/RadioPlayCover'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useRecommendedProgramsQuery } from '@/hooks/program/useRecommendedProgramsQuery'
+import { Program } from '@/types/program'
 
 import { ProgramRecommendWrapper } from './ProgramRecommend.styles'
 
@@ -21,22 +22,19 @@ export const ProgramRecommend: FC<{ isCompact?: boolean }> = ({
     [isCompact, data]
   )
 
-  const renderProgramContent = (item: any) => {
+  const renderProgramContent = (item: Program) => {
     const nameLink = (
-      <NavLink
-        className="item name no-wrap"
-        to={`/program?id=${item.radio.lastProgramId}`}
-      >
+      <NavLink className="item name no-wrap" to={`/program?id=${item.id}`}>
         {item.name}
       </NavLink>
     )
 
-    const brandLink = (
+    const radioLink = (
       <NavLink
         className="item brand no-wrap"
         to={`/djradio?id=${item.radio.id}`}
       >
-        {item.dj.brand}
+        {item.radio.name}
       </NavLink>
     )
 
@@ -44,7 +42,7 @@ export const ProgramRecommend: FC<{ isCompact?: boolean }> = ({
       return (
         <div className="content">
           {nameLink}
-          {brandLink}
+          {radioLink}
         </div>
       )
     }
@@ -52,7 +50,7 @@ export const ProgramRecommend: FC<{ isCompact?: boolean }> = ({
     return (
       <>
         {nameLink}
-        {brandLink}
+        {radioLink}
         <span className="item play-count">播放{item.listenerCount}</span>
         <span className="item thumbs-up">赞{item.likedCount || 0}</span>
       </>
