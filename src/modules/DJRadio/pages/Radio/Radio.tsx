@@ -1,30 +1,18 @@
-import React, { FC, memo, useEffect } from 'react'
-
-import { useAppDispatch } from '@/store'
+import React, { FC, memo } from 'react'
 
 import { RadioWrapper } from './Radio.styles'
 import { RadioCategoryHeader } from '../../components/RadioCategoryHeader'
 import { TopRadioCategory } from '../../components/TopRadioCategory'
-import {
-  fetchRecommendProgramsAsync,
-  fetchRankedProgramsAsync,
-} from '../../store'
-import ProgramRanking from '../ProgramRanking'
-import ProgramRecommend from '../ProgramRecommend'
+import { ProgramRanking } from '../ProgramRanking'
+import { ProgramRecommend } from '../ProgramRecommend'
 
 const Radio: FC = () => {
-  const dispatch = useAppDispatch()
-  useEffect(() => {
-    dispatch(fetchRecommendProgramsAsync(true))
-    dispatch(fetchRankedProgramsAsync(true))
-  }, [dispatch])
-
   return (
     <RadioWrapper>
       <RadioCategoryHeader />
       <div className="programs">
-        <ProgramRecommend simpleVersion={true} />
-        <ProgramRanking simpleVersion={true} />
+        <ProgramRecommend isCompact={true} />
+        <ProgramRanking isCompact={true} />
       </div>
       <TopRadioCategory />
     </RadioWrapper>

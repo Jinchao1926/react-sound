@@ -24,7 +24,7 @@ export const djRadioRoutes: RouteObject = {
       element: <ProgramRecommend />,
     },
     {
-      path: '/discover/djradio/ranking',
+      path: '/discover/djradio/rank',
       element: <ProgramRanking />,
     },
     {
