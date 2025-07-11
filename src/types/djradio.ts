@@ -145,4 +145,15 @@ export interface Radio {
   lastProgramId: number
   lastProgramName: string
   lastProgramCreateTime: number
+  programCount: number
+  subCount: number
+  dj: {
+    userId: number
+    nickname: string
+    avatarUrl: string
+    avatarDetail?: {
+      identityLevel: number
+      identityIconUrl: string
+    }
+  }
 }
