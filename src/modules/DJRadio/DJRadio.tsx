@@ -1,10 +1,10 @@
-import React, { FC, Suspense, memo } from 'react'
+import React, { FC, Suspense } from 'react'
 
 import { Outlet } from 'react-router-dom'
 
 import { DJRadioWrapper } from './DJRadio.styles'
 
-const DJRadio: FC = () => {
+export const DJRadio: FC = () => {
   return (
     <DJRadioWrapper className="wrap-v2">
       <Suspense fallback="">
@@ -14,5 +14,3 @@ const DJRadio: FC = () => {
     </DJRadioWrapper>
   )
 }
-
-export default memo(DJRadio)

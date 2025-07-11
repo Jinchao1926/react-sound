@@ -111,11 +111,20 @@ export const RankingHotWrapper = styled.div<{ marginLeft: number }>`
   height: 8px;
   background-position: 0 -240px;
 
-  i {
+  .progress {
     position: absolute;
     height: 100%;
     top: 0;
     left: 0;
     background-position: 0 -304px;
+
+    .right-corner {
+      position: absolute;
+      top: 0;
+      right: -4px;
+      width: 4px;
+      height: 100%;
+      background-position: right -318px;
+    }
   }
 `

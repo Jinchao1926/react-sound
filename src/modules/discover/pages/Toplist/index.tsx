@@ -1,3 +1,1 @@
-import { Toplist } from './Toplist'
-
-export default Toplist
+export { Toplist as default } from './Toplist'

@@ -104,9 +104,13 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
               marginLeft={isCompact ? 0 : 28}
             >
               <i
-                className="sprite_table"
-                style={{ width: `${item.score / 1800}%` }}
-              />
+                className="sprite_table progress"
+                style={{
+                  width: `${(item.score / programs[0].score) * 96}%`,
+                }}
+              >
+                <i className="sprite_table right-corner" />
+              </i>
             </RankingHotWrapper>
           </div>
         ))}

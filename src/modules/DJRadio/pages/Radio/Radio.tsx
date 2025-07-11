@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 
 import { RadioWrapper } from './Radio.styles'
 import { RadioCategoryHeader } from '../../components/RadioCategoryHeader'
@@ -6,7 +6,7 @@ import { TopRadioCategory } from '../../components/TopRadioCategory'
 import { ProgramRanking } from '../ProgramRanking'
 import { ProgramRecommend } from '../ProgramRecommend'
 
-const Radio: FC = () => {
+export const Radio: FC = () => {
   return (
     <RadioWrapper>
       <RadioCategoryHeader />
@@ -18,5 +18,3 @@ const Radio: FC = () => {
     </RadioWrapper>
   )
 }
-
-export default memo(Radio)

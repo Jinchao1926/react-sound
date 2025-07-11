@@ -1,3 +1,1 @@
-import { Recommend } from './Recommend'
-
-export default Recommend
+export { Recommend as default } from './Recommend'

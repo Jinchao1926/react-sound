@@ -1,3 +1,1 @@
-import { Playlist } from './Playlist'
-
-export default Playlist
+export { Playlist as default } from './Playlist'
