@@ -1,1 +1,1 @@
-export { default } from './DJRadio'
+export { DJRadio as default } from './DJRadio'

@@ -12,7 +12,7 @@ export const usePlaylistDetailQuery = (id?: number) => {
   const axios = useAxios()
 
   const queryResult = useQuery({
-    queryKey: ['playlistDetail', { id }],
+    queryKey: ['playlistDetail', id],
     queryFn: async () => {
       const { data } = await axios.get<PlaylistDetailApiResponse>(
         '/playlist/detail',

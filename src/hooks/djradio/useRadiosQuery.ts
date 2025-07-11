@@ -13,7 +13,7 @@ export const useRadiosQuery = (type: number) => {
   const axios = useAxios()
 
   const queryResult = useQuery({
-    queryKey: ['radioCategories', type],
+    queryKey: ['radios', type],
     queryFn: async () => {
       const { data } = await axios.get<RadiosApiResponse>(
         '/dj/recommend/type',
@@ -24,7 +24,7 @@ export const useRadiosQuery = (type: number) => {
         }
       )
 
-      return data.djRadios
+      return data.djRadios.slice(0, 5)
     },
   })
   return {

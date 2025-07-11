@@ -7,6 +7,6 @@ export const useSelectedRadioCategory = () => {
   const categoryId = useMemo(() => queryParams.get('id'), [queryParams])
 
   return {
-    selectedCategoryId: categoryId,
+    categoryId: categoryId ? Number(categoryId) : undefined,
   }
 }

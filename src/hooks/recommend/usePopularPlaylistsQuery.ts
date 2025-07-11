@@ -12,7 +12,7 @@ export const usePopularPlaylistsQuery = (limit: number = 8) => {
   const axios = useAxios()
 
   const queryResult = useQuery({
-    queryKey: ['popularPlaylists', { limit }],
+    queryKey: ['popularPlaylists', limit],
     queryFn: async () => {
       const { data } = await axios.get<PopularPlaylistsApiResponse>(
         '/personalized',

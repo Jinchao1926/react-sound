@@ -1,3 +1,1 @@
-import { Album } from './Album'
-
-export default Album
+export { Album as default } from './Album'
