@@ -18,7 +18,7 @@ export const useAllAlbumsQuery = (options: {
   const axios = useAxios()
 
   const queryResult = useQuery({
-    queryKey: ['allAlbums', area, offset, limit],
+    queryKey: ['allAlbums', { area, offset, limit }],
     queryFn: async () => {
       const { data } = await axios.get<AllAlbumsApiResponse>('/album/new', {
         params: { area, offset, limit },

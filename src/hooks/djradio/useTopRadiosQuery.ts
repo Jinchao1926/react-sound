@@ -19,7 +19,7 @@ export const useTopRadiosQuery = (options: {
   const axios = useAxios()
 
   const queryResult = useQuery({
-    queryKey: ['topRadios', cateId, offset, limit],
+    queryKey: ['topRadios', { cateId, offset, limit }],
     queryFn: async () => {
       const { data } = await axios.get<TopRadiosApiResponse>('/dj/radio/hot', {
         params: {

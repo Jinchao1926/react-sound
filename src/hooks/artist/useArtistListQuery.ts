@@ -39,7 +39,7 @@ export const useArtistListQuery = (options: {
   const axios = useAxios()
 
   const queryResult = useQuery({
-    queryKey: ['artistList', type, area, offset, limit],
+    queryKey: ['artistList', { type, area, offset, limit }],
     queryFn: async () => {
       const { data } = await axios.get<ArtistListApiResponse>('/artist/list', {
         params: { type, area, offset, limit, initial },

@@ -20,7 +20,7 @@ export const useTopPlaylistsQuery = (options: {
   const axios = useAxios()
 
   const queryResult = useQuery({
-    queryKey: ['topPlaylists', category, offset, limit],
+    queryKey: ['topPlaylists', { category, offset, limit }],
     queryFn: async () => {
       const { data } = await axios.get<TopPlaylistsApiResponse>(
         '/top/playlist',

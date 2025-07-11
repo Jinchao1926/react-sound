@@ -14,7 +14,7 @@ export const useTopArtistQuery = (offset: number = 0, limit: number = 5) => {
   const axios = useAxios()
 
   const queryResult = useQuery({
-    queryKey: ['topArtists', offset, limit],
+    queryKey: ['topArtists', { offset, limit }],
     queryFn: async () => {
       const { data } = await axios.get<TopArtistsApiResponse>('/top/artists', {
         params: {
