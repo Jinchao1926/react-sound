@@ -24,7 +24,7 @@ export const useRadiosQuery = (type: number) => {
         }
       )
 
-      return data.djRadios
+      return data.djRadios.slice(0, 5)
     },
   })
   return {
