@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const SongCoverWrapper = styled.div`
+export const PlaylistCoverWrapper = styled.div`
   margin: 20px 0 10px;
   width: 140px;
 

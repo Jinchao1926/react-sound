@@ -1,8 +1,8 @@
 import React, { FC, useState, useEffect, useMemo, useCallback } from 'react'
 
 import JCPagination from '@/components/Pagination'
-import SongCover from '@/components/SongCover'
 import { useTopPlaylistsQuery } from '@/hooks/playlist/useTopPlaylistsQuery'
+import { PlaylistCover } from '@/modules/Discover/components/PlaylistCover'
 
 import { PlaylistCoversWrapper } from './PlaylistCovers.styles'
 
@@ -34,9 +34,9 @@ export const PlaylistCovers: FC<{ category: string }> = ({ category }) => {
   return (
     <PlaylistCoversWrapper>
       <div className="list">
-        {playlists.map((item) => {
-          return <SongCover key={item.id} info={item} showSource={true} />
-        })}
+        {playlists.map((item) => (
+          <PlaylistCover key={item.id} playlist={item} />
+        ))}
       </div>
       <JCPagination
         total={total}
