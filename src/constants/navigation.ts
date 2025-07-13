@@ -1,5 +1,11 @@
+export interface RootNavigation {
+  title: string
+  type: 'path' | 'link'
+  link: string
+}
+
 // Navigation Header
-export const rootNavigations = [
+export const rootNavigations: RootNavigation[] = [
   {
     title: '发现音乐',
     type: 'path',
