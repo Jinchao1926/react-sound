@@ -4,10 +4,10 @@ import { Tooltip } from 'antd'
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
 
-import RankingTrend from '@/components/RankingTrend'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useTopProgramsQuery } from '@/hooks/program/useTopProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
+import { RankingTrend } from '@/modules/DJRadio/components/RankingTrend'
 import { Program } from '@/types/program'
 import { padLeft, formatMonthDay } from '@/utils/format-utils'
 
