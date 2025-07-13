@@ -2,7 +2,7 @@ import { FC, useMemo } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import UserLink from '@/components/UserLink'
+import { UserLink } from '@/components/UserLink'
 import { Album } from '@/types/music'
 import { formatSizedImage } from '@/utils/format-utils'
 
