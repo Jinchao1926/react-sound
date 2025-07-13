@@ -2,9 +2,9 @@ import React, { FC, useMemo } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import RadioPlayCover from '@/components/RadioPlayCover'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useRecommendedProgramsQuery } from '@/hooks/program/useRecommendedProgramsQuery'
+import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { Program } from '@/types/program'
 
 import { ProgramRecommendWrapper } from './ProgramRecommend.styles'
@@ -63,7 +63,7 @@ export const ProgramRecommend: FC<{ isCompact?: boolean }> = ({
       <div className="program-list">
         {programs.map((item) => (
           <div className="program-item" key={item.id}>
-            <RadioPlayCover coverUrl={item.coverUrl} />
+            <ProgramCover coverUrl={item.coverUrl} />
             {renderProgramContent(item)}
             <NavLink
               className="category"

@@ -6,7 +6,7 @@ import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import SongOperationBar from '@/components/SongOperationBar'
-import UserLink from '@/components/UserLink'
+import { UserLink } from '@/components/UserLink'
 import { addSongToPlaylistAction, playSongAction } from '@/modules/Player/store'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'

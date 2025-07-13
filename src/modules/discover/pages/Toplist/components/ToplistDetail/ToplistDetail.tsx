@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import UserLink from '@/components/UserLink'
+import { UserLink } from '@/components/UserLink'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatMinuteSecond, formatSizedImage } from '@/utils/format-utils'
 

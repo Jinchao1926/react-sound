@@ -1,13 +1,13 @@
-import React, { FC, Suspense, memo } from 'react'
+import React, { FC, Suspense } from 'react'
 
 import { useRoutes } from 'react-router-dom'
 
-import AppFooter from '@/components/AppFooter'
-import AppHeader from '@/components/AppHeader'
+import { AppFooter } from '@/components/AppFooter'
+import { AppHeader } from '@/components/AppHeader'
 import LockablePlayer from '@/modules/Player'
 import routes from '@/routers'
 
-const App: FC = () => {
+export const App: FC = () => {
   return (
     <div>
       <AppHeader />
@@ -20,5 +20,3 @@ const App: FC = () => {
     </div>
   )
 }
-
-export default memo(App)
