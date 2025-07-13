@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const RadioPlayCoverWrapper = styled.div`
+export const ProgramCoverWrapper = styled.div`
   position: relative;
   width: 40px;
   height: 40px;
