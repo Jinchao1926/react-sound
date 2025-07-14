@@ -1,6 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import {
+  fetchLyricAsync,
+  fetchSongAsync,
+} from '@/modules/Detail/pages/Song/service/song-storage'
+import {
   fetchCurrentSongIndex,
   fetchPlayMode,
   fetchPlaylist,
@@ -8,10 +12,6 @@ import {
   storePlayMode,
   storePlaylist,
 } from '@/modules/Player/service/player-storage'
-import {
-  fetchLyricAsync,
-  fetchSongAsync,
-} from '@/modules/Song/service/song-storage'
 import { RootState } from '@/store'
 
 import {

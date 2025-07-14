@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import type { TypedUseSelectorHook } from 'react-redux'
 
 // Player
+import { songReducer } from '@/modules/Detail/pages/Song/store'
 import { playerReducer } from '@/modules/Player/store'
-import { songReducer } from '@/modules/Song/store'
 
 const store = configureStore({
   reducer: {
