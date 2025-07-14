@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { ILyric } from '@/utils/parser-lyric'
+import { LyricLine } from '@/types/lyric'
 
 import { PlayMode, PlayModeType } from '../type/PlayMode'
 
@@ -12,7 +12,7 @@ interface IPlayerState {
   // 当前歌曲索引
   currentSongIndex: number
   // 当前歌词
-  currentLyric?: ILyric
+  currentLyric?: LyricLine[]
   // 当前播放歌词索引（第几行）
   lyricLineIndex: number
   // 播放模式

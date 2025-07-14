@@ -1,4 +1,4 @@
-import { parserLyric } from '@/utils/parser-lyric'
+import { parserLyric } from '@/utils/lyric-parser'
 import { getStorage, setStorage } from '@/utils/session-storage'
 
 import {

@@ -25,6 +25,7 @@ export const usePlaylistDetailQuery = (id?: number) => {
       return data.playlist
     },
     enabled: !!id,
+    staleTime: Infinity,
   })
 
   return queryResult
