@@ -1,13 +1,3 @@
-// export function fetchSimilarPlaylists(songId: string) {
-//   const id = songId
-//   return rsRequest.get({
-//     url: '/simi/playlist',
-//     params: {
-//       id,
-//     },
-//   })
-// }
-
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'

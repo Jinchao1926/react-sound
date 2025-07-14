@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 import { useAppDispatch } from '@/store'
 
-import SimilarSong from './components/SimilarSong'
+import { SimilarSong } from './components/SimilarSong'
 import SongDetail from './components/SongDetail'
 import { SongPlaylist } from './components/SongPlaylist/'
 import { UserWiki } from './components/UserWiki'
@@ -29,7 +29,7 @@ export const Song: FC = () => {
       </SongLeft>
       <SongRight>
         <SongPlaylist songId={songId} />
-        <SimilarSong />
+        <SimilarSong songId={songId} />
         <MultiDownload />
         <UserWiki songId={songId} />
       </SongRight>

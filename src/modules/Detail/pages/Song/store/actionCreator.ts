@@ -5,13 +5,13 @@ import {
   changeLyricAction,
   // changeCommentsAction,
   // changeSimilarPlaylistsAction,
-  changeSimilarSongsAction,
+  // changeSimilarSongsAction,
 } from './reducer'
 import {
   fetchSongAsync,
   fetchLyricAsync,
   // fetchSimilarPlaylistsAsync,
-  fetchSimilarSongsAsync,
+  // fetchSimilarSongsAsync,
 } from '../service/song-storage'
 
 // 获取歌曲详情
@@ -37,9 +37,9 @@ export const fetchSongDatasAsync = createAsyncThunk(
     // }
 
     // 4. 相似歌曲
-    const songs = await fetchSimilarSongsAsync(id)
-    if (songs) {
-      dispatch(changeSimilarSongsAction(songs))
-    }
+    // const songs = await fetchSimilarSongsAsync(id)
+    // if (songs) {
+    //   dispatch(changeSimilarSongsAction(songs))
+    // }
   }
 )
