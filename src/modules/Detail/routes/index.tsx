@@ -14,11 +14,19 @@ export const detailRoutes: RouteObject[] = [
     element: <Song />,
   },
   {
+    path: '/album',
+    element: <Song />,
+  },
+  {
     path: '/song',
     element: <Song />,
   },
   {
     path: '/mv',
+    element: <Song />,
+  },
+  {
+    path: '/user/home',
     element: <Song />,
   },
 ]

@@ -3,9 +3,9 @@ import { FC, useEffect } from 'react'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 import { useAppDispatch } from '@/store'
 
-import SimilarPlaylist from './components/SimilarPlaylist'
 import SimilarSong from './components/SimilarSong'
 import SongDetail from './components/SongDetail'
+import { SongPlaylist } from './components/SongPlaylist/'
 import { UserWiki } from './components/UserWiki'
 import { SongLeft, SongRight, SongWrapper } from './Song.styles'
 import { fetchSongDatasAsync } from './store'
@@ -28,7 +28,7 @@ export const Song: FC = () => {
         <SongDetail />
       </SongLeft>
       <SongRight>
-        <SimilarPlaylist />
+        <SongPlaylist songId={songId} />
         <SimilarSong />
         <MultiDownload />
         <UserWiki songId={songId} />

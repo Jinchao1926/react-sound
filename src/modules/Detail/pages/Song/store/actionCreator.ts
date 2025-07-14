@@ -4,13 +4,13 @@ import {
   changeSongAction,
   changeLyricAction,
   // changeCommentsAction,
-  changeSimilarPlaylistsAction,
+  // changeSimilarPlaylistsAction,
   changeSimilarSongsAction,
 } from './reducer'
 import {
   fetchSongAsync,
   fetchLyricAsync,
-  fetchSimilarPlaylistsAsync,
+  // fetchSimilarPlaylistsAsync,
   fetchSimilarSongsAsync,
 } from '../service/song-storage'
 
@@ -31,10 +31,10 @@ export const fetchSongDatasAsync = createAsyncThunk(
     }
 
     // 3. 相似歌单
-    const playlists = await fetchSimilarPlaylistsAsync(id)
-    if (playlists) {
-      dispatch(changeSimilarPlaylistsAction(playlists))
-    }
+    // const playlists = await fetchSimilarPlaylistsAsync(id)
+    // if (playlists) {
+    //   dispatch(changeSimilarPlaylistsAction(playlists))
+    // }
 
     // 4. 相似歌曲
     const songs = await fetchSimilarSongsAsync(id)

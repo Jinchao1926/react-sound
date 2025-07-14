@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const SimilarPlaylistWrapper = styled.div`
+export const SongPlaylistWrapper = styled.div`
   margin-bottom: 40px;
 
   .playlists {
@@ -8,7 +8,7 @@ export const SimilarPlaylistWrapper = styled.div`
   }
 `
 
-export const SimilarPlaylistItem = styled.div`
+export const SongPlaylistItem = styled.div`
   display: flex;
   width: 200px;
   height: 50px;
