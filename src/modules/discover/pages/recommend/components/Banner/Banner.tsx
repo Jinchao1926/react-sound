@@ -52,32 +52,28 @@ export const Banner: FC = () => {
             beforeChange={handleBeforeChange}
             afterChange={handleAfterChange}
           >
-            {banners.map((item) => {
-              return (
-                <div className="banner-item" key={item.imageUrl}>
-                  <img
-                    className="image"
-                    src={item.imageUrl}
-                    alt={item.typeTitle}
-                  />
-                </div>
-              )
-            })}
+            {banners.map((item) => (
+              <div className="banner-item" key={item.imageUrl}>
+                <img
+                  className="image"
+                  src={item.imageUrl}
+                  alt={item.typeTitle}
+                />
+              </div>
+            ))}
           </Carousel>
           {/* 自定义走马灯 Dot */}
           <ul className="dots">
-            {banners.map((item, idx) => {
-              return (
-                <li key={item.imageUrl}>
-                  <button
-                    className={classNames('item', {
-                      active: currentIndex === idx,
-                    })}
-                    onClick={() => bannerRef.current?.goTo(idx)}
-                  />
-                </li>
-              )
-            })}
+            {banners.map((item, idx) => (
+              <li key={item.imageUrl}>
+                <button
+                  className={classNames('item', {
+                    active: currentIndex === idx,
+                  })}
+                  onClick={() => bannerRef.current?.goTo(idx)}
+                />
+              </li>
+            ))}
           </ul>
         </BannerLeft>
         <BannerRight>

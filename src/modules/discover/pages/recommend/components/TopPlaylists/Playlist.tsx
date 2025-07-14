@@ -55,33 +55,31 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
         </div>
       </PlaylistHeaderWrapper>
       <PlaylistSongListWrapper>
-        {tracks.slice(0, 10).map((song, index) => {
-          return (
-            <div className="item" key={song.id}>
-              <span className="index">{index + 1}</span>
-              <NavLink className="name no-wrap" to={`/song?id=${song.id}`}>
-                {song.name}
-              </NavLink>
-              <div className="actions">
-                <button
-                  className="sprite_02 btn play"
-                  title="播放"
-                  onClick={() => playMusic(song)}
-                />
-                <button
-                  className="sprite_icon2 btn addTo"
-                  title="添加到播放列表"
-                  onClick={() => addMusicToPlaylist(song)}
-                />
-                <button
-                  className="sprite_02 btn collect"
-                  title="收藏"
-                  onClick={() => collectMusic(song)}
-                />
-              </div>
+        {tracks.slice(0, 10).map((song, index) => (
+          <div className="item" key={song.id}>
+            <span className="index">{index + 1}</span>
+            <NavLink className="name no-wrap" to={`/song?id=${song.id}`}>
+              {song.name}
+            </NavLink>
+            <div className="actions">
+              <button
+                className="sprite_02 btn play"
+                title="播放"
+                onClick={() => playMusic(song)}
+              />
+              <button
+                className="sprite_icon2 btn addTo"
+                title="添加到播放列表"
+                onClick={() => addMusicToPlaylist(song)}
+              />
+              <button
+                className="sprite_02 btn collect"
+                title="收藏"
+                onClick={() => collectMusic(song)}
+              />
             </div>
-          )
-        })}
+          </div>
+        ))}
       </PlaylistSongListWrapper>
       <PlaylistFooterWrapper>
         <NavLink to={rankingUrl}>{'查看全部>'}</NavLink>

@@ -15,21 +15,19 @@ export const PopularAnchor: FC = () => {
         <SectionHeader variant="simple" title="热门主播" />
       </div>
       <div className="anchor-list">
-        {popularAnchors.map((item) => {
-          return (
-            <NavLink className="anchor" key={item.picUrl} to={item.url}>
-              <img
-                className="avatar"
-                src={formatSizedImage(item.picUrl, 40)}
-                alt=""
-              />
-              <div className="info">
-                <span className="name">{item.name}</span>
-                <span className="desc no-wrap">{item.position}</span>
-              </div>
-            </NavLink>
-          )
-        })}
+        {popularAnchors.map((item) => (
+          <NavLink className="anchor" key={item.picUrl} to={item.url}>
+            <img
+              className="avatar"
+              src={formatSizedImage(item.picUrl, 40)}
+              alt=""
+            />
+            <div className="info">
+              <span className="name">{item.name}</span>
+              <span className="desc no-wrap">{item.position}</span>
+            </div>
+          </NavLink>
+        ))}
       </div>
     </PopularAnchorWrapper>
   )

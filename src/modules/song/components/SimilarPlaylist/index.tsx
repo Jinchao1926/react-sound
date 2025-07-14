@@ -27,35 +27,33 @@ const SimilarPlaylist: FC<IProps> = () => {
     <SimilarPlaylistWrapper>
       <SectionHeader variant="simple" title="包含这首歌的歌单" />
       <div className="playlists">
-        {similarPlaylists.map((item) => {
-          return (
-            <SimilarPlaylistItem key={item.id}>
-              <NavLink className="cover" to={`/playlist?id=${item.id}`}>
-                <img
-                  src={formatSizedImage(item.coverImgUrl, 50)}
-                  alt={item.name}
-                />
+        {similarPlaylists.map((item) => (
+          <SimilarPlaylistItem key={item.id}>
+            <NavLink className="cover" to={`/playlist?id=${item.id}`}>
+              <img
+                src={formatSizedImage(item.coverImgUrl, 50)}
+                alt={item.name}
+              />
+            </NavLink>
+            <div className="info">
+              <NavLink
+                className="playlist no-wrap"
+                to={`/playlist?id=${item.id}`}
+              >
+                {item.name}
               </NavLink>
-              <div className="info">
+              <p className="author no-wrap">
+                by
                 <NavLink
-                  className="playlist no-wrap"
-                  to={`/playlist?id=${item.id}`}
+                  className="author-name"
+                  to={`/user/home?id=${item.creator.id}`}
                 >
-                  {item.name}
+                  {item.creator.nickname}
                 </NavLink>
-                <p className="author no-wrap">
-                  by
-                  <NavLink
-                    className="author-name"
-                    to={`/user/home?id=${item.creator.id}`}
-                  >
-                    {item.creator.nickname}
-                  </NavLink>
-                </p>
-              </div>
-            </SimilarPlaylistItem>
-          )
-        })}
+              </p>
+            </div>
+          </SimilarPlaylistItem>
+        ))}
       </div>
     </SimilarPlaylistWrapper>
   )

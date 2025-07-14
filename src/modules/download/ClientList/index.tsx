@@ -12,14 +12,12 @@ interface IProps {
 const ClientList: FC<IProps> = () => {
   return (
     <ClientListWrapper className="clients">
-      {platforms.map((item) => {
-        return (
-          <div className="client-item" key={item.title}>
-            <img className="client-icon" src={item.picUrl} alt={item.title} />
-            {item.title}
-          </div>
-        )
-      })}
+      {platforms.map((item) => (
+        <div className="client-item" key={item.title}>
+          <img className="client-icon" src={item.picUrl} alt={item.title} />
+          {item.title}
+        </div>
+      ))}
     </ClientListWrapper>
   )
 }

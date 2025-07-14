@@ -21,27 +21,25 @@ export const SignedArtist: FC = () => {
         />
       </div>
       <div className="singer-list">
-        {data.map((item) => {
-          return (
-            <NavLink
-              className="singer"
-              key={item.id}
-              to={`/discover/artist?id=${item.id}`}
-            >
-              <img
-                className="avatar"
-                src={formatSizedImage(item.picUrl, 62)}
-                alt=""
-              />
-              <div className="info">
-                <h4 className="name">{item.name}</h4>
-                <p className="desc no-wrap">
-                  {item.alias.join(' ') || item.name}
-                </p>
-              </div>
-            </NavLink>
-          )
-        })}
+        {data.map((item) => (
+          <NavLink
+            className="singer"
+            key={item.id}
+            to={`/discover/artist?id=${item.id}`}
+          >
+            <img
+              className="avatar"
+              src={formatSizedImage(item.picUrl, 62)}
+              alt=""
+            />
+            <div className="info">
+              <h4 className="name">{item.name}</h4>
+              <p className="desc no-wrap">
+                {item.alias.join(' ') || item.name}
+              </p>
+            </div>
+          </NavLink>
+        ))}
       </div>
       <div className="footer">
         <a href="/#">申请成为网易音乐人</a>
