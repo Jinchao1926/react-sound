@@ -1,17 +1,10 @@
-import type { FC, ReactNode } from 'react'
-import { memo } from 'react'
+import type { FC } from 'react'
 
 import { SectionHeader } from '@/components/SectionHeader'
 
-import { UserWikiWrapper } from './style'
+import { UserWikiWrapper } from './UserWiki.styles'
 
-interface IProps {
-  children?: ReactNode
-  songId: string
-}
-
-const UserWiki: FC<IProps> = (props: IProps) => {
-  const { songId } = props
+export const UserWiki: FC<{ songId: number }> = ({ songId }) => {
   return (
     <UserWikiWrapper>
       <SectionHeader variant="simple" title="用户wiki" />
@@ -36,5 +29,3 @@ const UserWiki: FC<IProps> = (props: IProps) => {
     </UserWikiWrapper>
   )
 }
-
-export default memo(UserWiki)

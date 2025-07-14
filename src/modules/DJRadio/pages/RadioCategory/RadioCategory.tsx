@@ -1,13 +1,14 @@
 import { FC } from 'react'
 
+import { useQueryParamId } from '@/hooks/useQueryParamId'
+
 import { DJRadioCategoryWrapper } from './RadioCategory.styles'
 import { RadioRanking } from './RadioRanking/RadioRanking'
 import { RadioRecommend } from './RadioRecommend/RadioRecommend'
 import { RadioCategoryHeader } from '../../components/RadioCategoryHeader'
-import { useSelectedRadioCategory } from '../../hooks/useSelectedRadioCategory'
 
 export const RadioCategory: FC = () => {
-  const { categoryId } = useSelectedRadioCategory()
+  const { id: categoryId } = useQueryParamId()
 
   return (
     <DJRadioCategoryWrapper>

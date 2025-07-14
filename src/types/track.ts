@@ -120,3 +120,300 @@ export interface Track {
   alia: string[]
   mv: number
 }
+
+/*
+{
+    "version": 5,
+    "lyric": "[00:00.00] 演唱 : 单依纯\n[00:00.52] 作曲 : Mirian Nervo/Liv Hervo/Greg\n[00:01.04] 原唱 : 蔡依林\n[00:01.57] 音乐总监 : 陈建骐\n[00:02.09] 音响总监 : 何飚\n[00:02.62] 音乐设计 : 王皓\n[00:03.14] 制作人 : 常石磊\n[00:03.66] 改编编曲 : 常石磊\n[00:04.19] 管弦乐编写 : 李超\n[00:04.71] 混音 : 林梦洋\n[00:05.24] 乐队队长/键盘 : 吴加恩\n[00:05.76] 键盘 : Euywein杨展鸿\n[00:06.28] 吉他 : 王汉威\n[00:06.81] 鼓 : Chris Trzcinski\n[00:07.33] 打击乐 : 郑瑀\n[00:07.86] 和音 : 林灵/张炜/叶俊/陈鹏飞\n[00:08.38] PGM : 杨阳\n[00:08.90] 长号 : Terence Hsieh谢燕辉\n[00:09.43] 萨克斯/长笛 : 刘晓光\n[00:09.95] 小号 : 胡丹峰\n[00:10.48] 弦乐 : 曜爆甘弦乐团\n[00:11.01]旋转旋转\n[00:11.55]旋转旋转\n[00:17.01]月光放肆在染色的窗边\n[00:20.97]转眼魔幻所有视觉\n[00:24.72]再一杯那古老神秘恒河水\n[00:28.74]我镶在额头的猫眼\n[00:31.20]揭开了庆典\n[00:33.00]为爱囚禁数千年的关节\n[00:36.72]正诉说遗忘的爱恋\n[00:40.77]听所有喜悲系在我的腰间\n[00:44.67]让那些画面再出现再回到从前\n[00:49.92]旋转旋转\n[00:50.91]旋转跳跃我闭着眼\n[00:54.69]尘嚣看不见你沉醉了没\n[00:59.01]白雪夏夜我不停歇\n[01:02.76]模糊了年岁时光的沙漏被我踩碎\n[01:10.95]故事刻画在旋转的指尖\n[01:14.91]是谁在痴痴的追随\n[01:18.78]这一夜那破旧皇宫的台阶\n[01:22.71]我忘情抖落的汗水点亮了庆典\n[01:26.97]一层层一层层就把我紧紧包围\n[01:30.90]我要让这世界忘记了睡\n[01:34.71]你的心事倒映在倒映在我的眉间\n[01:38.64]放弃的快乐都实现难过都摧毁\n[01:46.89]旋转跳跃我闭着眼\n[01:50.70]尘嚣看不见你沉醉了没\n[01:55.05]白雪夏夜我不停歇\n[01:58.71]模糊了年岁时光的沙漏被我踩碎\n[02:03.93]旋转跳跃我闭着眼\n[02:06.66]尘嚣看不见你沉醉了没\n[02:10.98]白雪夏夜我不停歇\n[02:14.73]模糊了年岁舞娘的喜悲没人看见\n[02:23.11]天怪乖旋转旋转\n[02:27.09]地怪乖旋转旋转\n[02:30.99]天怪乖旋转旋转\n[02:35.06]地怪乖旋转旋转\n[02:39.03]天怪乖旋转旋转\n[02:43.16]地怪乖旋转旋转\n[02:46.84]天怪乖旋转旋转\n[02:52.16]地怪乖\n[02:57.66]所有喜悲系在我的腰间\n[03:00.98]让那些画面再出现回到从前\n[03:43.58]旋转跳跃我闭着眼\n[03:46.69]尘嚣看不见你沉醉了没\n[03:50.76]白雪夏夜我不停歇\n[03:54.72]模糊了年岁时光的沙漏被我踩碎\n[03:59.50]旋转跳跃我闭着眼\n[04:02.47]尘嚣看不见你沉醉了没\n[04:06.90]白雪夏夜我不停歇\n[04:10.71]模糊了年岁时光的沙漏被我踩碎\n[04:15.72]旋转跳跃我闭着眼\n[04:18.75]尘嚣看不见你沉醉了没\n[04:22.92]白雪夏夜我不停歇\n[04:26.70]模糊了年岁舞娘的喜悲没人看见\n"
+}*/
+export interface Lyric {
+  version: number
+  lyric: string
+}
+
+/*
+{
+    "starred": false,
+    "popularity": 100,
+    "starredNum": 0,
+    "playedNum": 0,
+    "dayPlays": 0,
+    "hearTime": 0,
+    "mp3Url": "http://m2.music.126.net/hmZoNQaqzZALvVp0rE7faA==/0.mp3",
+    "rtUrls": null,
+    "mark": 17716748288,
+    "noCopyrightRcmd": null,
+    "originCoverType": 2,
+    "originSongSimpleData": {
+        "songId": 185700,
+        "name": "思念是一种病",
+        "artists": [
+            {
+                "id": 6453,
+                "name": "张震岳"
+            },
+            {
+                "id": 7214,
+                "name": "蔡健雅"
+            }
+        ],
+        "albumMeta": {
+            "id": 18878,
+            "name": "OK"
+        }
+    },
+    "songJumpInfo": null,
+    "artists": [
+        {
+            "img1v1Id": 18686200114669624,
+            "topicPerson": 0,
+            "picId": 0,
+            "musicSize": 0,
+            "albumSize": 0,
+            "briefDesc": "",
+            "picUrl": "",
+            "img1v1Url": "https://p1.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg",
+            "followed": false,
+            "trans": "",
+            "alias": [],
+            "name": "单依纯",
+            "id": 29802127,
+            "img1v1Id_str": "18686200114669622"
+        }
+    ],
+    "copyrightId": 4586661,
+    "album": {
+        "songs": [],
+        "paid": false,
+        "onSale": false,
+        "mark": 0,
+        "awardTags": null,
+        "displayTags": null,
+        "artists": [
+            {
+                "img1v1Id": 18686200114669624,
+                "topicPerson": 0,
+                "picId": 0,
+                "musicSize": 0,
+                "albumSize": 0,
+                "briefDesc": "",
+                "picUrl": "",
+                "img1v1Url": "https://p1.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg",
+                "followed": false,
+                "trans": "",
+                "alias": [],
+                "name": "歌手2025",
+                "id": 34299694,
+                "img1v1Id_str": "18686200114669622"
+            }
+        ],
+        "copyrightId": 4586661,
+        "picId": 109951171366805170,
+        "artist": {
+            "img1v1Id": 18686200114669624,
+            "topicPerson": 0,
+            "picId": 0,
+            "musicSize": 0,
+            "albumSize": 0,
+            "briefDesc": "",
+            "picUrl": "",
+            "img1v1Url": "https://p1.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg",
+            "followed": false,
+            "trans": "",
+            "alias": [],
+            "name": "",
+            "id": 0,
+            "img1v1Id_str": "18686200114669622"
+        },
+        "briefDesc": "",
+        "publishTime": 1751040000000,
+        "company": "芒果TV",
+        "picUrl": "https://p1.music.126.net/RKL82QpIzPLwmXp256yT1A==/109951171366805167.jpg",
+        "commentThreadId": "R_AL_3_276538125",
+        "blurPicUrl": "https://p1.music.126.net/RKL82QpIzPLwmXp256yT1A==/109951171366805167.jpg",
+        "companyId": 0,
+        "pic": 109951171366805170,
+        "status": 1,
+        "subType": "现场版",
+        "alias": [],
+        "description": "",
+        "tags": "",
+        "name": "歌手2025 第7期",
+        "id": 276538125,
+        "type": "专辑",
+        "size": 14,
+        "picId_str": "109951171366805167"
+    },
+    "score": 100,
+    "hMusic": {
+        "volumeDelta": -30878,
+        "playTime": 307626,
+        "bitrate": 320000,
+        "dfsId": 0,
+        "sr": 48000,
+        "name": "",
+        "id": 12528896777,
+        "size": 12307245,
+        "extension": "mp3"
+    },
+    "mMusic": {
+        "volumeDelta": -28297,
+        "playTime": 307626,
+        "bitrate": 192000,
+        "dfsId": 0,
+        "sr": 48000,
+        "name": "",
+        "id": 12528896779,
+        "size": 7384365,
+        "extension": "mp3"
+    },
+    "lMusic": {
+        "volumeDelta": -26596,
+        "playTime": 307626,
+        "bitrate": 128000,
+        "dfsId": 0,
+        "sr": 48000,
+        "name": "",
+        "id": 12528896772,
+        "size": 4922925,
+        "extension": "mp3"
+    },
+    "audition": null,
+    "copyFrom": "",
+    "ringtone": "",
+    "disc": "01",
+    "no": 4,
+    "fee": 8,
+    "commentThreadId": "R_SO_4_2720029246",
+    "mvid": 0,
+    "crbt": null,
+    "rtUrl": null,
+    "ftype": 0,
+    "bMusic": {
+        "volumeDelta": -26596,
+        "playTime": 307626,
+        "bitrate": 128000,
+        "dfsId": 0,
+        "sr": 48000,
+        "name": "",
+        "id": 12528896772,
+        "size": 4922925,
+        "extension": "mp3"
+    },
+    "sqMusic": {
+        "volumeDelta": -30856,
+        "playTime": 307626,
+        "bitrate": 949065,
+        "dfsId": 0,
+        "sr": 48000,
+        "name": "",
+        "id": 12528896775,
+        "size": 36500340,
+        "extension": "flac"
+    },
+    "hrMusic": {
+        "volumeDelta": -30856,
+        "playTime": 307626,
+        "bitrate": 1719315,
+        "dfsId": 0,
+        "sr": 48000,
+        "name": "",
+        "id": 12528896780,
+        "size": 66119020,
+        "extension": "flac"
+    },
+    "rtype": 0,
+    "rurl": null,
+    "position": 0,
+    "duration": 307626,
+    "alias": [],
+    "status": 0,
+    "name": "思念是一种病 (live)",
+    "id": 2720029246,
+    "videoInfo": {
+        "moreThanOne": false,
+        "video": null
+    },
+    "recommendReason": "相似歌曲",
+    "privilege": {
+        "id": 2720029246,
+        "fee": 8,
+        "payed": 0,
+        "st": 0,
+        "pl": 320000,
+        "dl": 0,
+        "sp": 7,
+        "cp": 1,
+        "subp": 1,
+        "cs": false,
+        "maxbr": 999000,
+        "fl": 320000,
+        "toast": false,
+        "flag": 2068484,
+        "preSell": false,
+        "playMaxbr": 999000,
+        "downloadMaxbr": 999000,
+        "maxBrLevel": "sky",
+        "playMaxBrLevel": "sky",
+        "downloadMaxBrLevel": "sky",
+        "plLevel": "exhigh",
+        "dlLevel": "none",
+        "flLevel": "exhigh",
+        "rscl": null,
+        "freeTrialPrivilege": {
+            "resConsumable": false,
+            "userConsumable": false,
+            "listenType": null,
+            "cannotListenReason": null,
+            "playReason": null,
+            "freeLimitTagType": null
+        },
+        "rightSource": 0,
+        "chargeInfoList": [
+            {
+                "rate": 128000,
+                "chargeUrl": null,
+                "chargeMessage": null,
+                "chargeType": 0
+            },
+            {
+                "rate": 192000,
+                "chargeUrl": null,
+                "chargeMessage": null,
+                "chargeType": 0
+            },
+            {
+                "rate": 320000,
+                "chargeUrl": null,
+                "chargeMessage": null,
+                "chargeType": 0
+            },
+            {
+                "rate": 999000,
+                "chargeUrl": null,
+                "chargeMessage": null,
+                "chargeType": 1
+            },
+            {
+                "rate": 1999000,
+                "chargeUrl": null,
+                "chargeMessage": null,
+                "chargeType": 1
+            }
+        ],
+        "code": 0,
+        "message": null,
+        "plLevels": null,
+        "dlLevels": null,
+        "ignoreCache": null
+    },
+    "alg": "alg-music-rec-pp-sim_song-si-I2I"
+}*/
+export interface Song {
+  id: string
+  name: string
+  artists: {
+    id: number
+    name: string
+  }[]
+}

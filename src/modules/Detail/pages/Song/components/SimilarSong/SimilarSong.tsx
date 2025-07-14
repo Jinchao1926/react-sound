@@ -1,28 +1,17 @@
-import type { FC, ReactNode } from 'react'
-import { memo } from 'react'
+import type { FC } from 'react'
 
-import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import { SectionHeader } from '@/components/SectionHeader'
 import { UserLink } from '@/components/UserLink'
+import { useSimilarSongsQuery } from '@/hooks/song/useSimilarSongsQuery'
 import { addSongToPlaylistAction, playSongAction } from '@/modules/Player/store'
-import { useAppDispatch, useAppSelector } from '@/store'
+import { useAppDispatch } from '@/store'
 
-import { SimilarSongItem, SimilarSongWrapper } from './style'
+import { SimilarSongItem, SimilarSongWrapper } from './SimilarSong.styles'
 
-interface IProps {
-  children?: ReactNode
-}
-
-const SimilarSong: FC<IProps> = () => {
-  // redux
-  const { similarSongs } = useAppSelector(
-    (state) => ({
-      similarSongs: state.song.similarSongs,
-    }),
-    shallowEqual
-  )
+export const SimilarSong: FC<{ songId: number }> = ({ songId }) => {
+  const { data } = useSimilarSongsQuery(songId)
 
   // handles
   const dispatch = useAppDispatch()
@@ -37,22 +26,22 @@ const SimilarSong: FC<IProps> = () => {
     <SimilarSongWrapper>
       <SectionHeader variant="simple" title="相似歌曲" />
       <div className="songs">
-        {similarSongs.map((item: { id: string; name: string; artists: [] }) => (
-          <SimilarSongItem key={item.id}>
+        {data.map((song) => (
+          <SimilarSongItem key={song.id}>
             <div className="info">
-              <NavLink className="song no-wrap" to={`/song?id=${item.id}`}>
-                {item.name}
+              <NavLink className="song no-wrap" to={`/song?id=${song.id}`}>
+                {song.name}
               </NavLink>
-              <UserLink users={item.artists} />
+              <UserLink users={song.artists} />
             </div>
             <div className="control">
               <button
                 className="btn sprite_icon3 play"
-                onClick={() => playMusic(item.id)}
+                onClick={() => playMusic(song.id)}
               />
               <button
                 className="btn sprite_icon3 addto"
-                onClick={() => addMusicToPlaylist(item.id)}
+                onClick={() => addMusicToPlaylist(song.id)}
               />
             </div>
           </SimilarSongItem>
@@ -61,5 +50,3 @@ const SimilarSong: FC<IProps> = () => {
     </SimilarSongWrapper>
   )
 }
-
-export default memo(SimilarSong)

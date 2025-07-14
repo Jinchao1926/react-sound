@@ -1,0 +1,1 @@
+export { UserWiki } from './UserWiki'
