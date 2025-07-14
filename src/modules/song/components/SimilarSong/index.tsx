@@ -37,28 +37,26 @@ const SimilarSong: FC<IProps> = () => {
     <SimilarSongWrapper>
       <SectionHeader variant="simple" title="相似歌曲" />
       <div className="songs">
-        {similarSongs.map((item: { id: string; name: string; artists: [] }) => {
-          return (
-            <SimilarSongItem key={item.id}>
-              <div className="info">
-                <NavLink className="song no-wrap" to={`/song?id=${item.id}`}>
-                  {item.name}
-                </NavLink>
-                <UserLink users={item.artists} />
-              </div>
-              <div className="control">
-                <button
-                  className="btn sprite_icon3 play"
-                  onClick={() => playMusic(item.id)}
-                />
-                <button
-                  className="btn sprite_icon3 addto"
-                  onClick={() => addMusicToPlaylist(item.id)}
-                />
-              </div>
-            </SimilarSongItem>
-          )
-        })}
+        {similarSongs.map((item: { id: string; name: string; artists: [] }) => (
+          <SimilarSongItem key={item.id}>
+            <div className="info">
+              <NavLink className="song no-wrap" to={`/song?id=${item.id}`}>
+                {item.name}
+              </NavLink>
+              <UserLink users={item.artists} />
+            </div>
+            <div className="control">
+              <button
+                className="btn sprite_icon3 play"
+                onClick={() => playMusic(item.id)}
+              />
+              <button
+                className="btn sprite_icon3 addto"
+                onClick={() => addMusicToPlaylist(item.id)}
+              />
+            </div>
+          </SimilarSongItem>
+        ))}
       </div>
     </SimilarSongWrapper>
   )

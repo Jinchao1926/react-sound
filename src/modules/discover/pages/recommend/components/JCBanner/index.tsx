@@ -120,18 +120,16 @@ export const JCBanner: FC = () => {
             </SwitchTransition>
           </div>
           <ul className="dots">
-            {banners.map((item, idx) => {
-              return (
-                <li key={item.imageUrl}>
-                  <button
-                    className={classNames('item', {
-                      active: currentIndex === idx,
-                    })}
-                    onClick={() => handleGoPressed(idx)}
-                  />
-                </li>
-              )
-            })}
+            {banners.map((item, idx) => (
+              <li key={item.imageUrl}>
+                <button
+                  className={classNames('item', {
+                    active: currentIndex === idx,
+                  })}
+                  onClick={() => handleGoPressed(idx)}
+                />
+              </li>
+            ))}
           </ul>
         </JCBannerLeft>
         <JCBannerRight>

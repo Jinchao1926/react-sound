@@ -13,9 +13,9 @@ export const NewAlbum: FC = () => {
     <NewAlbumWrapper>
       <SectionHeader title="热门新碟" />
       <div className="album-list">
-        {data.slice(0, 10).map((item) => {
-          return <AlbumCover key={item.id} album={item} />
-        })}
+        {data.slice(0, 10).map((item) => (
+          <AlbumCover key={item.id} album={item} />
+        ))}
       </div>
     </NewAlbumWrapper>
   )

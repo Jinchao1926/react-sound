@@ -32,17 +32,13 @@ export const NewAlbum: FC = () => {
           dots={false}
           autoplay={false}
         >
-          {[0, 1].map((idx) => {
-            return (
-              <div className="album-page" key={idx}>
-                {albums.slice(idx * 5, (idx + 1) * 5).map((album) => {
-                  return (
-                    <AlbumCover key={album.id} album={album} isLarge={false} />
-                  )
-                })}
-              </div>
-            )
-          })}
+          {[0, 1].map((idx) => (
+            <div className="album-page" key={idx}>
+              {albums.slice(idx * 5, (idx + 1) * 5).map((album) => (
+                <AlbumCover key={album.id} album={album} isLarge={false} />
+              ))}
+            </div>
+          ))}
         </Carousel>
         <div
           className="arrow arrow-right sprite_02"

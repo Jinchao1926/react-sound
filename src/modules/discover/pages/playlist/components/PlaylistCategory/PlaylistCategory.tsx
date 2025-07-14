@@ -23,33 +23,29 @@ const PlaylistCategory: FC<{ category: string }> = ({
             全部风格
           </NavLink>
         </div>
-        {categories.map((category, index) => {
-          return (
-            <dl key={category.id}>
-              <dt>
-                <i className={'sprite_icon2 icon icon' + index} />
-                {category.name}
-              </dt>
-              <dd>
-                {category.subcategories.map((item) => {
-                  return (
-                    <div className="item-wrapper" key={item.name}>
-                      <NavLink
-                        className={classNames('name', {
-                          selected: currentCategory === item.name,
-                        })}
-                        to={`/discover/playlist?cat=${item.name}`}
-                      >
-                        {item.name}
-                      </NavLink>
-                      <span className="divider">|</span>
-                    </div>
-                  )
-                })}
-              </dd>
-            </dl>
-          )
-        })}
+        {categories.map((category, index) => (
+          <dl key={category.id}>
+            <dt>
+              <i className={'sprite_icon2 icon icon' + index} />
+              {category.name}
+            </dt>
+            <dd>
+              {category.subcategories.map((item) => (
+                <div className="item-wrapper" key={item.name}>
+                  <NavLink
+                    className={classNames('name', {
+                      selected: currentCategory === item.name,
+                    })}
+                    to={`/discover/playlist?cat=${item.name}`}
+                  >
+                    {item.name}
+                  </NavLink>
+                  <span className="divider">|</span>
+                </div>
+              ))}
+            </dd>
+          </dl>
+        ))}
       </div>
       <div className="footer sprite_category_bg" />
     </PlaylistCategoryWrapper>

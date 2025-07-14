@@ -12,13 +12,11 @@ const Discover: FC = () => {
     <DiscoverWrapper>
       <div className="top">
         <div className="nav-list wrap-v1">
-          {discoverNavigations.map((item) => {
-            return (
-              <div className="nav-item" key={item.title}>
-                <NavLink to={item.link}>{item.title}</NavLink>
-              </div>
-            )
-          })}
+          {discoverNavigations.map((item) => (
+            <div className="nav-item" key={item.title}>
+              <NavLink to={item.link}>{item.title}</NavLink>
+            </div>
+          ))}
         </div>
       </div>
       <Suspense fallback="">
