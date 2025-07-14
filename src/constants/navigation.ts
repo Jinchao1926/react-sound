@@ -58,7 +58,7 @@ export const discoverNavigations = [
     link: '/discover/playlist',
   },
   {
-    title: '博客',
+    title: '播客',
     link: '/discover/djradio',
   },
   {
