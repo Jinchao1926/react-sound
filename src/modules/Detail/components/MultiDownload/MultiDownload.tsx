@@ -1,15 +1,10 @@
-import type { FC, ReactNode } from 'react'
-import { memo } from 'react'
+import type { FC } from 'react'
 
 import { SectionHeader } from '@/components/SectionHeader'
 
-import { MultiDownloadWrapper } from './style'
+import { MultiDownloadWrapper } from './MultiDownload.styles'
 
-interface IProps {
-  children?: ReactNode
-}
-
-const MultiDownload: FC<IProps> = () => {
+export const MultiDownload: FC = () => {
   return (
     <MultiDownloadWrapper>
       <SectionHeader variant="simple" title="网易云音乐多端下载" />
@@ -37,5 +32,3 @@ const MultiDownload: FC<IProps> = () => {
     </MultiDownloadWrapper>
   )
 }
-
-export default memo(MultiDownload)

@@ -3,13 +3,13 @@ import { FC, useEffect } from 'react'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 import { useAppDispatch } from '@/store'
 
-import MultiDownload from './components/MultiDownload'
 import SimilarPlaylist from './components/SimilarPlaylist'
 import SimilarSong from './components/SimilarSong'
 import SongDetail from './components/SongDetail'
-import UserWiki from './components/UserWiki'
+import { UserWiki } from './components/UserWiki'
 import { SongLeft, SongRight, SongWrapper } from './Song.styles'
 import { fetchSongDatasAsync } from './store'
+import { MultiDownload } from '../../components/MultiDownload'
 
 export const Song: FC = () => {
   const { id: songId } = useQueryParamId()
@@ -20,6 +20,8 @@ export const Song: FC = () => {
     dispatch(fetchSongDatasAsync(String(songId)))
   }, [dispatch, songId])
 
+  if (!songId) return null
+
   return (
     <SongWrapper className="wrap-v2">
       <SongLeft>
@@ -29,7 +31,7 @@ export const Song: FC = () => {
         <SimilarPlaylist />
         <SimilarSong />
         <MultiDownload />
-        <UserWiki songId={String(songId) || ''} />
+        <UserWiki songId={songId} />
       </SongRight>
     </SongWrapper>
   )
