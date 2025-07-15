@@ -5,7 +5,10 @@ import { NavLink } from 'react-router-dom'
 import { SectionHeader } from '@/components/SectionHeader'
 import { UserLink } from '@/components/UserLink'
 import { useSimilarSongsQuery } from '@/hooks/song/useSimilarSongsQuery'
-import { addSongToPlaylistAction, playSongAction } from '@/modules/Player/store'
+import {
+  addSongToPlaylistAction,
+  playSongAction,
+} from '@/modules/StickyPlayerBar/store'
 import { useAppDispatch } from '@/store'
 
 import { SimilarSongItem, SimilarSongWrapper } from './SimilarSong.styles'

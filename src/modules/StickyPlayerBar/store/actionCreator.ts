@@ -11,7 +11,7 @@ import {
   storeCurrentSongIndex,
   storePlayMode,
   storePlaylist,
-} from '@/modules/Player/service/player-storage'
+} from '@/modules/StickyPlayerBar/service/player-storage'
 import { RootState } from '@/store'
 
 import {

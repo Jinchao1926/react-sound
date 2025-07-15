@@ -9,7 +9,7 @@ import { downloadRoutes } from '@/modules/Download/routes'
 import { friendRoutes } from '@/modules/Friend/routes'
 import { mineRoutes } from '@/modules/Mine/routes'
 
-const routes: RouteObject[] = [
+export const routes: RouteObject[] = [
   {
     path: '/',
     element: <Navigate to="/discover" />,
@@ -20,5 +20,3 @@ const routes: RouteObject[] = [
   downloadRoutes,
   detailRoutes,
 ]
-
-export default routes
