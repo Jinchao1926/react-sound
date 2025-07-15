@@ -18,7 +18,7 @@ const routes: RouteObject[] = [
   mineRoutes,
   friendRoutes,
   downloadRoutes,
-  ...detailRoutes,
+  detailRoutes,
 ]
 
 export default routes
