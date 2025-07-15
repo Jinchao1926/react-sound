@@ -7,7 +7,10 @@ import SongOperationBar from '@/components/SongOperationBar'
 import { UserLink } from '@/components/UserLink'
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
-import { addSongToPlaylistAction, playSongAction } from '@/modules/Player/store'
+import {
+  addSongToPlaylistAction,
+  playSongAction,
+} from '@/modules/StickyPlayerBar/store'
 import { useAppDispatch } from '@/store'
 import { formatSizedImage } from '@/utils/format-utils'
 
@@ -84,14 +87,14 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
           <span className="icon sprite_icon2" />
           <span>{song.name}</span>
         </div>
-        <p className="singer">
+        <div className="singer">
           歌手：
           <UserLink users={song.ar} showSpace={true} />
-        </p>
-        <p className="album">
+        </div>
+        <div className="album">
           所属专辑：
           <NavLink to={`/album?id=${song.al.id}`}>{song.al.name}</NavLink>
-        </p>
+        </div>
         <SongOperationBar
           callbacks={{
             onPlayClick: playMusic,

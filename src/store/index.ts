@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import type { TypedUseSelectorHook } from 'react-redux'
 
 // Player
-import { playerReducer } from '@/modules/Player/store'
+import { playerReducer } from '@/modules/StickyPlayerBar/store'
 
 const store = configureStore({
   reducer: {

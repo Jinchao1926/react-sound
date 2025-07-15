@@ -1,13 +1,23 @@
 import styled from 'styled-components'
 
-export const LockablePlayerWrapper = styled.div`
+export const StickyPlayerBarWrapper = styled.div`
+  --player-height: 53px;
+  --hide-distance: 46px;
+  --transition-easing: ease-in-out;
+
   position: fixed;
   z-index: 100;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 53px;
-  transition: bottom 0.5s ease-in-out;
+  height: var(--player-height);
+  transition-property: bottom;
+  transition-timing-function: var(--transition-easing);
+
+  /* 锁定状态保持显示 */
+  &[data-locked='true'] {
+    bottom: 0 !important;
+  }
 
   .player {
     position: absolute;
@@ -23,6 +33,14 @@ export const LockablePlayerWrapper = styled.div`
     width: 52px;
     height: 20px;
     background-position: 0 -380px;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    outline: none;
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
+    }
 
     .lock-icon,
     .unlock-icon {

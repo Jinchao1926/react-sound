@@ -2,7 +2,10 @@ import type { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { addSongToPlaylistAction, playSongAction } from '@/modules/Player/store'
+import {
+  addSongToPlaylistAction,
+  playSongAction,
+} from '@/modules/StickyPlayerBar/store'
 import { useAppDispatch } from '@/store'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/format-utils'

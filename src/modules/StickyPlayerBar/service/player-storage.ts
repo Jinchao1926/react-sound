@@ -1,4 +1,4 @@
-import { PlayMode, PlayModeType } from '@/modules/Player/type/PlayMode'
+import { PlayMode, PlayModeType } from '@/modules/StickyPlayerBar/type/PlayMode'
 import { getStorage, setStorage } from '@/utils/local-storage'
 
 const PlayerStorageKey = {
