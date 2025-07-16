@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { LyricLine } from '@/types/lyric'
 
-import { PlayMode, PlayModeType } from '../type/PlayMode'
+import { PLAY_MODE, PlayModeType } from '../../../types/player'
 
 interface IPlayerState {
   // 当前歌曲
@@ -27,7 +27,7 @@ const initialState: IPlayerState = {
   currentSongIndex: -1,
   currentLyric: undefined,
   lyricLineIndex: 0,
-  playMode: PlayMode.Loop,
+  playMode: PLAY_MODE.Loop,
   isPlaying: false,
 }
 
