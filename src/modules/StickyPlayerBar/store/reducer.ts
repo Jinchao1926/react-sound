@@ -27,7 +27,7 @@ const initialState: IPlayerState = {
   currentSongIndex: -1,
   currentLyric: undefined,
   lyricLineIndex: 0,
-  playMode: PLAY_MODE.Loop,
+  playMode: PLAY_MODE.LOOP,
   isPlaying: false,
 }
 

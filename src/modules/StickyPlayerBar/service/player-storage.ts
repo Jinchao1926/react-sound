@@ -20,7 +20,7 @@ export const storePlaylist = (playlist: any[]) => {
 // 播放模式
 export const fetchPlayMode = () => {
   const storedPlayMode = getStorage(PlayerStorageKey.playMode)
-  return storedPlayMode || PLAY_MODE.Loop
+  return storedPlayMode || PLAY_MODE.LOOP
 }
 export const storePlayMode = (playMode: PlayModeType) => {
   setStorage(PlayerStorageKey.playMode, playMode)
