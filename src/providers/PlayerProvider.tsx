@@ -10,8 +10,9 @@ import React, {
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { LyricLine } from '@/types/lyric'
-import { getNextPlayMode, PlayModeType } from '@/types/player'
+import { PlayModeType } from '@/types/player'
 import { Track } from '@/types/track'
+import { getNextPlayMode } from '@/utils/playMode'
 
 import { PlayerStorage } from '../utils/storages/playerStorage'
 

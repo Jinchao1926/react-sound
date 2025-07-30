@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
 import { Lyric } from '@/types/lyric'
-import { parserLyric } from '@/utils/LyricParser'
+import { parserLyric } from '@/utils/lyricParser'
 
 interface SongLyricApiResponse {
   lrc: Lyric
