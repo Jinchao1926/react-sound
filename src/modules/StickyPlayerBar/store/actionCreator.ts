@@ -22,7 +22,7 @@ import {
   changePlayModeAction,
   changePlaylistAction,
 } from './reducer'
-import { PlayMode, nextPlayMode } from '../type/PlayMode'
+import { PLAY_MODE, getNextPlayMode } from '../../../types/player'
 
 // 获取播放器详情
 export const fetchPlayerDataAsync = createAsyncThunk(
@@ -122,7 +122,7 @@ export const switchPlayModeAction = createAsyncThunk<
 >('switchPlayMode', async (_, { dispatch, getState }) => {
   const playMode = getState().player.playMode
 
-  const newPlayMode = nextPlayMode(playMode)
+  const newPlayMode = getNextPlayMode(playMode)
   dispatch(changePlayModeAction(newPlayMode))
   storePlayMode(newPlayMode)
 })
@@ -141,7 +141,7 @@ export const switchSongAction = createAsyncThunk<
   if (!playlist.length || playlist.length === 1) return false
 
   let newSongIndex = currentSongIndex
-  if (playMode === PlayMode.Random) {
+  if (playMode === PLAY_MODE.RANDOM) {
     // 随机播放，不允许出现重复歌曲
     newSongIndex = Math.floor(Math.random() * playlist.length)
     if (newSongIndex === currentSongIndex) {

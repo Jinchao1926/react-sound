@@ -6,6 +6,7 @@ import { HashRouter } from 'react-router-dom'
 
 import { App } from './App'
 import { AxiosProvider } from './providers/AxiosProvider'
+import { PlayerProvider } from './providers/PlayerProvider'
 import { QueryClientProvider } from './providers/QueryClientProvider'
 import store from './store'
 
@@ -23,7 +24,9 @@ root.render(
     <AxiosProvider>
       <Provider store={store}>
         <HashRouter>
-          <App />
+          <PlayerProvider>
+            <App />
+          </PlayerProvider>
         </HashRouter>
       </Provider>
     </AxiosProvider>

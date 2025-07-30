@@ -1,4 +1,4 @@
-import { PlayMode, PlayModeType } from '@/modules/StickyPlayerBar/type/PlayMode'
+import { PLAY_MODE, PlayModeType } from '@/types/player'
 import { getStorage, setStorage } from '@/utils/local-storage'
 
 const PlayerStorageKey = {
@@ -20,7 +20,7 @@ export const storePlaylist = (playlist: any[]) => {
 // 播放模式
 export const fetchPlayMode = () => {
   const storedPlayMode = getStorage(PlayerStorageKey.playMode)
-  return storedPlayMode || PlayMode.Loop
+  return storedPlayMode || PLAY_MODE.LOOP
 }
 export const storePlayMode = (playMode: PlayModeType) => {
   setStorage(PlayerStorageKey.playMode, playMode)

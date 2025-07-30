@@ -7,11 +7,7 @@ import SongOperationBar from '@/components/SongOperationBar'
 import { UserLink } from '@/components/UserLink'
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
-import {
-  addSongToPlaylistAction,
-  playSongAction,
-} from '@/modules/StickyPlayerBar/store'
-import { useAppDispatch } from '@/store'
+import { usePlayerContext } from '@/providers/PlayerProvider'
 import { formatSizedImage } from '@/utils/format-utils'
 
 import { LyricList, SongDetailWrapper, SongRecord } from './SongDetail.styles'
@@ -53,17 +49,16 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
     return () => clearTimeout(timeoutId)
   }, [showingMore])
 
-  // ========== Music Handlers ==========
-  const dispatch = useAppDispatch()
-  const playMusic = useCallback(() => {
-    if (!song) return
-    dispatch(playSongAction(String(song.id)))
-  }, [song, dispatch])
+  // Player Context
+  const { playSong } = usePlayerContext()
 
   const addMusicToPlaylist = useCallback(() => {
     if (!song) return
-    dispatch(addSongToPlaylistAction(song))
-  }, [song, dispatch])
+    // 当前的 PlayerProvider 还没有实现 addSongToPlaylist 功能
+    // 后续可以添加这个功能
+    // eslint-disable-next-line no-console
+    console.warn('添加到播放列表功能暂未实现')
+  }, [song])
   // ========== Music Handlers End ==========
 
   if (!song) return null
@@ -97,7 +92,7 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
         </div>
         <SongOperationBar
           callbacks={{
-            onPlayClick: playMusic,
+            onPlayClick: () => playSong(songId),
             onAddClick: addMusicToPlaylist,
           }}
         />
