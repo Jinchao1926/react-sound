@@ -1,6 +1,6 @@
 import createStorage from './createStorage'
 
-const localStorageAPI = createStorage(window.localStorage)
+const sessionStorageAPI = createStorage(window.sessionStorage)
 
 export const {
   setStorage,
@@ -10,4 +10,4 @@ export const {
   clearTable,
   getTableKeys,
   getStorageInfo,
-} = localStorageAPI
+} = sessionStorageAPI
