@@ -1,31 +1,20 @@
 import type { FC, ReactNode } from 'react'
 import { memo } from 'react'
 
-import { shallowEqual } from 'react-redux'
-
-import { useAppDispatch, useAppSelector } from '@/store'
+import { usePlayerContext } from '@/providers/PlayerProvider'
+import { PLAY_MODE } from '@/types/player'
 
 import { PlayerActionWrapper } from './style'
-import { switchPlayModeAction } from '../store'
 
 interface IProps {
   children?: ReactNode
 }
 
 const PlayerAction: FC<IProps> = () => {
-  // redux
-  const { playlist, playMode } = useAppSelector(
-    (state) => ({
-      playlist: state.player.playlist,
-      playMode: state.player.playMode,
-    }),
-    shallowEqual
-  )
-
-  const dispatch = useAppDispatch()
-  const handlePlayMode = () => {
-    dispatch(switchPlayModeAction())
-  }
+  const {
+    state: { playlist, playMode },
+    switchPlayMode,
+  } = usePlayerContext()
 
   return (
     <PlayerActionWrapper>
@@ -38,7 +27,14 @@ const PlayerAction: FC<IProps> = () => {
         <button className="sprite_player_bar btn mute" />
         <button
           className={`sprite_player_bar btn ${playMode}`}
-          onClick={handlePlayMode}
+          onClick={switchPlayMode}
+          title={
+            playMode === PLAY_MODE.SINGLE_LOOP
+              ? '单曲循环'
+              : playMode === PLAY_MODE.RANDOM
+                ? '随机播放'
+                : '循环'
+          }
         />
         <button className="sprite_player_bar btn playlist">
           {playlist.length}

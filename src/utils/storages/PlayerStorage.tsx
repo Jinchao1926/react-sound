@@ -1,6 +1,6 @@
 import { PlayModeType } from '@/types/player'
 import { Track } from '@/types/track'
-import { getStorage, setStorage } from '@/utils/local-storage'
+import { getStorage, setStorage } from '@/utils/storages/LocalStorage'
 
 const PLAYER_TABLE = 'Player'
 
@@ -27,7 +27,7 @@ export const PlayerStorage = {
   },
   getCurrentSongIndex: (): number | undefined => {
     return (
-      getStorage<number>(STORAGE_KEYS.CURRENT_SONG_INDEX, PLAYER_TABLE) ||
+      getStorage<number>(STORAGE_KEYS.CURRENT_SONG_INDEX, PLAYER_TABLE) ??
       undefined
     )
   },
