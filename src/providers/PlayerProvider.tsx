@@ -13,7 +13,7 @@ import { LyricLine } from '@/types/lyric'
 import { getNextPlayMode, PlayModeType } from '@/types/player'
 import { Track } from '@/types/track'
 
-import { PlayerStorage } from './PlayerStorage'
+import { PlayerStorage } from '../utils/PlayerStorage'
 
 interface PlayerState {
   playlist: Track[]
