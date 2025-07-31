@@ -10,7 +10,7 @@ import React, {
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { LyricLine } from '@/types/lyric'
-import { PlayModeType } from '@/types/player'
+import { PLAY_MODE, PlayModeType } from '@/types/player'
 import { Track } from '@/types/track'
 import { getNextPlayMode } from '@/utils/playMode'
 
@@ -178,15 +178,44 @@ export const PlayerProvider: React.FC<{
 
   const switchSong = useCallback((next: boolean) => {
     setState((prev) => {
-      const currentIndex = prev.playlist.findIndex(
-        (track) => track.id === prev.currentSong?.id
+      const { playMode, playlist, currentSong } = prev
+      const currentIndex = playlist.findIndex(
+        (track) => track.id === currentSong?.id
       )
-      const switchedIndex = next
-        ? (currentIndex + 1) % prev.playlist.length
-        : (currentIndex - 1 + prev.playlist.length) % prev.playlist.length
-      const switchedSong = prev.playlist[switchedIndex]
-      PlayerStorage.setCurrentSongIndex(switchedIndex)
 
+      let switchedIndex: number
+      let switchedSong: Track | undefined
+      switch (playMode) {
+        case PLAY_MODE.LOOP:
+          // Loop mode, switch in order
+          switchedIndex = next
+            ? (currentIndex + 1) % playlist.length
+            : (currentIndex - 1 + playlist.length) % playlist.length
+          switchedSong = playlist[switchedIndex]
+          break
+
+        case PLAY_MODE.RANDOM:
+          // Random mode, choose a random song (not repeating current)
+          if (playlist.length === 1) {
+            switchedIndex = 0
+          } else {
+            let randomIndex = Math.floor(Math.random() * playlist.length)
+            if (randomIndex === currentIndex) {
+              randomIndex = currentIndex + 1
+            }
+            switchedIndex = randomIndex % playlist.length
+          }
+          switchedSong = playlist[switchedIndex]
+          break
+
+        default:
+          // Single mode, keep current
+          switchedIndex = currentIndex
+          switchedSong = currentSong
+          break
+      }
+
+      PlayerStorage.setCurrentSongIndex(switchedIndex)
       return {
         ...prev,
         currentSong: switchedSong,
