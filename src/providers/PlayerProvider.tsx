@@ -14,7 +14,7 @@ import { PLAY_MODE, PlayModeType } from '@/types/player'
 import { Track } from '@/types/track'
 import { getNextPlayMode } from '@/utils/playMode'
 
-import { PlayerStorage } from '../utils/storages/playerStorage'
+import { PlayerStorage } from '../utils/storages/playerStorages'
 
 interface PlayerState {
   playlist: Track[]

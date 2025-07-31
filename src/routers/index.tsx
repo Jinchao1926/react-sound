@@ -5,9 +5,9 @@ import type { RouteObject } from 'react-router-dom'
 
 import { detailRoutes } from '@/modules/Detail/routes'
 import { discoverRoutes } from '@/modules/Discover/routes'
-import { downloadRoutes } from '@/modules/Download/routes'
-import { friendRoutes } from '@/modules/Friend/routes'
-import { mineRoutes } from '@/modules/Mine/routes'
+import { downloadRoutes } from '@/modules/Downloads/routes'
+import { friendRoutes } from '@/modules/Friends/routes'
+import { mineRoutes } from '@/modules/Mines/routes'
 
 export const routes: RouteObject[] = [
   {
