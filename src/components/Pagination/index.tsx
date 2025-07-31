@@ -1,0 +1,1 @@
+export { JCPagination } from './Pagination'

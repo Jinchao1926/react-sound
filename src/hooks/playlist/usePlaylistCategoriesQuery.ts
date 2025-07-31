@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
 import { PlaylistCategoriesApiResponse } from '@/types/playlist-category'
-import { parsePlaylistCategories } from '@/utils/playlistCategoryParser'
+import { parsePlaylistCategories } from '@/utils/playlistCategoriesParser'
 
 export const usePlaylistCategoriesQuery = () => {
   const axios = useAxios()
