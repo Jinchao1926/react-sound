@@ -25,8 +25,8 @@ import {
   PlayerProgressBar,
   PlayerWrapper,
 } from './style'
-import PlayerAction from '../player-action'
-import ProgressBar from '../progress-bar'
+import PlayerAction from '../PlayerAction'
+import ProgressBar from '../ProgressBar'
 import { changeLyricLineIndexAction } from '../store'
 
 interface IProps {

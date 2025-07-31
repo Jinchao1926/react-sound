@@ -2,7 +2,7 @@ import React, { FC, useState, useRef, useEffect, useCallback } from 'react'
 
 import classNames from 'classnames'
 
-import Player from './Player'
+import Player from './Players'
 import { StickyPlayerBarWrapper } from './StickyPlayerBar.styles'
 
 export const StickyPlayerBar: FC = () => {

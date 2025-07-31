@@ -1,7 +1,7 @@
 import { PlayModeType } from '@/types/player'
 import { Track } from '@/types/track'
 
-import { getStorage, setStorage } from './localStorage'
+import { getStorage, setStorage } from './localStorages'
 
 const PLAYER_TABLE = 'Player'
 

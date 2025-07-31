@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from 'react'
 
-import JCPagination from '@/components/Pagination'
+import JCPagination from '@/components/Paginations'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useAllAlbumsQuery } from '@/hooks/album/useAllAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'

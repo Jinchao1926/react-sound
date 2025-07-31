@@ -1,4 +1,4 @@
-import createStorage from './createStorage'
+import createStorage from './createStorages'
 
 const localStorageAPI = createStorage(window.localStorage)
 
