@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { FC, useEffect, useMemo, useRef, useState } from 'react'
 
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
@@ -20,6 +20,7 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
 
   const { data: song } = useSongDetailQuery(songId)
   const { data: lyric } = useSongLyricQuery(songId)
+  const { playSong, addToPlaylist } = usePlayerContext()
 
   const lyricString = useMemo(() => {
     if (!lyric.length) {
@@ -48,18 +49,6 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
 
     return () => clearTimeout(timeoutId)
   }, [showingMore])
-
-  // Player Context
-  const { playSong } = usePlayerContext()
-
-  const addMusicToPlaylist = useCallback(() => {
-    if (!song) return
-    // 当前的 PlayerProvider 还没有实现 addSongToPlaylist 功能
-    // 后续可以添加这个功能
-    // eslint-disable-next-line no-console
-    console.warn('添加到播放列表功能暂未实现')
-  }, [song])
-  // ========== Music Handlers End ==========
 
   if (!song) return null
 
@@ -92,8 +81,8 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
         </div>
         <SongOperationBar
           callbacks={{
-            onPlayClick: () => playSong(songId),
-            onAddClick: addMusicToPlaylist,
+            onPlayClick: () => playSong(song),
+            onAddClick: () => addToPlaylist(song),
           }}
         />
         {/* 歌词显示部分 */}

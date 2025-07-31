@@ -10,10 +10,11 @@ import React, {
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { LyricLine } from '@/types/lyric'
-import { getNextPlayMode, PlayModeType } from '@/types/player'
+import { PLAY_MODE, PlayModeType } from '@/types/player'
 import { Track } from '@/types/track'
+import { getNextPlayMode } from '@/utils/playMode'
 
-import { PlayerStorage } from '../utils/PlayerStorage'
+import { PlayerStorage } from '../utils/storages/playerStorage'
 
 interface PlayerState {
   playlist: Track[]
@@ -34,7 +35,7 @@ interface PlayerContextType {
   // Play Mode
   switchPlayMode: () => void
   // Playback Control
-  playSong: (id: number) => void
+  playSong: (song: Track) => void
   switchSong: (next: boolean) => void
   togglePlayState: () => void
 }
@@ -42,15 +43,21 @@ interface PlayerContextType {
 const PlayerContext = createContext<PlayerContextType | undefined>(undefined)
 
 const getInitialState = (): PlayerState => {
-  const playlist = PlayerStorage.getPlaylist()
-  const playMode = PlayerStorage.getPlayMode()
+  const { getPlaylist, getPlayMode, getCurrentSongIndex } = PlayerStorage
+  const playlist = getPlaylist()
+  const playMode = getPlayMode()
+  const currentSongIndex = getCurrentSongIndex()
+  const currentSong =
+    currentSongIndex !== undefined && currentSongIndex < playlist.length
+      ? playlist[currentSongIndex]
+      : undefined
 
   return {
     playlist,
     playMode,
     isPlaying: false,
-    currentSong: undefined,
-    currentSongIndex: undefined,
+    currentSong,
+    currentSongIndex,
     currentLyric: undefined,
     currentLyricLineIndex: undefined,
   }
@@ -99,6 +106,13 @@ export const PlayerProvider: React.FC<{
 
   const removeFromPlaylist = useCallback((songId: number) => {
     setState((prev) => {
+      const isAlreadyInPlaylist = prev.playlist.some(
+        (track) => track.id === songId
+      )
+      if (!isAlreadyInPlaylist) {
+        return prev
+      }
+
       const newPlaylist = prev.playlist.filter((song) => song.id !== songId)
       PlayerStorage.setPlaylist(newPlaylist)
 
@@ -112,10 +126,12 @@ export const PlayerProvider: React.FC<{
   const clearPlaylist = useCallback(() => {
     setState((prev) => {
       PlayerStorage.setPlaylist([])
+      PlayerStorage.setCurrentSongIndex(undefined)
 
       return {
         ...prev,
         playlist: [],
+        currentSongIndex: undefined,
       }
     })
   }, [])
@@ -134,33 +150,72 @@ export const PlayerProvider: React.FC<{
   }, [])
 
   // Playback Control
-  const playSong = useCallback((id: number) => {
-    currentSongIdRef.current = id
+  const playSong = useCallback(
+    (song: Track) => {
+      // currentSongIdRef.current = id
+      setState((prev) => {
+        if (!song) return prev
 
-    setState((prev) => {
-      const index = prev.playlist.findIndex((track) => track.id === id)
-      if (index === -1) {
-        // Add song to playlist if not already present
-      }
+        const index = prev.playlist.findIndex((track) => track.id === song.id)
+        if (index === -1) {
+          // Add song to playlist if not already present
+          addToPlaylist(song)
+        }
 
-      return {
-        ...prev,
-        currentSongIndex: index >= 0 ? index : prev.playlist.length,
-        isPlaying: true,
-      }
-    })
-  }, [])
+        const songIndex = index >= 0 ? index : prev.playlist.length
+        PlayerStorage.setCurrentSongIndex(songIndex)
+
+        return {
+          ...prev,
+          currentSong: song,
+          currentSongIndex: songIndex,
+          isPlaying: true,
+        }
+      })
+    },
+    [addToPlaylist]
+  )
 
   const switchSong = useCallback((next: boolean) => {
     setState((prev) => {
-      const currentIndex = prev.playlist.findIndex(
-        (track) => track.id === prev.currentSong?.id
+      const { playMode, playlist, currentSong } = prev
+      const currentIndex = playlist.findIndex(
+        (track) => track.id === currentSong?.id
       )
-      const switchedIndex = next
-        ? (currentIndex + 1) % prev.playlist.length
-        : (currentIndex - 1 + prev.playlist.length) % prev.playlist.length
-      const switchedSong = prev.playlist[switchedIndex]
 
+      let switchedIndex: number
+      let switchedSong: Track | undefined
+      switch (playMode) {
+        case PLAY_MODE.LOOP:
+          // Loop mode, switch in order
+          switchedIndex = next
+            ? (currentIndex + 1) % playlist.length
+            : (currentIndex - 1 + playlist.length) % playlist.length
+          switchedSong = playlist[switchedIndex]
+          break
+
+        case PLAY_MODE.RANDOM:
+          // Random mode, choose a random song (not repeating current)
+          if (playlist.length === 1) {
+            switchedIndex = 0
+          } else {
+            let randomIndex = Math.floor(Math.random() * playlist.length)
+            if (randomIndex === currentIndex) {
+              randomIndex = currentIndex + 1
+            }
+            switchedIndex = randomIndex % playlist.length
+          }
+          switchedSong = playlist[switchedIndex]
+          break
+
+        default:
+          // Single mode, keep current
+          switchedIndex = currentIndex
+          switchedSong = currentSong
+          break
+      }
+
+      PlayerStorage.setCurrentSongIndex(switchedIndex)
       return {
         ...prev,
         currentSong: switchedSong,

@@ -13,6 +13,7 @@ import {
   storePlaylist,
 } from '@/modules/StickyPlayerBar/service/player-storage'
 import { RootState } from '@/store'
+import { getNextPlayMode } from '@/utils/playMode'
 
 import {
   changeCurrentLyricAction,
@@ -22,7 +23,7 @@ import {
   changePlayModeAction,
   changePlaylistAction,
 } from './reducer'
-import { PLAY_MODE, getNextPlayMode } from '../../../types/player'
+import { PLAY_MODE } from '../../../types/player'
 
 // 获取播放器详情
 export const fetchPlayerDataAsync = createAsyncThunk(

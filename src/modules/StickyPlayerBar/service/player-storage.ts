@@ -1,5 +1,5 @@
 import { PLAY_MODE, PlayModeType } from '@/types/player'
-import { getStorage, setStorage } from '@/utils/local-storage'
+import { getStorage, setStorage } from '@/utils/storages/localStorage'
 
 const PlayerStorageKey = {
   playlist: 'playlist',

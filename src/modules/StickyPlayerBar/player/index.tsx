@@ -14,6 +14,7 @@ import { NavLink } from 'react-router-dom'
 import { UserLink } from '@/components/UserLink'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { useAppDispatch, useAppSelector } from '@/store'
+import { PLAY_MODE } from '@/types/player'
 import { formatTime, getMusicUrl } from '@/utils/format-player'
 import { formatSizedImage } from '@/utils/format-utils'
 
@@ -26,7 +27,7 @@ import {
 } from './style'
 import PlayerAction from '../player-action'
 import ProgressBar from '../progress-bar'
-import { changeLyricLineIndexAction, switchSongAction } from '../store'
+import { changeLyricLineIndexAction } from '../store'
 
 interface IProps {
   children?: ReactNode
@@ -41,7 +42,7 @@ const Player: FC<IProps> = () => {
   const audioRef = useRef<HTMLAudioElement>(null)
 
   const {
-    state: { currentSong, isPlaying },
+    state: { currentSong, isPlaying, playMode },
     switchSong,
     togglePlayState,
   } = usePlayerContext()
@@ -52,14 +53,14 @@ const Player: FC<IProps> = () => {
     currentLyric,
     lyricLineIndex,
     // isPlaying,
-    playMode,
+    // playMode,
   } = useAppSelector(
     (state) => ({
       // currentSong: state.player.currentSong,
       currentLyric: state.player.currentLyric,
       lyricLineIndex: state.player.lyricLineIndex,
       // isPlaying: state.player.isPlaying,
-      playMode: state.player.playMode,
+      // playMode: state.player.playMode,
     }),
     shallowEqual
   )
@@ -133,24 +134,7 @@ const Player: FC<IProps> = () => {
   )
   // ========== Player Control Handlers End ==========
 
-  // ========== Audio Handlers ==========
-  // 播放结束
-  const handlePlayerEnded = useCallback(() => {
-    // 单曲循环
-    if (playMode === 'single-loop') {
-      audioRef.current!.currentTime = 0
-      audioRef.current!.play()
-      return
-    }
-    dispatch(switchSongAction(true)).then((res) => {
-      // 如果切歌失败，直接播放当前歌曲 eg：播放列表只有一首歌
-      if (res.payload) return
-      audioRef.current!.currentTime = 0
-      audioRef.current!.play()
-    })
-  }, [dispatch, playMode])
-
-  // 播放回调
+  // Progress & Time Update
   const handlePlayerTimeUpdate = useCallback(
     (e: React.SyntheticEvent) => {
       // 播放时间更新中... 如果这时候在拖动进度条，就不根据播放时间更新进度条
@@ -166,9 +150,7 @@ const Player: FC<IProps> = () => {
     },
     [isDragging, duration, handleLyric]
   )
-  // ========== Audio Handlers End ==========
 
-  // ========== Progress Handlers ==========
   const handleProgressChange = useCallback(
     (percent: number) => {
       // 进度条变化中...
@@ -191,7 +173,6 @@ const Player: FC<IProps> = () => {
     },
     [duration]
   )
-  // ========== Progress Handlers End ==========
 
   return (
     <PlayerWrapper className="sprite_player_bar player">
@@ -241,7 +222,16 @@ const Player: FC<IProps> = () => {
       <audio
         ref={audioRef}
         onTimeUpdate={handlePlayerTimeUpdate}
-        onEnded={handlePlayerEnded}
+        onEnded={() => {
+          if (playMode === PLAY_MODE.SINGLE_LOOP) {
+            if (audioRef.current) {
+              audioRef.current.currentTime = 0
+              audioRef.current.play()
+            }
+          } else {
+            switchSong(true)
+          }
+        }}
       />
     </PlayerWrapper>
   )
