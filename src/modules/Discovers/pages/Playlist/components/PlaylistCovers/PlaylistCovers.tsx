@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect, useMemo, useCallback } from 'react'
 
-import JCPagination from '@/components/Pagination'
+import JCPagination from '@/components/Paginations'
 import { useTopPlaylistsQuery } from '@/hooks/playlist/useTopPlaylistsQuery'
 import { PlaylistCover } from '@/modules/Discover/components/PlaylistCover'
 

@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import JCPagination from '@/components/Pagination'
+import JCPagination from '@/components/Paginations'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useTopRadiosQuery } from '@/hooks/djradio/useTopRadiosQuery'
 import { formatSizedImage } from '@/utils/format-utils'
