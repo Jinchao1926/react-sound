@@ -12,9 +12,9 @@ import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { LyricLine } from '@/types/lyric'
 import { PLAY_MODE, PlayModeType } from '@/types/player'
 import { Track } from '@/types/track'
-import { getNextPlayMode } from '@/utils/playMode'
+import { getNextPlayMode } from '@/utils/playModes'
 
-import { PlayerStorage } from '../utils/storages/playerStorages'
+import { PlayerStorage } from '../utils/storages/playerStorage'
 
 interface PlayerState {
   playlist: Track[]

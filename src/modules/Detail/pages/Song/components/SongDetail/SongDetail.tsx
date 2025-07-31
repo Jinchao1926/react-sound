@@ -8,7 +8,7 @@ import { UserLink } from '@/components/UserLink'
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { usePlayerContext } from '@/providers/PlayerProvider'
-import { formatSizedImage } from '@/utils/format-utils'
+import { formatSizedImage } from '@/utils/formatUtils'
 
 import { LyricList, SongDetailWrapper, SongRecord } from './SongDetail.styles'
 

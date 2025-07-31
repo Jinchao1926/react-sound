@@ -13,7 +13,7 @@ import {
   storePlaylist,
 } from '@/modules/StickyPlayerBar/service/player-storage'
 import { RootState } from '@/store'
-import { getNextPlayMode } from '@/utils/playMode'
+import { getNextPlayMode } from '@/utils/playModes'
 
 import {
   changeCurrentLyricAction,
