@@ -2,14 +2,8 @@ import { configureStore } from '@reduxjs/toolkit'
 import { useSelector, useDispatch } from 'react-redux'
 import type { TypedUseSelectorHook } from 'react-redux'
 
-// Player
-import { playerReducer } from '@/modules/StickyPlayerBar/store'
-
 const store = configureStore({
-  reducer: {
-    // detail
-    player: playerReducer,
-  },
+  reducer: {},
 })
 
 // https://stackoverflow.com/questions/70143816/argument-of-type-asyncthunkactionany-void-is-not-assignable-to-paramete

@@ -7,7 +7,6 @@ import React, {
   useRef,
 } from 'react'
 
-import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { LyricLine } from '@/types/lyric'
 import { PLAY_MODE, PlayModeType } from '@/types/player'
@@ -23,7 +22,7 @@ interface PlayerState {
   currentSong?: Track
   currentSongIndex?: number
   currentLyric?: LyricLine[]
-  currentLyricLineIndex?: number
+  currentLyricLineIndex: number
 }
 
 interface PlayerContextType {
@@ -36,8 +35,10 @@ interface PlayerContextType {
   switchPlayMode: () => void
   // Playback Control
   playSong: (song: Track) => void
-  switchSong: (next: boolean) => void
+  switchSong: (nextTrack: boolean) => void
   togglePlayState: () => void
+  // Lyric
+  changeLyricLineIndex: (index: number) => void
 }
 
 const PlayerContext = createContext<PlayerContextType | undefined>(undefined)
@@ -59,29 +60,26 @@ const getInitialState = (): PlayerState => {
     currentSong,
     currentSongIndex,
     currentLyric: undefined,
-    currentLyricLineIndex: undefined,
+    currentLyricLineIndex: 0,
   }
 }
 
 export const PlayerProvider: React.FC<{
   children: React.ReactNode
 }> = ({ children }) => {
-  const currentSongIdRef = useRef<number | undefined>(undefined)
+  const lyricSongIdRef = useRef<number | undefined>(undefined)
 
   const [state, setState] = useState<PlayerState>(getInitialState)
-
-  const { data: songData } = useSongDetailQuery(currentSongIdRef.current)
-  const { data: lyricData } = useSongLyricQuery(currentSongIdRef.current)
+  const { data: lyricData } = useSongLyricQuery(lyricSongIdRef.current)
 
   useEffect(() => {
-    if (songData) {
+    if (lyricData.length) {
       setState((prev) => ({
         ...prev,
-        currentSong: songData,
         currentLyric: lyricData,
       }))
     }
-  }, [songData, lyricData])
+  }, [lyricData])
 
   // Playlist Management
   const addToPlaylist = useCallback((song: Track) => {
@@ -152,7 +150,6 @@ export const PlayerProvider: React.FC<{
   // Playback Control
   const playSong = useCallback(
     (song: Track) => {
-      // currentSongIdRef.current = id
       setState((prev) => {
         if (!song) return prev
 
@@ -164,19 +161,21 @@ export const PlayerProvider: React.FC<{
 
         const songIndex = index >= 0 ? index : prev.playlist.length
         PlayerStorage.setCurrentSongIndex(songIndex)
+        lyricSongIdRef.current = song.id
 
         return {
           ...prev,
           currentSong: song,
           currentSongIndex: songIndex,
           isPlaying: true,
+          currentLyricLineIndex: 0,
         }
       })
     },
     [addToPlaylist]
   )
 
-  const switchSong = useCallback((next: boolean) => {
+  const switchSong = useCallback((nextTrack: boolean) => {
     setState((prev) => {
       const { playMode, playlist, currentSong } = prev
       const currentIndex = playlist.findIndex(
@@ -186,14 +185,6 @@ export const PlayerProvider: React.FC<{
       let switchedIndex: number
       let switchedSong: Track | undefined
       switch (playMode) {
-        case PLAY_MODE.LOOP:
-          // Loop mode, switch in order
-          switchedIndex = next
-            ? (currentIndex + 1) % playlist.length
-            : (currentIndex - 1 + playlist.length) % playlist.length
-          switchedSong = playlist[switchedIndex]
-          break
-
         case PLAY_MODE.RANDOM:
           // Random mode, choose a random song (not repeating current)
           if (playlist.length === 1) {
@@ -209,17 +200,22 @@ export const PlayerProvider: React.FC<{
           break
 
         default:
-          // Single mode, keep current
-          switchedIndex = currentIndex
-          switchedSong = currentSong
+          // Loop or single mode, switch in order
+          switchedIndex = nextTrack
+            ? (currentIndex + 1) % playlist.length
+            : (currentIndex - 1 + playlist.length) % playlist.length
+          switchedSong = playlist[switchedIndex]
           break
       }
 
       PlayerStorage.setCurrentSongIndex(switchedIndex)
+      lyricSongIdRef.current = switchedSong?.id
+
       return {
         ...prev,
         currentSong: switchedSong,
         currentSongIndex: switchedIndex,
+        currentLyricLineIndex: 0,
       }
     })
   }, [])
@@ -231,6 +227,21 @@ export const PlayerProvider: React.FC<{
     }))
   }, [])
 
+  // Lyric
+  const changeLyricLineIndex = useCallback((index: number) => {
+    setState((prev) => {
+      if (!prev.currentLyric) return prev
+
+      let idx = Math.max(index, 0)
+      idx = Math.min(idx, prev.currentLyric.length - 1)
+
+      return {
+        ...prev,
+        currentLyricLineIndex: idx,
+      }
+    })
+  }, [])
+
   const contextValue: PlayerContextType = {
     state,
     addToPlaylist,
@@ -240,6 +251,7 @@ export const PlayerProvider: React.FC<{
     playSong,
     switchSong,
     togglePlayState,
+    changeLyricLineIndex,
   }
 
   return (

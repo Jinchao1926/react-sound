@@ -22,6 +22,7 @@ export const PlayerControl = styled.div`
     margin-top: 5px;
     width: 28px;
     height: 28px;
+    cursor: pointer;
   }
 
   .prev {
@@ -45,6 +46,7 @@ export const PlayButton = styled.button<IPlayButton>`
   width: 36px;
   height: 36px;
   margin: 0 8px;
+  cursor: pointer;
   background-position: ${(props) =>
     props.isPlaying ? '0 -165px' : '0 -204px'};
   &:hover {

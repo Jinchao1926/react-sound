@@ -7,12 +7,10 @@ import React, {
   useState,
 } from 'react'
 
-import { shallowEqual } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import { UserLink } from '@/components/UserLink'
 import { usePlayerContext } from '@/providers/PlayerProvider'
-import { useAppDispatch, useAppSelector } from '@/store'
 import { PLAY_MODE } from '@/types/player'
 import { formatTime, getMusicUrl } from '@/utils/formatPlayer'
 import { formatSizedImage } from '@/utils/formatUtils'
@@ -26,39 +24,36 @@ import {
 } from './Player.styles'
 import { PlayerAction } from '../PlayerAction'
 import { ProgressBar } from '../ProgressBar'
-import { changeLyricLineIndexAction } from '../store'
 
 export const Player: FC = () => {
-  // 标识进度条是否在拖动，防止在音频播放过程中 & 拖动进度条时，进度条操作的冲突
+  // If dragging, do not update progress bar based on audio time
   const [isDragging, setIsDragging] = useState(false)
   const [currentTime, setCurrentTime] = useState(0) // ms
   const [progress, setProgress] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
 
+  // Throttle
+  const lastProgressUpdateRef = useRef(0)
+  const lastLyricUpdateRef = useRef(0)
+  const currentLyricLineIndexRef = useRef(0)
+
   const {
-    state: { currentSong, isPlaying, playMode },
+    state: {
+      currentSong,
+      currentLyric,
+      currentLyricLineIndex,
+      isPlaying,
+      playMode,
+    },
     switchSong,
     togglePlayState,
+    changeLyricLineIndex,
   } = usePlayerContext()
 
-  // redux
-  const {
-    // currentSong,
-    currentLyric,
-    lyricLineIndex,
-    // isPlaying,
-    // playMode,
-  } = useAppSelector(
-    (state) => ({
-      // currentSong: state.player.currentSong,
-      currentLyric: state.player.currentLyric,
-      lyricLineIndex: state.player.lyricLineIndex,
-      // isPlaying: state.player.isPlaying,
-      // playMode: state.player.playMode,
-    }),
-    shallowEqual
-  )
-  const dispatch = useAppDispatch()
+  // 同步 ref 以避免闭包问题
+  useEffect(() => {
+    currentLyricLineIndexRef.current = currentLyricLineIndex
+  }, [currentLyricLineIndex])
 
   const { songSrc, songDetailUrl, songAvatar, duration } = useMemo(() => {
     return {
@@ -86,6 +81,10 @@ export const Player: FC = () => {
       audioRef.current.src = songSrc
       audioRef.current.load()
 
+      // Reset all timers
+      lastProgressUpdateRef.current = 0
+      lastLyricUpdateRef.current = 0
+
       if (isPlaying) {
         audioRef.current.currentTime = 0
       }
@@ -109,45 +108,80 @@ export const Player: FC = () => {
   }, [songSrc, isPlaying])
 
   // ========== Player Control Handlers ==========
-  // 歌词滚动
+  // Lyric Scroll - Using binary search
+
   const handleLyric = useCallback(
     (time: number) => {
-      if (!currentLyric) return
-      for (let idx = lyricLineIndex; idx < currentLyric.length; idx++) {
-        const lyricItem = currentLyric[idx]
-        if (time < lyricItem.time) {
-          if (idx - 1 !== lyricLineIndex) {
-            // console.log("Lyric:", currentLyric[idx - 1])
-            dispatch(changeLyricLineIndexAction(idx - 1))
+      if (!currentLyric || currentLyric.length === 0) return
+
+      // Binary search for the correct lyric line
+      const findLyricIndex = (targetTime: number): number => {
+        let left = 0
+        let right = currentLyric.length - 1
+        let result = -1
+
+        while (left <= right) {
+          const mid = Math.floor((left + right) / 2)
+
+          if (currentLyric[mid].time <= targetTime) {
+            result = mid
+            left = mid + 1
+          } else {
+            right = mid - 1
           }
-          break
         }
+
+        return result
+      }
+
+      const newIndex = findLyricIndex(time)
+      if (newIndex !== currentLyricLineIndexRef.current && newIndex >= 0) {
+        // console.log(
+        //   'jinchao time:',
+        //   time,
+        //   'newIndex:',
+        //   newIndex,
+        //   'lyric:',
+        //   currentLyric[newIndex]
+        // )
+        changeLyricLineIndex(newIndex)
       }
     },
-    [currentLyric, lyricLineIndex, dispatch]
+    [currentLyric, changeLyricLineIndex]
   )
+
   // ========== Player Control Handlers End ==========
 
   // Progress & Time Update
   const handlePlayerTimeUpdate = useCallback(
     (e: React.SyntheticEvent) => {
-      // 播放时间更新中... 如果这时候在拖动进度条，就不根据播放时间更新进度条
+      // playing time updating... if dragging progress bar, do not update progress bar
       if (isDragging) return
 
       const target = e.target as HTMLAudioElement
       const newTime = Math.min(target.currentTime * 1000, duration) // ms
-      setCurrentTime(newTime)
-      setProgress((newTime / duration) * 100)
 
-      // 查找歌词位置
-      handleLyric(newTime)
+      // Throttle: only update progress if time changes by more than 100ms
+      const timeDiff = Math.abs(newTime - lastProgressUpdateRef.current)
+      if (timeDiff >= 100) {
+        setCurrentTime(newTime)
+        setProgress((newTime / duration) * 100)
+        lastProgressUpdateRef.current = newTime
+      }
+
+      // Throttle: only update lyric if time changes by more than 500ms
+      const lyricTimeDiff = Math.abs(newTime - lastLyricUpdateRef.current)
+      if (lyricTimeDiff >= 500) {
+        handleLyric(newTime)
+        lastLyricUpdateRef.current = newTime
+      }
     },
     [isDragging, duration, handleLyric]
   )
 
   const handleProgressChange = useCallback(
     (percent: number) => {
-      // 进度条变化中...
+      // progress changing...
       setIsDragging(true)
 
       const newTime = (percent * duration) / 100
@@ -159,13 +193,19 @@ export const Player: FC = () => {
 
   const handleProgressAfterChange = useCallback(
     (percent: number) => {
-      // 进度条变化结束后播放音乐
+      // progress bar changed, play music
       const newTimeInSec = ((percent / 100) * duration) / 1000
       audioRef.current && (audioRef.current.currentTime = newTimeInSec)
 
+      // Reset timers, force update lyric
+      const newTime = (percent * duration) / 100
+      lastProgressUpdateRef.current = newTime
+      lastLyricUpdateRef.current = newTime - 1000 // Force lyric check
+      handleLyric(newTime)
+
       setIsDragging(false)
     },
-    [duration]
+    [duration, handleLyric]
   )
 
   return (
