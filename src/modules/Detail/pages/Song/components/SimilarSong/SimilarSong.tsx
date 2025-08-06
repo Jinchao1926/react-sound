@@ -5,25 +5,13 @@ import { NavLink } from 'react-router-dom'
 import { SectionHeader } from '@/components/SectionHeader'
 import { UserLink } from '@/components/UserLink'
 import { useSimilarSongsQuery } from '@/hooks/song/useSimilarSongsQuery'
-import {
-  addSongToPlaylistAction,
-  playSongAction,
-} from '@/modules/StickyPlayerBar/store'
-import { useAppDispatch } from '@/store'
+// import { usePlayerContext } from '@/providers/PlayerProvider'
 
 import { SimilarSongItem, SimilarSongWrapper } from './SimilarSong.styles'
 
 export const SimilarSong: FC<{ songId: number }> = ({ songId }) => {
   const { data } = useSimilarSongsQuery(songId)
-
-  // handles
-  const dispatch = useAppDispatch()
-  const playMusic = (id: string) => {
-    dispatch(playSongAction(id))
-  }
-  const addMusicToPlaylist = (id: string) => {
-    dispatch(addSongToPlaylistAction(id))
-  }
+  // const { playSong, addToPlaylist } = usePlayerContext()
 
   return (
     <SimilarSongWrapper>
@@ -40,11 +28,11 @@ export const SimilarSong: FC<{ songId: number }> = ({ songId }) => {
             <div className="control">
               <button
                 className="btn sprite_icon3 play"
-                onClick={() => playMusic(song.id)}
+                // onClick={() => playSong(song)}
               />
               <button
                 className="btn sprite_icon3 addto"
-                onClick={() => addMusicToPlaylist(song.id)}
+                // onClick={() => addToPlaylist(song)}
               />
             </div>
           </SimilarSongItem>

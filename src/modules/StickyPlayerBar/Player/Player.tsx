@@ -32,6 +32,11 @@ export const Player: FC = () => {
   const [progress, setProgress] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
 
+  // Throttle
+  const lastProgressUpdateRef = useRef(0)
+  const lastLyricUpdateRef = useRef(0)
+  const currentLyricLineIndexRef = useRef(0)
+
   const {
     state: {
       currentSong,
@@ -44,6 +49,11 @@ export const Player: FC = () => {
     togglePlayState,
     changeLyricLineIndex,
   } = usePlayerContext()
+
+  // 同步 ref 以避免闭包问题
+  useEffect(() => {
+    currentLyricLineIndexRef.current = currentLyricLineIndex
+  }, [currentLyricLineIndex])
 
   const { songSrc, songDetailUrl, songAvatar, duration } = useMemo(() => {
     return {
@@ -71,6 +81,10 @@ export const Player: FC = () => {
       audioRef.current.src = songSrc
       audioRef.current.load()
 
+      // Reset all timers
+      lastProgressUpdateRef.current = 0
+      lastLyricUpdateRef.current = 0
+
       if (isPlaying) {
         audioRef.current.currentTime = 0
       }
@@ -95,6 +109,7 @@ export const Player: FC = () => {
 
   // ========== Player Control Handlers ==========
   // Lyric Scroll - Using binary search
+
   const handleLyric = useCallback(
     (time: number) => {
       if (!currentLyric || currentLyric.length === 0) return
@@ -120,7 +135,7 @@ export const Player: FC = () => {
       }
 
       const newIndex = findLyricIndex(time)
-      if (newIndex !== currentLyricLineIndex && newIndex >= 0) {
+      if (newIndex !== currentLyricLineIndexRef.current && newIndex >= 0) {
         // console.log(
         //   'jinchao time:',
         //   time,
@@ -132,8 +147,9 @@ export const Player: FC = () => {
         changeLyricLineIndex(newIndex)
       }
     },
-    [currentLyric, currentLyricLineIndex, changeLyricLineIndex]
+    [currentLyric, changeLyricLineIndex]
   )
+
   // ========== Player Control Handlers End ==========
 
   // Progress & Time Update
@@ -144,11 +160,21 @@ export const Player: FC = () => {
 
       const target = e.target as HTMLAudioElement
       const newTime = Math.min(target.currentTime * 1000, duration) // ms
-      setCurrentTime(newTime)
-      setProgress((newTime / duration) * 100)
 
-      // find lyric position
-      handleLyric(newTime)
+      // Throttle: only update progress if time changes by more than 100ms
+      const timeDiff = Math.abs(newTime - lastProgressUpdateRef.current)
+      if (timeDiff >= 100) {
+        setCurrentTime(newTime)
+        setProgress((newTime / duration) * 100)
+        lastProgressUpdateRef.current = newTime
+      }
+
+      // Throttle: only update lyric if time changes by more than 500ms
+      const lyricTimeDiff = Math.abs(newTime - lastLyricUpdateRef.current)
+      if (lyricTimeDiff >= 500) {
+        handleLyric(newTime)
+        lastLyricUpdateRef.current = newTime
+      }
     },
     [isDragging, duration, handleLyric]
   )
@@ -171,9 +197,15 @@ export const Player: FC = () => {
       const newTimeInSec = ((percent / 100) * duration) / 1000
       audioRef.current && (audioRef.current.currentTime = newTimeInSec)
 
+      // Reset timers, force update lyric
+      const newTime = (percent * duration) / 100
+      lastProgressUpdateRef.current = newTime
+      lastLyricUpdateRef.current = newTime - 1000 // Force lyric check
+      handleLyric(newTime)
+
       setIsDragging(false)
     },
-    [duration]
+    [duration, handleLyric]
   )
 
   return (

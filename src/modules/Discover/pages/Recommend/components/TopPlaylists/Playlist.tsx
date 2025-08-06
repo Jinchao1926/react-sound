@@ -2,11 +2,7 @@ import type { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import {
-  addSongToPlaylistAction,
-  playSongAction,
-} from '@/modules/StickyPlayerBar/store'
-import { useAppDispatch } from '@/store'
+import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/formatUtils'
 
@@ -23,17 +19,10 @@ interface PlaylistProps {
 
 export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
   const { tracks = [] } = playlist
+  const { playSong, addToPlaylist } = usePlayerContext()
 
   const rankingUrl = `/discover/toplist?id=${playlist.id}`
-  const dispatch = useAppDispatch()
 
-  // Music handlers
-  const playMusic = (item: any) => {
-    dispatch(playSongAction(item.id))
-  }
-  const addMusicToPlaylist = (item: any) => {
-    dispatch(addSongToPlaylistAction(item))
-  }
   // eslint-disable-next-line no-unused-vars
   const collectMusic = (item: any) => {}
 
@@ -68,12 +57,12 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
               <button
                 className="sprite_02 btn play"
                 title="播放"
-                onClick={() => playMusic(song)}
+                onClick={() => playSong(song)}
               />
               <button
                 className="sprite_icon2 btn addTo"
                 title="添加到播放列表"
-                onClick={() => addMusicToPlaylist(song)}
+                onClick={() => addToPlaylist(song)}
               />
               <button
                 className="sprite_02 btn collect"

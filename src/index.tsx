@@ -1,14 +1,12 @@
 import React from 'react'
 
 import ReactDOM from 'react-dom/client'
-import { Provider } from 'react-redux'
 import { HashRouter } from 'react-router-dom'
 
 import { App } from './App'
 import { AxiosProvider } from './providers/AxiosProvider'
 import { PlayerProvider } from './providers/PlayerProvider'
 import { QueryClientProvider } from './providers/QueryClientProvider'
-import store from './store'
 
 import 'normalize.css'
 import '@/assets/css/index.less'
@@ -22,13 +20,11 @@ const root = ReactDOM.createRoot(rootElement)
 root.render(
   <QueryClientProvider>
     <AxiosProvider>
-      <Provider store={store}>
-        <HashRouter>
-          <PlayerProvider>
-            <App />
-          </PlayerProvider>
-        </HashRouter>
-      </Provider>
+      <HashRouter>
+        <PlayerProvider>
+          <App />
+        </PlayerProvider>
+      </HashRouter>
     </AxiosProvider>
   </QueryClientProvider>
 )
