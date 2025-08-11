@@ -1,61 +1,67 @@
-import React, { FC, useState, useRef, useEffect, useCallback } from 'react'
+import React, { FC, useRef, useEffect, useCallback } from 'react'
 
 import classNames from 'classnames'
+
+import { usePlayerContext } from '@/providers/PlayerProvider'
 
 import { Player } from './Player'
 import { StickyPlayerBarWrapper } from './StickyPlayerBar.styles'
 
 export const StickyPlayerBar: FC = () => {
-  const [isLocked, setIsLocked] = useState(false)
+  const {
+    state: { isPinned },
+    togglePinned,
+  } = usePlayerContext()
+
   const wrapperRef = useRef<HTMLDivElement>(null)
 
   const showPlayer = useCallback(() => {
-    if (isLocked || !wrapperRef.current) return
+    if (isPinned || !wrapperRef.current) return
 
     wrapperRef.current.style.transitionDuration = '0.1s'
     wrapperRef.current.style.bottom = '0px'
-  }, [isLocked])
+  }, [isPinned])
 
   const hidePlayer = useCallback(() => {
-    if (isLocked || !wrapperRef.current) return
+    if (isPinned || !wrapperRef.current) return
 
     wrapperRef.current.style.transitionDuration = '0.3s'
     wrapperRef.current.style.bottom = '-46px'
-  }, [isLocked])
+  }, [isPinned])
 
   // Initialize player position on first render
   useEffect(() => {
-    if (!isLocked) {
+    if (!isPinned) {
       showPlayer()
 
       // hide after 3 seconds if not locked
       const timer = setTimeout(() => {
-        if (isLocked) return
+        if (isPinned) return
         hidePlayer()
       }, 3000)
 
       return () => clearTimeout(timer)
     }
-  }, [isLocked, showPlayer, hidePlayer])
+  }, [isPinned, showPlayer, hidePlayer])
 
   return (
     <StickyPlayerBarWrapper
       ref={wrapperRef}
       onMouseEnter={showPlayer}
       onMouseLeave={hidePlayer}
-      data-locked={isLocked}
+      data-pinned={isPinned}
     >
       <Player />
       <button
         className="sprite_player_bar lock"
-        onClick={() => setIsLocked((prev) => !prev)}
-        aria-label={isLocked ? 'Unlock player' : 'Lock player'}
-        title={isLocked ? 'Unlock player' : 'Lock player'}
+        onClick={togglePinned}
+        aria-label={isPinned ? 'Unlock player' : 'Lock player'}
+        title={isPinned ? 'Unlock player' : 'Lock player'}
       >
         <div
           className={classNames(
             'sprite_player_bar',
-            isLocked ? 'lock-icon' : 'unlock-icon'
+            isPinned ? 'lock-icon' : 'unlock-icon'
           )}
         />
       </button>
