@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
 
 import { PlaylistDetail, PopularPlaylist } from '@/types/playlist'
-import { formatCount, formatSizedImage } from '@/utils/formatUtils'
+import { formatPlayCount, formatSizedImage } from '@/utils/dataFormat'
 
 import { PlaylistCoverWrapper } from './PlaylistCover.styles'
 
@@ -44,10 +44,10 @@ export const PlaylistCover: FC<{
         </NavLink>
         <div className="panel sprite_cover">
           <span className="headset sprite_icon" />
-          <span className="play-count">{formatCount(playlist.playCount)}</span>
-          <a className="play sprite_icon" href="todo" title="播放">
-            {' '}
-          </a>
+          <span className="play-count">
+            {formatPlayCount(playlist.playCount)}
+          </span>
+          <a className="play sprite_icon" href="todo" title="播放" />
         </div>
       </div>
       <NavLink

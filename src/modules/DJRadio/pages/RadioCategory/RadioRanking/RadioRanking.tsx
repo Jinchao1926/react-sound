@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { JCPagination } from '@/components/Pagination'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useTopRadiosQuery } from '@/hooks/djradio/useTopRadiosQuery'
-import { formatSizedImage } from '@/utils/formatUtils'
+import { formatSizedImage } from '@/utils/dataFormat'
 
 import { RadioRankingWrapper, RadioItemWrapper } from './RadioRanking.styles'
 

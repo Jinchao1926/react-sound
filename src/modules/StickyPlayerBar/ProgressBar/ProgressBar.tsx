@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
 
-import { roundToDecimal } from '@/utils/formatPlayer'
+import { roundToDecimal } from '@/utils/dataFormat'
 
 import { ProgressBarWrapper } from './ProgressBar.styles'
 

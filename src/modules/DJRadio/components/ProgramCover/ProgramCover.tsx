@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { formatSizedImage } from '@/utils/formatUtils'
+import { formatSizedImage } from '@/utils/dataFormat'
 
 import { ProgramCoverWrapper } from './ProgramCover.styles'
 

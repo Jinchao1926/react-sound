@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
 
 import { TopPlaylist } from '@/types/playlist'
-import { formatSizedImage } from '@/utils/formatUtils'
+import { formatSizedImage } from '@/utils/dataFormat'
 
 import { ToplistCategoryWrapper } from './ToplistCategory.styles'
 

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import { UserLink } from '@/components/UserLink'
 import { Album } from '@/types/music'
-import { formatSizedImage } from '@/utils/formatUtils'
+import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
   AlbumCoverWrapper,

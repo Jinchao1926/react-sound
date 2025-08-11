@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom'
 
 import { UserLink } from '@/components/UserLink'
 import { PlaylistDetail } from '@/types/playlist'
-import { formatMinuteSecond, formatSizedImage } from '@/utils/formatUtils'
+import { formatSizedImage } from '@/utils/dataFormat'
+import { formatMinuteSecond } from '@/utils/timeFormat'
 
 import {
   ToplistDetailWrapper,
