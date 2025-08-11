@@ -2,7 +2,8 @@ import React, { FC } from 'react'
 
 import SongOperationBar from '@/components/SongOperationBar'
 import { PlaylistDetail } from '@/types/playlist'
-import { formatSizedImage, formatMonthDay } from '@/utils/formatUtils'
+import { formatSizedImage } from '@/utils/dataFormat'
+import { formatMonthDay } from '@/utils/timeFormat'
 
 import { ToplistDetailWrapper } from './ToplistDetailHeader.styles'
 

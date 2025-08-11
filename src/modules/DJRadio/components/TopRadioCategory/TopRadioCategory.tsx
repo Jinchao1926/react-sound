@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import { SectionHeader } from '@/components/SectionHeader'
 import { useTopRadioCategoriesQuery } from '@/hooks/djradio/useTopRadioCategoriesQuery'
-import { formatSizedImage } from '@/utils/formatUtils'
+import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
   TopRadioCategoryWrapper,

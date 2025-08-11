@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PlaylistDetail } from '@/types/playlist'
-import { formatSizedImage } from '@/utils/formatUtils'
+import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
   PlaylistFooterWrapper,

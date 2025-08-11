@@ -9,7 +9,7 @@ import { useTopProgramsQuery } from '@/hooks/program/useTopProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { RankingTrend } from '@/modules/DJRadio/components/RankingTrend'
 import { Program } from '@/types/program'
-import { padLeft, formatMonthDay } from '@/utils/formatUtils'
+import { padLeft, formatMonthDay } from '@/utils/timeFormat'
 
 import {
   ProgramRankingWrapper,

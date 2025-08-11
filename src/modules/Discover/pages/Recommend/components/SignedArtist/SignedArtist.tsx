@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import { SectionHeader } from '@/components/SectionHeader'
 import { useTopArtistQuery } from '@/hooks/artist/useTopArtistQuery'
-import { formatSizedImage } from '@/utils/formatUtils'
+import { formatSizedImage } from '@/utils/dataFormat'
 
 import { SignedArtistWrapper } from './SignedArtist.styles'
 

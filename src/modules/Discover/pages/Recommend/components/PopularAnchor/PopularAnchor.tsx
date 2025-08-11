@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import { SectionHeader } from '@/components/SectionHeader'
 import { popularAnchors } from '@/constants/anchor'
-import { formatSizedImage } from '@/utils/formatUtils'
+import { formatSizedImage } from '@/utils/dataFormat'
 
 import { PopularAnchorWrapper } from './PopularAnchor.styles'
 

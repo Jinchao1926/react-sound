@@ -63,12 +63,15 @@ export const PlaylistCoverWrapper = styled.div`
   }
 
   .cover-source {
-    color: #999;
     display: flex;
+    gap: 4px;
+    max-width: 140px;
+    color: #999;
 
     .name {
       color: #666;
-      margin: 0 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
       &:hover {
         text-decoration: underline;
       }

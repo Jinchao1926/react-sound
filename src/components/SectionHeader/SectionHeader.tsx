@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import type { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
@@ -16,7 +16,7 @@ interface SectionHeaderProps {
   moreHref?: string
 }
 
-const SectionHeader: FC<SectionHeaderProps> = ({
+export const SectionHeader: FC<SectionHeaderProps> = ({
   variant = 'default',
   title,
   titleHref,
@@ -57,15 +57,15 @@ const SectionHeader: FC<SectionHeaderProps> = ({
         {/* Tags */}
         {tags && (
           <div className="tag-list">
-            {tags.map((item) => {
-              const isObject = typeof item === 'object'
+            {tags.map((tag) => {
+              const isObject = typeof tag === 'object'
               return (
-                <div className="item" key={isObject ? item.name : item}>
+                <div className="item" key={isObject ? tag.name : tag}>
                   <NavLink
                     className="tag"
-                    to={isObject ? item.href : `${tagLinkHref}${item}`}
+                    to={isObject ? tag.href : `${tagLinkHref}${tag}`}
                   >
-                    {isObject ? item.name : item}
+                    {isObject ? tag.name : tag}
                   </NavLink>
                   <span className="divider">|</span>
                 </div>
@@ -85,5 +85,3 @@ const SectionHeader: FC<SectionHeaderProps> = ({
     </SectionHeaderWrapper>
   )
 }
-
-export default memo(SectionHeader)

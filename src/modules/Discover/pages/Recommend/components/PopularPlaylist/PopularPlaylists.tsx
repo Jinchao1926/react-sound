@@ -17,6 +17,7 @@ export const PopularPlaylists: FC = () => {
         variant="primary"
         title="热门推荐"
         tags={tags}
+        tagsHref="/discover/playlist?cat="
         moreHref="/discover/playlist"
       />
       <PopularPlaylistContainer>

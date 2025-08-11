@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import { SectionHeader } from '@/components/SectionHeader'
 import { useSongPlaylistsQuery } from '@/hooks/song/useSongPlaylistsQuery'
-import { formatSizedImage } from '@/utils/formatUtils'
+import { formatSizedImage } from '@/utils/dataFormat'
 
 import { SongPlaylistItem, SongPlaylistWrapper } from './SongPlaylist.styles'
 

@@ -12,8 +12,9 @@ import { NavLink } from 'react-router-dom'
 import { UserLink } from '@/components/UserLink'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PLAY_MODE } from '@/types/player'
-import { formatTime, getMusicUrl } from '@/utils/formatPlayer'
-import { formatSizedImage } from '@/utils/formatUtils'
+import { getMusicUrl } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/dataFormat'
+import { formatTime } from '@/utils/timeFormat'
 
 import {
   PlayButton,
