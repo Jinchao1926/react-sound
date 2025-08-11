@@ -8,6 +8,7 @@ const PLAYER_TABLE = 'Player'
 const STORAGE_KEYS = {
   PLAYLIST: 'playlist',
   PLAY_MODE: 'playMode',
+  PLAYER_PINNED: 'playerPinned',
   CURRENT_SONG_INDEX: 'currentSongIndex',
 } as const
 
@@ -25,6 +26,14 @@ export const PlayerStorage = {
   },
   setPlayMode: (playMode: PlayModeType): boolean => {
     return setStorage(STORAGE_KEYS.PLAY_MODE, playMode, PLAYER_TABLE)
+  },
+  getPlayerPinned: (): boolean => {
+    return (
+      getStorage<boolean>(STORAGE_KEYS.PLAYER_PINNED, PLAYER_TABLE) || false
+    )
+  },
+  setPlayerPinned: (isPinned: boolean): boolean => {
+    return setStorage(STORAGE_KEYS.PLAYER_PINNED, isPinned, PLAYER_TABLE)
   },
   getCurrentSongIndex: (): number | undefined => {
     return (

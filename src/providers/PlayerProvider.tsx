@@ -18,6 +18,7 @@ import { PlayerStorage } from '../utils/storages/playerStorage'
 interface PlayerState {
   playlist: Track[]
   playMode: PlayModeType
+  isPinned: boolean
   isPlaying: boolean
   currentSong?: Track
   currentSongIndex?: number
@@ -33,6 +34,8 @@ interface PlayerContextType {
   clearPlaylist: () => void
   // Play Mode
   switchPlayMode: () => void
+  // Player UI Control
+  togglePinned: () => void
   // Playback Control
   playSong: (song: Track) => void
   switchSong: (nextTrack: boolean) => void
@@ -44,9 +47,11 @@ interface PlayerContextType {
 const PlayerContext = createContext<PlayerContextType | undefined>(undefined)
 
 const getInitialState = (): PlayerState => {
-  const { getPlaylist, getPlayMode, getCurrentSongIndex } = PlayerStorage
+  const { getPlaylist, getPlayMode, getPlayerPinned, getCurrentSongIndex } =
+    PlayerStorage
   const playlist = getPlaylist()
   const playMode = getPlayMode()
+  const isPinned = getPlayerPinned()
   const currentSongIndex = getCurrentSongIndex()
   const currentSong =
     currentSongIndex !== undefined && currentSongIndex < playlist.length
@@ -56,6 +61,7 @@ const getInitialState = (): PlayerState => {
   return {
     playlist,
     playMode,
+    isPinned,
     isPlaying: false,
     currentSong,
     currentSongIndex,
@@ -137,12 +143,12 @@ export const PlayerProvider: React.FC<{
   // Play Mode
   const switchPlayMode = useCallback(() => {
     setState((prev) => {
-      const newPlayMode = getNextPlayMode(prev.playMode)
-      PlayerStorage.setPlayMode(newPlayMode)
+      const playMode = getNextPlayMode(prev.playMode)
+      PlayerStorage.setPlayMode(playMode)
 
       return {
         ...prev,
-        playMode: newPlayMode,
+        playMode,
       }
     })
   }, [])
@@ -227,6 +233,19 @@ export const PlayerProvider: React.FC<{
     }))
   }, [])
 
+  // Player UI Control
+  const togglePinned = useCallback(() => {
+    setState((prev) => {
+      const isPinned = !prev.isPinned
+      PlayerStorage.setPlayerPinned(isPinned)
+
+      return {
+        ...prev,
+        isPinned,
+      }
+    })
+  }, [])
+
   // Lyric
   const changeLyricLineIndex = useCallback((index: number) => {
     setState((prev) => {
@@ -248,6 +267,7 @@ export const PlayerProvider: React.FC<{
     removeFromPlaylist,
     clearPlaylist,
     switchPlayMode,
+    togglePinned,
     playSong,
     switchSong,
     togglePlayState,
