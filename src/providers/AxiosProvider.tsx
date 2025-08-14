@@ -92,5 +92,3 @@ export const useAxios = () => {
   }
   return context
 }
-
-export default AxiosProvider
