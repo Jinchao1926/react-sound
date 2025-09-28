@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useRef,
 } from 'react'
+import type { FC, PropsWithChildren } from 'react'
 
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { LyricLine } from '@/types/lyric'
@@ -70,9 +71,7 @@ const getInitialState = (): PlayerState => {
   }
 }
 
-export const PlayerProvider: React.FC<{
-  children: React.ReactNode
-}> = ({ children }) => {
+export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
   const lyricSongIdRef = useRef<number | undefined>(undefined)
 
   const [state, setState] = useState<PlayerState>(getInitialState)

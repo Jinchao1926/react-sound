@@ -4,18 +4,22 @@ import { NavLink } from 'react-router-dom'
 
 import { discoverNavigations } from '@/constants/navigation'
 
-import { DiscoverMenuWrapper } from './DiscoverMenu.styles'
+import {
+  DiscoverMenuWrapper,
+  DiscoverNavigationItem,
+} from './DiscoverMenu.styles'
+import { FlexContainer } from '../UI'
 
 export const DiscoverMenu: FC = () => {
   return (
     <DiscoverMenuWrapper>
-      <div className="nav-list wrap-v1">
+      <FlexContainer variant="large" align="center" height="100%">
         {discoverNavigations.map((item) => (
-          <div className="nav-item" key={item.title}>
+          <DiscoverNavigationItem key={item.title}>
             <NavLink to={item.link}>{item.title}</NavLink>
-          </div>
+          </DiscoverNavigationItem>
         ))}
-      </div>
+      </FlexContainer>
     </DiscoverMenuWrapper>
   )
 }

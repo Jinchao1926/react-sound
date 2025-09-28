@@ -4,54 +4,52 @@ import { SearchOutlined } from '@ant-design/icons'
 import { Input } from 'antd'
 import { NavLink } from 'react-router-dom'
 
-import { rootNavigations, RootNavigation } from '@/constants/navigation'
+import { rootNavigations } from '@/constants/navigation'
 
-import { AppHeaderWrapper, HeaderLeft, HeaderRight } from './AppHeader.styles'
+import {
+  AppHeaderWrapper,
+  AppNavigationItem,
+  HeaderLeft,
+  HeaderRight,
+} from './AppHeader.styles'
+import { Flex, FlexContainer } from '../UI'
 
 export const AppHeader: FC = () => {
-  function showNavItem(item: RootNavigation) {
-    if (item.type === 'path') {
-      return (
-        <NavLink to={item.link}>
-          {item.title}
-          <i className="icon sprite_01"></i>
-        </NavLink>
-      )
-    } else if (item.type === 'link') {
-      return (
-        <a href={item.link} target="_blank" rel="noreferrer">
-          {item.title}
-        </a>
-      )
-    }
-  }
-
   return (
     <AppHeaderWrapper>
-      <div className="content wrap-v1">
+      <FlexContainer variant="large">
         <HeaderLeft>
           <a className="logo-app sprite_01" href="#/">
             网易云音乐
           </a>
-          <div className="nav-list">
+          <Flex justify="space-between" lineHeight={70}>
             {rootNavigations.map((item) => (
-              <div className="nav-item" key={item.title}>
-                {showNavItem(item)}
-              </div>
+              <AppNavigationItem key={item.title}>
+                {item.type === 'path' ? (
+                  <NavLink to={item.link}>
+                    {item.title}
+                    <i className="icon sprite_01" />
+                  </NavLink>
+                ) : (
+                  <a href={item.link} target="_blank" rel="noreferrer">
+                    {item.title}
+                  </a>
+                )}
+              </AppNavigationItem>
             ))}
-          </div>
+          </Flex>
         </HeaderLeft>
+
         <HeaderRight>
           <Input
             className="search"
             placeholder="音乐/视频/电台/用户"
             prefix={<SearchOutlined twoToneColor="#9b9b9b" />}
-          ></Input>
+          />
           <div className="center">创作者中心</div>
           <div className="login">登录</div>
         </HeaderRight>
-      </div>
-      <div className="divider"></div>
+      </FlexContainer>
     </AppHeaderWrapper>
   )
 }
