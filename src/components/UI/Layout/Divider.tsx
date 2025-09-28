@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 interface DividerProps extends HTMLAttributes<HTMLDivElement> {
   direction?: 'horizontal' | 'vertical'
   margin?: string | number
-  width?: string | number
+  size?: string | number
   color?: string
   dashed?: boolean
 }
@@ -15,23 +15,23 @@ export const Divider = styled.div<DividerProps>`
   ${({
     direction = 'horizontal',
     margin = 8,
-    width,
+    size = 1,
     color = '#e5e7eb',
-    dashed,
+    dashed = false,
   }) =>
     direction === 'vertical'
       ? css`
           display: inline-block;
-          width: 0;
-          height: ${typeof width === 'number' ? `${width}px` : width || '1em'};
+          height: 100%;
+          width: ${typeof size === 'number' ? `${size}px` : size || '1em'};
           margin: 0 ${typeof margin === 'number' ? `${margin}px` : margin};
           border-left: ${dashed ? '1px dashed' : '1px solid'} ${color};
           vertical-align: middle;
         `
       : css`
           display: block;
-          height: 0;
           width: 100%;
+          height: ${typeof size === 'number' ? `${size}px` : size || '1em'};
           margin: ${typeof margin === 'number' ? `${margin}px` : margin} 0;
           border-top: ${dashed ? '1px dashed' : '1px solid'} ${color};
         `}
