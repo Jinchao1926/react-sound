@@ -12,6 +12,7 @@ export const RadioRecommendWrapper = styled.div`
 export const RadioItemWrapper = styled.div`
   margin-left: 37px;
   .cover {
+    display: block;
     width: 150px;
     height: 150px;
     cursor: pointer;
@@ -22,6 +23,7 @@ export const RadioItemWrapper = styled.div`
   }
 
   .name {
+    display: block;
     margin: 13px 0 6px;
     line-height: 16px;
     font-size: 14px;

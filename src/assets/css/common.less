@@ -19,6 +19,13 @@ a {
   text-overflow: ellipsis;
 }
 
+/* 确保 no-wrap 对链接元素生效 */
+a.no-wrap {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: top;
+}
+
 // 水平居中的块级元素
 .wrap-v1 {
   width: 1100px;
