@@ -3,8 +3,15 @@ import type { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { SectionHeaderWrapper } from './SectionHeader.styles'
+import {
+  Divider,
+  PrimaryMore,
+  SectionHeaderWrapper,
+  SubTitle,
+  Title,
+} from './SectionHeader.styles'
 import { SectionHeaderVariant } from './types'
+import { Box, Flex, TextNavLink } from '../UI'
 
 interface SectionHeaderProps {
   variant?: SectionHeaderVariant
@@ -39,48 +46,45 @@ export const SectionHeader: FC<SectionHeaderProps> = ({
   }, [variant])
 
   return (
-    <SectionHeaderWrapper
-      variant={variant}
-      className={variant === 'primary' ? 'sprite_02' : ''}
-    >
-      <div className="left">
+    <SectionHeaderWrapper variant={variant} disable={variant !== 'primary'}>
+      <Flex align="center">
         {/* Title */}
-        {titleHref ? (
-          <NavLink className="title" to={titleHref}>
-            {title}
-          </NavLink>
-        ) : (
-          <span className="title">{title}</span>
-        )}
+        <Title
+          as={titleHref ? NavLink : 'span'}
+          variant={variant}
+          {...(titleHref && { to: titleHref })}
+        >
+          {title}
+        </Title>
         {/* Sub Title */}
-        {subtitle && <span className="sub-title">{subtitle}</span>}
+        {subtitle && <SubTitle>{subtitle}</SubTitle>}
         {/* Tags */}
         {tags && (
-          <div className="tag-list">
-            {tags.map((tag) => {
+          <Flex ml={variant === 'default' ? 20 : 0}>
+            {tags.map((tag, index) => {
               const isObject = typeof tag === 'object'
               return (
-                <div className="item" key={isObject ? tag.name : tag}>
-                  <NavLink
-                    className="tag"
+                <Box key={isObject ? tag.name : tag}>
+                  <TextNavLink
                     to={isObject ? tag.href : `${tagLinkHref}${tag}`}
                   >
                     {isObject ? tag.name : tag}
-                  </NavLink>
-                  <span className="divider">|</span>
-                </div>
+                  </TextNavLink>
+                  {index < tags.length - 1 && (
+                    <Divider variant={variant}>|</Divider>
+                  )}
+                </Box>
               )
             })}
-          </div>
+          </Flex>
         )}
-      </div>
+      </Flex>
+
       {moreHref && (
-        <div className="right">
-          <NavLink className="more-link" to={moreHref}>
-            {moreLinkText}
-          </NavLink>
-          {variant === 'primary' && <i className="icon sprite_02" />}
-        </div>
+        <Box mt={variant === 'default' ? 10 : 0}>
+          <TextNavLink to={moreHref}>{moreLinkText}</TextNavLink>
+          {variant === 'primary' && <PrimaryMore />}
+        </Box>
       )}
     </SectionHeaderWrapper>
   )

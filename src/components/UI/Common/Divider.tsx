@@ -14,6 +14,7 @@ export const Divider = styled.div<DividerProps>`
   ${({ direction = 'horizontal', margin = 8, size = 1, color = '#e5e7eb' }) =>
     direction === 'vertical'
       ? css`
+          display: inline-block;
           height: 100%;
           width: ${typeof size === 'number' ? `${size}px` : size || '1em'};
           margin: 0 ${typeof margin === 'number' ? `${margin}px` : margin};

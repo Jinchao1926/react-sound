@@ -1,10 +1,10 @@
 import { AnchorHTMLAttributes } from 'react'
 
+import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   hoverUnderline?: boolean
-  // 常用的几个快捷属性
   color?: string
   fontSize?: string
   margin?: string
@@ -27,4 +27,11 @@ export const Link = styled.a<LinkProps>`
         text-decoration: underline;
       }
     `}
+`
+
+export const TextNavLink = styled(NavLink)`
+  color: #666;
+  &:hover {
+    text-decoration: underline;
+  }
 `
