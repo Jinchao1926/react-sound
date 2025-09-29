@@ -1,10 +1,10 @@
-export * from './Layout/Box'
-export * from './Layout/Container'
-export * from './Layout/Flex'
-export * from './Layout/FlexContainer'
+export { Box } from './Layout/Box'
+export { Container } from './Layout/Container'
+export { Flex } from './Layout/Flex'
+export { FlexContainer } from './Layout/FlexContainer'
 
 // export * from './Common/Button'
-export * from './Common/Divider'
-export * from './Common/Link'
+export { Divider } from './Common/Divider'
+export { Link, TextNavLink } from './Common/Link'
 
-export * from './Spirit'
+export { Sprite } from './Spirit'
