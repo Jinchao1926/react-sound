@@ -13,7 +13,7 @@ import { FlexContainer } from '../UI'
 export const DiscoverMenu: FC = () => {
   return (
     <DiscoverMenuWrapper>
-      <FlexContainer variant="large" align="center" height="100%">
+      <FlexContainer variant="large" height="100%">
         {discoverNavigations.map((item) => (
           <DiscoverNavigationItem key={item.title}>
             <NavLink to={item.link}>{item.title}</NavLink>

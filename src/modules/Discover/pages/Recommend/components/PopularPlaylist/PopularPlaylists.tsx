@@ -16,6 +16,7 @@ export const PopularPlaylists: FC = () => {
       <SectionHeader
         variant="primary"
         title="热门推荐"
+        titleHref="/discover/playlist"
         tags={tags}
         tagsHref="/discover/playlist?cat="
         moreHref="/discover/playlist"

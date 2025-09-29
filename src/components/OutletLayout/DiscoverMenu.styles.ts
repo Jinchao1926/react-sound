@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const DiscoverMenuWrapper = styled.div`
-  height: 35px;
+  height: 30px;
   box-sizing: border-box;
   background-color: #c20c0c;
   border-bottom: 1px solid #a40011;

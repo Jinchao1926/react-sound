@@ -3,7 +3,6 @@ import React, { FC, Suspense, ReactNode, ElementType } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import { DiscoverMenu } from './DiscoverMenu'
-import { Divider } from '../UI'
 
 interface OutletLayoutProps {
   showMenu?: boolean
@@ -23,11 +22,7 @@ export const OutletLayout: FC<OutletLayoutProps> = ({
 }) => {
   return (
     <Wrapper className={className}>
-      {showMenu ? (
-        <DiscoverMenu />
-      ) : (
-        <Divider size={5} margin={0} color="#c20c0c" />
-      )}
+      {showMenu && <DiscoverMenu />}
       <Suspense fallback={fallback}>
         <Outlet />
       </Suspense>
