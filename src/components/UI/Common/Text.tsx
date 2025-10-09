@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import { Box, Styles } from '../Layout/Box'
 
-// Head 组件的属性
 interface HeadProps extends Styles {
   level?: 1 | 2 | 3 | 4 | 5
 }
