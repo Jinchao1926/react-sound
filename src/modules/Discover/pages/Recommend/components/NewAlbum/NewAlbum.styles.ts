@@ -1,38 +1,45 @@
+import { Carousel } from 'antd'
 import styled from 'styled-components'
 
-export const NewAlbumWrapper = styled.div`
-  .inner {
-    height: 186px;
-    margin: 20px 0 37px;
-    background: #f5f5f5;
-    border: 1px solid #d3d3d3;
-    display: flex;
-    justify-content: center;
+import { Flex, Sprite } from '@/components/UI'
 
-    .album-list {
-      width: 645px;
-      height: 180px;
-      margin-top: 28px;
-      padding-left: 10px;
-      box-sizing: border-box;
+export const NewAlbumContent = styled(Flex)`
+  justify-content: center;
+  height: 186px;
+  margin: 20px 0 37px;
+  background: #f5f5f5;
+  border: 1px solid #d3d3d3;
+`
 
-      .album-page {
-        display: flex !important;
-        justify-content: space-between;
-      }
-    }
+export const AlbumList = styled(Carousel)`
+  width: 645px;
+  height: 180px;
+  margin-top: 28px;
+  padding-left: 10px;
+  box-sizing: border-box;
+`
 
-    .arrow {
-      margin-top: 71px;
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-    }
-    .arrow-left {
-      background-position: -260px -75px;
-    }
-    .arrow-right {
-      background-position: -300px -75px;
-    }
-  }
+export const AlbumPage = styled.div`
+  display: flex !important;
+  justify-content: space-between;
+`
+
+export const Left = styled(Sprite).attrs({
+  sprite: 'button',
+  icon: 'arrowLeft',
+  component: 'button',
+})`
+  margin-top: 71px;
+  width: 20px;
+  height: 20px;
+`
+
+export const Right = styled(Sprite).attrs({
+  sprite: 'button',
+  icon: 'arrowRight',
+  component: 'button',
+})`
+  margin-top: 71px;
+  width: 20px;
+  height: 20px;
 `
