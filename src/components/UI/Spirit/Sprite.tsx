@@ -10,15 +10,7 @@ import {
   SpriteConfig,
   SpriteIconConfig,
 } from './config'
-
-interface SpriteProps {
-  sprite: SpriteCategory
-  icon: string
-  component?: ElementType
-  className?: string
-  style?: CSSProperties
-  disable?: boolean
-}
+import { Box, Styles } from '../Layout/Box'
 
 // Search for sprite configuration
 const findSpriteConfig = (
@@ -57,14 +49,15 @@ const parseIconConfig = (iconConfig: string | SpriteIconConfig) => {
     size: iconConfig.size || null,
   }
 }
-
-const StyledSprite = styled.div<{
+interface StyledSpriteProps {
   url: string
   backgroundSize?: string
   normalPosition: string
   hoverPosition?: string | null
   disable?: boolean
-}>`
+}
+
+const StyledSprite = styled(Box)<StyledSpriteProps>`
   background-image: url(${({ url }) => url});
   background-repeat: no-repeat;
   background-position: ${({ normalPosition, disable }) =>
@@ -86,6 +79,15 @@ const StyledSprite = styled.div<{
       }
     `}
 `
+
+interface SpriteProps extends Styles {
+  sprite: SpriteCategory
+  icon: string
+  component?: ElementType
+  className?: string
+  style?: CSSProperties
+  disable?: boolean
+}
 
 export const Sprite: FC<PropsWithChildren<SpriteProps & any>> = ({
   sprite,

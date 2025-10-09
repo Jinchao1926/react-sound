@@ -31,34 +31,15 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   },
   button: {
     url: './img/button.png',
-    icons: {
-      play: {
-        normal: '-387px -103px',
-        hover: '-420px -103px', // hover shows pause icon
-      },
-      pause: {
-        normal: '-420px -103px',
-        hover: '-387px -103px', // hover shows play icon
-      },
-      prev: { normal: '-130px -204px' },
-      next: { normal: '-80px -204px' },
-    },
+    icons: {},
   },
   button1: {
     url: './img/button1.png',
-    icons: {
-      more: { normal: '0 -240px' },
-      share: { normal: '-120px -240px' },
-      download: { normal: '-240px -240px' },
-    },
+    icons: {},
   },
   button2: {
     url: './img/button2.png',
-    icons: {
-      like: { normal: '-51px -159px' },
-      collect: { normal: '-117px -159px' },
-      comment: { normal: '-180px -159px' },
-    },
+    icons: {},
   },
   button3: {
     url: require('./img/button3.png'),
@@ -69,6 +50,10 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       redCircle: '-225px -156px',
       arrowLeft: '-260px -75px',
       arrowRight: '-300px -75px',
+      play: { normal: '-267px -205px', hover: '-267px -235px' },
+      collect: { normal: '-300px -205px', hover: '-300px -235px' },
+      playSmall: { normal: '-267px -268px', hover: '-267px -288px' },
+      collectSmall: { normal: '-297px -268px', hover: '-297px -288px' },
     },
   },
 }
