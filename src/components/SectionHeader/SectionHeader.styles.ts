@@ -5,7 +5,7 @@ import { Sprite } from '../UI'
 
 export const SectionHeaderWrapper = styled(Sprite).attrs({
   sprite: 'button',
-  icon: 'circle',
+  icon: 'redCircle',
 })<{
   variant: SectionHeaderVariant
 }>`

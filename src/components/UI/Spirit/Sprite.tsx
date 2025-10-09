@@ -1,12 +1,14 @@
 import React, { CSSProperties, ElementType, FC, PropsWithChildren } from 'react'
 
 import classNames from 'classnames'
+import styled, { css } from 'styled-components'
 
 import {
   SpriteCategory,
   INTERNAL_SPRITE_CONFIG,
   SPRITE_VARIANTS,
   SpriteConfig,
+  SpriteIconConfig,
 } from './config'
 
 interface SpriteProps {
@@ -39,6 +41,52 @@ const findSpriteConfig = (
   return null
 }
 
+// Parse icon configuration and extract positions
+const parseIconConfig = (iconConfig: string | SpriteIconConfig) => {
+  if (typeof iconConfig === 'string') {
+    return {
+      normal: iconConfig,
+      hover: null,
+      size: null,
+    }
+  }
+
+  return {
+    normal: iconConfig.normal,
+    hover: iconConfig.hover || null,
+    size: iconConfig.size || null,
+  }
+}
+
+const StyledSprite = styled.div<{
+  url: string
+  backgroundSize?: string
+  normalPosition: string
+  hoverPosition?: string | null
+  disable?: boolean
+}>`
+  background-image: url(${({ url }) => url});
+  background-repeat: no-repeat;
+  background-position: ${({ normalPosition, disable }) =>
+    disable ? '0 9999px' : normalPosition};
+
+  ${({ backgroundSize }) =>
+    backgroundSize &&
+    backgroundSize !== 'auto' &&
+    css`
+      background-size: ${backgroundSize};
+    `}
+
+  ${({ hoverPosition, disable }) =>
+    hoverPosition &&
+    !disable &&
+    css`
+      &:hover {
+        background-position: ${hoverPosition};
+      }
+    `}
+`
+
 export const Sprite: FC<PropsWithChildren<SpriteProps & any>> = ({
   sprite,
   icon,
@@ -63,32 +111,23 @@ export const Sprite: FC<PropsWithChildren<SpriteProps & any>> = ({
     return null
   }
 
-  // Handle icon configuration (supports both string and object formats)
-  const position =
-    typeof iconConfig === 'string' ? iconConfig : iconConfig.position
-  const iconSize = typeof iconConfig === 'object' ? iconConfig.size : null
-  const finalBackgroundSize = iconSize || config.defaultSize
-
-  // Build optimized sprite style object - only set non-default values
-  const spriteStyle: CSSProperties = {
-    backgroundImage: `url(${config.url})`,
-    backgroundRepeat: 'no-repeat',
-    // When disabled, use 9999px trick to hide the image
-    backgroundPosition: disable ? '0 9999px' : position,
-  }
-
-  // Only set backgroundSize if it's not the default 'auto' or empty
-  if (finalBackgroundSize && finalBackgroundSize !== 'auto') {
-    spriteStyle.backgroundSize = finalBackgroundSize
-  }
+  const parsedConfig = parseIconConfig(iconConfig)
+  const finalBackgroundSize = parsedConfig.size || config.defaultSize
+  const position = parsedConfig.normal || '0 0'
 
   return (
-    <Component
+    <StyledSprite
+      as={Component}
       className={classNames(className)}
-      style={{ ...spriteStyle, ...style }}
+      style={style}
+      url={config.url}
+      backgroundSize={finalBackgroundSize}
+      normalPosition={position}
+      hoverPosition={parsedConfig.hover}
+      disable={disable}
       {...props}
     >
       {children}
-    </Component>
+    </StyledSprite>
   )
 }

@@ -1,30 +1,39 @@
 import styled from 'styled-components'
 
-export const UserProfileWrapper = styled.div`
+import { Sprite } from '@/components/UI'
+
+export const UserProfileBG = styled(Sprite).attrs({
+  sprite: 'button',
+  icon: 'greyBG',
+})`
   height: 126px;
   text-align: center;
-  background-position: 0 -0;
+`
 
-  p {
-    width: 205px;
-    margin: 0 auto;
-    padding: 16px 0;
-    line-height: 22px;
-    text-align: left;
-    color: #666;
-  }
+export const VipImage = styled.img`
+  margin-top: 5px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+`
 
-  button {
-    text-align: center;
-    display: inline-block;
-    width: 100px;
-    height: 31px;
-    background-position: 0 -195px;
-    color: #fff;
-    text-shadow: 0 1px 0 #8a060b;
+export const LoginDesc = styled.p`
+  width: 205px;
+  margin: 0 auto;
+  padding: 16px 0;
+  line-height: 22px;
+  text-align: left;
+  color: #666;
+`
 
-    &:hover {
-      background-position: -110px -195px;
-    }
-  }
+export const LoginButton = styled(Sprite).attrs({
+  sprite: 'button',
+  icon: 'loginButton',
+  component: 'button',
+})`
+  width: 100px;
+  height: 31px;
+  color: #fff;
+  text-shadow: 0 1px 0 #8a060b;
 `
