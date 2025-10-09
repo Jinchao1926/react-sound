@@ -6,6 +6,7 @@ export { FlexContainer } from './Layout/FlexContainer'
 // export * from './Common/Button'
 export { Divider } from './Common/Divider'
 export { Link, TextNavLink } from './Common/Link'
-export { Text, Paragraph } from './Common/Text'
+export { Text, Paragraph, Head } from './Common/Text'
+export { Image } from './Common/Image'
 
 export { Sprite } from './Spirit'

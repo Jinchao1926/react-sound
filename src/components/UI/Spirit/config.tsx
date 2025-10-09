@@ -56,6 +56,12 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       collectSmall: { normal: '-297px -268px', hover: '-297px -288px' },
     },
   },
+  cover: {
+    url: require('./img/cover.png'),
+    icons: {
+      bright: '-145px -57px',
+    },
+  },
 }
 
 // Variant group configuration

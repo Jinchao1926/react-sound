@@ -2,15 +2,18 @@ import type { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
+import { Box, Flex, Head, Image, Sprite, TextNavLink } from '@/components/UI'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
+  CollectButton,
+  PlayButton,
+  PlaylistCover,
   PlaylistFooterWrapper,
-  PlaylistHeaderWrapper,
+  PlaylistLink,
   PlaylistSongListWrapper,
-  PlaylistWrapper,
 } from './Playlist.styles'
 
 interface PlaylistProps {
@@ -27,25 +30,31 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
   const collectMusic = (item: any) => {}
 
   return (
-    <PlaylistWrapper>
-      <PlaylistHeaderWrapper>
-        <div className="cover">
-          <img
+    <Box width={230}>
+      <Flex gap={10} height={100} pt={20} pl={19}>
+        <PlaylistCover>
+          <Image
             src={formatSizedImage(playlist.coverImgUrl, 80)}
             alt={playlist.name}
+            width={'100%'}
+            height={'100%'}
           />
-          <NavLink className="sprite_cover" to={rankingUrl} />
-        </div>
-        <div className="info">
-          <NavLink to={rankingUrl}>
-            <h3>{playlist.name}</h3>
-          </NavLink>
-          <div className="actions">
-            <button className="sprite_02 btn play" title="播放" />
-            <button className="sprite_02 btn collect" title="收藏" />
-          </div>
-        </div>
-      </PlaylistHeaderWrapper>
+          <PlaylistLink to={rankingUrl}>
+            <Sprite sprite="cover" icon="bright" height={'100%'} />
+          </PlaylistLink>
+        </PlaylistCover>
+        <Box>
+          <TextNavLink to={rankingUrl} color="#333">
+            <Head mt={6} mb={10} height={20}>
+              {playlist.name}
+            </Head>
+          </TextNavLink>
+          <Flex gap={10}>
+            <PlayButton title="播放" onClick={() => {}} />
+            <CollectButton title="收藏" onClick={() => {}} />
+          </Flex>
+        </Box>
+      </Flex>
       <PlaylistSongListWrapper>
         {tracks.slice(0, 10).map((song, index) => (
           <div className="item" key={song.id}>
@@ -76,6 +85,6 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
       <PlaylistFooterWrapper>
         <NavLink to={rankingUrl}>{'查看全部>'}</NavLink>
       </PlaylistFooterWrapper>
-    </PlaylistWrapper>
+    </Box>
   )
 }

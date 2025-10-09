@@ -1,73 +1,38 @@
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const PlaylistWrapper = styled.div`
-  width: 230px;
+import { Sprite } from '@/components/UI'
+
+export const PlaylistCover = styled.div`
+  width: 80px;
+  height: 80px;
+  position: relative;
 `
 
-export const PlaylistHeaderWrapper = styled.div`
-  height: 100px;
-  padding: 20px 0 0 19px;
-  display: flex;
+export const PlaylistLink = styled(NavLink)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+`
 
-  .cover {
-    width: 80px;
-    height: 80px;
-    position: relative;
+export const PlayButton = styled(Sprite).attrs({
+  sprite: 'button',
+  icon: 'play',
+  component: 'button',
+})`
+  width: 22px;
+  height: 22px;
+`
 
-    img {
-      width: 100%;
-      height: 100%;
-    }
-    a {
-      background-position: -145px -57px;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 0;
-      top: 0;
-    }
-  }
-
-  .info {
-    width: 116px;
-    margin: 6px 0 0 10px;
-
-    a > h3 {
-      font-size: 14px;
-      color: #333;
-      height: 20px;
-      display: flex;
-      align-items: center;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .actions {
-      margin-top: 10px;
-
-      .btn {
-        display: inline-block;
-        width: 22px;
-        height: 22px;
-        margin-right: 10px;
-        text-indent: -9999px;
-        cursor: pointer;
-      }
-      .play {
-        background-position: -267px -205px;
-        &:hover {
-          background-position: -267px -235px;
-        }
-      }
-      .collect {
-        background-position: -300px -205px;
-        &:hover {
-          background-position: -300px -235px;
-        }
-      }
-    }
-  }
+export const CollectButton = styled(Sprite).attrs({
+  sprite: 'button',
+  icon: 'collect',
+  component: 'button',
+})`
+  width: 22px;
+  height: 22px;
 `
 
 export const PlaylistSongListWrapper = styled.div`
