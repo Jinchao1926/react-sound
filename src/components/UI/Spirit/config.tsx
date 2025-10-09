@@ -67,8 +67,8 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       loginButton: { normal: '0 -195px', hover: '-110px -195px' },
       more: '0 -240px',
       redCircle: '-225px -156px',
-      arrowLeft: { normal: '-260px -75px' },
-      arrowRight: { normal: '-300px -75px' },
+      arrowLeft: '-260px -75px',
+      arrowRight: '-300px -75px',
     },
   },
 }

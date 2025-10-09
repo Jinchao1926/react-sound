@@ -1,51 +1,52 @@
-import React, { FC, ElementRef, useRef } from 'react'
+import React, { FC, ElementRef, useRef, useMemo } from 'react'
 
 import { Carousel } from 'antd'
 
 import { SectionHeader } from '@/components/SectionHeader'
+import { Box } from '@/components/UI'
 import { useNewAlbumsQuery } from '@/hooks/album/useNewAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 
-import { NewAlbumWrapper } from './NewAlbum.styles'
+import {
+  AlbumList,
+  AlbumPage,
+  Left,
+  NewAlbumContent,
+  Right,
+} from './NewAlbum.styles'
 
 // 新碟上架
 export const NewAlbum: FC = () => {
   const pageRef = useRef<ElementRef<typeof Carousel>>(null)
 
   const { data: albums } = useNewAlbumsQuery()
+  const albumPage = useMemo(() => {
+    return Array.from({ length: 2 }, (_, idx) =>
+      albums.slice(idx * 5, (idx + 1) * 5)
+    )
+  }, [albums])
 
   return (
-    <NewAlbumWrapper>
+    <Box>
       <SectionHeader
         variant="primary"
         title="新碟上架"
         titleHref="/discover/album"
         moreHref="/discover/album"
       />
-      <div className="inner">
-        <div
-          className="arrow arrow-left sprite_02"
-          onClick={() => pageRef.current?.prev()}
-        />
-        <Carousel
-          className="album-list"
-          ref={pageRef}
-          dots={false}
-          autoplay={false}
-        >
-          {[0, 1].map((idx) => (
-            <div className="album-page" key={idx}>
-              {albums.slice(idx * 5, (idx + 1) * 5).map((album) => (
+      <NewAlbumContent>
+        <Left onClick={() => pageRef.current?.prev()} />
+        <AlbumList ref={pageRef} dots={false} autoplay={false}>
+          {albumPage.map((page, idx) => (
+            <AlbumPage key={idx}>
+              {page.map((album) => (
                 <AlbumCover key={album.id} album={album} isLarge={false} />
               ))}
-            </div>
+            </AlbumPage>
           ))}
-        </Carousel>
-        <div
-          className="arrow arrow-right sprite_02"
-          onClick={() => pageRef.current?.next()}
-        />
-      </div>
-    </NewAlbumWrapper>
+        </AlbumList>
+        <Right onClick={() => pageRef.current?.next()} />
+      </NewAlbumContent>
+    </Box>
   )
 }
