@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { Sprite } from '@/components/UI'
+import { Flex, Sprite } from '@/components/UI'
 
 export const PlaylistCover = styled.div`
   width: 80px;
@@ -35,82 +35,61 @@ export const CollectButton = styled(Sprite).attrs({
   height: 22px;
 `
 
-export const PlaylistSongListWrapper = styled.div`
-  .item {
-    position: relative;
+// Song
+export const SongIndex = styled.span`
+  width: 35px;
+  margin-left: 15px;
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+`
+
+export const SongActions = styled.div`
+  display: none;
+  align-items: center;
+  padding: 0 15px 0 5px;
+  gap: 8px;
+`
+
+export const SongItem = styled(Flex)`
+  position: relative;
+  align-items: center;
+  height: 32px;
+
+  // 前三个高亮
+  :nth-child(-n + 3) ${SongIndex} {
+    color: #c10d0c;
+  }
+
+  &:hover ${SongActions} {
     display: flex;
-    align-items: center;
-    height: 32px;
-
-    // 前三个高亮
-    :nth-child(-n + 3) .index {
-      color: #c10d0c;
-    }
-
-    .index {
-      width: 35px;
-      margin-left: 15px;
-      font-size: 16px;
-      color: #666;
-      // 水平居中
-      text-align: center;
-    }
-    .name {
-      width: 170px;
-      flex: 1;
-      color: #000;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    .actions {
-      display: none;
-      width: 82px;
-
-      .btn {
-        width: 17px;
-        height: 17px;
-        margin-left: 8px;
-        cursor: pointer;
-      }
-      .play {
-        background-position: -267px -268px;
-        &:hover {
-          background-position: -267px -288px;
-        }
-      }
-      .addTo {
-        margin-top: 2px;
-        background-position: 0 -700px;
-        &:hover {
-          background-position: -22px -700px;
-        }
-      }
-      .collect {
-        background-position: -297px -268px;
-        &:hover {
-          background-position: -297px -288px;
-        }
-      }
-    }
-
-    &:hover .actions {
-      display: flex;
-    }
   }
 `
 
-export const PlaylistFooterWrapper = styled.div`
-  height: 32px;
-  margin-right: 32px;
-  text-align: right;
-  line-height: 32px;
+export const SongPlayButton = styled(Sprite).attrs({
+  sprite: 'button',
+  icon: 'playSmall',
+  component: 'button',
+})`
+  width: 17px;
+  height: 17px;
+`
 
-  a {
-    color: #000;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+export const SongAddToButton = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'addTo',
+  component: 'button',
+})`
+  width: 17px;
+  height: 17px;
+  margin: 4px 0 0 2px;
+`
+
+export const SongCollectButton = styled(Sprite).attrs({
+  sprite: 'button',
+  icon: 'collectSmall',
+  component: 'button',
+})`
+  width: 17px;
+  height: 17px;
 `

@@ -75,6 +75,14 @@ export interface Styles extends HTMLAttributes<HTMLDivElement> {
   lineHeight?: CSSProperties['lineHeight'] | number
   textAlign?: CSSProperties['textAlign']
   textDecoration?: CSSProperties['textDecoration']
+  whiteSpace?: CSSProperties['whiteSpace']
+  textOverflow?: CSSProperties['textOverflow']
+  overflow?: CSSProperties['overflow']
+  overflowX?: CSSProperties['overflowX']
+  overflowY?: CSSProperties['overflowY']
+
+  // Text utilities
+  noWrap?: boolean // 便捷属性：不换行 + 省略号
 
   // Flex
   flex?: CSSProperties['flex']
@@ -97,9 +105,6 @@ export interface Styles extends HTMLAttributes<HTMLDivElement> {
   gridTemplateRows?: CSSProperties['gridTemplateRows']
 
   // Other
-  overflow?: CSSProperties['overflow']
-  overflowX?: CSSProperties['overflowX']
-  overflowY?: CSSProperties['overflowY']
   opacity?: CSSProperties['opacity'] | number
   visibility?: CSSProperties['visibility']
   cursor?: CSSProperties['cursor']
@@ -215,6 +220,16 @@ export const Box = styled.div<Styles>`
   ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
   ${({ textDecoration }) =>
     textDecoration && `text-decoration: ${textDecoration};`}
+  ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace};`}
+  ${({ textOverflow }) => textOverflow && `text-overflow: ${textOverflow};`}
+  ${({ overflow }) => overflow && `overflow: ${overflow};`}
+  ${({ overflowX }) => overflowX && `overflow-x: ${overflowX};`}
+  ${({ overflowY }) => overflowY && `overflow-y: ${overflowY};`}
+
+  /* Text utilities */
+  ${({ noWrap }) =>
+    noWrap &&
+    `white-space: nowrap; overflow: hidden; text-overflow: ellipsis; `}
 
   /* Flex */
   ${({ flex }) => flex && `flex: ${flex};`}
@@ -241,9 +256,6 @@ export const Box = styled.div<Styles>`
     gridTemplateRows && `grid-template-rows: ${gridTemplateRows};`}
 
   /* Other */
-  ${({ overflow }) => overflow && `overflow: ${overflow};`}
-  ${({ overflowX }) => overflowX && `overflow-x: ${overflowX};`}
-  ${({ overflowY }) => overflowY && `overflow-y: ${overflowY};`}
   ${({ opacity }) => opacity !== undefined && `opacity: ${opacity};`}
   ${({ visibility }) => visibility && `visibility: ${visibility};`}
   ${({ cursor }) => cursor && `cursor: ${cursor};`}

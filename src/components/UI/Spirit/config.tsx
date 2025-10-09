@@ -56,6 +56,12 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       collectSmall: { normal: '-297px -268px', hover: '-297px -288px' },
     },
   },
+  icon2: {
+    url: require('./img/icon2.png'),
+    icons: {
+      addTo: { normal: '0 -700px', hover: '-22px -700px' },
+    },
+  },
   cover: {
     url: require('./img/cover.png'),
     icons: {
@@ -67,9 +73,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
 // Variant group configuration
 export const SPRITE_VARIANTS: Record<string, string[]> = {
   button: ['button', 'button2', 'button3'],
-  // Future variant types can be added here, for example:
-  // icon: ['icon', 'icon1', 'icon2'],
-  // player: ['player', 'player1'],
+  icon: ['icon', 'icon2', 'icon3'],
 }
 
 // Public API - Export types for external use

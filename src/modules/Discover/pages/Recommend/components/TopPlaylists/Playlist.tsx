@@ -1,6 +1,4 @@
-import type { FC } from 'react'
-
-import { NavLink } from 'react-router-dom'
+import { useMemo, type FC } from 'react'
 
 import { Box, Flex, Head, Image, Sprite, TextNavLink } from '@/components/UI'
 import { usePlayerContext } from '@/providers/PlayerProvider'
@@ -11,9 +9,13 @@ import {
   CollectButton,
   PlayButton,
   PlaylistCover,
-  PlaylistFooterWrapper,
   PlaylistLink,
-  PlaylistSongListWrapper,
+  SongActions,
+  SongAddToButton,
+  SongCollectButton,
+  SongIndex,
+  SongItem,
+  SongPlayButton,
 } from './Playlist.styles'
 
 interface PlaylistProps {
@@ -23,6 +25,10 @@ interface PlaylistProps {
 export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
   const { tracks = [] } = playlist
   const { playSong, addToPlaylist } = usePlayerContext()
+
+  const top10Tracks = useMemo(() => {
+    return tracks.slice(0, 10)
+  }, [tracks])
 
   const rankingUrl = `/discover/toplist?id=${playlist.id}`
 
@@ -55,36 +61,41 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
           </Flex>
         </Box>
       </Flex>
-      <PlaylistSongListWrapper>
-        {tracks.slice(0, 10).map((song, index) => (
-          <div className="item" key={song.id}>
-            <span className="index">{index + 1}</span>
-            <NavLink className="name no-wrap" to={`/song?id=${song.id}`}>
+
+      <Box>
+        {top10Tracks.map((song, index) => (
+          <SongItem key={song.id}>
+            <SongIndex>{index + 1}</SongIndex>
+            <TextNavLink
+              to={`/song?id=${song.id}`}
+              color="#000"
+              width={170}
+              flex={1}
+              noWrap
+            >
               {song.name}
-            </NavLink>
-            <div className="actions">
-              <button
-                className="sprite_02 btn play"
-                title="播放"
-                onClick={() => playSong(song)}
-              />
-              <button
-                className="sprite_icon2 btn addTo"
+            </TextNavLink>
+
+            <SongActions>
+              <SongPlayButton title="播放" onClick={() => playSong(song)} />
+              <SongAddToButton
                 title="添加到播放列表"
                 onClick={() => addToPlaylist(song)}
               />
-              <button
-                className="sprite_02 btn collect"
+              <SongCollectButton
                 title="收藏"
                 onClick={() => collectMusic(song)}
               />
-            </div>
-          </div>
+            </SongActions>
+          </SongItem>
         ))}
-      </PlaylistSongListWrapper>
-      <PlaylistFooterWrapper>
-        <NavLink to={rankingUrl}>{'查看全部>'}</NavLink>
-      </PlaylistFooterWrapper>
+      </Box>
+
+      <Flex justify="flex-end" align="center" height={32} pr={32}>
+        <TextNavLink to={rankingUrl} color="#000">
+          {'查看全部>'}
+        </TextNavLink>
+      </Flex>
     </Box>
   )
 }
