@@ -1,56 +1,22 @@
 import styled from 'styled-components'
 
-export const ToplistDetailWrapper = styled.div`
-  padding: 40px;
-  display: flex;
+import { Sprite } from '@/components/UI'
 
-  .cover {
-    position: relative;
-    padding: 3px;
-    border: 1px solid #ccc;
-    width: 150px;
-    height: 150px;
+export const ToplistCover = styled.div`
+  position: relative;
+  padding: 3px;
+  border: 1px solid #ccc;
+  width: 150px;
+  height: 150px;
+`
 
-    img {
-      width: 100%;
-      height: 100%;
-    }
-    span {
-      background-position: -230px -380px;
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      top: 3px;
-      left: 3px;
-    }
-  }
-
-  .info {
-    margin-left: 30px;
-
-    .title {
-      margin: 16px 0 4px;
-      font-size: 20px;
-    }
-    .update {
-      margin-bottom: 20px;
-      height: 35px;
-      display: flex;
-      align-items: center;
-
-      .icon {
-        display: inline-block;
-        background-position: -18px -682px;
-        width: 13px;
-        height: 13px;
-      }
-      .time {
-        margin-left: 5px;
-        color: #666;
-      }
-      .frequency {
-        color: #999;
-      }
-    }
-  }
+export const ToplistCoverBright = styled(Sprite).attrs({
+  sprite: 'cover',
+  icon: 'bright150',
+})`
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 150px;
+  height: 150px;
 `

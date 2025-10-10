@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useState } from 'react'
 
 import classNames from 'classnames'
-import { NavLink } from 'react-router-dom'
 
+import { Box, Flex, Image, Text } from '@/components/UI'
 import { TopPlaylist } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 
-import { ToplistCategoryWrapper } from './ToplistCategory.styles'
+import { CategoryHead, CategoryLink } from './ToplistCategory.styles'
 
 interface ToplistCategoryProps {
   id?: number
@@ -26,37 +26,37 @@ export const ToplistCategory: FC<ToplistCategoryProps> = ({ id, toplists }) => {
   }, [toplists, id])
 
   return (
-    <ToplistCategoryWrapper>
+    <Box mt={40}>
       {toplists.map((item, idx) => {
-        let header
-        if (idx === 0 || idx === 4) {
-          header =
-            idx === 0 ? (
-              <h2 className="header1">云音乐特色榜</h2>
-            ) : (
-              <h2 className="header2">全球媒体榜</h2>
-            )
-        }
+        const header =
+          idx === 0 ? (
+            <CategoryHead level={2} m={0}>
+              云音乐特色榜
+            </CategoryHead>
+          ) : idx === 4 ? (
+            <CategoryHead level={2} mt={20} mb={0}>
+              全球媒体榜
+            </CategoryHead>
+          ) : null
+
         return (
           <React.Fragment key={item.id}>
             {header}
-            <NavLink
-              className={classNames('category', {
-                selected: selectedIndex === idx,
-              })}
+            <CategoryLink
+              className={classNames({ selected: selectedIndex === idx })}
               to={`/discover/toplist?id=${item.id}`}
             >
-              <div className="content">
-                <img src={formatSizedImage(item.coverImgUrl, 40)} alt="" />
-                <div className="info">
-                  <p className="name">{item.name}</p>
-                  <p className="frequency">{item.updateFrequency}</p>
-                </div>
-              </div>
-            </NavLink>
+              <Flex gap={10} height={40}>
+                <Image src={formatSizedImage(item.coverImgUrl, 40)} alt="" />
+                <Flex vertical justify="space-between" py={2}>
+                  <Text color="#000">{item.name}</Text>
+                  <Text color="#999">{item.updateFrequency}</Text>
+                </Flex>
+              </Flex>
+            </CategoryLink>
           </React.Fragment>
         )
       })}
-    </ToplistCategoryWrapper>
+    </Box>
   )
 }

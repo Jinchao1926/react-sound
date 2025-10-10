@@ -145,37 +145,42 @@ export const Box = styled.div<Styles>`
     maxHeight !== undefined && `max-height: ${toPx(maxHeight)};`}
 
   /* Margin */
-  ${({ margin, m }) => (margin || m) && `margin: ${toPx(margin || m)};`}
+  ${({ margin, m }) =>
+    (margin !== undefined || m !== undefined) &&
+    `margin: ${toPx(margin ?? m)};`}
   ${({ marginTop, mt }) =>
-    (marginTop || mt) !== undefined && `margin-top: ${toPx(marginTop || mt)};`}
+    (marginTop !== undefined || mt !== undefined) &&
+    `margin-top: ${toPx(marginTop ?? mt)};`}
   ${({ marginRight, mr }) =>
-    (marginRight || mr) !== undefined &&
-    `margin-right: ${toPx(marginRight || mr)};`}
+    (marginRight !== undefined || mr !== undefined) &&
+    `margin-right: ${toPx(marginRight ?? mr)};`}
   ${({ marginBottom, mb }) =>
-    (marginBottom || mb) !== undefined &&
-    `margin-bottom: ${toPx(marginBottom || mb)};`}
+    (marginBottom !== undefined || mb !== undefined) &&
+    `margin-bottom: ${toPx(marginBottom ?? mb)};`}
   ${({ marginLeft, ml }) =>
-    (marginLeft || ml) !== undefined &&
-    `margin-left: ${toPx(marginLeft || ml)};`}
+    (marginLeft !== undefined || ml !== undefined) &&
+    `margin-left: ${toPx(marginLeft ?? ml)};`}
   ${({ mx }) =>
     mx !== undefined && `margin-left: ${toPx(mx)}; margin-right: ${toPx(mx)};`}
   ${({ my }) =>
     my !== undefined && `margin-top: ${toPx(my)}; margin-bottom: ${toPx(my)};`}
 
   /* Padding */
-  ${({ padding, p }) => (padding || p) && `padding: ${toPx(padding || p)};`}
+  ${({ padding, p }) =>
+    (padding !== undefined || p !== undefined) &&
+    `padding: ${toPx(padding ?? p)};`}
   ${({ paddingTop, pt }) =>
-    (paddingTop || pt) !== undefined &&
-    `padding-top: ${toPx(paddingTop || pt)};`}
+    (paddingTop !== undefined || pt !== undefined) &&
+    `padding-top: ${toPx(paddingTop ?? pt)};`}
   ${({ paddingRight, pr }) =>
-    (paddingRight || pr) !== undefined &&
-    `padding-right: ${toPx(paddingRight || pr)};`}
+    (paddingRight !== undefined || pr !== undefined) &&
+    `padding-right: ${toPx(paddingRight ?? pr)};`}
   ${({ paddingBottom, pb }) =>
-    (paddingBottom || pb) !== undefined &&
-    `padding-bottom: ${toPx(paddingBottom || pb)};`}
+    (paddingBottom !== undefined || pb !== undefined) &&
+    `padding-bottom: ${toPx(paddingBottom ?? pb)};`}
   ${({ paddingLeft, pl }) =>
-    (paddingLeft || pl) !== undefined &&
-    `padding-left: ${toPx(paddingLeft || pl)};`}
+    (paddingLeft !== undefined || pl !== undefined) &&
+    `padding-left: ${toPx(paddingLeft ?? pl)};`}
   ${({ px }) =>
     px !== undefined &&
     `padding-left: ${toPx(px)}; padding-right: ${toPx(px)};`}

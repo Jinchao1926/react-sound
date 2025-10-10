@@ -7,17 +7,8 @@ export interface ContainerProps {
 }
 
 export const Container = styled(Box)<ContainerProps>`
-  ${({ variant = 'normal' }) =>
-    variant === 'large' &&
-    css`
-      width: 1100px;
-      margin: 0 auto;
-    `}
-
-  ${({ variant = 'normal' }) =>
-    variant === 'normal' &&
-    css`
-      width: 982px;
-      margin: 0 auto;
-    `}
+  ${({ variant = 'normal' }) => css`
+    width: ${variant === 'large' ? '1100px' : '982px'};
+    margin: 0 auto;
+  `}
 `
