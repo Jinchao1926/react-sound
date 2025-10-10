@@ -1,21 +1,23 @@
 import { useMemo, type FC } from 'react'
 
+import {
+  AddToButtonSmall,
+  CollectButton,
+  CollectButtonSmall,
+  PlayButton,
+  PlayButtonSmall,
+} from '@/components/Shared'
 import { Box, Flex, Head, Image, Sprite, TextNavLink } from '@/components/UI'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
-  CollectButton,
-  PlayButton,
   PlaylistCover,
   PlaylistLink,
   SongActions,
-  SongAddToButton,
-  SongCollectButton,
   SongIndex,
   SongItem,
-  SongPlayButton,
 } from './Playlist.styles'
 
 interface PlaylistProps {
@@ -56,8 +58,8 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
             </Head>
           </TextNavLink>
           <Flex gap={10}>
-            <PlayButton title="播放" onClick={() => {}} />
-            <CollectButton title="收藏" onClick={() => {}} />
+            <PlayButton onClick={() => {}} />
+            <CollectButton onClick={() => {}} />
           </Flex>
         </Box>
       </Flex>
@@ -77,15 +79,9 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
             </TextNavLink>
 
             <SongActions>
-              <SongPlayButton title="播放" onClick={() => playSong(song)} />
-              <SongAddToButton
-                title="添加到播放列表"
-                onClick={() => addToPlaylist(song)}
-              />
-              <SongCollectButton
-                title="收藏"
-                onClick={() => collectMusic(song)}
-              />
+              <PlayButtonSmall onClick={() => playSong(song)} />
+              <AddToButtonSmall onClick={() => addToPlaylist(song)} />
+              <CollectButtonSmall onClick={() => collectMusic(song)} />
             </SongActions>
           </SongItem>
         ))}

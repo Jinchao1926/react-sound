@@ -52,6 +52,7 @@ const parseIconConfig = (iconConfig: string | SpriteIconConfig) => {
 interface StyledSpriteProps {
   url: string
   backgroundSize?: string
+  backgroundRepeat?: string
   normalPosition: string
   hoverPosition?: string | null
   disable?: boolean
@@ -59,7 +60,8 @@ interface StyledSpriteProps {
 
 const StyledSprite = styled(Box)<StyledSpriteProps>`
   background-image: url(${({ url }) => url});
-  background-repeat: no-repeat;
+  background-repeat: ${({ backgroundRepeat }) =>
+    backgroundRepeat || 'no-repeat'};
   background-position: ${({ normalPosition, disable }) =>
     disable ? '0 9999px' : normalPosition};
 
@@ -86,6 +88,13 @@ interface SpriteProps extends Styles {
   component?: ElementType
   className?: string
   style?: CSSProperties
+  backgroundRepeat?:
+    | 'no-repeat'
+    | 'repeat'
+    | 'repeat-x'
+    | 'repeat-y'
+    | 'space'
+    | 'round'
   disable?: boolean
 }
 
@@ -95,6 +104,7 @@ export const Sprite: FC<PropsWithChildren<SpriteProps & any>> = ({
   component: Component = 'div',
   className,
   style,
+  backgroundRepeat,
   disable = false,
   children,
   ...props
@@ -124,6 +134,7 @@ export const Sprite: FC<PropsWithChildren<SpriteProps & any>> = ({
       style={style}
       url={config.url}
       backgroundSize={finalBackgroundSize}
+      backgroundRepeat={backgroundRepeat}
       normalPosition={position}
       hoverPosition={parsedConfig.hover}
       disable={disable}

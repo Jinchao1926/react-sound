@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { Flex, Sprite } from '@/components/UI'
+import { Flex } from '@/components/UI'
 
 export const PlaylistCover = styled.div`
   width: 80px;
@@ -15,24 +15,6 @@ export const PlaylistLink = styled(NavLink)`
   height: 100%;
   left: 0;
   top: 0;
-`
-
-export const PlayButton = styled(Sprite).attrs({
-  sprite: 'button',
-  icon: 'play',
-  component: 'button',
-})`
-  width: 22px;
-  height: 22px;
-`
-
-export const CollectButton = styled(Sprite).attrs({
-  sprite: 'button',
-  icon: 'collect',
-  component: 'button',
-})`
-  width: 22px;
-  height: 22px;
 `
 
 // Song
@@ -64,32 +46,4 @@ export const SongItem = styled(Flex)`
   &:hover ${SongActions} {
     display: flex;
   }
-`
-
-export const SongPlayButton = styled(Sprite).attrs({
-  sprite: 'button',
-  icon: 'playSmall',
-  component: 'button',
-})`
-  width: 17px;
-  height: 17px;
-`
-
-export const SongAddToButton = styled(Sprite).attrs({
-  sprite: 'icon',
-  icon: 'addTo',
-  component: 'button',
-})`
-  width: 17px;
-  height: 17px;
-  margin: 4px 0 0 2px;
-`
-
-export const SongCollectButton = styled(Sprite).attrs({
-  sprite: 'button',
-  icon: 'collectSmall',
-  component: 'button',
-})`
-  width: 17px;
-  height: 17px;
 `

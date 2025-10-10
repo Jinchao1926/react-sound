@@ -61,6 +61,17 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     icons: {
       addTo: { normal: '0 -700px', hover: '-22px -700px' },
       clock: '-18px -682px',
+      new: '-67px -283px',
+    },
+  },
+  icon4: {
+    url: require('./img/icon4.png'),
+    icons: {
+      header: { normal: '0 0' },
+      mv: '0 -151px',
+      play: { normal: '0 -103px', hover: '0 -128px' },
+      share: { normal: '0 -195px', hover: '-20px -195px' },
+      download: { normal: '-81px -174px', hover: '-104px -174px' },
     },
   },
   cover: {
@@ -75,7 +86,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
 // Variant group configuration
 export const SPRITE_VARIANTS: Record<string, string[]> = {
   button: ['button', 'button2', 'button3'],
-  icon: ['icon', 'icon2', 'icon3'],
+  icon: ['icon', 'icon2', 'icon3', 'icon4'],
 }
 
 // Public API - Export types for external use

@@ -12,4 +12,6 @@ export const Head = styled(Box).attrs<HeadProps>(({ level = 3 }) => ({
 
 export const Text = styled(Box).attrs({ as: 'span' })<Styles>``
 
+export const Strong = styled(Box).attrs({ as: 'strong' })<Styles>``
+
 export const Paragraph = styled(Box).attrs({ as: 'p' })<Styles>``

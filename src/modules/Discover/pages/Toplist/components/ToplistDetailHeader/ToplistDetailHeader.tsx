@@ -17,6 +17,7 @@ export const ToplistDetailHeader: FC<{ playlist: PlaylistDetail }> = ({
         <Image src={formatSizedImage(playlist.coverImgUrl, 150)} alt="" />
         <ToplistCoverBright />
       </ToplistCover>
+
       <Box>
         <Paragraph mt={16} mb={4} fontSize={20}>
           {playlist.name}
@@ -30,7 +31,6 @@ export const ToplistDetailHeader: FC<{ playlist: PlaylistDetail }> = ({
             <Text color="#999">（{playlist.updateFrequency}）</Text>
           )}
         </Flex>
-
         <SongOperationBar
           titles={{
             collectTitle: `(${playlist.subscribedCount})`,
