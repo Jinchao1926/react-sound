@@ -2,6 +2,7 @@
 export interface SpriteIconConfig {
   normal: string
   size?: string
+  repeat?: 'no-repeat' | 'repeat' | 'repeat-x' | 'repeat-y' | 'space' | 'round'
   hover?: string
 }
 
@@ -67,7 +68,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   icon4: {
     url: require('./img/icon4.png'),
     icons: {
-      header: { normal: '0 0' },
+      header: { normal: '0 0', repeat: 'repeat-x' },
       mv: '0 -151px',
       play: { normal: '0 -103px', hover: '0 -128px' },
       share: { normal: '0 -195px', hover: '-20px -195px' },

@@ -40,6 +40,7 @@ const parseIconConfig = (iconConfig: string | SpriteIconConfig) => {
       normal: iconConfig,
       hover: null,
       size: null,
+      repeat: null,
     }
   }
 
@@ -47,6 +48,7 @@ const parseIconConfig = (iconConfig: string | SpriteIconConfig) => {
     normal: iconConfig.normal,
     hover: iconConfig.hover || null,
     size: iconConfig.size || null,
+    repeat: iconConfig.repeat || null,
   }
 }
 interface StyledSpriteProps {
@@ -88,13 +90,6 @@ interface SpriteProps extends Styles {
   component?: ElementType
   className?: string
   style?: CSSProperties
-  backgroundRepeat?:
-    | 'no-repeat'
-    | 'repeat'
-    | 'repeat-x'
-    | 'repeat-y'
-    | 'space'
-    | 'round'
   disable?: boolean
 }
 
@@ -104,7 +99,6 @@ export const Sprite: FC<PropsWithChildren<SpriteProps & any>> = ({
   component: Component = 'div',
   className,
   style,
-  backgroundRepeat,
   disable = false,
   children,
   ...props
@@ -134,7 +128,7 @@ export const Sprite: FC<PropsWithChildren<SpriteProps & any>> = ({
       style={style}
       url={config.url}
       backgroundSize={finalBackgroundSize}
-      backgroundRepeat={backgroundRepeat}
+      backgroundRepeat={parsedConfig.repeat}
       normalPosition={position}
       hoverPosition={parsedConfig.hover}
       disable={disable}

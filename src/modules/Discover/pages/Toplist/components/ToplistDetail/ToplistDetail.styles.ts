@@ -44,7 +44,6 @@ export const ToplistTracksTHeader = styled(Sprite).attrs({
   sprite: 'icon',
   icon: 'header',
   component: 'thead',
-  backgroundRepeat: 'repeat-x',
 })``
 
 export const ToplistTrackTH = styled.th<{ width?: number }>`
