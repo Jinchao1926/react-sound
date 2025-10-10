@@ -60,12 +60,14 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     url: require('./img/icon2.png'),
     icons: {
       addTo: { normal: '0 -700px', hover: '-22px -700px' },
+      clock: '-18px -682px',
     },
   },
   cover: {
     url: require('./img/cover.png'),
     icons: {
-      bright: '-145px -57px',
+      bright80: '-145px -57px',
+      bright150: '-230px -380px',
     },
   },
 }

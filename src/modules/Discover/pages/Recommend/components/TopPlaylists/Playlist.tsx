@@ -46,7 +46,7 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
             height={'100%'}
           />
           <PlaylistLink to={rankingUrl}>
-            <Sprite sprite="cover" icon="bright" height={'100%'} />
+            <Sprite sprite="cover" icon="bright80" height={'100%'} />
           </PlaylistLink>
         </PlaylistCover>
         <Box>
