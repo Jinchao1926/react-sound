@@ -7,7 +7,7 @@ import { PlaylistDetail } from '@/types/playlist'
 import { ToplistCategory } from './components/ToplistCategory'
 import { ToplistDetail } from './components/ToplistDetail'
 import { ToplistDetailHeader } from './components/ToplistDetailHeader'
-import { ToplistWrapper, ToplistLeft, ToplistRight } from './Toplist.styles'
+import { ToplistLeft, ToplistRight, ToplistWrapper } from './Toplist.styles'
 
 export const Toplist: FC = () => {
   const { selectedToplist, toplists } = useSelectedToplist()
@@ -23,7 +23,7 @@ export const Toplist: FC = () => {
   }, [data, selectedToplist])
 
   return (
-    <ToplistWrapper className="wrap-v2">
+    <ToplistWrapper>
       <ToplistLeft>
         <ToplistCategory id={selectedToplist?.id} toplists={toplists} />
       </ToplistLeft>
