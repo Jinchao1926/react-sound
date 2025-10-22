@@ -6,7 +6,7 @@ import {
   DownloadClientDesc,
 } from './DownloadClient.styles'
 
-export const Download: FC = () => {
+export const DownloadClient: FC = () => {
   return (
     <DownloadClientBG>
       <DownloadClientButton

@@ -3,14 +3,19 @@ import React, { FC, useRef, useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
 
+import { Box, Flex, FlexContainer } from '@/components/UI'
 import { useBannersQuery } from '@/hooks/recommend/useBannersQuery'
 
+import { BannerTransitionContainer } from './style'
 import {
-  JCBannerControl,
-  JCBannerLeft,
-  JCBannerRight,
-  JCBannerWrapper,
-} from './style'
+  BannerBackground,
+  BannerControlContainer,
+  BannerDot,
+  BannerImage,
+  LeftControl,
+  RightControl,
+} from '../Banner/Banner.styles'
+import { DownloadClient } from '../Banner/DownloadClient'
 
 export const JCBanner: FC = () => {
   // 定义组件内部数据
@@ -98,11 +103,10 @@ export const JCBanner: FC = () => {
   }
 
   return (
-    <JCBannerWrapper bgImage={bgImage}>
-      <div className="banner wrap-v2">
-        <JCBannerLeft>
+    <BannerBackground bgImage={bgImage}>
+      <FlexContainer position="relative" height={285}>
+        <BannerTransitionContainer>
           <div
-            className="banner-list"
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
           >
@@ -113,39 +117,38 @@ export const JCBanner: FC = () => {
                 key={currentIndex}
                 onExit={() => handleAfterChange()}
               >
-                <div className="banner-item">
-                  <img className="image" src={imageUrl} alt="" />
-                </div>
+                <Box overflow="hidden" height={285}>
+                  <BannerImage src={imageUrl} alt={imageUrl} />
+                </Box>
               </CSSTransition>
             </SwitchTransition>
           </div>
-          <ul className="dots">
+          {/* 自定义走马灯 Dot */}
+          <Flex
+            position="absolute"
+            bottom={5}
+            width={730}
+            justifyContent="center"
+          >
             {banners.map((item, idx) => (
-              <li key={item.imageUrl}>
-                <button
-                  className={classNames('item', {
-                    active: currentIndex === idx,
-                  })}
-                  onClick={() => handleGoPressed(idx)}
-                />
-              </li>
+              <BannerDot
+                key={item.imageUrl}
+                className={classNames({
+                  active: currentIndex === idx,
+                })}
+                onClick={() => handleGoPressed(idx)}
+              />
             ))}
-          </ul>
-        </JCBannerLeft>
-        <JCBannerRight>
-          <p>PC 安卓 iPhone WP iPad Mac 六大客户端</p>
-        </JCBannerRight>
-        <JCBannerControl>
-          <button
-            className="btn left"
-            onClick={() => handlePreviousPressed()}
-          ></button>
-          <button
-            className="btn right"
-            onClick={() => handleNextPressed()}
-          ></button>
-        </JCBannerControl>
-      </div>
-    </JCBannerWrapper>
+          </Flex>
+        </BannerTransitionContainer>
+
+        <DownloadClient />
+
+        <BannerControlContainer>
+          <LeftControl onClick={() => handlePreviousPressed()} />
+          <RightControl onClick={() => handleNextPressed()} />
+        </BannerControlContainer>
+      </FlexContainer>
+    </BannerBackground>
   )
 }

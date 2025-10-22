@@ -14,7 +14,7 @@ import {
   LeftControl,
   RightControl,
 } from './Banner.styles'
-import { Download } from './DownloadClient'
+import { DownloadClient } from './DownloadClient'
 
 export const Banner: FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -78,7 +78,7 @@ export const Banner: FC = () => {
           </Flex>
         </Box>
 
-        <Download />
+        <DownloadClient />
 
         <BannerControlContainer>
           <LeftControl onClick={() => bannerRef.current?.prev()} />

@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 
 import { Banner } from './components/Banner'
+// import { JCBanner } from './components/JCBanner'
 import { NewAlbum } from './components/NewAlbum'
 import { PopularAnchor } from './components/PopularAnchor'
 import { PopularPlaylists } from './components/PopularPlaylist'
