@@ -78,7 +78,8 @@ const StyledSprite = styled(Box)<StyledSpriteProps>`
     hoverPosition &&
     !disable &&
     css`
-      &:hover {
+      &:hover,
+      &.active {
         background-position: ${hoverPosition};
       }
     `}

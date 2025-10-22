@@ -1,30 +1,31 @@
-import { ElementRef, FC, useEffect, useRef, useState } from 'react'
+import { ElementRef, FC, useMemo, useRef, useState } from 'react'
 
 import { Carousel } from 'antd'
 import classNames from 'classnames'
 
+import { Box, Flex, FlexContainer } from '@/components/UI'
 import { useBannersQuery } from '@/hooks/recommend/useBannersQuery'
 
 import {
-  BannerControl,
-  BannerLeft,
-  BannerRight,
-  BannerWrapper,
+  BannerBackground,
+  BannerControlContainer,
+  BannerDot,
+  BannerImage,
+  LeftControl,
+  RightControl,
 } from './Banner.styles'
+import { DownloadClient } from './DownloadClient'
 
 export const Banner: FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const bannerRef = useRef<ElementRef<typeof Carousel>>(null)
-  const bgRef = useRef<HTMLDivElement>(null)
 
   const { data: banners } = useBannersQuery()
 
-  useEffect(() => {
-    if (currentIndex >= 0 && banners.length > 0) {
-      const bgImageUrl =
-        banners[currentIndex].imageUrl + '?imageView&blur=40x20'
-      bgRef.current!.style.backgroundImage = `url(${bgImageUrl})`
-    }
+  const bgImage = useMemo(() => {
+    if (currentIndex >= banners.length) return undefined
+
+    return banners[currentIndex].imageUrl + '?imageView&blur=40x20'
   }, [banners, currentIndex])
 
   // 事件监听
@@ -38,9 +39,9 @@ export const Banner: FC = () => {
   }
 
   return (
-    <BannerWrapper ref={bgRef}>
-      <div className="banner wrap-v2">
-        <BannerLeft>
+    <BannerBackground bgImage={bgImage}>
+      <FlexContainer position="relative" height={285}>
+        <Box width={730}>
           <Carousel
             effect="fade"
             autoplay={true}
@@ -53,43 +54,37 @@ export const Banner: FC = () => {
             afterChange={handleAfterChange}
           >
             {banners.map((item) => (
-              <div className="banner-item" key={item.imageUrl}>
-                <img
-                  className="image"
-                  src={item.imageUrl}
-                  alt={item.typeTitle}
-                />
-              </div>
+              <Box key={item.imageUrl} overflow="hidden" height={285}>
+                <BannerImage src={item.imageUrl} alt={item.typeTitle} />
+              </Box>
             ))}
           </Carousel>
           {/* 自定义走马灯 Dot */}
-          <ul className="dots">
+          <Flex
+            position="absolute"
+            bottom={5}
+            width={730}
+            justifyContent="center"
+          >
             {banners.map((item, idx) => (
-              <li key={item.imageUrl}>
-                <button
-                  className={classNames('item', {
-                    active: currentIndex === idx,
-                  })}
-                  onClick={() => bannerRef.current?.goTo(idx)}
-                />
-              </li>
+              <BannerDot
+                key={item.imageUrl}
+                className={classNames({
+                  active: currentIndex === idx,
+                })}
+                onClick={() => bannerRef.current?.goTo(idx)}
+              />
             ))}
-          </ul>
-        </BannerLeft>
-        <BannerRight>
-          <p>PC 安卓 iPhone WP iPad Mac 六大客户端</p>
-        </BannerRight>
-        <BannerControl>
-          <button
-            className="btn left"
-            onClick={() => bannerRef.current?.prev()}
-          ></button>
-          <button
-            className="btn right"
-            onClick={() => bannerRef.current?.next()}
-          ></button>
-        </BannerControl>
-      </div>
-    </BannerWrapper>
+          </Flex>
+        </Box>
+
+        <DownloadClient />
+
+        <BannerControlContainer>
+          <LeftControl onClick={() => bannerRef.current?.prev()} />
+          <RightControl onClick={() => bannerRef.current?.next()} />
+        </BannerControlContainer>
+      </FlexContainer>
+    </BannerBackground>
   )
 }
