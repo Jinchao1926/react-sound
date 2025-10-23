@@ -10,10 +10,15 @@ export const footerLinks = [
     logo: 'trade',
     link: 'https://music.163.com/st/web-sublicense/home',
   },
+  // {
+  //   title: 'Amped Studio',
+  //   logo: 'amped',
+  //   link: 'https://web-amped.music.163.com/',
+  // },
   {
-    title: 'Amped Studio',
-    logo: 'amped',
-    link: 'https://web-amped.music.163.com/',
+    title: 'X StudioAI歌手',
+    logo: 'xStudio',
+    link: 'https://xstudio.music.163.com/',
   },
   {
     title: '用户认证',
@@ -21,20 +26,30 @@ export const footerLinks = [
     link: 'https://music.163.com/st/userbasic#/auth',
   },
   {
-    title: '音乐交易平台',
-    logo: 'musician',
-    link: 'https://music.163.com/st/ad-cms-bills/mlogin?from=mainStation',
+    title: 'AI 免费写歌',
+    logo: 'aiLogo',
+    link: 'https://tianyin.music.163.com/#/',
   },
+  {
+    title: '云推歌',
+    logo: 'cloudSong',
+    link: 'https://music.163.com/st/ad-song/',
+  },
+  // {
+  //   title: '音乐交易平台',
+  //   logo: 'musician',
+  //   link: 'https://music.163.com/st/ad-cms-bills/mlogin?from=mainStation',
+  // },
   {
     title: '赞赏',
     logo: 'reward',
     link: 'https://music.163.com/web/reward',
   },
-  {
-    title: '视频激励',
-    logo: 'cash',
-    link: 'https://music.163.com/st/ncreator/revenue-plan',
-  },
+  // {
+  //   title: '视频激励',
+  //   logo: 'cash',
+  //   link: 'https://music.163.com/st/ncreator/revenue-plan',
+  // },
 ]
 
 // Footer Copyrights

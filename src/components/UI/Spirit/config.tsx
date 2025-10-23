@@ -22,40 +22,27 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       redTriangle: { normal: '-105px -70px', size: '120px auto' },
     },
   },
+  // Footers
   footer: {
     url: require('./img/footer.png'),
+    defaultSize: '220px 220px',
     icons: {
-      openPlatform: {
-        normal: '-170px -5px',
-        hover: '-5px -115px',
-        size: '220px 220px',
-      },
-      trade: {
-        normal: '-5px -170px',
-        hover: '-60px -170px',
-        size: '220px 220px',
-      },
-      amped: { normal: '-5px -60px', hover: '-60px -5px', size: '220px 220px' },
-      auth: {
-        normal: '-60px -60px',
-        hover: '-115px -5px',
-        size: '220px 220px',
-      },
-      musician: {
-        normal: '-115px -115px',
-        hover: '-5px -5px',
-        size: '220px 220px',
-      },
-      reward: {
-        normal: '-170px -115px',
-        hover: '-60px -115px',
-        size: '220px 220px',
-      },
-      cash: {
-        normal: '-170px -60px',
-        hover: '-115px -60px',
-        size: '220px 220px',
-      },
+      openPlatform: { normal: '-170px -5px', hover: '-5px -115px' },
+      trade: { normal: '-5px -170px', hover: '-60px -170px' },
+      amped: { normal: '-5px -60px', hover: '-60px -5px' },
+      auth: { normal: '-60px -60px', hover: '-115px -5px' },
+      musician: { normal: '-115px -115px', hover: '-5px -5px' },
+      reward: { normal: '-170px -115px', hover: '-60px -115px' },
+      cash: { normal: '-170px -60px', hover: '-115px -60px' },
+    },
+  },
+  footer2: {
+    url: require('./img/footer2.png'),
+    defaultSize: '270px 45px',
+    icons: {
+      aiLogo: { normal: '0 0', hover: '-45px 0' },
+      cloudSong: { normal: '-90px 0', hover: '-135px 0' },
+      xStudio: { normal: '-180px 0', hover: '-225px 0' },
     },
   },
   police: {
@@ -72,6 +59,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       right: { normal: '0 -508px' },
     },
   },
+  // Backgrounds
   downloadBG: {
     url: require('./img/download_bg.png'),
     icons: {
@@ -93,6 +81,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       discoverLogin: { normal: '0 9999px', hover: '0 -430px' },
     },
   },
+  // Buttons
   button: {
     url: './img/button.png',
     icons: {},
@@ -120,6 +109,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       collectSmall: { normal: '-297px -268px', hover: '-297px -288px' },
     },
   },
+  // Icons
   icon2: {
     url: require('./img/icon2.png'),
     icons: {
@@ -149,9 +139,10 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
 
 // Variant group configuration
 export const SPRITE_VARIANTS: Record<string, string[]> = {
+  footer: ['footer', 'footer2'],
+  background: ['downloadBG', 'loginBG', 'loginBG2'],
   button: ['button', 'button2', 'button3'],
   icon: ['icon', 'icon2', 'icon3', 'icon4', 'police'],
-  background: ['downloadBG', 'loginBG', 'loginBG2'],
 }
 
 // Public API - Export types for external use

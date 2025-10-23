@@ -73,7 +73,7 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
               color="#000"
               width={170}
               flex={1}
-              noWrap
+              nowrap
             >
               {song.name}
             </TextNavLink>

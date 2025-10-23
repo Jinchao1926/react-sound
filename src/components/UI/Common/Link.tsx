@@ -32,8 +32,8 @@ export const TextNavLink = styled(Box).attrs({ as: NavLink })<TextNavLinkProps>`
   text-decoration: none;
   color: ${({ color = '#666' }) => color};
 
-  ${({ noWrap }) =>
-    noWrap &&
+  ${({ nowrap }) =>
+    nowrap &&
     css`
       display: inline-block;
       max-width: 100%;
