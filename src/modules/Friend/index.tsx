@@ -1,19 +1,15 @@
-import React, { memo } from 'react'
-import type { FC, ReactNode } from 'react'
+import React, { type FC } from 'react'
 
-import FriendLogin from './FriendLogin'
-import { FriendWrapper } from './style'
+import { Box } from '@/components/UI'
 
-interface IProps {
-  children?: ReactNode
-}
+import { FriendLogin } from './FriendLogin'
 
-const Friend: FC<IProps> = () => {
+const Friend: FC = () => {
   return (
-    <FriendWrapper>
+    <Box>
       <FriendLogin />
-    </FriendWrapper>
+    </Box>
   )
 }
 
-export default memo(Friend)
+export default Friend

@@ -39,7 +39,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   downloadBG: {
-    url: require('./img/download.png'),
+    url: require('./img/download_bg.png'),
     icons: {
       downloadBG: { normal: '0 0' },
       download: { normal: '0 9999px', hover: '0 -290px' },
@@ -55,7 +55,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   loginBG2: {
     url: require('./img/login_bg2.png'),
     icons: {
-      discoverBG: { normal: '0 0' },
+      discoverBG: { normal: '0 70px' },
       discoverLogin: { normal: '0 9999px', hover: '0 -430px' },
     },
   },
