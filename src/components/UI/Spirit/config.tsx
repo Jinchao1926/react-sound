@@ -41,8 +41,22 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   downloadBG: {
     url: require('./img/download.png'),
     icons: {
-      bg: { normal: '0 0' },
-      button: { normal: '0 9999px', hover: '0 -290px' },
+      downloadBG: { normal: '0 0' },
+      download: { normal: '0 9999px', hover: '0 -290px' },
+    },
+  },
+  loginBG: {
+    url: require('./img/login_bg.png'),
+    icons: {
+      mineBG: { normal: '0 104px' },
+      mineLogin: { normal: '0 9999px', hover: '0 -278px' },
+    },
+  },
+  loginBG2: {
+    url: require('./img/login_bg2.png'),
+    icons: {
+      discoverBG: { normal: '0 0' },
+      discoverLogin: { normal: '0 9999px', hover: '0 -430px' },
     },
   },
   button: {
@@ -103,6 +117,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
 export const SPRITE_VARIANTS: Record<string, string[]> = {
   button: ['button', 'button2', 'button3'],
   icon: ['icon', 'icon2', 'icon3', 'icon4'],
+  background: ['downloadBG', 'loginBG', 'loginBG2'],
 }
 
 // Public API - Export types for external use
@@ -110,7 +125,7 @@ export type SpriteCategory =
   | 'header'
   | 'footer'
   | 'banner'
-  | 'downloadBG'
+  | 'background'
   | 'button'
   | 'icon'
 
@@ -118,7 +133,7 @@ export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   header: INTERNAL_SPRITE_CONFIG.header,
   footer: INTERNAL_SPRITE_CONFIG.footer,
   banner: INTERNAL_SPRITE_CONFIG.banner,
-  downloadBG: INTERNAL_SPRITE_CONFIG.downloadBG,
+  background: INTERNAL_SPRITE_CONFIG.downloadBG,
   button: INTERNAL_SPRITE_CONFIG.button,
   icon: INTERNAL_SPRITE_CONFIG.icon,
 }

@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { Sprite } from '@/components/UI/Spirit/Sprite'
 
 export const DownloadClientBG = styled(Sprite).attrs({
-  sprite: 'downloadBG',
-  icon: 'bg',
+  sprite: 'background',
+  icon: 'downloadBG',
   component: 'div',
 })`
   position: relative;
@@ -12,8 +12,8 @@ export const DownloadClientBG = styled(Sprite).attrs({
   height: 100%;
 `
 export const DownloadClientButton = styled(Sprite).attrs({
-  sprite: 'downloadBG',
-  icon: 'button',
+  sprite: 'background',
+  icon: 'download',
   component: 'a',
 })`
   display: block;
