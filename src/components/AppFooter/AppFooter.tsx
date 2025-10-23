@@ -1,69 +1,79 @@
 import { Fragment, FC } from 'react'
 
-import { footerCopyRights, footerLinks } from '@/constants/footer'
+import {
+  footerCopyRights,
+  footerFilings,
+  footerLinks,
+} from '@/constants/footer'
 
-import { AppFooterWrapper, FooterBottom, FooterTop } from './AppFooter.styles'
+import {
+  AppFooterWrapper,
+  CopyrightIcon,
+  FooterCopyrightDivider,
+  FooterCopyrights,
+  FooterLink,
+  FooterLinkText,
+} from './AppFooter.styles'
+import { Box, Container, Flex, Text, TextNavLink } from '../UI'
+
+const FillingItem: FC<{
+  item: { title: string; link?: string; logo?: string }
+}> = ({ item }) => {
+  return item.link ? (
+    <TextNavLink to={item.link}>
+      {item.logo && <CopyrightIcon icon={item.logo} />}
+      {item.title}
+    </TextNavLink>
+  ) : (
+    <Text>
+      {item.logo && <CopyrightIcon icon={item.logo} />}
+      {item.title}
+    </Text>
+  )
+}
 
 export const AppFooter: FC = () => {
   return (
     <AppFooterWrapper>
-      <div className="content wrap-v2">
-        <FooterTop>
+      <Container pt={33}>
+        <Flex justify="space-between" mx={70}>
           {footerLinks.map((item) => (
             <div key={item.title}>
-              <a className={'logofooter ' + item.logo} href={item.link}>
-                {' '}
-              </a>
-              <span className="title">{item.title}</span>
+              <FooterLink icon={item.logo} href={item.link} />
+              <FooterLinkText>{item.title}</FooterLinkText>
             </div>
           ))}
-        </FooterTop>
-        <FooterBottom>
-          <div className="copyright">
-            {footerCopyRights.map((item) => (
+        </Flex>
+        <Box mt={60} color={'#666'}>
+          <FooterCopyrights>
+            {footerCopyRights.map((item, index) => (
               <Fragment key={item.title}>
-                <a href={item.link}>{item.title}</a>
-                <span className="line">|</span>
+                <TextNavLink to={item.link}>{item.title}</TextNavLink>
+                {index < footerCopyRights.length - 1 && (
+                  <FooterCopyrightDivider>|</FooterCopyrightDivider>
+                )}
               </Fragment>
             ))}
-          </div>
-          <div className="copyright">
-            <a className="text" href="https://jubao.163.com/">
-              廉正举报
-            </a>
-            <span className="text">
-              不良信息举报邮箱: 51jubao@service.netease.com
-            </span>
-            <span className="text">客服热线: 95163298</span>
-          </div>
-          <div className="copyright">
-            <span className="text">
-              互联网宗教信息服务许可证：浙（2022）0000120
-            </span>
-            <span className="text">增值电信业务经营许可证：浙B2-20150198</span>
-            <a
-              className="text"
-              href="https://beian.miit.gov.cn/#/Integrated/index"
-            >
-              粤B2-20090191-18 工业和信息化部备案管理系统网站
-            </a>
-          </div>
-          <div className="copyright">
-            <span className="text">网易公司版权所有©1997-2023</span>
-            <span>杭州乐读科技有限公司运营：</span>
-            <a
-              className="text"
-              href="https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/24498695788/9de7/9e78/fc8d/35d33543c69c9f4c5ac8aeb937217597.png"
-            >
-              浙网文[2021] 1186-054号
-            </a>
-            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010902002564">
-              <span className="logo-police"></span>
-              <span>浙公网安备 33010902002564号</span>
-            </a>
-          </div>
-        </FooterBottom>
-      </div>
+          </FooterCopyrights>
+
+          {footerFilings.map((row, rowIndex) => (
+            <FooterCopyrights key={rowIndex} gap={row.gap}>
+              {row.items.map((item, itemIndex) => (
+                <Fragment key={item.title}>
+                  {item.more ? (
+                    <Flex>
+                      <FillingItem item={item} />
+                      <FillingItem item={item.more} />
+                    </Flex>
+                  ) : (
+                    <FillingItem item={item} />
+                  )}
+                </Fragment>
+              ))}
+            </FooterCopyrights>
+          ))}
+        </Box>
+      </Container>
     </AppFooterWrapper>
   )
 }

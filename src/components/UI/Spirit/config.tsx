@@ -23,11 +23,45 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   footer: {
-    url: './img/footer.png',
+    url: require('./img/footer.png'),
     icons: {
-      home: { normal: '0 -10px', size: '30px 30px' },
-      search: { normal: '-40px -10px' },
-      user: { normal: '-80px -10px' },
+      openPlatform: {
+        normal: '-170px -5px',
+        hover: '-5px -115px',
+        size: '220px 220px',
+      },
+      trade: {
+        normal: '-5px -170px',
+        hover: '-60px -170px',
+        size: '220px 220px',
+      },
+      amped: { normal: '-5px -60px', hover: '-60px -5px', size: '220px 220px' },
+      auth: {
+        normal: '-60px -60px',
+        hover: '-115px -5px',
+        size: '220px 220px',
+      },
+      musician: {
+        normal: '-115px -115px',
+        hover: '-5px -5px',
+        size: '220px 220px',
+      },
+      reward: {
+        normal: '-170px -115px',
+        hover: '-60px -115px',
+        size: '220px 220px',
+      },
+      cash: {
+        normal: '-170px -60px',
+        hover: '-115px -60px',
+        size: '220px 220px',
+      },
+    },
+  },
+  police: {
+    url: require('./img/icon/police.png'),
+    icons: {
+      police: { normal: '0 0', size: '14px 14px' },
     },
   },
   banner: {
@@ -116,7 +150,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
 // Variant group configuration
 export const SPRITE_VARIANTS: Record<string, string[]> = {
   button: ['button', 'button2', 'button3'],
-  icon: ['icon', 'icon2', 'icon3', 'icon4'],
+  icon: ['icon', 'icon2', 'icon3', 'icon4', 'police'],
   background: ['downloadBG', 'loginBG', 'loginBG2'],
 }
 
