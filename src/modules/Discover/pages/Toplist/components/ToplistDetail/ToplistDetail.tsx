@@ -85,7 +85,7 @@ export const ToplistDetail: FC<{ playlist: PlaylistDetail }> = ({
                     ) : null
                   }
                   <PlayButtonLight flexShrink={0} onClick={() => {}} />
-                  <TextNavLink to={`/song?id=${item.id}`} noWrap ml={8}>
+                  <TextNavLink to={`/song?id=${item.id}`} nowrap ml={8}>
                     {item.name}
                   </TextNavLink>
 
@@ -93,7 +93,7 @@ export const ToplistDetail: FC<{ playlist: PlaylistDetail }> = ({
                     // Alias
                     ((item.tns && item.tns.length > 0) ||
                       item.alia.length > 0) && (
-                      <Text noWrap color="#aeaeae">
+                      <Text nowrap color="#aeaeae">
                         &nbsp;-&nbsp;(
                         {(item.tns && item.tns.length > 0 && item.tns[0]) ||
                           item.alia[0]}

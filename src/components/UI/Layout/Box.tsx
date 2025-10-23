@@ -82,7 +82,7 @@ export interface Styles extends HTMLAttributes<HTMLDivElement> {
   overflowY?: CSSProperties['overflowY']
 
   // Text utilities
-  noWrap?: boolean // 便捷属性：不换行 + 省略号
+  nowrap?: boolean // 便捷属性：不换行 + 省略号
 
   // Flex
   flex?: CSSProperties['flex']
@@ -232,8 +232,8 @@ export const Box = styled.div<Styles>`
   ${({ overflowY }) => overflowY && `overflow-y: ${overflowY};`}
 
   /* Text utilities */
-  ${({ noWrap }) =>
-    noWrap &&
+  ${({ nowrap }) =>
+    nowrap &&
     `white-space: nowrap; overflow: hidden; text-overflow: ellipsis; `}
 
   /* Flex */
