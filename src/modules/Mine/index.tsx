@@ -1,19 +1,15 @@
-import React, { memo } from 'react'
-import type { FC, ReactNode } from 'react'
+import React, { type FC } from 'react'
 
-import MineLogin from './MineLogin'
-import { MineWrapper } from './style'
+import { Box } from '@/components/UI'
 
-interface IProps {
-  children?: ReactNode
-}
+import { MineLogin } from './MineLogin'
 
-const Mine: FC<IProps> = () => {
+const Mine: FC = () => {
   return (
-    <MineWrapper>
+    <Box>
       <MineLogin />
-    </MineWrapper>
+    </Box>
   )
 }
 
-export default memo(Mine)
+export default Mine
