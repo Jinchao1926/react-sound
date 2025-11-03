@@ -73,7 +73,7 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
         </div>
         <div className="singer">
           歌手：
-          <UserLink users={song.ar} showSpace={true} />
+          <UserLink users={song.ar} space={true} />
         </div>
         <div className="album">
           所属专辑：

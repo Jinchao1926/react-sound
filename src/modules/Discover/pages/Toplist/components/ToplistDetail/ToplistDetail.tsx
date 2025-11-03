@@ -2,14 +2,14 @@ import React, { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
+import { MVLogo } from '@/components/Shared/Logo'
 import {
   AddToButtonSmall,
   CollectButtonSmall,
   DownloadButton,
-  MVLogo,
   PlayButtonLight,
   ShareButton,
-} from '@/components/Shared'
+} from '@/components/Shared/Media'
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/UI'
 import { Strong } from '@/components/UI/Common/Text'
 import { UserLink } from '@/components/UserLink'

@@ -6,7 +6,7 @@ import {
   CollectButtonSmall,
   PlayButton,
   PlayButtonSmall,
-} from '@/components/Shared'
+} from '@/components/Shared/Media'
 import { Box, Flex, Head, Image, Sprite, TextNavLink } from '@/components/UI'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PlaylistDetail } from '@/types/playlist'
