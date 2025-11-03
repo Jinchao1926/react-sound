@@ -45,12 +45,6 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       xStudio: { normal: '-180px 0', hover: '-225px 0' },
     },
   },
-  police: {
-    url: require('./img/icon/police.png'),
-    icons: {
-      police: { normal: '0 0', size: '14px 14px' },
-    },
-  },
   banner: {
     url: require('./img/banner.png'),
     icons: {
@@ -128,6 +122,32 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       download: { normal: '-81px -174px', hover: '-104px -174px' },
     },
   },
+  police: {
+    url: require('./img/icon/police.png'),
+    icons: {
+      police: { normal: '0 0', size: '14px 14px' },
+    },
+  },
+  playbar: {
+    url: require('./img/playbar.png'),
+    icons: {
+      playbar: '-147px -238px',
+      collect: { normal: '-88px -163px', hover: '-88px -189px' },
+      share: { normal: '-114px -163px', hover: '-114px -189px' },
+      volume: { normal: '-2px -248px', hover: '-31px -248px' },
+      loop: { normal: '-3px -344px', hover: '-33px -344px' },
+      random: { normal: '-66px -248px', hover: '-93px -248px' },
+      singleLoop: { normal: '-66px -344px', hover: '-93px -344px' },
+      playlist: { normal: '-42px -68px', hover: '-42px -98px' },
+    },
+  },
+  pip: {
+    url: require('./img/icon/pip.png'),
+    icons: {
+      pip: { normal: '0 0', hover: '0 -25px' },
+    },
+  },
+  // Covers
   cover: {
     url: require('./img/cover.png'),
     icons: {
@@ -143,6 +163,7 @@ export const SPRITE_VARIANTS: Record<string, string[]> = {
   background: ['downloadBG', 'loginBG', 'loginBG2'],
   button: ['button', 'button2', 'button3'],
   icon: ['icon', 'icon2', 'icon3', 'icon4', 'police'],
+  playbar: ['playbar', 'pip'],
 }
 
 // Public API - Export types for external use
@@ -153,6 +174,7 @@ export type SpriteCategory =
   | 'background'
   | 'button'
   | 'icon'
+  | 'playbar'
 
 export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   header: INTERNAL_SPRITE_CONFIG.header,
@@ -161,4 +183,5 @@ export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   background: INTERNAL_SPRITE_CONFIG.downloadBG,
   button: INTERNAL_SPRITE_CONFIG.button,
   icon: INTERNAL_SPRITE_CONFIG.icon,
+  playbar: INTERNAL_SPRITE_CONFIG.playbar,
 }

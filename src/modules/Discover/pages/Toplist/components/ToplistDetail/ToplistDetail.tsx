@@ -6,10 +6,10 @@ import {
   AddToButtonSmall,
   CollectButtonSmall,
   DownloadButton,
+  MVLogo,
   PlayButtonLight,
   ShareButton,
 } from '@/components/Shared'
-import { MVLogo } from '@/components/Shared/Logo'
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/UI'
 import { Strong } from '@/components/UI/Common/Text'
 import { UserLink } from '@/components/UserLink'
