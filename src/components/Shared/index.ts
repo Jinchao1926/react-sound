@@ -1,1 +1,2 @@
-export * from './Player'
+export * from './Media'
+export * from './Logo'
