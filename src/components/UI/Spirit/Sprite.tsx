@@ -52,35 +52,35 @@ const parseIconConfig = (iconConfig: string | SpriteIconConfig) => {
   }
 }
 interface StyledSpriteProps {
-  url: string
-  backgroundSize?: string
-  backgroundRepeat?: string
-  normalPosition: string
-  hoverPosition?: string | null
-  disable?: boolean
+  $url: string
+  $backgroundSize?: string
+  $backgroundRepeat?: string
+  $normalPosition: string
+  $hoverPosition?: string | null
+  $disable?: boolean
 }
 
 const StyledSprite = styled(Box)<StyledSpriteProps>`
-  background-image: url(${({ url }) => url});
-  background-repeat: ${({ backgroundRepeat }) =>
-    backgroundRepeat || 'no-repeat'};
-  background-position: ${({ normalPosition, disable }) =>
-    disable ? '0 9999px' : normalPosition};
+  background-image: url(${({ $url }) => $url});
+  background-repeat: ${({ $backgroundRepeat }) =>
+    $backgroundRepeat || 'no-repeat'};
+  background-position: ${({ $normalPosition, $disable }) =>
+    $disable ? '0 9999px' : $normalPosition};
 
-  ${({ backgroundSize }) =>
-    backgroundSize &&
-    backgroundSize !== 'auto' &&
+  ${({ $backgroundSize }) =>
+    $backgroundSize &&
+    $backgroundSize !== 'auto' &&
     css`
-      background-size: ${backgroundSize};
+      background-size: ${$backgroundSize};
     `}
 
-  ${({ hoverPosition, disable }) =>
-    hoverPosition &&
-    !disable &&
+  ${({ $hoverPosition, $disable }) =>
+    $hoverPosition &&
+    !$disable &&
     css`
       &:hover,
       &.active {
-        background-position: ${hoverPosition};
+        background-position: ${$hoverPosition};
       }
     `}
 `
@@ -135,12 +135,12 @@ export const Sprite = React.forwardRef<
         as={Component}
         className={classNames(className)}
         style={style}
-        url={config.url}
-        backgroundSize={finalBackgroundSize}
-        backgroundRepeat={parsedConfig.repeat}
-        normalPosition={position}
-        hoverPosition={parsedConfig.hover}
-        disable={disable}
+        $url={config.url}
+        $backgroundSize={finalBackgroundSize}
+        $backgroundRepeat={parsedConfig.repeat}
+        $normalPosition={position}
+        $hoverPosition={parsedConfig.hover}
+        $disable={disable}
         {...props}
       >
         {children}

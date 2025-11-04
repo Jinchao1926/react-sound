@@ -120,7 +120,10 @@ interface StyledButtonProps
   shape?: 'default' | 'circle' | 'round'
 }
 
-const StyledButton = styled.button<StyledButtonProps>`
+const StyledButton = styled.button.withConfig({
+  shouldForwardProp: (prop) =>
+    !['buttonType', 'size', 'shape'].includes(prop as string),
+})<StyledButtonProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;

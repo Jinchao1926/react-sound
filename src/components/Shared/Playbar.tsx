@@ -16,13 +16,15 @@ export const Playbar = styled(Sprite).attrs({
 interface IPlayButton {
   isPlaying: Boolean
 }
-export const PlayButton = styled(Sprite).attrs<IPlayButton>(
-  ({ isPlaying }) => ({
+export const PlayButton = styled(Sprite)
+  .withConfig({
+    shouldForwardProp: (prop) => prop !== ('isPlaying' as string),
+  })
+  .attrs<IPlayButton>(({ isPlaying }) => ({
     sprite: 'playbar',
     icon: isPlaying ? 'pause' : 'play',
     component: 'button',
-  })
-)`
+  }))`
   width: 36px;
   height: 36px;
   margin: 0 8px;
@@ -94,25 +96,29 @@ export const VolumeButton = styled(Sprite).attrs({
   height: 22px;
 `
 
-export const PlayModeButton = styled(Sprite).attrs<{
-  playMode: PlayModeType
-}>(({ playMode, onClick }) => ({
-  sprite: 'playbar',
-  icon:
-    playMode === PLAY_MODE.SINGLE_LOOP
-      ? 'singleLoop'
-      : playMode === PLAY_MODE.RANDOM
-        ? 'random'
-        : 'loop',
-  component: 'button',
-  onClick,
-  title:
-    playMode === PLAY_MODE.SINGLE_LOOP
-      ? '单曲循环'
-      : playMode === PLAY_MODE.RANDOM
-        ? '随机播放'
-        : '循环',
-}))`
+export const PlayModeButton = styled(Sprite)
+  .withConfig({
+    shouldForwardProp: (prop) => prop !== ('playMode' as string),
+  })
+  .attrs<{
+    playMode: PlayModeType
+  }>(({ playMode, onClick }) => ({
+    sprite: 'playbar',
+    icon:
+      playMode === PLAY_MODE.SINGLE_LOOP
+        ? 'singleLoop'
+        : playMode === PLAY_MODE.RANDOM
+          ? 'random'
+          : 'loop',
+    component: 'button',
+    onClick,
+    title:
+      playMode === PLAY_MODE.SINGLE_LOOP
+        ? '单曲循环'
+        : playMode === PLAY_MODE.RANDOM
+          ? '随机播放'
+          : '循环',
+  }))`
   width: 22px;
   height: 22px;
 `

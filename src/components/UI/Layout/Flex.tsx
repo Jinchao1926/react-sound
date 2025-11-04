@@ -13,7 +13,12 @@ export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   flex?: CSSProperties['flex']
 }
 
-export const Flex = styled(Box)<FlexProps>`
+export const Flex = styled(Box).withConfig({
+  shouldForwardProp: (prop) =>
+    !['vertical', 'justify', 'align', 'wrap', 'gap', 'flex'].includes(
+      prop as string
+    ),
+})<FlexProps>`
   display: flex;
   flex-direction: ${(props) => (props.vertical ? 'column' : 'row')};
   ${(props) => props.justify && `justify-content: ${props.justify};`}
