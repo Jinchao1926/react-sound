@@ -1,40 +1,33 @@
 import styled from 'styled-components'
 
-export const MultiDownloadWrapper = styled.div`
-  margin-bottom: 24px;
+import { Sprite } from '@/components/UI'
 
-  .list {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0 10px;
-    height: 65px;
-    background-position: 0 -392px;
+export const IOS = styled(Sprite).attrs({
+  sprite: 'platformDownload',
+  icon: 'iOS',
+  component: 'a',
+})`
+  width: 42px;
+  height: 48px;
+  text-indent: -9999px;
+`
 
-    a {
-      text-indent: -9999px;
-      height: 48px;
-    }
-    .iOS {
-      width: 42px;
-      &:hover {
-        background-position: 0 -472px;
-      }
-    }
-    .pc {
-      width: 60px;
-      &:hover {
-        background-position: -70.5px -472px;
-      }
-    }
-    .android {
-      width: 42px;
-      &:hover {
-        background-position: -159px -472px;
-      }
-    }
-  }
+export const PC = styled(Sprite).attrs({
+  sprite: 'platformDownload',
+  icon: 'pc',
+  component: 'a',
+})`
+  width: 60px;
+  height: 48px;
+  text-indent: -9999px;
+`
 
-  .tip {
-    color: #999;
-  }
+export const Android = styled(Sprite).attrs({
+  sprite: 'platformDownload',
+  icon: 'android',
+  component: 'a',
+})`
+  width: 42px;
+  height: 48px;
+  text-indent: -9999px;
 `

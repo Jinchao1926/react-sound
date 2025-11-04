@@ -75,6 +75,15 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       discoverLogin: { normal: '0 9999px', hover: '0 -430px' },
     },
   },
+  // Platform Download
+  platformDownload: {
+    url: require('./img/download.png'),
+    icons: {
+      iOS: { normal: '0 -392px', hover: '0 -472px' },
+      pc: { normal: '-70.5px -392px', hover: '-70.5px -472px' },
+      android: { normal: '-159px -392px', hover: '-159px -472px' },
+    },
+  },
   // Buttons
   button: {
     url: './img/button.png',
@@ -128,6 +137,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       police: { normal: '0 0', size: '14px 14px' },
     },
   },
+  // Player Bar
   playbar: {
     url: require('./img/playbar.png'),
     icons: {
