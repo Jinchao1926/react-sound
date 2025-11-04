@@ -131,6 +131,11 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   playbar: {
     url: require('./img/playbar.png'),
     icons: {
+      // Lock
+      lockBar: '0 -380px',
+      locked: { normal: '-100px -380px', hover: '-100px -400px' },
+      unlocked: { normal: '-80px -380px', hover: '-80px -400px' },
+      // Bar
       bar: { normal: '0 0', repeat: 'repeat-x' },
       cover: '0 -80px',
       // Play

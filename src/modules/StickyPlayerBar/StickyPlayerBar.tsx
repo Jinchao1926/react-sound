@@ -1,11 +1,13 @@
 import React, { FC, useRef, useEffect, useCallback } from 'react'
 
-import classNames from 'classnames'
-
 import { usePlayerContext } from '@/providers/PlayerProvider'
 
-import { Player } from './Player'
-import { StickyPlayerBarWrapper } from './StickyPlayerBar.styles'
+import {
+  LockBarButton,
+  LockIcon,
+  Player,
+  StickyPlayerBarWrapper,
+} from './StickyPlayerBar.styles'
 
 export const StickyPlayerBar: FC = () => {
   const {
@@ -52,19 +54,14 @@ export const StickyPlayerBar: FC = () => {
       data-pinned={isPinned}
     >
       <Player />
-      <button
-        className="sprite_player_bar lock"
+
+      <LockBarButton
         onClick={togglePinned}
         aria-label={isPinned ? 'Unlock player' : 'Lock player'}
         title={isPinned ? 'Unlock player' : 'Lock player'}
       >
-        <div
-          className={classNames(
-            'sprite_player_bar',
-            isPinned ? 'lock-icon' : 'unlock-icon'
-          )}
-        />
-      </button>
+        <LockIcon isLocked={isPinned} />
+      </LockBarButton>
     </StickyPlayerBarWrapper>
   )
 }

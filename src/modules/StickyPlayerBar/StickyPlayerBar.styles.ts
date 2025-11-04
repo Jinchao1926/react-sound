@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+import { Sprite } from '@/components/UI'
+
+import { Player as PlayerComponent } from './Player'
+
 export const StickyPlayerBarWrapper = styled.div`
   --player-height: 53px;
   --hide-distance: 46px;
@@ -18,48 +22,40 @@ export const StickyPlayerBarWrapper = styled.div`
   &[data-locked='true'] {
     bottom: 0 !important;
   }
+`
 
-  .player {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
+export const Player = styled(PlayerComponent)`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`
+
+export const LockBarButton = styled(Sprite).attrs({
+  sprite: 'playbar',
+  icon: 'lockBar',
+  component: 'button',
+})`
+  position: absolute;
+  top: -14px;
+  right: 15px;
+  width: 52px;
+  height: 20px;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
   }
+`
 
-  .lock {
-    position: absolute;
-    top: -14px;
-    right: 15px;
-    width: 52px;
-    height: 20px;
-    background-position: 0 -380px;
-    cursor: pointer;
-    border: none;
-    padding: 0;
-    outline: none;
-
-    &:focus-visible {
-      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
-    }
-
-    .lock-icon,
-    .unlock-icon {
-      display: block;
-      width: 18px;
-      height: 18px;
-      margin: 6px 0 0 17px;
-    }
-    .lock-icon {
-      background-position: -100px -380px;
-      &:hover {
-        background-position: -100px -400px;
-      }
-    }
-    .unlock-icon {
-      background-position: -80px -380px;
-      &:hover {
-        background-position: -80px -400px;
-      }
-    }
-  }
+interface ILockIcon {
+  isLocked: Boolean
+}
+export const LockIcon = styled(Sprite).attrs<ILockIcon>(({ isLocked }) => ({
+  sprite: 'playbar',
+  icon: isLocked ? 'locked' : 'unlocked',
+  component: 'button',
+}))`
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
 `
