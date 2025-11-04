@@ -22,9 +22,9 @@ export const RadioCategoryItem: FC<RadioCategoryItemProps> = ({
   return (
     <RadioCategoryLink
       to={`/discover/djradio/category?id=${category.id}`}
-      className={classNames('sprite_radio', { selected })}
+      className={classNames({ selected })}
     >
-      <RadioCategoryImage className="icon" bgImage={category.picWebUrl} />
+      <RadioCategoryImage bgImage={category.picWebUrl} />
       <RadioCategoryName>{category.name}</RadioCategoryName>
     </RadioCategoryLink>
   )

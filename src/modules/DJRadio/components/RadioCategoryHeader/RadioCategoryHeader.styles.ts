@@ -1,14 +1,9 @@
 import styled from 'styled-components'
 
-export const RadioCategoryHeaderWrapper = styled.div`
-  /* margin: 0 -40px; */
-  /* display: flex; */
-  position: relative;
+import { Sprite } from '@/components/UI/Spirit'
 
-  .category-page {
-    display: flex !important;
-    flex-wrap: wrap;
-  }
+export const RadioCategoryHeaderWrapper = styled.div`
+  position: relative;
 
   .dots {
     bottom: 0px;
@@ -34,28 +29,51 @@ export const RadioCategoryHeaderWrapper = styled.div`
       }
     }
   }
+`
 
-  .arrow {
-    position: absolute;
-    top: 50%;
-    margin-top: -15px;
-    width: 20px;
-    height: 30px;
-    opacity: 0.25;
-    cursor: pointer;
-    &:hover {
-      opacity: 0.5;
-    }
-    &[disabled] {
-      opacity: 0.08;
-    }
+export const RadioCategoryPage = styled.div`
+  display: flex !important;
+  flex-wrap: wrap;
+`
+
+export const ArrowLeft = styled(Sprite).attrs({
+  sprite: 'radio',
+  icon: 'arrowLeft',
+  component: 'button',
+})`
+  position: absolute;
+  top: 50%;
+  left: -26px;
+  margin-top: -15px;
+  width: 20px;
+  height: 30px;
+  opacity: 0.25;
+
+  &:hover {
+    opacity: 0.5;
   }
-  .left {
-    left: -26px;
-    background-position: 0 -30px;
+  &[disabled] {
+    opacity: 0.08;
   }
-  .right {
-    right: -26px;
-    background-position: -30px -30px;
+`
+
+export const ArrowRight = styled(Sprite).attrs({
+  sprite: 'radio',
+  icon: 'arrowRight',
+  component: 'button',
+})`
+  position: absolute;
+  top: 50%;
+  right: -26px;
+  margin-top: -15px;
+  width: 20px;
+  height: 30px;
+  opacity: 0.25;
+
+  &:hover {
+    opacity: 0.5;
+  }
+  &[disabled] {
+    opacity: 0.08;
   }
 `
