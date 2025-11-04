@@ -1,22 +1,21 @@
 import styled from 'styled-components'
 
-export const UserWikiWrapper = styled.div`
-  .song-data {
-    margin-top: 20px;
-  }
+import { Sprite, TextNavLink } from '@/components/UI'
 
-  .wiki {
-    display: flex;
-    align-items: center;
-    margin-left: -4px;
+export const FileLink = styled(TextNavLink)`
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: -4px;
+`
 
-    .file {
-      margin-right: 5px;
-    }
-    .name {
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
+export const FileIcon = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'file',
+  component: 'span',
+})`
+  display: inline-block;
+  width: 20px;
+  height: 20px;
 `
