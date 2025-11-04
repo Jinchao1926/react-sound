@@ -79,6 +79,10 @@ export const Player: FC = () => {
       audioRef.current.src = ''
       audioRef.current.pause()
       audioRef.current.currentTime = 0
+
+      setLoaded(0)
+      setProgress(0)
+      setCurrentTime(0)
       return
     }
 
@@ -94,6 +98,10 @@ export const Player: FC = () => {
       if (isPlaying) {
         audioRef.current.currentTime = 0
       }
+
+      setLoaded(0)
+      setProgress(0)
+      setCurrentTime(0)
     }
 
     // Toggle play state - 播放/暂停
