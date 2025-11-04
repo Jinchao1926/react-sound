@@ -10,12 +10,4 @@ export const QRcodeWrapper = styled.div`
   border-radius: 10px;
   background-color: white;
   text-align: center;
-
-  img {
-    height: 100px;
-    width: 100px;
-  }
-  p {
-    margin-top: 10px;
-  }
 `
