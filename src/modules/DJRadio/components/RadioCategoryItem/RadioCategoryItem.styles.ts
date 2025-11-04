@@ -14,11 +14,13 @@ export const RadioCategoryName = styled.span`
 `
 
 export const RadioCategoryLink = styled(NavLink)`
-  background-image: url(${require('@/assets/img/radio_category.png')});
+  background: url(${require('@/assets/img/radio_category.png')}) no-repeat 0
+    9999px;
   width: 70px;
   height: 70px;
   text-align: center;
   font-size: 12px;
+  color: #888;
   cursor: pointer;
   margin: 2px 33px 23px 0;
 
@@ -28,6 +30,7 @@ export const RadioCategoryLink = styled(NavLink)`
 
   &:hover {
     background-position: 0 0;
+    color: #888;
   }
   &.selected {
     background-position: -70px 0;
