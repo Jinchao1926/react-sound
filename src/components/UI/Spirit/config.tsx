@@ -113,6 +113,12 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   // Icons
+  icon: {
+    url: require('./img/icon.png'),
+    icons: {
+      progressDot: { normal: '0 -250px', hover: '0 -280px' },
+    },
+  },
   icon2: {
     url: require('./img/icon2.png'),
     icons: {
@@ -171,6 +177,15 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       pip: { normal: '0 0', hover: '0 -25px' },
     },
   },
+  // Progress Bar
+  progress: {
+    url: require('./img/progress.png'),
+    icons: {
+      full: { normal: 'right 0' },
+      loaded: { normal: 'right -30px' },
+      cur: { normal: 'left -66px' },
+    },
+  },
   // Covers
   cover: {
     url: require('./img/cover.png'),
@@ -199,6 +214,7 @@ export type SpriteCategory =
   | 'button'
   | 'icon'
   | 'playbar'
+  | 'progress'
 
 export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   header: INTERNAL_SPRITE_CONFIG.header,
@@ -208,4 +224,5 @@ export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   button: INTERNAL_SPRITE_CONFIG.button,
   icon: INTERNAL_SPRITE_CONFIG.icon,
   playbar: INTERNAL_SPRITE_CONFIG.playbar,
+  progress: INTERNAL_SPRITE_CONFIG.progress,
 }

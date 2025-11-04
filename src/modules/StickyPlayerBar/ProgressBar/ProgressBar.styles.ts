@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { Sprite } from '@/components/UI/Spirit/Sprite'
+
 export const ProgressBarWrapper = styled.div`
   width: 466px;
   height: 9px;
@@ -18,16 +20,19 @@ export const ProgressBarWrapper = styled.div`
     width: 0%;
     height: 100%;
     background-position: left -66px;
-
-    .dot {
-      position: absolute;
-      top: -7px;
-      right: -13px;
-      width: 22px;
-      height: 24px;
-      margin-left: -11px;
-      background-position: 0 -250px;
-      cursor: pointer;
-    }
   }
+`
+
+export const ProgressBarDot = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'progressDot',
+  component: 'span',
+})`
+  position: absolute;
+  top: -7px;
+  right: -13px;
+  width: 22px;
+  height: 24px;
+  margin-left: -11px;
+  cursor: pointer;
 `

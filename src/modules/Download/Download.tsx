@@ -11,7 +11,7 @@ import {
   DescriptionContent,
 } from './Download.styles'
 import { DownloadClient } from './DownloadClient'
-import { QRCode } from './QRCode'
+import { DownloadQRCode } from './DownloadQRCode'
 
 export const Download: FC = () => {
   return (
@@ -111,7 +111,7 @@ export const Download: FC = () => {
           />
         </FlexContainer>
       </RecognizeContent>
-      <QRCode />
+      <DownloadQRCode />
     </Box>
   )
 }

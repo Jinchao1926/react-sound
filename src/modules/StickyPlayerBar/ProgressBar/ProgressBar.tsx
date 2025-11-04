@@ -2,7 +2,7 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 
 import { roundToDecimal } from '@/utils/dataFormat'
 
-import { ProgressBarWrapper } from './ProgressBar.styles'
+import { ProgressBarDot, ProgressBarWrapper } from './ProgressBar.styles'
 
 interface IProgressBarProps {
   width?: number // the width of the progress bar, defaults to 466
@@ -83,10 +83,9 @@ export const ProgressBar: FC<IProgressBarProps> = ({
         ref={curRef}
         onClick={(e) => handleProgressClick(e)}
       >
-        <span
-          className="sprite_icon dot"
+        <ProgressBarDot
           onMouseDown={() => handleMouseDown()}
-          onMouseMove={(e) => handleMouseMove(e)}
+          onMouseMove={(e: React.MouseEvent) => handleMouseMove(e)}
           onMouseUp={() => handleMouseUp()}
           onMouseLeave={() => handleMouseUp()}
         />
