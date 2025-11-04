@@ -2,6 +2,97 @@ import { CSSProperties, HTMLAttributes } from 'react'
 
 import styled from 'styled-components'
 
+// List of all style props that should not be forwarded to DOM
+const styleProps = new Set([
+  'display',
+  'position',
+  'top',
+  'right',
+  'bottom',
+  'left',
+  'zIndex',
+  'width',
+  'height',
+  'minWidth',
+  'minHeight',
+  'maxWidth',
+  'maxHeight',
+  'margin',
+  'marginTop',
+  'marginRight',
+  'marginBottom',
+  'marginLeft',
+  'm',
+  'mt',
+  'mr',
+  'mb',
+  'ml',
+  'mx',
+  'my',
+  'padding',
+  'paddingTop',
+  'paddingRight',
+  'paddingBottom',
+  'paddingLeft',
+  'p',
+  'pt',
+  'pr',
+  'pb',
+  'pl',
+  'px',
+  'py',
+  'border',
+  'borderWidth',
+  'borderStyle',
+  'borderColor',
+  'borderRadius',
+  'borderTop',
+  'borderRight',
+  'borderBottom',
+  'borderLeft',
+  'background',
+  'backgroundColor',
+  'backgroundImage',
+  'backgroundSize',
+  'backgroundPosition',
+  'backgroundRepeat',
+  'color',
+  'fontSize',
+  'fontWeight',
+  'fontFamily',
+  'lineHeight',
+  'textAlign',
+  'textDecoration',
+  'whiteSpace',
+  'textOverflow',
+  'overflow',
+  'overflowX',
+  'overflowY',
+  'nowrap',
+  'flex',
+  'flexDirection',
+  'flexWrap',
+  'flexGrow',
+  'flexShrink',
+  'flexBasis',
+  'justifyContent',
+  'alignItems',
+  'alignSelf',
+  'alignContent',
+  'gap',
+  'gridColumn',
+  'gridRow',
+  'gridArea',
+  'gridTemplateColumns',
+  'gridTemplateRows',
+  'opacity',
+  'visibility',
+  'cursor',
+  'transform',
+  'transition',
+  'boxShadow',
+])
+
 export interface Styles extends HTMLAttributes<HTMLDivElement> {
   // Layout
   display?: CSSProperties['display']
@@ -124,7 +215,9 @@ const toPx = (value: string | number | undefined): string | undefined => {
   return value
 }
 
-export const Box = styled.div<Styles>`
+export const Box = styled.div.withConfig({
+  shouldForwardProp: (prop) => !styleProps.has(prop),
+})<Styles>`
   /* Layout */
   ${({ display }) => display && `display: ${display};`}
   ${({ position }) => position && `position: ${position};`}

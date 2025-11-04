@@ -9,7 +9,11 @@ interface LinkProps extends Styles, Omit<ComponentProps<'a'>, keyof Styles> {
   hoverUnderline?: boolean
 }
 
-export const Link = styled(Box).attrs({ as: 'a' })<LinkProps>`
+export const Link = styled(Box)
+  .withConfig({
+    shouldForwardProp: (prop) => prop !== ('hoverUnderline' as string),
+  })
+  .attrs({ as: 'a' })<LinkProps>`
   color: ${({ color = '#333' }) => color};
   cursor: pointer;
   text-decoration: none;

@@ -9,7 +9,10 @@ interface DividerProps extends HTMLAttributes<HTMLDivElement> {
   color?: string
 }
 
-export const Divider = styled.div<DividerProps>`
+export const Divider = styled.div.withConfig({
+  shouldForwardProp: (prop) =>
+    !['direction', 'margin', 'size', 'color'].includes(prop as string),
+})<DividerProps>`
   border: none;
   ${({ direction = 'horizontal', margin = 8, size = 1, color = '#e5e7eb' }) =>
     direction === 'vertical'
