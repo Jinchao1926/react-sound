@@ -2,27 +2,49 @@ import styled from 'styled-components'
 
 import { Sprite } from '@/components/UI/Spirit/Sprite'
 
-export const ProgressBarWrapper = styled.div`
-  width: 466px;
+export interface IProgressBarFullProps {
+  width: number
+}
+export const ProgressBarFull = styled(Sprite).attrs<IProgressBarFullProps>({
+  sprite: 'progress',
+  icon: 'full',
+  component: 'div',
+})`
+  width: ${({ width }) => width}px;
   height: 9px;
   position: relative;
-  background-position: right 0;
-
-  .full {
-    width: 100%;
-    height: 100%;
-    background-position: right -30px;
-  }
-  .cur {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 0%;
-    height: 100%;
-    background-position: left -66px;
-  }
 `
 
+export interface IProgressBarPercentProps {
+  percent: number
+}
+export const ProgressBarLoaded = styled(Sprite).attrs<IProgressBarPercentProps>(
+  {
+    sprite: 'progress',
+    icon: 'loaded',
+    component: 'div',
+  }
+)`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: ${({ percent }) => percent}%;
+  height: 100%;
+`
+
+export const ProgressBarCur = styled(Sprite).attrs<IProgressBarPercentProps>({
+  sprite: 'progress',
+  icon: 'cur',
+  component: 'div',
+})`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: ${({ percent }) => percent}%;
+  height: 100%;
+`
+
+// Progress Bar Dragging Dot
 export const ProgressBarDot = styled(Sprite).attrs({
   sprite: 'icon',
   icon: 'progressDot',

@@ -1,61 +1,62 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react'
 
 import { roundToDecimal } from '@/utils/dataFormat'
 
-import { ProgressBarDot, ProgressBarWrapper } from './ProgressBar.styles'
+import {
+  ProgressBarCur,
+  ProgressBarDot,
+  ProgressBarFull,
+  ProgressBarLoaded,
+} from './ProgressBar.styles'
 
 interface IProgressBarProps {
   width?: number // the width of the progress bar, defaults to 466
-  percent: number //50 means 50%
+  played: number // 50 means 50% played
+  loaded?: number // 50 means 50% loaded/buffered
   onChange?: (percent: number) => void // callback function when the progress bar changes, 50 means 50%
   onAfterChange?: (percent: number) => void // callback function after the progress bar changes, 50 means 50%
 }
 
 export const ProgressBar: FC<IProgressBarProps> = ({
   width = 466,
-  percent,
+  played,
+  loaded = 0,
   onChange,
   onAfterChange,
 }) => {
-  const [curPercent, setCurPercent] = useState(percent)
+  const [curPercentage, setCurPercentage] = useState(played)
   const [isDragging, setIsDragging] = useState(false)
-  const curPercentRef = useRef<number>(curPercent)
-
-  const barRef = useRef<HTMLDivElement>(null)
   const fullRef = useRef<HTMLDivElement>(null)
-  const curRef = useRef<HTMLDivElement>(null)
 
+  const loadedPercentage = useMemo(() => {
+    return Math.min(roundToDecimal(loaded, 0.5), 100)
+  }, [loaded])
+
+  // 更新播放进度条
   useEffect(() => {
-    barRef.current!.style.width = `${width}px`
-  }, [width])
-
-  // 更新进度条，这种写法不会重新渲染组件，只会修改 width 属性
-  // 如果使用 styled-components 的话，虚拟 DOM 会重新渲染
-  useEffect(() => {
-    const newPercent = roundToDecimal(percent, 0.5)
-    setCurPercent(newPercent)
-
-    curRef.current!.style.width = `${newPercent}%`
-  }, [percent])
+    const newPercent = roundToDecimal(played, 0.5)
+    setCurPercentage(newPercent)
+  }, [played])
 
   // Mouse events
   function moveProgress(e: React.MouseEvent) {
     if (!fullRef.current) return
+
     const { left, width } = fullRef.current.getBoundingClientRect()
     let newPercent = (e.clientX - left) / width
     newPercent = 100 * Math.min(Math.max(newPercent, 0), 1) // [0,1]
     newPercent = roundToDecimal(newPercent, 0.5)
-    curPercentRef.current = newPercent
-    setCurPercent(newPercent)
+    // curPercentRef.current = newPercent
+    setCurPercentage(newPercent)
 
-    if (!onChange || newPercent === percent) return
-    onChange(newPercent)
+    if (newPercent === played) return
+    onChange?.(newPercent)
   }
 
   function handleProgressClick(e: React.MouseEvent) {
     moveProgress(e)
     setTimeout(() => {
-      onAfterChange && onAfterChange(curPercentRef.current)
+      onAfterChange?.(curPercentage)
     }, 0)
   }
 
@@ -72,24 +73,20 @@ export const ProgressBar: FC<IProgressBarProps> = ({
   // Mouse events Ends
 
   return (
-    <ProgressBarWrapper className="sprite_progress_bar progress" ref={barRef}>
-      <div
-        className="sprite_progress_bar full"
-        ref={fullRef}
-        onClick={(e) => handleProgressClick(e)}
-      />
-      <div
-        className="sprite_progress_bar cur"
-        ref={curRef}
-        onClick={(e) => handleProgressClick(e)}
-      >
+    <ProgressBarFull
+      width={width}
+      ref={fullRef}
+      onClick={(e: React.MouseEvent) => handleProgressClick(e)}
+    >
+      <ProgressBarLoaded percent={loadedPercentage} />
+      <ProgressBarCur percent={curPercentage}>
         <ProgressBarDot
           onMouseDown={() => handleMouseDown()}
           onMouseMove={(e: React.MouseEvent) => handleMouseMove(e)}
           onMouseUp={() => handleMouseUp()}
           onMouseLeave={() => handleMouseUp()}
         />
-      </div>
-    </ProgressBarWrapper>
+      </ProgressBarCur>
+    </ProgressBarFull>
   )
 }

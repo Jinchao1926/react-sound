@@ -35,6 +35,7 @@ export const Player: FC = () => {
   const [isDragging, setIsDragging] = useState(false)
   const [currentTime, setCurrentTime] = useState(0) // ms
   const [progress, setProgress] = useState(0)
+  const [loaded, setLoaded] = useState(0) // loaded/buffered progress percentage
   const audioRef = useRef<HTMLAudioElement>(null)
 
   // Throttle
@@ -213,6 +214,20 @@ export const Player: FC = () => {
     [duration, handleLyric]
   )
 
+  // Handle audio buffer progress
+  const handleAudioProgress = useCallback(
+    (e: React.SyntheticEvent) => {
+      const target = e.target as HTMLAudioElement
+      if (target.buffered.length > 0 && duration > 0) {
+        // Get the end of the last buffered range
+        const bufferedEnd = target.buffered.end(target.buffered.length - 1)
+        const loadedPercent = (bufferedEnd / (duration / 1000)) * 100
+        setLoaded(Math.min(loadedPercent, 100))
+      }
+    },
+    [duration]
+  )
+
   return (
     <Playbar>
       <FlexContainer height={47}>
@@ -246,7 +261,8 @@ export const Player: FC = () => {
             {/* Progress Bar */}
             <PlayerProgressBar>
               <ProgressBar
-                percent={progress}
+                played={progress}
+                loaded={loaded}
                 onChange={handleProgressChange}
                 onAfterChange={handleProgressAfterChange}
               />
@@ -263,6 +279,7 @@ export const Player: FC = () => {
       <audio
         ref={audioRef}
         onTimeUpdate={handlePlayerTimeUpdate}
+        onProgress={handleAudioProgress}
         onEnded={() => {
           if (playMode === PLAY_MODE.SINGLE_LOOP) {
             if (audioRef.current) {
