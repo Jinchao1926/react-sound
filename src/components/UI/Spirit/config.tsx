@@ -186,6 +186,14 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       cur: { normal: 'left -66px' },
     },
   },
+  // Radio
+  radio: {
+    url: require('./img/radio_slider.png'),
+    icons: {
+      arrowLeft: '0 -30px',
+      arrowRight: '-30px -30px',
+    },
+  },
   // Covers
   cover: {
     url: require('./img/cover.png'),

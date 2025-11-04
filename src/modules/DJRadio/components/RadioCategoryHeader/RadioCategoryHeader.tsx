@@ -2,7 +2,12 @@ import React, { FC, useState, useRef, ElementRef } from 'react'
 
 import { Carousel } from 'antd'
 
-import { RadioCategoryHeaderWrapper } from './RadioCategoryHeader.styles'
+import {
+  ArrowLeft,
+  ArrowRight,
+  RadioCategoryHeaderWrapper,
+  RadioCategoryPage,
+} from './RadioCategoryHeader.styles'
 import { useRadioCategories } from '../../hooks/useRadioCategories'
 import { RadioCategoryItem } from '../RadioCategoryItem'
 
@@ -14,19 +19,17 @@ export const RadioCategoryHeader: FC<{ id?: number }> = ({ id }) => {
 
   return (
     <RadioCategoryHeaderWrapper>
-      <button
-        className="sprite_radio_slider arrow left"
-        disabled={currentPage === 0}
+      <ArrowLeft
         onClick={() => pageRef.current?.prev()}
+        disabled={currentPage === 0}
       />
       <Carousel
-        className="category-list"
         dots={{ className: 'dots' }}
         ref={pageRef}
         beforeChange={(_, next) => setCurrentPage(next)}
       >
         {paginatedCategories.map((pageCategories, pageIndex) => (
-          <div className="category-page" key={pageIndex}>
+          <RadioCategoryPage key={pageIndex}>
             {pageCategories.map((item) => (
               <RadioCategoryItem
                 key={item.id}
@@ -34,11 +37,10 @@ export const RadioCategoryHeader: FC<{ id?: number }> = ({ id }) => {
                 selected={id === item.id}
               />
             ))}
-          </div>
+          </RadioCategoryPage>
         ))}
       </Carousel>
-      <button
-        className="sprite_radio_slider arrow right"
+      <ArrowRight
         onClick={() => pageRef.current?.next()}
         disabled={currentPage === paginatedCategories.length - 1}
       />
