@@ -1,8 +1,5 @@
 import type { FC } from 'react'
 
-import { Flex } from '@/components/UI'
-import { usePlayerContext } from '@/providers/PlayerProvider'
-
 import {
   CollectButton,
   VolumeButton,
@@ -10,8 +7,11 @@ import {
   ShareButton,
   PlayModeButton,
   PlaylistCountButton,
-  Playbar,
-} from './PlayerAction.styles'
+} from '@/components/Shared/Playbar'
+import { Flex } from '@/components/UI'
+import { usePlayerContext } from '@/providers/PlayerProvider'
+
+import { PlayControl } from './PlayerAction.styles'
 
 export const PlayerAction: FC = () => {
   const {
@@ -26,11 +26,11 @@ export const PlayerAction: FC = () => {
         <CollectButton />
         <ShareButton />
       </Flex>
-      <Playbar>
+      <PlayControl>
         <VolumeButton />
         <PlayModeButton playMode={playMode} onClick={switchPlayMode} />
         <PlaylistCountButton>{playlist.length}</PlaylistCountButton>
-      </Playbar>
+      </PlayControl>
     </Flex>
   )
 }

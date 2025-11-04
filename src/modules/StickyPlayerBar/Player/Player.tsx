@@ -7,8 +7,13 @@ import React, {
   useState,
 } from 'react'
 
-import { NavLink } from 'react-router-dom'
-
+import {
+  NextButton,
+  Playbar,
+  PlayButton,
+  PrevButton,
+} from '@/components/Shared/Playbar'
+import { Box, Flex, FlexContainer, Text, TextNavLink } from '@/components/UI'
 import { UserLink } from '@/components/UserLink'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PLAY_MODE } from '@/types/player'
@@ -17,11 +22,10 @@ import { formatSizedImage } from '@/utils/dataFormat'
 import { formatTime } from '@/utils/timeFormat'
 
 import {
-  PlayButton,
-  PlayerControl,
-  PlayerInfo,
   PlayerProgressBar,
-  PlayerWrapper,
+  PlayerTime,
+  PlayerTimeNow,
+  SongCoverImage,
 } from './Player.styles'
 import { PlayerAction } from '../PlayerAction'
 import { ProgressBar } from '../ProgressBar'
@@ -210,50 +214,52 @@ export const Player: FC = () => {
   )
 
   return (
-    <PlayerWrapper className="sprite_player_bar player">
-      <div className="content wrap-v2">
-        <PlayerControl>
-          <button
-            className="sprite_player_bar prev"
-            onClick={() => switchSong(false)}
+    <Playbar>
+      <FlexContainer height={47}>
+        <Flex align="center" width={137}>
+          <PrevButton onClick={() => switchSong(false)} />
+          <PlayButton isPlaying={isPlaying} onClick={() => togglePlayState()} />
+          <NextButton onClick={() => switchSong(true)} />
+        </Flex>
+        <Flex align="center" flex={1} gap={15}>
+          {/* Song Avatar */}
+          <SongCoverImage
+            src={songAvatar}
+            alt={currentSong?.name}
+            to={songDetailUrl}
           />
-          <PlayButton
-            className="sprite_player_bar play"
-            isPlaying={isPlaying}
-            onClick={() => togglePlayState()}
-          />
-          <button
-            className="sprite_player_bar next"
-            onClick={() => switchSong(true)}
-          />
-        </PlayerControl>
-        <PlayerInfo>
-          <div className="avatar">
-            <img src={songAvatar} alt="" />
-            <NavLink className="sprite_player_bar" to={songDetailUrl} />
-          </div>
-          <div className="info">
-            <div className="music">
-              <NavLink className="name no-wrap" to={songDetailUrl}>
+          <Box width={581} height={'100%'}>
+            {/* Music Name and Artist */}
+            <Flex gap={15} height={28} lineHeight={28}>
+              <TextNavLink
+                to={songDetailUrl}
+                color="#e8e8e8"
+                maxWidth={300}
+                nowrap
+              >
                 {currentSong?.name}
-              </NavLink>
-              {currentSong?.ar && <UserLink users={currentSong?.ar} />}
-            </div>
+              </TextNavLink>
+              {currentSong?.ar && (
+                <UserLink users={currentSong?.ar} color="#9b9b9b" />
+              )}
+            </Flex>
+            {/* Progress Bar */}
             <PlayerProgressBar>
               <ProgressBar
                 percent={progress}
                 onChange={handleProgressChange}
                 onAfterChange={handleProgressAfterChange}
               />
-              <span className="time">
-                <span className="now-time">{formatTime(currentTime)}</span>
-                <span className="duration">{` / ${formatTime(duration)}`}</span>
-              </span>
+              <PlayerTime>
+                <PlayerTimeNow>{formatTime(currentTime)}</PlayerTimeNow>
+                <Text>{` / ${formatTime(duration)}`}</Text>
+              </PlayerTime>
             </PlayerProgressBar>
-          </div>
-        </PlayerInfo>
+          </Box>
+        </Flex>
+        {/* Player Actions */}
         <PlayerAction />
-      </div>
+      </FlexContainer>
       <audio
         ref={audioRef}
         onTimeUpdate={handlePlayerTimeUpdate}
@@ -268,6 +274,6 @@ export const Player: FC = () => {
           }
         }}
       />
-    </PlayerWrapper>
+    </Playbar>
   )
 }

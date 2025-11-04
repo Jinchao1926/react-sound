@@ -131,9 +131,23 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   playbar: {
     url: require('./img/playbar.png'),
     icons: {
-      playbar: '-147px -238px',
+      // Lock
+      lockBar: '0 -380px',
+      locked: { normal: '-100px -380px', hover: '-100px -400px' },
+      unlocked: { normal: '-80px -380px', hover: '-80px -400px' },
+      // Bar
+      bar: { normal: '0 0', repeat: 'repeat-x' },
+      cover: '0 -80px',
+      // Play
+      pause: { normal: '0 -165px', hover: '-40px -165px' },
+      play: { normal: '0 -204px', hover: '-40px -204px' },
+      prev: { normal: '0 -130px', hover: '-30px -130px' },
+      next: { normal: '-80px -130px', hover: '-110px -130px' },
+      // Play Operation
       collect: { normal: '-88px -163px', hover: '-88px -189px' },
       share: { normal: '-114px -163px', hover: '-114px -189px' },
+      // Play Controls
+      playControl: '-147px -238px',
       volume: { normal: '-2px -248px', hover: '-31px -248px' },
       loop: { normal: '-3px -344px', hover: '-33px -344px' },
       random: { normal: '-66px -248px', hover: '-93px -248px' },

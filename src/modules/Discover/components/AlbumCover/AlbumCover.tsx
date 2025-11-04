@@ -60,7 +60,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
       {/* 处理兼容类型 */}
       <UserLink
         users={album.artists ? album.artists : [album.artist]}
-        showSpace={true}
+        space={true}
       />
     </AlbumCoverWrapper>
   )
