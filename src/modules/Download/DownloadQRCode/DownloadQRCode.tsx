@@ -2,11 +2,11 @@ import React, { type FC } from 'react'
 
 import { Image, Paragraph } from '@/components/UI'
 
-import { QRcodeWrapper } from './QRCode.styles'
+import { DownloadQRCodeWrapper } from './DownloadQRCode.styles'
 
-export const QRCode: FC = () => {
+export const DownloadQRCode: FC = () => {
   return (
-    <QRcodeWrapper>
+    <DownloadQRCodeWrapper>
       <Image
         src={require('@/assets/img/download/qrcode.png')}
         alt="移动端下载"
@@ -14,6 +14,6 @@ export const QRCode: FC = () => {
         height={100}
       />
       <Paragraph mt={10}>扫描二维码下载</Paragraph>
-    </QRcodeWrapper>
+    </DownloadQRCodeWrapper>
   )
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const QRcodeWrapper = styled.div`
+export const DownloadQRCodeWrapper = styled.div`
   padding: 16px 18px 9px;
   position: fixed;
   top: 400px;

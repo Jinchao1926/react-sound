@@ -1,4 +1,4 @@
-import React, { CSSProperties, ElementType, FC, PropsWithChildren } from 'react'
+import React, { CSSProperties, ElementType, PropsWithChildren } from 'react'
 
 import classNames from 'classnames'
 import styled, { css } from 'styled-components'
@@ -94,48 +94,57 @@ interface SpriteProps extends Styles {
   disable?: boolean
 }
 
-export const Sprite: FC<PropsWithChildren<SpriteProps & any>> = ({
-  sprite,
-  icon,
-  component: Component = 'div',
-  className,
-  style,
-  disable = false,
-  children,
-  ...props
-}) => {
-  const config = findSpriteConfig(sprite, icon)
-  if (!config) {
-    // eslint-disable-next-line no-console
-    console.warn(`Sprite "${sprite}" not found`)
-    return null
+export const Sprite = React.forwardRef<
+  HTMLElement,
+  PropsWithChildren<SpriteProps & any>
+>(
+  (
+    {
+      sprite,
+      icon,
+      component: Component = 'div',
+      className,
+      style,
+      disable = false,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const config = findSpriteConfig(sprite, icon)
+    if (!config) {
+      // eslint-disable-next-line no-console
+      console.warn(`Sprite "${sprite}" not found`)
+      return null
+    }
+
+    const iconConfig = config.icons?.[icon]
+    if (!iconConfig) {
+      // eslint-disable-next-line no-console
+      console.warn(`Icon "${icon}" in Sprite "${sprite}" not found`)
+      return null
+    }
+
+    const parsedConfig = parseIconConfig(iconConfig)
+    const finalBackgroundSize = parsedConfig.size || config.defaultSize
+    const position = parsedConfig.normal || '0 0'
+
+    return (
+      <StyledSprite
+        ref={ref}
+        as={Component}
+        className={classNames(className)}
+        style={style}
+        url={config.url}
+        backgroundSize={finalBackgroundSize}
+        backgroundRepeat={parsedConfig.repeat}
+        normalPosition={position}
+        hoverPosition={parsedConfig.hover}
+        disable={disable}
+        {...props}
+      >
+        {children}
+      </StyledSprite>
+    )
   }
-
-  const iconConfig = config.icons?.[icon]
-  if (!iconConfig) {
-    // eslint-disable-next-line no-console
-    console.warn(`Icon "${icon}" in Sprite "${sprite}" not found`)
-    return null
-  }
-
-  const parsedConfig = parseIconConfig(iconConfig)
-  const finalBackgroundSize = parsedConfig.size || config.defaultSize
-  const position = parsedConfig.normal || '0 0'
-
-  return (
-    <StyledSprite
-      as={Component}
-      className={classNames(className)}
-      style={style}
-      url={config.url}
-      backgroundSize={finalBackgroundSize}
-      backgroundRepeat={parsedConfig.repeat}
-      normalPosition={position}
-      hoverPosition={parsedConfig.hover}
-      disable={disable}
-      {...props}
-    >
-      {children}
-    </StyledSprite>
-  )
-}
+)

@@ -1,96 +1,114 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useCallback, useEffect, useMemo, useRef } from 'react'
 
 import { roundToDecimal } from '@/utils/dataFormat'
 
-import { ProgressBarWrapper } from './ProgressBar.styles'
+import {
+  ProgressBarCur,
+  ProgressBarDot,
+  ProgressBarFull,
+  ProgressBarLoaded,
+} from './ProgressBar.styles'
 
 interface IProgressBarProps {
   width?: number // the width of the progress bar, defaults to 466
-  percent: number //50 means 50%
-  onChange?: (percent: number) => void // callback function when the progress bar changes, 50 means 50%
-  onAfterChange?: (percent: number) => void // callback function after the progress bar changes, 50 means 50%
+  played: number // 50 means 50% played
+  loaded?: number // 50 means 50% loaded/buffered
+  onChange?: (percent: number) => void // callback function when the progress bar is changing, 50 means 50%
+  onAfterChange?: (percent: number) => void // callback function after the progress bar is changed, 50 means 50%
 }
 
 export const ProgressBar: FC<IProgressBarProps> = ({
   width = 466,
-  percent,
+  played,
+  loaded = 0,
   onChange,
   onAfterChange,
 }) => {
-  const [curPercent, setCurPercent] = useState(percent)
-  const [isDragging, setIsDragging] = useState(false)
-  const curPercentRef = useRef<number>(curPercent)
-
-  const barRef = useRef<HTMLDivElement>(null)
   const fullRef = useRef<HTMLDivElement>(null)
-  const curRef = useRef<HTMLDivElement>(null)
+  const isDraggingRef = useRef(false)
+  const lastEmittedPercentRef = useRef(played)
+
+  const loadedPercentage = useMemo(() => {
+    return Math.min(roundToDecimal(loaded, 0.5), 100)
+  }, [loaded])
+
+  const playedPercentage = useMemo(() => {
+    return Math.min(roundToDecimal(played, 0.5), 100)
+  }, [played])
 
   useEffect(() => {
-    barRef.current!.style.width = `${width}px`
-  }, [width])
+    if (!isDraggingRef.current) {
+      lastEmittedPercentRef.current = playedPercentage
+    }
+  }, [playedPercentage])
 
-  // 更新进度条，这种写法不会重新渲染组件，只会修改 width 属性
-  // 如果使用 styled-components 的话，虚拟 DOM 会重新渲染
-  useEffect(() => {
-    const newPercent = roundToDecimal(percent, 0.5)
-    setCurPercent(newPercent)
+  // Calculate and update progress
+  const calculateProgress = useCallback((clientX: number): number | null => {
+    if (!fullRef.current) return null
 
-    curRef.current!.style.width = `${newPercent}%`
-  }, [percent])
-
-  // Mouse events
-  function moveProgress(e: React.MouseEvent) {
-    if (!fullRef.current) return
     const { left, width } = fullRef.current.getBoundingClientRect()
-    let newPercent = (e.clientX - left) / width
-    newPercent = 100 * Math.min(Math.max(newPercent, 0), 1) // [0,1]
-    newPercent = roundToDecimal(newPercent, 0.5)
-    curPercentRef.current = newPercent
-    setCurPercent(newPercent)
+    let ratio = (clientX - left) / width
+    ratio = Math.min(Math.max(ratio, 0), 1) // [0, 1]
 
-    if (!onChange || newPercent === percent) return
-    onChange(newPercent)
-  }
+    return roundToDecimal(ratio * 100, 0.5)
+  }, [])
 
-  function handleProgressClick(e: React.MouseEvent) {
-    moveProgress(e)
-    setTimeout(() => {
-      onAfterChange && onAfterChange(curPercentRef.current)
-    }, 0)
-  }
+  // Handle progress bar click
+  const handleProgressClick = useCallback(
+    (e: React.MouseEvent) => {
+      // Do not handle click event if dragging (avoid conflict with dragging)
+      if (isDraggingRef.current) return
 
-  function handleMouseMove(e: React.MouseEvent) {
-    if (!isDragging) return
-    moveProgress(e)
-  }
-  function handleMouseDown() {
-    setIsDragging(true)
-  }
-  function handleMouseUp() {
-    setIsDragging(false)
-  }
-  // Mouse events Ends
+      const newPercent = calculateProgress(e.clientX)
+      if (newPercent && newPercent !== lastEmittedPercentRef.current) {
+        onChange?.(newPercent)
+        lastEmittedPercentRef.current = newPercent
+        onAfterChange?.(newPercent)
+      }
+    },
+    [calculateProgress, onChange, onAfterChange]
+  )
+
+  // Handle dragging
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault()
+      isDraggingRef.current = true
+
+      // Handle mouse move during dragging
+      const handleMouseMove = (moveEvent: MouseEvent) => {
+        if (!isDraggingRef.current) return
+
+        const newPercent = calculateProgress(moveEvent.clientX)
+        if (newPercent && newPercent !== lastEmittedPercentRef.current) {
+          onChange?.(newPercent)
+          lastEmittedPercentRef.current = newPercent
+        }
+      }
+
+      // Handle dragging end
+      const handleMouseUp = () => {
+        if (isDraggingRef.current) {
+          isDraggingRef.current = false
+          onAfterChange?.(lastEmittedPercentRef.current)
+        }
+
+        document.removeEventListener('mousemove', handleMouseMove)
+        document.removeEventListener('mouseup', handleMouseUp)
+      }
+
+      document.addEventListener('mousemove', handleMouseMove)
+      document.addEventListener('mouseup', handleMouseUp)
+    },
+    [calculateProgress, onChange, onAfterChange]
+  )
 
   return (
-    <ProgressBarWrapper className="sprite_progress_bar progress" ref={barRef}>
-      <div
-        className="sprite_progress_bar full"
-        ref={fullRef}
-        onClick={(e) => handleProgressClick(e)}
-      />
-      <div
-        className="sprite_progress_bar cur"
-        ref={curRef}
-        onClick={(e) => handleProgressClick(e)}
-      >
-        <span
-          className="sprite_icon dot"
-          onMouseDown={() => handleMouseDown()}
-          onMouseMove={(e) => handleMouseMove(e)}
-          onMouseUp={() => handleMouseUp()}
-          onMouseLeave={() => handleMouseUp()}
-        />
-      </div>
-    </ProgressBarWrapper>
+    <ProgressBarFull width={width} ref={fullRef} onClick={handleProgressClick}>
+      <ProgressBarLoaded percent={loadedPercentage} />
+      <ProgressBarCur percent={playedPercentage}>
+        <ProgressBarDot onMouseDown={handleMouseDown} />
+      </ProgressBarCur>
+    </ProgressBarFull>
   )
 }
