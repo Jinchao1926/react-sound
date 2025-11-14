@@ -1,13 +1,13 @@
 import React, { FC, useMemo } from 'react'
 
-import { NavLink } from 'react-router-dom'
-
 import { SectionHeader } from '@/components/SectionHeader'
+import { Box, Text, TextNavLink } from '@/components/UI'
 import { useRecommendedProgramsQuery } from '@/hooks/program/useRecommendedProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { Program } from '@/types/program'
 
 import { ProgramRecommendWrapper } from './ProgramRecommend.styles'
+import { CategoryLink, ProgramItem, ProgramList } from '../../components/shared'
 
 export const ProgramRecommend: FC<{ isCompact?: boolean }> = ({
   isCompact = false,
@@ -22,37 +22,54 @@ export const ProgramRecommend: FC<{ isCompact?: boolean }> = ({
     [isCompact, data]
   )
 
-  const renderProgramContent = (item: Program) => {
-    const nameLink = (
-      <NavLink className="item name no-wrap" to={`/program?id=${item.id}`}>
-        {item.name}
-      </NavLink>
+  const renderProgramContent = (program: Program) => {
+    const programPath = `/program?id=${program.id}`
+    const radioPath = `/djradio?id=${program.radio.id}`
+
+    const programLink = (
+      <TextNavLink
+        nowrap
+        ml={isCompact ? 0 : 10}
+        width={isCompact ? '100%' : 304}
+        lineHeight={isCompact ? 20 : undefined}
+        color="#333"
+        to={programPath}
+      >
+        {program.name}
+      </TextNavLink>
     )
 
     const radioLink = (
-      <NavLink
-        className="item brand no-wrap"
-        to={`/djradio?id=${item.radio.id}`}
+      <TextNavLink
+        nowrap
+        ml={isCompact ? 0 : 10}
+        width={isCompact ? '100%' : 166}
+        lineHeight={isCompact ? 20 : undefined}
+        to={radioPath}
       >
-        {item.radio.name}
-      </NavLink>
+        {program.radio.name}
+      </TextNavLink>
     )
 
     if (isCompact) {
       return (
-        <div className="content">
-          {nameLink}
+        <Box width={254} ml={10} mt={1}>
+          {programLink}
           {radioLink}
-        </div>
+        </Box>
       )
     }
 
     return (
       <>
-        {nameLink}
+        {programLink}
         {radioLink}
-        <span className="item play-count">播放{item.listenerCount}</span>
-        <span className="item thumbs-up">赞{item.likedCount || 0}</span>
+        <Text color="#999" width={90} ml={10}>
+          播放{program.listenerCount}
+        </Text>
+        <Text color="#999" width={126} ml={10}>
+          赞{program.likedCount || 0}
+        </Text>
       </>
     )
   }
@@ -60,20 +77,21 @@ export const ProgramRecommend: FC<{ isCompact?: boolean }> = ({
   return (
     <ProgramRecommendWrapper className="program-recommend">
       <SectionHeader title="推荐节目" subtitle={subTitle} moreHref={morePath} />
-      <div className="program-list">
+      <ProgramList>
         {programs.map((item) => (
-          <div className="program-item" key={item.id}>
+          <ProgramItem key={item.id} pl={20}>
             <ProgramCover coverUrl={item.coverUrl} />
+
             {renderProgramContent(item)}
-            <NavLink
-              className="category"
+
+            <CategoryLink
               to={`/discover/djradio/category?id=${item.radio.categoryId}`}
             >
               {item.radio.category}
-            </NavLink>
-          </div>
+            </CategoryLink>
+          </ProgramItem>
         ))}
-      </div>
+      </ProgramList>
     </ProgramRecommendWrapper>
   )
 }
