@@ -1,10 +1,9 @@
 import React, { FC, useMemo } from 'react'
 
 import { Tooltip } from 'antd'
-import classNames from 'classnames'
-import { NavLink } from 'react-router-dom'
 
 import { SectionHeader } from '@/components/SectionHeader'
+import { Box, TextNavLink } from '@/components/UI'
 import { useTopProgramsQuery } from '@/hooks/program/useTopProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { RankingTrend } from '@/modules/DJRadio/components/RankingTrend'
@@ -12,8 +11,13 @@ import { Program } from '@/types/program'
 import { padLeft, formatMonthDay } from '@/utils/timeFormat'
 
 import {
+  CategoryLink,
+  InfoIcon,
   ProgramRankingWrapper,
-  RankingHotWrapper,
+  Ranking,
+  RankingIndex,
+  RankingItem,
+  RankingProgress,
 } from './ProgramRanking.styles'
 
 export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
@@ -32,41 +36,54 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
   )
 
   const renderProgramContent = (program: Program) => {
-    const nameLink = (
-      <NavLink className="item name no-wrap" to={`/program?id=${program.id}`}>
+    const programPath = `/program?id=${program.id}`
+    const radioPath = `/djradio?id=${program.radio.id}`
+
+    const programLink = (
+      <TextNavLink
+        nowrap
+        ml={isCompact ? 0 : 10}
+        width={isCompact ? '100%' : 304}
+        lineHeight={isCompact ? 20 : undefined}
+        color="#333"
+        to={programPath}
+      >
         {program.name}
-      </NavLink>
+      </TextNavLink>
     )
 
     const radioLink = (
-      <NavLink
-        className="item brand no-wrap"
-        to={`/djradio?id=${program.radio.id}`}
+      <TextNavLink
+        nowrap
+        ml={isCompact ? 0 : 10}
+        width={isCompact ? '100%' : 176}
+        lineHeight={isCompact ? 20 : undefined}
+        to={radioPath}
       >
         {program.radio.name}
-      </NavLink>
+      </TextNavLink>
     )
 
     if (isCompact) {
       return (
-        <div className="content">
-          {nameLink}
+        <Box width={208} ml={10} mt={1}>
+          {programLink}
           {radioLink}
-        </div>
+        </Box>
       )
     }
 
     return (
       <>
-        {nameLink}
+        {programLink}
         {radioLink}
-        <div className="category">
-          <NavLink
+        <Box width={140} ml={10} mt={1}>
+          <CategoryLink
             to={`/discover/djradio/category?id=${program.radio.categoryId}`}
           >
             {program.radio.category}
-          </NavLink>
-        </div>
+          </CategoryLink>
+        </Box>
       </>
     )
   }
@@ -85,36 +102,31 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
           color="#fff"
           title="选取云音乐中7天内发布的热度最高的节目，每天更新。热度由节目播放、赞、分享数量总和计算。"
         >
-          <div className="tips sprite_icon3" />
+          <InfoIcon />
         </Tooltip>
       )}
-      <div className="ranking-list">
+
+      <Box border="1px solid #e2e2e2" borderWidth="0 1px 1px">
         {programs.map((item, index) => (
-          <div className="ranking-item" key={item.program.id}>
-            <div className="rank">
-              <span className={classNames('index', { red: index < 3 })}>
+          <RankingItem key={item.program.id}>
+            <Box width={47} mt={6}>
+              <RankingIndex highlight={index < 3}>
                 {padLeft(index + 1)}
-              </span>
+              </RankingIndex>
               <RankingTrend rank={item.rank} lastRank={item.lastRank} />
-            </div>
+            </Box>
             <ProgramCover coverUrl={item.program.coverUrl} />
+
             {renderProgramContent(item.program)}
-            <RankingHotWrapper
-              className="sprite_table"
-              marginLeft={isCompact ? 0 : 28}
-            >
-              <i
-                className="sprite_table progress"
-                style={{
-                  width: `${(item.score / programs[0].score) * 96}%`,
-                }}
-              >
-                <i className="sprite_table right-corner" />
-              </i>
-            </RankingHotWrapper>
-          </div>
+
+            <Ranking marginLeft={isCompact ? 0 : 28}>
+              <RankingProgress
+                widthPercent={(item.score / programs[0].score) * 100}
+              />
+            </Ranking>
+          </RankingItem>
         ))}
-      </div>
+      </Box>
     </ProgramRankingWrapper>
   )
 }
