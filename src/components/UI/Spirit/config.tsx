@@ -127,6 +127,12 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       new: '-67px -283px',
     },
   },
+  icon3: {
+    url: require('./img/icon3.png'),
+    icons: {
+      info: { normal: '0 -50px', hover: '-20px -50px' },
+    },
+  },
   icon4: {
     url: require('./img/icon4.png'),
     icons: {
@@ -135,6 +141,8 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       play: { normal: '0 -103px', hover: '0 -128px' },
       share: { normal: '0 -195px', hover: '-20px -195px' },
       download: { normal: '-81px -174px', hover: '-104px -174px' },
+      ranking: '0 -240px',
+      rankingProgress: '0 -304px',
     },
   },
   police: {
