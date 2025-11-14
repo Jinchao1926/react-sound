@@ -11,14 +11,13 @@ import { Program } from '@/types/program'
 import { padLeft, formatMonthDay } from '@/utils/timeFormat'
 
 import {
-  CategoryLink,
   InfoIcon,
   ProgramRankingWrapper,
   Ranking,
   RankingIndex,
-  RankingItem,
   RankingProgress,
 } from './ProgramRanking.styles'
+import { CategoryLink, ProgramItem, ProgramList } from '../../components/shared'
 
 export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
   isCompact = false,
@@ -106,9 +105,9 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
         </Tooltip>
       )}
 
-      <Box border="1px solid #e2e2e2" borderWidth="0 1px 1px">
+      <ProgramList>
         {programs.map((item, index) => (
-          <RankingItem key={item.program.id}>
+          <ProgramItem key={item.program.id}>
             <Box width={47} mt={6}>
               <RankingIndex highlight={index < 3}>
                 {padLeft(index + 1)}
@@ -124,9 +123,9 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
                 widthPercent={(item.score / programs[0].score) * 100}
               />
             </Ranking>
-          </RankingItem>
+          </ProgramItem>
         ))}
-      </Box>
+      </ProgramList>
     </ProgramRankingWrapper>
   )
 }
