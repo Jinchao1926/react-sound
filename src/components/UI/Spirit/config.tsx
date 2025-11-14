@@ -116,6 +116,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   icon: {
     url: require('./img/icon.png'),
     icons: {
+      playProgram: '0 -85px',
       progressDot: { normal: '0 -250px', hover: '0 -280px' },
     },
   },

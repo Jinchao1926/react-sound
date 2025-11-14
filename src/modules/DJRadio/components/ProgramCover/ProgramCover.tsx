@@ -1,8 +1,9 @@
 import type { FC } from 'react'
 
+import { Image } from '@/components/UI'
 import { formatSizedImage } from '@/utils/dataFormat'
 
-import { ProgramCoverWrapper } from './ProgramCover.styles'
+import { PlayButton, ProgramCoverWrapper } from './ProgramCover.styles'
 
 interface ProgramCoverProps {
   coverUrl: string
@@ -14,13 +15,14 @@ export const ProgramCover: FC<ProgramCoverProps> = ({
   onPlayClick,
 }) => {
   return (
-    <ProgramCoverWrapper className="radio-cover">
-      <img src={formatSizedImage(coverUrl, 40)} alt="" />
-      <button
-        className="play sprite_icon"
-        title="播放"
-        onClick={() => onPlayClick?.()}
+    <ProgramCoverWrapper>
+      <Image
+        src={formatSizedImage(coverUrl, 40)}
+        alt=""
+        width="100%"
+        height="100%"
       />
+      <PlayButton onClick={() => onPlayClick?.()} />
     </ProgramCoverWrapper>
   )
 }
