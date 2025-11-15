@@ -1,21 +1,6 @@
-import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Flex } from '@/components/UI'
-
-export const PlaylistCover = styled.div`
-  width: 80px;
-  height: 80px;
-  position: relative;
-`
-
-export const PlaylistLink = styled(NavLink)`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-`
 
 // Song
 export const SongIndex = styled.span`

@@ -1,49 +1,50 @@
 import React, { FC } from 'react'
 
-import { NavLink } from 'react-router-dom'
-
 import { SectionHeader } from '@/components/SectionHeader'
+import { Box, Image, Text } from '@/components/UI'
 import { useTopArtistQuery } from '@/hooks/artist/useTopArtistQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 
-import { SignedArtistWrapper } from './SignedArtist.styles'
+import {
+  BecomeSingerLink,
+  SingerContent,
+  SingerLink,
+} from './SignedArtist.styles'
 
 export const SignedArtist: FC = () => {
   const { data } = useTopArtistQuery()
 
   return (
-    <SignedArtistWrapper>
-      <div className="header">
+    <Box mt={15}>
+      <Box mx={20}>
         <SectionHeader
           variant="simple"
           title="入驻歌手"
           moreHref="/discover/artist"
         />
-      </div>
-      <div className="singer-list">
+      </Box>
+      <Box mt={6} mb={14} ml={20}>
         {data.map((item) => (
-          <NavLink
-            className="singer"
-            key={item.id}
-            to={`/discover/artist?id=${item.id}`}
-          >
-            <img
-              className="avatar"
+          <SingerLink key={item.id} to={`/discover/artist?id=${item.id}`}>
+            <Image
               src={formatSizedImage(item.picUrl, 62)}
-              alt=""
+              alt={item.name}
+              width={62}
+              height={62}
             />
-            <div className="info">
-              <h4 className="name">{item.name}</h4>
-              <p className="desc no-wrap">
+            <SingerContent>
+              <Text mt={12} color="#333" fontSize={14} fontWeight={600}>
+                {item.name}
+              </Text>
+              <Text mt={8} color="#666" fontSize={12} nowrap>
                 {item.alias.join(' ') || item.name}
-              </p>
-            </div>
-          </NavLink>
+              </Text>
+            </SingerContent>
+          </SingerLink>
         ))}
-      </div>
-      <div className="footer">
-        <a href="/#">申请成为网易音乐人</a>
-      </div>
-    </SignedArtistWrapper>
+      </Box>
+
+      <BecomeSingerLink href="/#">申请成为网易音乐人</BecomeSingerLink>
+    </Box>
   )
 }

@@ -1,5 +1,6 @@
 import { useMemo, type FC } from 'react'
 
+import { CoverImage } from '@/components/CoverImage'
 import {
   AddToButtonSmall,
   CollectButton,
@@ -7,18 +8,12 @@ import {
   PlayButton,
   PlayButtonSmall,
 } from '@/components/Shared/Media'
-import { Box, Flex, Head, Image, Sprite, TextNavLink } from '@/components/UI'
+import { Box, Flex, Head, TextNavLink } from '@/components/UI'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 
-import {
-  PlaylistCover,
-  PlaylistLink,
-  SongActions,
-  SongIndex,
-  SongItem,
-} from './Playlist.styles'
+import { SongActions, SongIndex, SongItem } from './Playlist.styles'
 
 interface PlaylistProps {
   playlist: PlaylistDetail
@@ -40,17 +35,13 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
   return (
     <Box width={230}>
       <Flex gap={10} height={100} pt={20} pl={19}>
-        <PlaylistCover>
-          <Image
-            src={formatSizedImage(playlist.coverImgUrl, 80)}
-            alt={playlist.name}
-            width={'100%'}
-            height={'100%'}
-          />
-          <PlaylistLink to={rankingUrl}>
-            <Sprite sprite="cover" icon="bright80" height={'100%'} />
-          </PlaylistLink>
-        </PlaylistCover>
+        <CoverImage
+          src={formatSizedImage(playlist.coverImgUrl, 80)}
+          to={rankingUrl}
+          size={80}
+          coverSprite="cover"
+          coverIcon="bright80"
+        />
         <Box>
           <TextNavLink to={rankingUrl} color="#333">
             <Head mt={6} mb={10} height={20}>
