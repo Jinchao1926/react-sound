@@ -133,6 +133,9 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       arrow: '-48px 0',
       playProgram: '0 -85px',
       progressDot: { normal: '0 -250px', hover: '0 -280px' },
+
+      headset: '0 -24px',
+      playInPanel: { normal: '0 0', hover: '0 -60px' },
     },
   },
   icon2: {
@@ -236,8 +239,11 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   cover: {
     url: require('./img/cover.png'),
     icons: {
+      // bright-width
       bright80: '-145px -57px',
+      bright140: '0 0',
       bright150: '-230px -380px',
+      panel: '0 -537px',
     },
   },
 }
@@ -261,6 +267,8 @@ export type SpriteCategory =
   | 'icon'
   | 'playbar'
   | 'progress'
+  | 'radio'
+  | 'cover'
 
 export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   header: INTERNAL_SPRITE_CONFIG.header,
@@ -271,4 +279,6 @@ export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   icon: INTERNAL_SPRITE_CONFIG.icon,
   playbar: INTERNAL_SPRITE_CONFIG.playbar,
   progress: INTERNAL_SPRITE_CONFIG.progress,
+  radio: INTERNAL_SPRITE_CONFIG.radio,
+  cover: INTERNAL_SPRITE_CONFIG.cover,
 }

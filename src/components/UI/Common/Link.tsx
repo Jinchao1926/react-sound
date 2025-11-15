@@ -35,11 +35,11 @@ export const TextNavLink = styled(Box).attrs({ as: NavLink })<TextNavLinkProps>`
   cursor: pointer;
   text-decoration: none;
   color: ${({ color = '#666' }) => color};
+  display: inline-block;
 
   ${({ nowrap }) =>
     nowrap &&
     css`
-      display: inline-block;
       max-width: 100%;
       vertical-align: top;
     `}

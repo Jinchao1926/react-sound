@@ -1,10 +1,11 @@
 import React, { FC, useState, useEffect, useMemo, useCallback } from 'react'
 
 import { JCPagination } from '@/components/Pagination'
+import { Box } from '@/components/UI'
 import { useTopPlaylistsQuery } from '@/hooks/playlist/useTopPlaylistsQuery'
 import { PlaylistCover } from '@/modules/Discover/components/PlaylistCover'
 
-import { PlaylistCoversWrapper } from './PlaylistCovers.styles'
+import { PlaylistCoverList } from './PlaylistCovers.styles'
 
 const PAGE_SIZE = 35
 
@@ -32,18 +33,22 @@ export const PlaylistCovers: FC<{ category: string }> = ({ category }) => {
   }, [])
 
   return (
-    <PlaylistCoversWrapper>
-      <div className="list">
+    <Box mt={10}>
+      <PlaylistCoverList>
         {playlists.map((item) => (
-          <PlaylistCover key={item.id} playlist={item} />
+          <PlaylistCover
+            key={item.id}
+            playlist={item}
+            style={{ flexBasis: '20%' }}
+          />
         ))}
-      </div>
+      </PlaylistCoverList>
       <JCPagination
         total={total}
         pageSize={PAGE_SIZE}
         current={currentPage}
         onPageChange={handlePageChange}
       />
-    </PlaylistCoversWrapper>
+    </Box>
   )
 }

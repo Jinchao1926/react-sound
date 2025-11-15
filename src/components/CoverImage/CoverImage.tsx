@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, PropsWithChildren } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
@@ -24,13 +24,14 @@ export interface CoverImageProps {
   coverIcon?: string
 }
 
-export const CoverImage: FC<CoverImageProps> = ({
+export const CoverImage: FC<PropsWithChildren<CoverImageProps>> = ({
   src,
   alt,
   to,
   size,
   coverSprite,
   coverIcon,
+  children,
 }) => {
   return (
     <CoverImageWrapper width={size} height={size}>
@@ -41,6 +42,7 @@ export const CoverImage: FC<CoverImageProps> = ({
         component={NavLink}
         to={to}
       />
+      {children}
     </CoverImageWrapper>
   )
 }
