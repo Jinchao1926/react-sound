@@ -94,8 +94,11 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   },
   // Buttons
   button: {
-    url: './img/button.png',
-    icons: {},
+    url: require('./img/button.png'),
+    icons: {
+      category: { normal: 'right -100px', hover: 'right -182px' },
+      categoryRightConer: { normal: '0 -59px', hover: '0 -141px' },
+    },
   },
   button1: {
     url: './img/button1.png',
@@ -104,7 +107,8 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   button2: {
     url: require('./img/button2.png'),
     icons: {
-      greyButton: { normal: '0 -64px' },
+      redButton: '0 0',
+      greyButton: '0 -64px',
     },
   },
   button3: {
@@ -143,6 +147,8 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       scene: '0 -88px',
       emotion: '0 -117px',
       theme: '0 -141px',
+      //
+      arrowDown: '-70px -543px',
     },
   },
   icon3: {

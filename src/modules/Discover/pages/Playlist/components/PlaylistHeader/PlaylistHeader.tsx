@@ -1,22 +1,19 @@
-import React, {
-  FC,
-  useCallback,
-  useState,
-  useEffect,
-  useRef,
-  memo,
-} from 'react'
+import React, { FC, useCallback, useState, useEffect, useRef } from 'react'
 
 import { useLocation } from 'react-router-dom'
 
+import { Box, Flex, Text } from '@/components/UI'
+
 import {
   PlaylistHeaderWrapper,
-  HeaderLeft,
-  HeaderRight,
+  ArrowDown,
+  CategoryButton,
+  CategoryButtonText,
+  HotButton,
 } from './PlaylistHeader.styles'
 import { PlaylistCategory } from '../PlaylistCategory'
 
-const PlaylistHeader: FC<{ category: string }> = ({ category }) => {
+export const PlaylistHeader: FC<{ category: string }> = ({ category }) => {
   const location = useLocation()
   const [showCategory, setShowCategory] = useState<boolean>(false)
   const categoryRef = useRef<HTMLDivElement>(null)
@@ -51,23 +48,23 @@ const PlaylistHeader: FC<{ category: string }> = ({ category }) => {
 
   return (
     <PlaylistHeaderWrapper>
-      <HeaderLeft>
-        <span className="title">{category}</span>
+      <Flex position="relative">
+        <Text fontSize={24} lineHeight={34}>
+          {category}
+        </Text>
         <div ref={categoryRef}>
-          <button className="select sprite_button" onClick={switchCategory}>
-            <span className="sprite_button">
+          <CategoryButton onClick={switchCategory}>
+            <CategoryButtonText>
               选择分类
-              <i className="sprite_icon2" />
-            </span>
-          </button>
+              <ArrowDown />
+            </CategoryButtonText>
+          </CategoryButton>
           {showCategory && <PlaylistCategory category={category} />}
         </div>
-      </HeaderLeft>
-      <HeaderRight>
-        <button className="hot sprite_button2">热门</button>
-      </HeaderRight>
+      </Flex>
+      <Box>
+        <HotButton>热门</HotButton>
+      </Box>
     </PlaylistHeaderWrapper>
   )
 }
-
-export default memo(PlaylistHeader)
