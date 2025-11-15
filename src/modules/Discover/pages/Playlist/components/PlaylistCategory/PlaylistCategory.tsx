@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react'
+import React, { FC } from 'react'
 
 import classNames from 'classnames'
 
@@ -17,7 +17,7 @@ import {
   PlaylistCategoryIcon,
 } from './PlaylistCategory.styles'
 
-const PlaylistCategory: FC<{ category: string }> = ({
+export const PlaylistCategory: FC<{ category: string }> = ({
   category: currentCategory,
 }) => {
   const { data: categories } = usePlaylistCategoriesQuery()
@@ -66,5 +66,3 @@ const PlaylistCategory: FC<{ category: string }> = ({
     </PlaylistCategoryWrapper>
   )
 }
-
-export default memo(PlaylistCategory)

@@ -1,1 +1,1 @@
-export { default as PlaylistCategory } from './PlaylistCategory'
+export { PlaylistCategory } from './PlaylistCategory'

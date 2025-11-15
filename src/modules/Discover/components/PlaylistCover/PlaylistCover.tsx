@@ -1,16 +1,24 @@
 import type { FC } from 'react'
 
-import classNames from 'classnames'
-import { NavLink } from 'react-router-dom'
+import { CSSProperties } from 'styled-components'
 
+import { CoverImage } from '@/components/CoverImage'
+import { Box, Flex, Image, Text } from '@/components/UI'
 import { PlaylistDetail, PopularPlaylist } from '@/types/playlist'
 import { formatPlayCount, formatSizedImage } from '@/utils/dataFormat'
 
-import { PlaylistCoverWrapper } from './PlaylistCover.styles'
+import {
+  HeadsetIcon,
+  PlayButton,
+  PlaylistCoverPanel,
+  PlaylistCreatorLink,
+  PlaylistNameLink,
+} from './PlaylistCover.styles'
 
 export const PlaylistCover: FC<{
   playlist: PlaylistDetail | PopularPlaylist
-}> = ({ playlist }) => {
+  style?: CSSProperties
+}> = ({ playlist, style }) => {
   const getImageUrl = () => {
     if ('coverImgUrl' in playlist) return playlist.coverImgUrl
     return playlist.picUrl
@@ -24,39 +32,47 @@ export const PlaylistCover: FC<{
     const { creator } = playlist as PlaylistDetail
 
     return (
-      <div className="cover-source">
+      <Flex gap={4} maxWidth={140} color="#999">
         by
-        <NavLink className="name" to={`/user/home/id=${creator.userId}`}>
+        <PlaylistCreatorLink to={`/user/home/id=${creator.userId}`}>
           {creator.nickname}
-        </NavLink>
+        </PlaylistCreatorLink>
         {creator.avatarDetail && (
-          <img src={creator.avatarDetail.identityIconUrl} alt="" />
+          <Image
+            src={creator.avatarDetail.identityIconUrl}
+            alt=""
+            width={13}
+            height={13}
+          />
         )}
-      </div>
+      </Flex>
     )
   }
 
   return (
-    <PlaylistCoverWrapper className="song-cover">
-      <div className="cover">
-        <NavLink to={`/playlist?id=${playlist.id}`}>
-          <img src={formatSizedImage(getImageUrl(), 140)} alt={playlist.name} />
-        </NavLink>
-        <div className="panel sprite_cover">
-          <span className="headset sprite_icon" />
-          <span className="play-count">
-            {formatPlayCount(playlist.playCount)}
-          </span>
-          <a className="play sprite_icon" href="todo" title="播放" />
-        </div>
-      </div>
-      <NavLink
-        className={classNames('cover-info', { 'no-wrap': hasCreator })}
+    <Box mt={20} mb={10} width={140} style={style}>
+      <CoverImage
+        src={formatSizedImage(getImageUrl(), 140)}
+        alt={playlist.name}
         to={`/playlist?id=${playlist.id}`}
+        size={140}
+        coverSprite="cover"
+        coverIcon="bright140"
       >
+        <PlaylistCoverPanel>
+          <Flex align="center" gap={5}>
+            <HeadsetIcon />
+            <Text>{formatPlayCount(playlist.playCount)}</Text>
+          </Flex>
+          <PlayButton />
+        </PlaylistCoverPanel>
+      </CoverImage>
+
+      <PlaylistNameLink to={`/playlist?id=${playlist.id}`} nowrap={hasCreator}>
         {playlist.name}
-      </NavLink>
+      </PlaylistNameLink>
+
       {renderCreator()}
-    </PlaylistCoverWrapper>
+    </Box>
   )
 }
