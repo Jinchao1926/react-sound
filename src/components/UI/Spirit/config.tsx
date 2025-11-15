@@ -75,6 +75,14 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       discoverLogin: { normal: '0 9999px', hover: '0 -430px' },
     },
   },
+  categoryBG: {
+    url: require('./img/category_bg.png'),
+    icons: {
+      header: '0 0',
+      body: { normal: '-720px 0', repeat: 'repeat-y' },
+      footer: '-1440px -12px',
+    },
+  },
   // Platform Download
   platformDownload: {
     url: require('./img/download.png'),
@@ -94,8 +102,10 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     icons: {},
   },
   button2: {
-    url: './img/button2.png',
-    icons: {},
+    url: require('./img/button2.png'),
+    icons: {
+      greyButton: { normal: '0 -64px' },
+    },
   },
   button3: {
     url: require('./img/button3.png'),
@@ -116,6 +126,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   icon: {
     url: require('./img/icon.png'),
     icons: {
+      arrow: '-48px 0',
       playProgram: '0 -85px',
       progressDot: { normal: '0 -250px', hover: '0 -280px' },
     },
@@ -126,6 +137,12 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       addTo: { normal: '0 -700px', hover: '-22px -700px' },
       clock: '-18px -682px',
       new: '-67px -283px',
+      // playlist category
+      language: '-20px -735px',
+      style: '0 -60px',
+      scene: '0 -88px',
+      emotion: '0 -117px',
+      theme: '0 -141px',
     },
   },
   icon3: {
@@ -222,7 +239,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
 // Variant group configuration
 export const SPRITE_VARIANTS: Record<string, string[]> = {
   footer: ['footer', 'footer2'],
-  background: ['downloadBG', 'loginBG', 'loginBG2'],
+  background: ['downloadBG', 'loginBG', 'loginBG2', 'categoryBG'],
   button: ['button', 'button2', 'button3'],
   icon: ['icon', 'icon2', 'icon3', 'icon4', 'police', 'file'],
   playbar: ['playbar', 'pip'],

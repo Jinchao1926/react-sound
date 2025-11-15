@@ -1,11 +1,21 @@
 import React, { FC, memo } from 'react'
 
 import classNames from 'classnames'
-import { NavLink } from 'react-router-dom'
 
+import { Box, Text } from '@/components/UI'
 import { usePlaylistCategoriesQuery } from '@/hooks/playlist/usePlaylistCategoriesQuery'
 
-import { PlaylistCategoryWrapper } from './PlaylistCategory.styles'
+import {
+  PlaylistCategoryArrow,
+  PlaylistCategoryHeader,
+  PlaylistCategoryBody,
+  PlaylistCategoryWrapper,
+  PlaylistCategoryFooter,
+  PlaylistCategoryAll,
+  PlaylistCategoryLink,
+  PlaylistCategoryItem,
+  PlaylistCategoryIcon,
+} from './PlaylistCategory.styles'
 
 const PlaylistCategory: FC<{ category: string }> = ({
   category: currentCategory,
@@ -14,40 +24,45 @@ const PlaylistCategory: FC<{ category: string }> = ({
 
   return (
     <PlaylistCategoryWrapper>
-      <div className="header sprite_category_bg">
-        <div className="arrow sprite_icon" />
-      </div>
-      <div className="body sprite_category_bg">
-        <div className="all">
-          <NavLink className="sprite_button2" to={`/discover/playlist`}>
+      <PlaylistCategoryHeader>
+        <PlaylistCategoryArrow />
+      </PlaylistCategoryHeader>
+
+      <PlaylistCategoryBody>
+        <Box height={37} pl={26} borderBottom="1px solid #e6e6e6">
+          <PlaylistCategoryAll to={`/discover/playlist`}>
             全部风格
-          </NavLink>
-        </div>
+          </PlaylistCategoryAll>
+        </Box>
+
         {categories.map((category, index) => (
           <dl key={category.id}>
             <dt>
-              <i className={'sprite_icon2 icon icon' + index} />
+              <PlaylistCategoryIcon index={index} />
               {category.name}
             </dt>
             <dd>
               {category.subcategories.map((item) => (
-                <div className="item-wrapper" key={item.name}>
-                  <NavLink
-                    className={classNames('name', {
+                <PlaylistCategoryItem key={item.name}>
+                  <PlaylistCategoryLink
+                    className={classNames({
                       selected: currentCategory === item.name,
                     })}
                     to={`/discover/playlist?cat=${item.name}`}
                   >
                     {item.name}
-                  </NavLink>
-                  <span className="divider">|</span>
-                </div>
+                  </PlaylistCategoryLink>
+                  <Text ml={10} mr={8} color="#d8d8d8">
+                    |
+                  </Text>
+                </PlaylistCategoryItem>
               ))}
             </dd>
           </dl>
         ))}
-      </div>
-      <div className="footer sprite_category_bg" />
+      </PlaylistCategoryBody>
+
+      <PlaylistCategoryFooter />
     </PlaylistCategoryWrapper>
   )
 }
