@@ -131,9 +131,9 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     url: require('./img/icon.png'),
     icons: {
       arrow: '-48px 0',
-      playProgram: '0 -85px',
+      playInCover: '0 -85px',
+      playInCoverLarge: '0 -140px',
       progressDot: { normal: '0 -250px', hover: '0 -280px' },
-
       headset: '0 -24px',
       playInPanel: { normal: '0 0', hover: '0 -60px' },
     },
@@ -244,6 +244,8 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       bright140: '0 0',
       bright150: '-230px -380px',
       panel: '0 -537px',
+      record: '0 -570px',
+      recordLarge: '0 -845px',
     },
   },
 }

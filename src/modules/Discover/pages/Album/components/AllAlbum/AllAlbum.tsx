@@ -2,10 +2,11 @@ import { FC, useState, useEffect } from 'react'
 
 import { JCPagination } from '@/components/Pagination'
 import { SectionHeader } from '@/components/SectionHeader'
+import { Box } from '@/components/UI'
 import { useAllAlbumsQuery } from '@/hooks/album/useAllAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 
-import { AllAlbumWrapper } from './AllAlbum.styles'
+import { AlbumList } from './AllAlbum.styles'
 import { useAreas, useSelectedArea } from '../../hooks'
 
 const PAGE_SIZE = 35
@@ -26,19 +27,19 @@ export const AllAlbum: FC = () => {
   }, [selectedArea])
 
   return (
-    <AllAlbumWrapper>
+    <Box>
       <SectionHeader title="全部新碟" tags={areaTags} />
-      <div className="album-list">
+      <AlbumList>
         {albums.map((item) => (
           <AlbumCover key={item.id} album={item} />
         ))}
-      </div>
+      </AlbumList>
       <JCPagination
         total={total}
         pageSize={PAGE_SIZE}
         current={currentPage}
         onPageChange={(page) => setCurrentPage(page)}
       />
-    </AllAlbumWrapper>
+    </Box>
   )
 }

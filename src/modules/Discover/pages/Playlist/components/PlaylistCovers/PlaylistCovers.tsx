@@ -36,11 +36,7 @@ export const PlaylistCovers: FC<{ category: string }> = ({ category }) => {
     <Box mt={10}>
       <PlaylistCoverList>
         {playlists.map((item) => (
-          <PlaylistCover
-            key={item.id}
-            playlist={item}
-            style={{ flexBasis: '20%' }}
-          />
+          <PlaylistCover key={item.id} playlist={item} />
         ))}
       </PlaylistCoverList>
       <JCPagination

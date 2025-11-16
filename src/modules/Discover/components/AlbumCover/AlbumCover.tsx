@@ -1,13 +1,15 @@
 import { FC, useMemo } from 'react'
 
-import { NavLink } from 'react-router-dom'
-
+import { CoverImage } from '@/components/CoverImage'
+import { Box } from '@/components/UI'
 import { UserLink } from '@/components/UserLink'
 import { Album } from '@/types/music'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
   AlbumCoverWrapper,
+  AlbumnNameLink,
+  CoverPlayButton,
   IAlbumStyleConfig,
   getAlbumStyleConfig,
 } from './AlbumCover.styles'
@@ -18,14 +20,14 @@ interface AlbumCoverProps {
 }
 
 export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
-  const style = useMemo<IAlbumStyleConfig>(
+  const config = useMemo<IAlbumStyleConfig>(
     () => getAlbumStyleConfig(isLarge),
     [isLarge]
   )
 
   const coverUrl = useMemo(
-    () => formatSizedImage(album.picUrl, style.imgSize),
-    [album.picUrl, style.imgSize]
+    () => formatSizedImage(album.picUrl, config.imgSize),
+    [album.picUrl, config.imgSize]
   )
   const albumUrl = useMemo(() => `/album?id=${album.id}`, [album.id])
 
@@ -39,29 +41,32 @@ export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
   return (
     <AlbumCoverWrapper
       className="album-cover"
-      width={style.width}
-      imgSize={style.imgSize}
-      isLarge={style.isLarge}
+      width={config.width}
+      imgSize={config.imgSize}
+      isLarge={config.isLarge}
     >
-      <div className="cover">
-        <img src={coverUrl} alt={album.name} />
-        <NavLink className="background sprite_cover" to={albumUrl}>
-          {' '}
-        </NavLink>
-        <button
-          className="play sprite_icon"
-          title="播放"
-          onClick={handlePlayAlbumn}
-        />
-      </div>
-      <NavLink className="name no-wrap album" to={albumUrl}>
+      <CoverImage
+        src={coverUrl}
+        to={albumUrl}
+        alt={album.name}
+        size={config.imgSize}
+        coverSprite="cover"
+        coverIcon={config.isLarge ? 'recordLarge' : 'record'}
+        coverWidth={config.width}
+      >
+        <CoverPlayButton isLarge={config.isLarge} onClick={handlePlayAlbumn} />
+      </CoverImage>
+
+      <AlbumnNameLink to={albumUrl} nowrap isLarge={config.isLarge}>
         {album.name}
-      </NavLink>
-      {/* 处理兼容类型 */}
-      <UserLink
-        users={album.artists ? album.artists : [album.artist]}
-        space={true}
-      />
+      </AlbumnNameLink>
+
+      <Box mr={10}>
+        <UserLink
+          users={album.artists ? album.artists : [album.artist]}
+          space={true}
+        />
+      </Box>
     </AlbumCoverWrapper>
   )
 }

@@ -12,7 +12,7 @@ export const CoverImageWrapper = styled.div<CoverImageWrapperProps>`
   position: relative;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  overflow: hidden;
+  /* overflow: hidden; */
 `
 
 export const StyledImage = styled(Image)`
@@ -21,11 +21,11 @@ export const StyledImage = styled(Image)`
   object-fit: cover;
 `
 
-export const CoverOverlay = styled(Sprite)`
+export const CoverOverlay = styled(Sprite)<{ width?: number }>`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: ${({ width }) => (width !== undefined ? `${width}px` : '100%')};
   height: 100%;
   text-indent: -9999px;
   overflow: hidden;

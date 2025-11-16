@@ -1,7 +1,5 @@
 import type { FC } from 'react'
 
-import { CSSProperties } from 'styled-components'
-
 import { CoverImage } from '@/components/CoverImage'
 import { Box, Flex, Image, Text } from '@/components/UI'
 import { PlaylistDetail, PopularPlaylist } from '@/types/playlist'
@@ -17,8 +15,7 @@ import {
 
 export const PlaylistCover: FC<{
   playlist: PlaylistDetail | PopularPlaylist
-  style?: CSSProperties
-}> = ({ playlist, style }) => {
+}> = ({ playlist }) => {
   const getImageUrl = () => {
     if ('coverImgUrl' in playlist) return playlist.coverImgUrl
     return playlist.picUrl
@@ -50,7 +47,7 @@ export const PlaylistCover: FC<{
   }
 
   return (
-    <Box mt={20} mb={10} width={140} style={style}>
+    <Box className="playlist-cover" mt={20} mb={10} width={140}>
       <CoverImage
         src={formatSizedImage(getImageUrl(), 140)}
         alt={playlist.name}

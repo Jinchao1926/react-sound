@@ -1,14 +1,12 @@
 import styled from 'styled-components'
 
-export const AllAlbumWrapper = styled.div`
-  .album-list {
-    margin: 20px -30px 0 0;
-    display: flex;
-    flex-wrap: wrap;
+export const AlbumList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px -30px 0 0;
 
-    .album-cover {
-      flex-basis: 20%;
-      margin-bottom: 30px;
-    }
+  .album-cover {
+    flex-basis: 20%;
+    margin-right: 30px;
   }
 `

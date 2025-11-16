@@ -7,7 +7,7 @@ export const PlaylistCoverList = styled.div`
   margin-right: -50px;
   margin-bottom: 40px;
 
-  .song-cover {
+  .playlist-cover {
     flex-basis: 20%;
   }
 `
