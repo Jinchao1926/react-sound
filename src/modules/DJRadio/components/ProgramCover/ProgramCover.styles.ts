@@ -11,7 +11,7 @@ export const ProgramCoverWrapper = styled.div`
 
 export const PlayButton = styled(Sprite).attrs({
   sprite: 'icon',
-  icon: 'playProgram',
+  icon: 'playInCover',
   component: 'button',
   title: '播放',
 })`

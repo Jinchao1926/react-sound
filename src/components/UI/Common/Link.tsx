@@ -46,5 +46,6 @@ export const TextNavLink = styled(Box).attrs({ as: NavLink })<TextNavLinkProps>`
 
   &:hover {
     text-decoration: underline;
+    color: ${({ color = '#666' }) => color};
   }
 `

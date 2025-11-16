@@ -1,22 +1,24 @@
-import type { FC } from 'react'
+import { useMemo, type FC } from 'react'
 
 import { SectionHeader } from '@/components/SectionHeader'
+import { Box } from '@/components/UI'
 import { useNewAlbumsQuery } from '@/hooks/album/useNewAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 
-import { NewAlbumWrapper } from './NewAlbum.styles'
+import { AlbumList } from './NewAlbum.styles'
 
 export const NewAlbum: FC = () => {
   const { data } = useNewAlbumsQuery()
+  const albums = useMemo(() => data.slice(0, 10), [data])
 
   return (
-    <NewAlbumWrapper>
+    <Box>
       <SectionHeader title="热门新碟" />
-      <div className="album-list">
-        {data.slice(0, 10).map((item) => (
+      <AlbumList>
+        {albums.map((item) => (
           <AlbumCover key={item.id} album={item} />
         ))}
-      </div>
-    </NewAlbumWrapper>
+      </AlbumList>
+    </Box>
   )
 }

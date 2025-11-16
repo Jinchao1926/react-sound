@@ -1,8 +1,7 @@
 import React, { FC } from 'react'
 
-import { NavLink } from 'react-router-dom'
-
-import { UserLinkWrapper } from './UserLink.styles'
+import { UserLinks } from './UserLink.styles'
+import { TextNavLink } from '../UI'
 
 interface UserLinkProps {
   users: { id: number; name: string }[]
@@ -16,15 +15,15 @@ export const UserLink: FC<UserLinkProps> = ({
   color,
 }) => {
   return (
-    <UserLinkWrapper color={color}>
-      <span className="user-links no-wrap">
-        {users.map((item, idx) => (
-          <React.Fragment key={item.id}>
-            {idx > 0 && (space ? ' / ' : '/')}
-            <NavLink to={`/artist?id=${item.id}`}>{item.name}</NavLink>
-          </React.Fragment>
-        ))}
-      </span>
-    </UserLinkWrapper>
+    <UserLinks nowrap>
+      {users.map((item, idx) => (
+        <React.Fragment key={item.id}>
+          {idx > 0 && (space ? ' / ' : '/')}
+          <TextNavLink to={`/artist?id=${item.id}`} color={color} fontSize={12}>
+            {item.name}
+          </TextNavLink>
+        </React.Fragment>
+      ))}
+    </UserLinks>
   )
 }
