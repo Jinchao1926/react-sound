@@ -1,34 +1,37 @@
 import React, { FC } from 'react'
 
-import { NavLink } from 'react-router-dom'
-
 import { SectionHeader } from '@/components/SectionHeader'
+import { Box, Image, Text } from '@/components/UI'
 import { popularAnchors } from '@/constants/anchor'
 import { formatSizedImage } from '@/utils/dataFormat'
 
-import { PopularAnchorWrapper } from './PopularAnchor.styles'
+import { PopularAnchorContent, PopularAnchorItem } from './PopularAnchor.styles'
 
 export const PopularAnchor: FC = () => {
   return (
-    <PopularAnchorWrapper>
-      <div className="header">
+    <Box mt={30}>
+      <Box mx={20}>
         <SectionHeader variant="simple" title="热门主播" />
-      </div>
-      <div className="anchor-list">
+      </Box>
+      <Box mt={20} ml={20}>
         {popularAnchors.map((item) => (
-          <NavLink className="anchor" key={item.picUrl} to={item.url}>
-            <img
-              className="avatar"
+          <PopularAnchorItem key={item.picUrl} to={item.url}>
+            <Image
               src={formatSizedImage(item.picUrl, 40)}
-              alt=""
+              alt={item.name}
+              width={40}
+              height={40}
+              mr={10}
             />
-            <div className="info">
-              <span className="name">{item.name}</span>
-              <span className="desc no-wrap">{item.position}</span>
-            </div>
-          </NavLink>
+            <PopularAnchorContent>
+              <Text color="#000">{item.name}</Text>
+              <Text color="#666" nowrap>
+                {item.position}
+              </Text>
+            </PopularAnchorContent>
+          </PopularAnchorItem>
         ))}
-      </div>
-    </PopularAnchorWrapper>
+      </Box>
+    </Box>
   )
 }
