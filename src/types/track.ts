@@ -400,10 +400,19 @@ export interface Track {
     "alg": "alg-music-rec-pp-sim_song-si-I2I"
 }*/
 export interface Song {
-  id: string
+  id: number
   name: string
   artists: {
     id: number
     name: string
+    alias?: string[]
   }[]
+  album: {
+    id: number
+    name: string
+    picUrl: string
+  }
+  duration: number // 歌曲时长，毫秒
+  alias: string[] // 歌曲别名
+  mvid?: number
 }

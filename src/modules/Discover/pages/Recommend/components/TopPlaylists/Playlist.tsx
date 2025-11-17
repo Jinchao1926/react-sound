@@ -2,11 +2,11 @@ import { useMemo, type FC } from 'react'
 
 import { CoverImage } from '@/components/CoverImage'
 import {
-  AddToButtonSmall,
+  AddToButtonSM,
   CollectButton,
-  CollectButtonSmall,
+  CollectButtonSM,
   PlayButton,
-  PlayButtonSmall,
+  PlayButtonSM,
 } from '@/components/Shared/Media'
 import { Box, Flex, Head, TextNavLink } from '@/components/UI'
 import { usePlayerContext } from '@/providers/PlayerProvider'
@@ -70,9 +70,9 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
             </TextNavLink>
 
             <SongActions>
-              <PlayButtonSmall onClick={() => playSong(song)} />
-              <AddToButtonSmall onClick={() => addToPlaylist(song)} />
-              <CollectButtonSmall onClick={() => collectMusic(song)} />
+              <PlayButtonSM onClick={() => playSong(song)} />
+              <AddToButtonSM onClick={() => addToPlaylist(song)} />
+              <CollectButtonSM onClick={() => collectMusic(song)} />
             </SongActions>
           </SongItem>
         ))}

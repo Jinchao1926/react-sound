@@ -96,7 +96,7 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
 
         <SongLink>
           歌手：
-          <UserLink users={song.ar} block={false} space color="#0c73c2" />
+          <UserLink users={song.ar} space color="#0c73c2" />
         </SongLink>
         <SongLink>
           所属专辑：

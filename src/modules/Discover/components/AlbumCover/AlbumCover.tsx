@@ -64,7 +64,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
       <Box mr={10}>
         <UserLink
           users={album.artists ? album.artists : [album.artist]}
-          space={true}
+          space
         />
       </Box>
     </AlbumCoverWrapper>

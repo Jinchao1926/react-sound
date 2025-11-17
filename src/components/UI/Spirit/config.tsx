@@ -163,6 +163,8 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     url: require('./img/icon3.png'),
     icons: {
       info: { normal: '0 -50px', hover: '-20px -50px' },
+      playExtraSmall: '-69px -455px',
+      addToExtraSmall: '-87px -454px',
     },
   },
   icon4: {
