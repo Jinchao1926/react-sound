@@ -1,11 +1,8 @@
 import React, { type FC } from 'react'
 
-import {
-  AddBlueButton,
-  PlayBlueButton,
-  SongOperationBarWrapper,
-} from './MediaOperationBar.styles'
+import { AddBlueButton, PlayBlueButton } from './MediaOperationBar.styles'
 import { GreyButton } from '../GreyButton'
+import { Flex } from '../UI'
 
 interface MediaOperationBarProps {
   titles?: {
@@ -44,7 +41,7 @@ export const MediaOperationBar: FC<MediaOperationBarProps> = ({
   } = callbacks
 
   return (
-    <SongOperationBarWrapper>
+    <Flex align="center">
       <PlayBlueButton onClick={onPlayClick}>播放</PlayBlueButton>
       <AddBlueButton onClick={onAddClick} />
 
@@ -60,6 +57,6 @@ export const MediaOperationBar: FC<MediaOperationBarProps> = ({
       <GreyButton icon="commentGrey" onClick={onCommentClick}>
         {comment}
       </GreyButton>
-    </SongOperationBarWrapper>
+    </Flex>
   )
 }
