@@ -37,7 +37,7 @@ export const PlaylistCover: FC<{
         {creator.avatarDetail && (
           <Image
             src={creator.avatarDetail.identityIconUrl}
-            alt=""
+            alt={`${creator.avatarDetail.identityLevel}`}
             width={13}
             height={13}
           />

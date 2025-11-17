@@ -7,6 +7,6 @@ export const AlbumList = styled.div`
 
   .album-cover {
     flex-basis: 20%;
-    margin-right: 30px;
+    margin-bottom: 30px;
   }
 `
