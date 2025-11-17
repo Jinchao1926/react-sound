@@ -12,3 +12,14 @@ export const MVLogo = styled(Sprite).attrs({
   width: 23px;
   height: 17px;
 `
+
+export const SingleBadge = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'single',
+  component: 'span',
+  title: '单曲',
+})`
+  display: inline-block;
+  width: 54px;
+  height: 24px;
+`

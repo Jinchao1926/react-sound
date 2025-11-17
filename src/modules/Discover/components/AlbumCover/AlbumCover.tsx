@@ -51,7 +51,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
         alt={album.name}
         size={config.imgSize}
         coverSprite="cover"
-        coverIcon={config.isLarge ? 'recordLarge' : 'record'}
+        coverIcon={config.isLarge ? 'albumLarge' : 'album'}
         coverWidth={config.width}
       >
         <CoverPlayButton isLarge={config.isLarge} onClick={handlePlayAlbumn} />

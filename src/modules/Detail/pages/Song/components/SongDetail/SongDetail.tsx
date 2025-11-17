@@ -1,16 +1,26 @@
 import { FC, useEffect, useMemo, useRef, useState } from 'react'
 
-import classNames from 'classnames'
-import { NavLink } from 'react-router-dom'
-
+import { SingleBadge } from '@/components/Shared/Logo'
 import SongOperationBar from '@/components/SongOperationBar'
+import { Box, Flex, Image, Text, TextNavLink } from '@/components/UI'
 import { UserLink } from '@/components/UserLink'
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { formatSizedImage } from '@/utils/dataFormat'
 
-import { LyricList, SongDetailWrapper, SongRecord } from './SongDetail.styles'
+import {
+  ExpandButton,
+  ExpandIcon,
+  LyricList,
+  MusicIcon,
+  MusicLink,
+  OpenClientButton,
+  SongCD,
+  SongCDCover,
+  SongDetailWrapper,
+  SongLink,
+} from './SongDetail.styles'
 
 const INITIAL_LYRIC_COUNT = 13
 
@@ -54,56 +64,63 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
 
   return (
     <SongDetailWrapper>
-      <SongRecord>
-        <div className="cover">
-          <img src={formatSizedImage(song.al.picUrl, 130)} alt={song.name} />
-          <span className="record sprite_cover" />
-        </div>
-        <div className="link">
-          <span className="icon sprite_icon2" />
-          <a href="/#" onClick={(e) => e.preventDefault()}>
+      <Box>
+        <SongCD>
+          <Image
+            src={formatSizedImage(song.al.picUrl, 130)}
+            alt={song.name}
+            width={130}
+            height={130}
+            m={34}
+          />
+          <SongCDCover />
+        </SongCD>
+        <Flex align="center" mt={20} ml={46}>
+          <MusicIcon />
+          <MusicLink
+            href={`https://music.163.com/#/outchain/2/${song.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             生成外链播放器
-          </a>
-        </div>
-      </SongRecord>
-      <LyricList>
-        <div className="header">
-          <span className="icon sprite_icon2" />
-          <span>{song.name}</span>
-        </div>
-        <div className="singer">
+          </MusicLink>
+        </Flex>
+        <OpenClientButton>点击打开客户端</OpenClientButton>
+      </Box>
+
+      <Box width={414}>
+        <Flex align="center" gap={10} pb={8}>
+          <SingleBadge />
+          <Text fontSize={24}>{song.name}</Text>
+        </Flex>
+
+        <SongLink>
           歌手：
-          <UserLink users={song.ar} space={true} />
-        </div>
-        <div className="album">
+          <UserLink users={song.ar} block={false} space color="#0c73c2" />
+        </SongLink>
+        <SongLink>
           所属专辑：
-          <NavLink to={`/album?id=${song.al.id}`}>{song.al.name}</NavLink>
-        </div>
+          <TextNavLink to={`/album?id=${song.al.id}`} color="#0c73c2">
+            {song.al.name}
+          </TextNavLink>
+        </SongLink>
+
         <SongOperationBar
           callbacks={{
             onPlayClick: () => playSong(song),
             onAddClick: () => addToPlaylist(song),
           }}
         />
+
         {/* 歌词显示部分 */}
-        <span className="lyric-content" ref={lyricRef}>
-          {lyricString}
-        </span>
+        <LyricList ref={lyricRef}>{lyricString}</LyricList>
         {lyric.length > INITIAL_LYRIC_COUNT && (
-          <div
-            className="lyric-control"
-            onClick={() => setShowingMore((prev) => !prev)}
-          >
+          <ExpandButton onClick={() => setShowingMore((prev) => !prev)}>
             {showingMore ? '收起' : '展开'}
-            <span
-              className={classNames('sprite_icon2 icon', {
-                collapse: showingMore,
-                expand: !showingMore,
-              })}
-            />
-          </div>
+            <ExpandIcon expanded={!showingMore} />
+          </ExpandButton>
         )}
-      </LyricList>
+      </Box>
     </SongDetailWrapper>
   )
 }
