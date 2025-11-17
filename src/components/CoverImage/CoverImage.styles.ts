@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Image } from '../UI'
@@ -26,6 +27,16 @@ export const CoverOverlay = styled(Sprite)<{ width?: number }>`
   top: 0;
   left: 0;
   width: ${({ width }) => (width !== undefined ? `${width}px` : '100%')};
+  height: 100%;
+  text-indent: -9999px;
+  overflow: hidden;
+`
+
+export const CoverNavLink = styled(NavLink)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
   text-indent: -9999px;
   overflow: hidden;

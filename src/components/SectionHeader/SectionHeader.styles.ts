@@ -54,11 +54,13 @@ export const Title = styled.span<{ variant: SectionHeaderVariant }>`
           font-size: 20px;
           font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
           margin-right: 20px;
+          line-height: 28px;
         `
       case 'simple':
         return css`
           font-size: 12px;
           font-weight: bold;
+          line-height: 16px;
         `
       default:
         return css`

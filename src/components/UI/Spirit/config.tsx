@@ -152,6 +152,11 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       theme: '0 -141px',
       //
       arrowDown: '-70px -543px',
+      collapse: '-45px -520px',
+      expand: '-65px -520px',
+      music: '-34px -863px',
+      // badges
+      single: '0 -463px', // 单曲
     },
   },
   icon3: {
@@ -244,8 +249,9 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       bright140: '0 0',
       bright150: '-230px -380px',
       panel: '0 -537px',
-      record: '0 -570px',
-      recordLarge: '0 -845px',
+      album: '0 -570px',
+      albumLarge: '0 -845px',
+      CD: '-140px -580px',
     },
   },
 }

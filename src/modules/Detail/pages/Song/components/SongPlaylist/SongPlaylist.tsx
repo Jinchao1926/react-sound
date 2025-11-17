@@ -1,48 +1,54 @@
 import type { FC } from 'react'
 
-import { NavLink } from 'react-router-dom'
-
+import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
+import { Box, TextNavLink } from '@/components/UI'
 import { useSongPlaylistsQuery } from '@/hooks/song/useSongPlaylistsQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 
-import { SongPlaylistItem, SongPlaylistWrapper } from './SongPlaylist.styles'
+import { SongPlaylistItem } from './SongPlaylist.styles'
 
 export const SongPlaylist: FC<{ songId: number }> = ({ songId }) => {
   const { data } = useSongPlaylistsQuery(songId)
 
   return (
-    <SongPlaylistWrapper>
+    <Box mb={40}>
       <SectionHeader variant="simple" title="包含这首歌的歌单" />
-      <div className="playlists">
+      <Box mt={20}>
         {data.map((playlist) => (
           <SongPlaylistItem key={playlist.id}>
-            <NavLink className="cover" to={`/playlist?id=${playlist.id}`}>
-              <img
-                src={formatSizedImage(playlist.coverImgUrl, 50)}
-                alt={playlist.name}
-              />
-            </NavLink>
-            <div className="info">
-              <NavLink
-                className="playlist no-wrap"
+            <CoverImage
+              src={formatSizedImage(playlist.coverImgUrl, 50)}
+              to={`/playlist?id=${playlist.id}`}
+              alt={playlist.name}
+              size={50}
+            />
+
+            <Box width={140}>
+              <TextNavLink
                 to={`/playlist?id=${playlist.id}`}
+                fontSize={14}
+                lineHeight={24}
+                color="#000"
+                nowrap
               >
                 {playlist.name}
-              </NavLink>
-              <p className="author no-wrap">
+              </TextNavLink>
+
+              <Box lineHeight={24} color="#999" nowrap>
                 by
-                <NavLink
-                  className="author-name"
+                <TextNavLink
                   to={`/user/home?id=${playlist.creator.userId}`}
+                  color="#666"
+                  ml={5}
                 >
                   {playlist.creator.nickname}
-                </NavLink>
-              </p>
-            </div>
+                </TextNavLink>
+              </Box>
+            </Box>
           </SongPlaylistItem>
         ))}
-      </div>
-    </SongPlaylistWrapper>
+      </Box>
+    </Box>
   )
 }
