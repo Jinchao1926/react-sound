@@ -6,6 +6,7 @@ import {
   CoverImageWrapper,
   StyledImage,
   CoverOverlay,
+  CoverNavLink,
 } from './CoverImage.styles'
 import { SpriteCategory } from '../UI/Spirit/config'
 
@@ -39,13 +40,17 @@ export const CoverImage: FC<PropsWithChildren<CoverImageProps>> = ({
   return (
     <CoverImageWrapper className="cover-image" width={size} height={size}>
       <StyledImage src={src} alt={alt} />
-      <CoverOverlay
-        sprite={coverSprite}
-        icon={coverIcon}
-        component={NavLink}
-        to={to}
-        width={coverWidth}
-      />
+      {coverSprite && coverIcon ? (
+        <CoverOverlay
+          sprite={coverSprite}
+          icon={coverIcon}
+          component={NavLink}
+          to={to}
+          width={coverWidth}
+        />
+      ) : (
+        <CoverNavLink to={to} />
+      )}
       {children}
     </CoverImageWrapper>
   )
