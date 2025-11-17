@@ -1,43 +1,39 @@
 import type { FC } from 'react'
 
-import { NavLink } from 'react-router-dom'
-
 import { SectionHeader } from '@/components/SectionHeader'
+import { AddToButtonXS, PlayButtonXS } from '@/components/Shared/Media'
+import { Box, Flex, TextNavLink } from '@/components/UI'
 import { UserLink } from '@/components/UserLink'
 import { useSimilarSongsQuery } from '@/hooks/song/useSimilarSongsQuery'
-// import { usePlayerContext } from '@/providers/PlayerProvider'
+import { usePlayerContext } from '@/providers/PlayerProvider'
+import { songToTrack } from '@/utils/trackConverter'
 
-import { SimilarSongItem, SimilarSongWrapper } from './SimilarSong.styles'
+import { SimilarSongItem } from './SimilarSong.styles'
 
 export const SimilarSong: FC<{ songId: number }> = ({ songId }) => {
-  const { data } = useSimilarSongsQuery(songId)
-  // const { playSong, addToPlaylist } = usePlayerContext()
+  const { data: songs } = useSimilarSongsQuery(songId)
+  const { playSong, addToPlaylist } = usePlayerContext()
 
   return (
-    <SimilarSongWrapper>
+    <Box mb={25}>
       <SectionHeader variant="simple" title="相似歌曲" />
-      <div className="songs">
-        {data.map((song) => (
+      <Box mt={20}>
+        {songs.map((song) => (
           <SimilarSongItem key={song.id}>
-            <div className="info">
-              <NavLink className="song no-wrap" to={`/song?id=${song.id}`}>
+            <Box width={156} lineHeight={16}>
+              <TextNavLink to={`/song?id=${song.id}`} color="#333" nowrap>
                 {song.name}
-              </NavLink>
-              <UserLink users={song.artists} />
-            </div>
-            <div className="control">
-              <button
-                className="btn sprite_icon3 play"
-                // onClick={() => playSong(song)}
-              />
-              <button
-                className="btn sprite_icon3 addto"
-                // onClick={() => addToPlaylist(song)}
-              />
-            </div>
+              </TextNavLink>
+              <UserLink users={song.artists} block color="#999" />
+            </Box>
+
+            <Flex justify="space-between" width={36}>
+              <PlayButtonXS onClick={() => playSong(songToTrack(song))} />
+              <AddToButtonXS onClick={() => addToPlaylist(songToTrack(song))} />
+            </Flex>
           </SimilarSongItem>
         ))}
-      </div>
-    </SimilarSongWrapper>
+      </Box>
+    </Box>
   )
 }

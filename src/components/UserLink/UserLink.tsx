@@ -15,7 +15,7 @@ interface UserLinkProps {
 
 export const UserLink: FC<UserLinkProps> = ({
   users,
-  block = true,
+  block = false,
   space = false,
   color,
 }) => {

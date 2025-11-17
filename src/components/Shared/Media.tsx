@@ -13,7 +13,7 @@ export const PlayButton = styled(Sprite).attrs({
   height: 22px;
 `
 
-export const PlayButtonSmall = styled(Sprite).attrs({
+export const PlayButtonSM = styled(Sprite).attrs({
   sprite: 'button',
   icon: 'playSmall',
   component: 'button',
@@ -23,7 +23,7 @@ export const PlayButtonSmall = styled(Sprite).attrs({
   height: 17px;
 `
 
-export const PlayButtonLight = styled(Sprite).attrs({
+export const PlayButtonSMLight = styled(Sprite).attrs({
   sprite: 'icon',
   icon: 'play',
   component: 'button',
@@ -33,8 +33,18 @@ export const PlayButtonLight = styled(Sprite).attrs({
   height: 17px;
 `
 
+export const PlayButtonXS = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'playExtraSmall',
+  component: 'button',
+  title: '播放',
+})`
+  width: 11px;
+  height: 11px;
+`
+
 /** AddTo */
-export const AddToButtonSmall = styled(Sprite).attrs({
+export const AddToButtonSM = styled(Sprite).attrs({
   sprite: 'icon',
   icon: 'addTo',
   component: 'button',
@@ -43,6 +53,16 @@ export const AddToButtonSmall = styled(Sprite).attrs({
   width: 17px;
   height: 17px;
   margin: 4px 0 0 2px;
+`
+
+export const AddToButtonXS = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'addToExtraSmall',
+  component: 'button',
+  title: '添加到播放列表',
+})`
+  width: 11px;
+  height: 11px;
 `
 
 /** Collect */
@@ -56,7 +76,7 @@ export const CollectButton = styled(Sprite).attrs({
   height: 22px;
 `
 
-export const CollectButtonSmall = styled(Sprite).attrs({
+export const CollectButtonSM = styled(Sprite).attrs({
   sprite: 'button',
   icon: 'collectSmall',
   component: 'button',

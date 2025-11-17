@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom'
 
 import { MVLogo } from '@/components/Shared/Logo'
 import {
-  AddToButtonSmall,
-  CollectButtonSmall,
+  AddToButtonSM,
+  CollectButtonSM,
   DownloadButton,
-  PlayButtonLight,
+  PlayButtonSMLight,
   ShareButton,
 } from '@/components/Shared/Media'
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/UI'
@@ -84,7 +84,7 @@ export const ToplistDetail: FC<{ playlist: PlaylistDetail }> = ({
                       </NavLink>
                     ) : null
                   }
-                  <PlayButtonLight flexShrink={0} onClick={() => {}} />
+                  <PlayButtonSMLight flexShrink={0} onClick={() => {}} />
                   <TextNavLink to={`/song?id=${item.id}`} nowrap ml={8}>
                     {item.name}
                   </TextNavLink>
@@ -115,15 +115,15 @@ export const ToplistDetail: FC<{ playlist: PlaylistDetail }> = ({
               <DurationTD>
                 <Duration>{formatMinuteSecond(item.dt)}</Duration>
                 <Actions>
-                  <AddToButtonSmall onClick={() => {}} />
-                  <CollectButtonSmall onClick={() => {}} />
+                  <AddToButtonSM onClick={() => {}} />
+                  <CollectButtonSM onClick={() => {}} />
                   <ShareButton onClick={() => {}} />
                   <DownloadButton onClick={() => {}} />
                 </Actions>
               </DurationTD>
               {/* Singer */}
               <td>
-                <UserLink users={item.ar} />
+                <UserLink users={item.ar} block />
               </td>
             </tr>
           ))}

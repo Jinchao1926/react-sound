@@ -32,13 +32,11 @@ export const CoverPlayButton = styled(Sprite).attrs<{ isLarge: boolean }>(
 `
 
 export const AlbumnNameLink = styled(TextNavLink)<{ isLarge: boolean }>`
-  width: 100%;
   line-height: 1.5;
   font-size: ${(props) => (props.isLarge ? '14px' : '12px')};
+  width: ${(props) => (props.isLarge ? '130px' : '100px')};
   margin-bottom: ${(props) => (props.isLarge ? '4px' : '0')};
   margin-top: 8px;
-  padding-right: 10px;
-  box-sizing: border-box;
 
   color: #000;
   &:hover {
