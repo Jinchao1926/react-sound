@@ -4,14 +4,14 @@ import { Pagination } from 'antd'
 
 import { PaginationWrapper } from './Pagination.styles'
 
-interface IPaginationProps {
+interface PaginationProps {
   current: number
   pageSize: number
   total: number
   onPageChange: (page: number) => void
 }
 
-export const JCPagination: FC<IPaginationProps> = ({
+export const JCPagination: FC<PaginationProps> = ({
   current,
   pageSize,
   total,

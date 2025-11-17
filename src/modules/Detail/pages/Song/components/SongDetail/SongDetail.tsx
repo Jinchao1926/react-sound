@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo, useRef, useState } from 'react'
 
+import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { SingleBadge } from '@/components/Shared/Logo'
-import SongOperationBar from '@/components/SongOperationBar'
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/UI'
 import { UserLink } from '@/components/UserLink'
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
@@ -105,7 +105,7 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
           </TextNavLink>
         </SongLink>
 
-        <SongOperationBar
+        <MediaOperationBar
           callbacks={{
             onPlayClick: () => playSong(song),
             onAddClick: () => addToPlaylist(song),

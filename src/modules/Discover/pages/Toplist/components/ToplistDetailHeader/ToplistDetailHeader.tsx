@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import SongOperationBar from '@/components/SongOperationBar'
+import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { Box, Flex, Image, Paragraph, Sprite, Text } from '@/components/UI'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
@@ -31,11 +31,11 @@ export const ToplistDetailHeader: FC<{ playlist: PlaylistDetail }> = ({
             <Text color="#999">（{playlist.updateFrequency}）</Text>
           )}
         </Flex>
-        <SongOperationBar
+        <MediaOperationBar
           titles={{
-            collectTitle: `(${playlist.subscribedCount})`,
-            shareTitle: `(${playlist.shareCount})`,
-            commentTitle: `(${playlist.commentCount})`,
+            collect: `(${playlist.subscribedCount})`,
+            share: `(${playlist.shareCount})`,
+            comment: `(${playlist.commentCount})`,
           }}
         />
       </Box>

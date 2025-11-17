@@ -2,10 +2,10 @@ import styled from 'styled-components'
 
 import { Sprite } from '@/components/UI/Spirit/Sprite'
 
-export interface IProgressBarFullProps {
+export interface ProgressBarFullProps {
   width: number
 }
-export const ProgressBarFull = styled(Sprite).attrs<IProgressBarFullProps>({
+export const ProgressBarFull = styled(Sprite).attrs<ProgressBarFullProps>({
   sprite: 'progress',
   icon: 'full',
   component: 'div',
@@ -15,16 +15,14 @@ export const ProgressBarFull = styled(Sprite).attrs<IProgressBarFullProps>({
   position: relative;
 `
 
-export interface IProgressBarPercentProps {
+export interface ProgressBarPercentProps {
   percent: number
 }
-export const ProgressBarLoaded = styled(Sprite).attrs<IProgressBarPercentProps>(
-  {
-    sprite: 'progress',
-    icon: 'loaded',
-    component: 'div',
-  }
-)`
+export const ProgressBarLoaded = styled(Sprite).attrs<ProgressBarPercentProps>({
+  sprite: 'progress',
+  icon: 'loaded',
+  component: 'div',
+})`
   position: absolute;
   left: 0;
   top: 0;
@@ -32,7 +30,7 @@ export const ProgressBarLoaded = styled(Sprite).attrs<IProgressBarPercentProps>(
   height: 100%;
 `
 
-export const ProgressBarCur = styled(Sprite).attrs<IProgressBarPercentProps>({
+export const ProgressBarCur = styled(Sprite).attrs<ProgressBarPercentProps>({
   sprite: 'progress',
   icon: 'cur',
   component: 'div',
