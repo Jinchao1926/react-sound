@@ -47,14 +47,14 @@ export const LockBarButton = styled(Sprite).attrs({
   }
 `
 
-interface ILockIcon {
+interface LockIconProps {
   isLocked: Boolean
 }
 export const LockIcon = styled(Sprite)
   .withConfig({
     shouldForwardProp: (prop) => prop !== ('isLocked' as string),
   })
-  .attrs<ILockIcon>(({ isLocked }) => ({
+  .attrs<LockIconProps>(({ isLocked }) => ({
     sprite: 'playbar',
     icon: isLocked ? 'locked' : 'unlocked',
     component: 'span',

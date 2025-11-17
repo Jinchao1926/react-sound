@@ -9,31 +9,6 @@ export const PlaylistHeaderWrapper = styled.div`
   justify-content: space-between;
 `
 
-export const CategoryButton = styled(Sprite).attrs({
-  sprite: 'button',
-  icon: 'category',
-  component: 'button',
-})`
-  margin: 2px 0 0 12px;
-  padding: 0 5px 0 0;
-  height: 31px;
-  line-height: 31px;
-`
-
-export const CategoryButtonText = styled(Sprite).attrs({
-  sprite: 'button',
-  icon: 'categoryRightConer',
-  component: 'span',
-})`
-  display: inline-block;
-  width: 86px;
-  height: 100%;
-  line-height: 30px;
-  padding-left: 5px;
-  box-sizing: border-box;
-  color: #0c73c2;
-`
-
 export const ArrowDown = styled(Sprite).attrs({
   sprite: 'icon',
   icon: 'arrowDown',

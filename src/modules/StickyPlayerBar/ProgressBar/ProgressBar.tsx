@@ -9,7 +9,7 @@ import {
   ProgressBarLoaded,
 } from './ProgressBar.styles'
 
-interface IProgressBarProps {
+interface ProgressBarProps {
   width?: number // the width of the progress bar, defaults to 466
   played: number // 50 means 50% played
   loaded?: number // 50 means 50% loaded/buffered
@@ -17,7 +17,7 @@ interface IProgressBarProps {
   onAfterChange?: (percent: number) => void // callback function after the progress bar is changed, 50 means 50%
 }
 
-export const ProgressBar: FC<IProgressBarProps> = ({
+export const ProgressBar: FC<ProgressBarProps> = ({
   width = 466,
   played,
   loaded = 0,

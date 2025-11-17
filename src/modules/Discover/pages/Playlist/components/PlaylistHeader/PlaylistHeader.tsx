@@ -2,13 +2,12 @@ import React, { FC, useCallback, useState, useEffect, useRef } from 'react'
 
 import { useLocation } from 'react-router-dom'
 
+import { GreyButton } from '@/components/GreyButton'
 import { Box, Flex, Text } from '@/components/UI'
 
 import {
   PlaylistHeaderWrapper,
   ArrowDown,
-  CategoryButton,
-  CategoryButtonText,
   HotButton,
 } from './PlaylistHeader.styles'
 import { PlaylistCategory } from '../PlaylistCategory'
@@ -52,15 +51,19 @@ export const PlaylistHeader: FC<{ category: string }> = ({ category }) => {
         <Text fontSize={24} lineHeight={34}>
           {category}
         </Text>
-        <div ref={categoryRef}>
-          <CategoryButton onClick={switchCategory}>
-            <CategoryButtonText>
-              选择分类
-              <ArrowDown />
-            </CategoryButtonText>
-          </CategoryButton>
+        <Box ref={categoryRef} mt={2} ml={12}>
+          <GreyButton
+            onClick={switchCategory}
+            icon="categoryGrey"
+            width={81}
+            padding="0 0 0 5px"
+            color="#0c73c2"
+          >
+            选择分类
+            <ArrowDown />
+          </GreyButton>
           {showCategory && <PlaylistCategory category={category} />}
-        </div>
+        </Box>
       </Flex>
       <Box>
         <HotButton>热门</HotButton>

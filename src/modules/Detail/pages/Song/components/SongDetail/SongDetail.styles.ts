@@ -79,13 +79,15 @@ export const ExpandButton = styled.div`
   }
 `
 
-export const ExpandIcon = styled(Sprite).attrs<{ expanded: boolean }>(
-  (props) => ({
+export const ExpandIcon = styled(Sprite)
+  .withConfig({
+    shouldForwardProp: (prop) => prop !== ('expanded' as string),
+  })
+  .attrs<{ expanded: boolean }>((props) => ({
     sprite: 'icon',
     icon: props.expanded ? 'expand' : 'collapse',
     component: 'span',
-  })
-)`
+  }))`
   display: inline-block;
   width: 11px;
   height: 8px;

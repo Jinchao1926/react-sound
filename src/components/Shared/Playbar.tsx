@@ -13,14 +13,14 @@ export const Playbar = styled(Sprite).attrs({
 `
 
 // Play
-interface IPlayButton {
+interface PlayButtonProps {
   isPlaying: Boolean
 }
 export const PlayButton = styled(Sprite)
   .withConfig({
     shouldForwardProp: (prop) => prop !== ('isPlaying' as string),
   })
-  .attrs<IPlayButton>(({ isPlaying }) => ({
+  .attrs<PlayButtonProps>(({ isPlaying }) => ({
     sprite: 'playbar',
     icon: isPlaying ? 'pause' : 'play',
     component: 'button',
