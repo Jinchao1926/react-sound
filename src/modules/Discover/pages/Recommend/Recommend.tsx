@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
 
+import { Box } from '@/components/UI'
+
 import { Banner } from './components/Banner'
 // import { JCBanner } from './components/JCBanner'
 import { NewAlbum } from './components/NewAlbum'
@@ -17,7 +19,7 @@ import {
 // 推荐
 export const Recommend: FC = () => {
   return (
-    <div>
+    <Box>
       <Banner />
       {/* <JCBanner /> */}
       <RecommendSection>
@@ -32,6 +34,6 @@ export const Recommend: FC = () => {
           <PopularAnchor />
         </RecommendRight>
       </RecommendSection>
-    </div>
+    </Box>
   )
 }

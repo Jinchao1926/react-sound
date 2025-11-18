@@ -7,7 +7,7 @@ import { ClientItem, ClientListWrapper } from './ClientList.styles'
 
 export const ClientList: FC = () => {
   return (
-    <ClientListWrapper className="clients">
+    <ClientListWrapper>
       {platforms.map((item) => (
         <ClientItem key={item.title}>
           <Image
