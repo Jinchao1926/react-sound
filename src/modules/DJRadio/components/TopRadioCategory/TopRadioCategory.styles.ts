@@ -1,13 +1,11 @@
 import styled from 'styled-components'
 
-export const TopRadioCategoryWrapper = styled.div`
-  margin-top: 35px;
+import { TextNavLink } from '@/components/UI'
 
-  .radio-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
+export const TopRadioCategoryList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `
 
 export const TopRadioCategoryItem = styled.div`
@@ -20,30 +18,10 @@ export const TopRadioCategoryItem = styled.div`
   :nth-last-child(-n + 2) {
     border-bottom: none;
   }
+`
 
-  .left {
-    width: 120px;
-    height: 120px;
-    cursor: pointer;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .right {
-    margin-left: 20px;
-
-    .name {
-      margin: 16px 0 20px;
-      font-size: 18px;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-    .desc {
-      color: #999;
-      line-height: 20px;
-    }
-  }
+export const RadioNameLink = styled(TextNavLink)`
+  margin: 16px 0 20px;
+  font-size: 18px;
+  font-weight: 700;
 `
