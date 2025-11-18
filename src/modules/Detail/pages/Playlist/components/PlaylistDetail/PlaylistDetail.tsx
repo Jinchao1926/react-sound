@@ -10,7 +10,11 @@ import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
 
-import { PlaylistCover, PlaylistDescription } from './PlaylistDetail.styles'
+import {
+  PlaylistCover,
+  PlaylistDescription,
+  PlaylistTagLink,
+} from './PlaylistDetail.styles'
 
 export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
   const { data: playlist } = usePlaylistDetailQuery(playlistId)
@@ -56,7 +60,20 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
             </Text>
           </Flex>
 
-          <MediaOperationBar />
+          <Box mb={25}>
+            <MediaOperationBar />
+          </Box>
+
+          {playlist.tags.length > 0 && (
+            <Flex align="center">
+              标签：
+              {playlist.tags.map((tag) => (
+                <PlaylistTagLink to={`/discover/playlist?cat=${tag}`}>
+                  {tag}
+                </PlaylistTagLink>
+              ))}
+            </Flex>
+          )}
 
           <PlaylistDescription>
             介绍：{playlist.description}
