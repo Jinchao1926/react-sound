@@ -2,7 +2,7 @@ import React, { FC, useCallback } from 'react'
 
 import { Pagination } from 'antd'
 
-import { PaginationWrapper } from './Pagination.styles'
+import { NextButton, PaginationWrapper, PrevButton } from './Pagination.styles'
 
 interface PaginationProps {
   current: number
@@ -20,14 +20,12 @@ export const JCPagination: FC<PaginationProps> = ({
   const itemRender = useCallback(
     (_: number, type: string, originalElement: React.ReactNode) => {
       if (type === 'prev') {
-        return <button className="prev btn sprite_button2">上一页</button>
+        return <PrevButton>上一页</PrevButton>
       }
       if (type === 'next') {
-        return <button className="next btn sprite_button2">下一页</button>
+        return <NextButton>下一页</NextButton>
       }
-      return React.cloneElement(originalElement as React.ReactElement<any>, {
-        className: 'sprite_button2',
-      })
+      return originalElement
     },
     []
   )
