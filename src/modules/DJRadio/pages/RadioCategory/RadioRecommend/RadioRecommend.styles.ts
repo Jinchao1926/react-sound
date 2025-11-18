@@ -1,39 +1,16 @@
 import styled from 'styled-components'
 
-export const RadioRecommendWrapper = styled.div`
-  margin-top: 20px;
+import { TextNavLink } from '@/components/UI'
 
-  .radio-list {
-    margin: 16px 0 0 -37px;
-    display: flex;
-  }
+export const RadioItemList = styled.div`
+  display: flex;
+  gap: 37px;
+  justify-content: space-between;
+  margin-top: 16px;
 `
 
-export const RadioItemWrapper = styled.div`
-  margin-left: 37px;
-  .cover {
-    display: block;
-    width: 150px;
-    height: 150px;
-    cursor: pointer;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .name {
-    display: block;
-    margin: 13px 0 6px;
-    line-height: 16px;
-    font-size: 14px;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .desc {
-    color: #999;
-    line-height: 18px;
-  }
+export const RadioNameLink = styled(TextNavLink)`
+  margin: 13px 0 6px;
+  line-height: 16px;
+  font-size: 14px;
 `

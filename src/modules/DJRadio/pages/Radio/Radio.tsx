@@ -1,6 +1,8 @@
 import React, { FC } from 'react'
 
-import { RadioWrapper } from './Radio.styles'
+import { Box } from '@/components/UI'
+
+import { RadioPrograms } from './Radio.styles'
 import { RadioCategoryHeader } from '../../components/RadioCategoryHeader'
 import { TopRadioCategory } from '../../components/TopRadioCategory'
 import { ProgramRanking } from '../ProgramRanking'
@@ -8,13 +10,13 @@ import { ProgramRecommend } from '../ProgramRecommend'
 
 export const Radio: FC = () => {
   return (
-    <RadioWrapper>
+    <Box>
       <RadioCategoryHeader />
-      <div className="programs">
+      <RadioPrograms>
         <ProgramRecommend isCompact={true} />
         <ProgramRanking isCompact={true} />
-      </div>
+      </RadioPrograms>
       <TopRadioCategory />
-    </RadioWrapper>
+    </Box>
   )
 }

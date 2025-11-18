@@ -1,6 +1,7 @@
 import React, { FC, useMemo } from 'react'
 
 import { SectionHeader } from '@/components/SectionHeader'
+import { Box } from '@/components/UI'
 import { usePopularPlaylistsQuery } from '@/hooks/recommend/usePopularPlaylistsQuery'
 import { PlaylistCover } from '@/modules/Discover/components/PlaylistCover'
 
@@ -12,7 +13,7 @@ export const PopularPlaylists: FC = () => {
   const { data } = usePopularPlaylistsQuery()
 
   return (
-    <div>
+    <Box>
       <SectionHeader
         variant="primary"
         title="热门推荐"
@@ -26,6 +27,6 @@ export const PopularPlaylists: FC = () => {
           <PlaylistCover key={item.id} playlist={item} />
         ))}
       </PopularPlaylistContainer>
-    </div>
+    </Box>
   )
 }

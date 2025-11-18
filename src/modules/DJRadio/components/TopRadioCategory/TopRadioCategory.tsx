@@ -1,42 +1,51 @@
 import React, { FC } from 'react'
 
-import { NavLink } from 'react-router-dom'
-
+import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
+import { Box, Paragraph } from '@/components/UI'
 import { useTopRadioCategoriesQuery } from '@/hooks/djradio/useTopRadioCategoriesQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
-  TopRadioCategoryWrapper,
   TopRadioCategoryItem,
+  RadioNameLink,
+  TopRadioCategoryList,
 } from './TopRadioCategory.styles'
 
 export const TopRadioCategory: FC = () => {
   const { data: categories } = useTopRadioCategoriesQuery()
 
   return (
-    <div>
+    <Box>
       {categories.map((category) => (
-        <TopRadioCategoryWrapper key={category.categoryId}>
+        <Box key={category.categoryId} mt={35}>
           <SectionHeader
             title={`${category.categoryName}·电台`}
             moreHref={`/discover/djradio/category?id=${category.categoryId}`}
           />
-          <div className="radio-list">
+          <TopRadioCategoryList>
             {category.djRadios.map((radio) => (
               <TopRadioCategoryItem key={radio.id}>
-                <NavLink className="left" to={`/djradio?id=${radio.id}`}>
-                  <img src={formatSizedImage(radio.picUrl, 120)} alt="" />
-                </NavLink>
-                <div className="right">
-                  <h3 className="name">{radio.name}</h3>
-                  <p className="desc">{radio.rcmdtext}</p>
-                </div>
+                <CoverImage
+                  src={formatSizedImage(radio.picUrl, 120)}
+                  alt={radio.name}
+                  to={`/djradio?id=${radio.id}`}
+                  size={120}
+                />
+
+                <Box ml={20}>
+                  <RadioNameLink to={`/djradio?id=${radio.id}`} color="#333">
+                    {radio.name}
+                  </RadioNameLink>
+                  <Paragraph color="#999" lineHeight={20}>
+                    {radio.rcmdtext}
+                  </Paragraph>
+                </Box>
               </TopRadioCategoryItem>
             ))}
-          </div>
-        </TopRadioCategoryWrapper>
+          </TopRadioCategoryList>
+        </Box>
       ))}
-    </div>
+    </Box>
   )
 }
