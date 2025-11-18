@@ -163,6 +163,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       collapse: '-45px -520px',
       expand: '-65px -520px',
       music: '-34px -863px',
+      people: '-50px -300px',
       // badges
       single: '0 -463px', // 单曲
     },

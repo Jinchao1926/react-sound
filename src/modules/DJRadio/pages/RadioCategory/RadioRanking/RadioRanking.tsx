@@ -1,13 +1,18 @@
 import React, { FC, useState, useEffect } from 'react'
 
-import { NavLink } from 'react-router-dom'
-
+import { CoverImage } from '@/components/CoverImage'
 import { JCPagination } from '@/components/Pagination'
 import { SectionHeader } from '@/components/SectionHeader'
+import { Box, Flex, Image, Paragraph, TextNavLink } from '@/components/UI'
 import { useTopRadiosQuery } from '@/hooks/djradio/useTopRadiosQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 
-import { RadioRankingWrapper, RadioItemWrapper } from './RadioRanking.styles'
+import {
+  RadioItem,
+  RadioName,
+  RadioCreatorIcon,
+  RadioList,
+} from './RadioRanking.styles'
 
 const PAGE_SIZE = 30
 
@@ -24,45 +29,47 @@ export const RadioRanking: FC<{ id: number }> = ({ id }) => {
   })
 
   return (
-    <RadioRankingWrapper>
+    <Box mt={35}>
       <SectionHeader title="电台排行榜" />
-      <div className="radio-list">
+      <RadioList>
         {radios.map((item) => (
-          <RadioItemWrapper key={item.id}>
-            <NavLink className="left" to={`/djradio?id=${item.id}`}>
-              <img src={formatSizedImage(item.picUrl, 120)} alt="" />
-            </NavLink>
-            <div className="right">
-              <h3 className="name">{item.name}</h3>
-              <div className="dj">
-                <i className="sprite_icon2 dj-icon" />
-                <NavLink
-                  className="user-name"
-                  to={`/user/home?=${item.dj.userId}`}
-                >
+          <RadioItem key={item.id}>
+            <CoverImage
+              src={formatSizedImage(item.picUrl, 120)}
+              alt={item.name}
+              to={`/djradio?id=${item.id}`}
+              size={120}
+            />
+
+            <Box ml={20}>
+              <RadioName>{item.name}</RadioName>
+              <Flex align="center" mb={8} lineHeight={20}>
+                <RadioCreatorIcon />
+                <TextNavLink to={`/user/home?=${item.dj.userId}`} ml={8} mr={3}>
                   {item.dj.nickname}
-                </NavLink>
+                </TextNavLink>
                 {item.dj.avatarDetail && (
-                  <img
-                    className="vip"
+                  <Image
                     src={item.dj.avatarDetail.identityIconUrl}
-                    alt=""
+                    alt={`${item.dj.avatarDetail.identityLevel}`}
+                    width={13}
+                    height={13}
                   />
                 )}
-              </div>
-              <p className="desc">
+              </Flex>
+              <Paragraph color="#999" whiteSpace="pre">
                 {`共${item.programCount}期`} {`订阅${item.subCount}次`}
-              </p>
-            </div>
-          </RadioItemWrapper>
+              </Paragraph>
+            </Box>
+          </RadioItem>
         ))}
-      </div>
+      </RadioList>
       <JCPagination
         current={currentPage}
         pageSize={PAGE_SIZE}
         total={count}
         onPageChange={(page) => setCurrentPage(page)}
       />
-    </RadioRankingWrapper>
+    </Box>
   )
 }
