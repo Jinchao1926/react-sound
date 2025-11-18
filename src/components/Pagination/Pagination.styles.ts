@@ -1,38 +1,43 @@
 import styled from 'styled-components'
 
+export const PaginationButton = styled.button`
+  background: url(${require('@/assets/img/pagination.png')}) no-repeat 0 9999px;
+  width: 71px;
+  height: 26px;
+  line-height: 24px;
+  margin: -2px 2px 0 0;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+
+  &:disabled {
+    color: #cacaca;
+  }
+`
+
+export const PrevButton = styled(PaginationButton)`
+  padding: 0 0 0 12px;
+  background-position: 0 -560px;
+  &:disabled {
+    background-position: 0 -620px;
+  }
+`
+
+export const NextButton = styled(PaginationButton)`
+  padding: 0 12px 0 0;
+  background-position: -75px -560px;
+  &:disabled {
+    background-position: -75px -620px;
+  }
+`
+
 export const PaginationWrapper = styled.div`
   .pagination {
     margin: 20px 0;
     text-align: center;
 
-    .btn {
-      width: 71px;
-      height: 26px;
-      line-height: 24px;
-      margin: -2px 2px 0 0;
-      border: 1px solid #ccc;
-      border-radius: 2px;
-
-      &:disabled {
-        color: #cacaca;
-      }
-    }
-    .prev {
-      padding: 0 0 0 12px;
-      background-position: 0 -560px;
-      &:disabled {
-        background-position: 0 -620px;
-      }
-    }
-    .next {
-      padding: 0 12px 0 0;
-      background-position: -75px -560px;
-      &:disabled {
-        background-position: -75px -620px;
-      }
-    }
-
     .ant-pagination-item {
+      background: url(${require('@/assets/img/pagination.png')}) no-repeat 0
+        9999px;
       border: 1px solid #ccc !important;
       border-radius: 2px;
       margin: 0 5px;
@@ -45,6 +50,8 @@ export const PaginationWrapper = styled.div`
       &.ant-pagination-item-active {
         border-color: #a2161b !important;
         a {
+          background: url(${require('@/assets/img/pagination.png')}) no-repeat 0
+            9999px;
           background-position: 0 -650px;
           color: #fff;
         }
