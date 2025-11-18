@@ -1,35 +1,38 @@
 import React, { FC } from 'react'
 
-import { NavLink } from 'react-router-dom'
-
+import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
+import { Box, Paragraph } from '@/components/UI'
 import { useRadiosQuery } from '@/hooks/djradio/useRadiosQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 
-import {
-  RadioRecommendWrapper,
-  RadioItemWrapper,
-} from './RadioRecommend.styles'
+import { RadioNameLink, RadioItemList } from './RadioRecommend.styles'
 
 export const RadioRecommend: FC<{ id: number }> = ({ id }) => {
   const { data } = useRadiosQuery(id)
 
   return (
-    <RadioRecommendWrapper>
+    <Box mt={20}>
       <SectionHeader title="优秀新电台" />
-      <div className="radio-list">
+      <RadioItemList>
         {data.map((item) => (
-          <RadioItemWrapper key={item.id}>
-            <NavLink className="cover" to={`/djradio?id=${item.id}`}>
-              <img src={formatSizedImage(item.picUrl, 150)} alt="" />
-            </NavLink>
-            <NavLink className="name" to={`/djradio?id=${item.id}`}>
+          <Box key={item.id}>
+            <CoverImage
+              src={formatSizedImage(item.picUrl, 150)}
+              alt={item.name}
+              to={`/djradio?id=${item.id}`}
+              size={150}
+            />
+
+            <RadioNameLink to={`/djradio?id=${item.id}`}>
               {item.name}
-            </NavLink>
-            <p className="desc">{item.rcmdtext}</p>
-          </RadioItemWrapper>
+            </RadioNameLink>
+            <Paragraph color="#999" lineHeight={18} m={0}>
+              {item.rcmdtext}
+            </Paragraph>
+          </Box>
         ))}
-      </div>
-    </RadioRecommendWrapper>
+      </RadioItemList>
+    </Box>
   )
 }
