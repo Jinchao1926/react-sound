@@ -6,7 +6,7 @@ import { NewAlbum } from './components/NewAlbum'
 
 export const Album: FC = () => {
   return (
-    <AlbumWrapper className="wrap-v2">
+    <AlbumWrapper>
       <NewAlbum />
       <AllAlbum />
     </AlbumWrapper>
