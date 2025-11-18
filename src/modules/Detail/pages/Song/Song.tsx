@@ -14,7 +14,7 @@ export const Song: FC = () => {
 
   if (!songId) return null
   return (
-    <SongWrapper className="wrap-v2">
+    <SongWrapper>
       <SongLeft>
         <SongDetail songId={songId} />
       </SongLeft>

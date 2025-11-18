@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-export const SongWrapper = styled.div`
+import { Container } from '@/components/UI'
+
+export const SongWrapper = styled(Container)`
   background-color: #fff;
   border: 1px solid #d3d3d3;
   border-width: 0 1px;
