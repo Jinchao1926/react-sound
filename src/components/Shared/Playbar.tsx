@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Sprite } from '@/components/UI'
+import { Sprite } from '@/components/Core'
 import { PLAY_MODE, PlayModeType } from '@/types/player'
 
 export const Playbar = styled(Sprite).attrs({

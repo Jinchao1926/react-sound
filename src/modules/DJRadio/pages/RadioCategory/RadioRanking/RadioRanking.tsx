@@ -1,10 +1,10 @@
 import React, { FC, useState, useEffect } from 'react'
 
+import { Box, Flex, Paragraph, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
 import { JCPagination } from '@/components/Pagination'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box, Flex, Paragraph, TextNavLink } from '@/components/UI'
 import { useTopRadiosQuery } from '@/hooks/djradio/useTopRadiosQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 

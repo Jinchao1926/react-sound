@@ -1,16 +1,20 @@
 import { FC } from 'react'
 
+import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { PlaylistTracks } from '@/components/PlaylistTracks'
 import { PlaylistBadge } from '@/components/Shared/Logo'
-import { Box, Flex, Image, Text, TextNavLink } from '@/components/UI'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
 
-import { PlaylistCover, PlaylistDescription } from './PlaylistDetail.styles'
+import {
+  PlaylistCover,
+  PlaylistDescription,
+  PlaylistTagLink,
+} from './PlaylistDetail.styles'
 
 export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
   const { data: playlist } = usePlaylistDetailQuery(playlistId)
@@ -18,7 +22,7 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
   if (!playlist) return null
 
   return (
-    <Box>
+    <Flex vertical gap={27}>
       <Flex gap={20} pt={6}>
         <PlaylistCover>
           <Image
@@ -56,7 +60,20 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
             </Text>
           </Flex>
 
-          <MediaOperationBar />
+          <Box mb={25}>
+            <MediaOperationBar />
+          </Box>
+
+          {playlist.tags.length > 0 && (
+            <Flex align="center">
+              标签：
+              {playlist.tags.map((tag) => (
+                <PlaylistTagLink to={`/discover/playlist?cat=${tag}`}>
+                  {tag}
+                </PlaylistTagLink>
+              ))}
+            </Flex>
+          )}
 
           <PlaylistDescription>
             介绍：{playlist.description}
@@ -65,6 +82,6 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
       </Flex>
 
       <PlaylistTracks playlist={playlist} />
-    </Box>
+    </Flex>
   )
 }

@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react'
 
+import { Box, Text, TextNavLink } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box, Text, TextNavLink } from '@/components/UI'
 import { useRecommendedProgramsQuery } from '@/hooks/program/useRecommendedProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { Program } from '@/types/program'

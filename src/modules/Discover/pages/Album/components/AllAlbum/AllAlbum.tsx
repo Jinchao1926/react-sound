@@ -1,8 +1,8 @@
 import { FC, useState, useEffect } from 'react'
 
+import { Box } from '@/components/Core'
 import { JCPagination } from '@/components/Pagination'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box } from '@/components/UI'
 import { useAllAlbumsQuery } from '@/hooks/album/useAllAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 

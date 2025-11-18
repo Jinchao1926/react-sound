@@ -2,8 +2,8 @@ import React, { FC, useMemo } from 'react'
 
 import { Tooltip } from 'antd'
 
+import { Box, TextNavLink } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box, TextNavLink } from '@/components/UI'
 import { useTopProgramsQuery } from '@/hooks/program/useTopProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { RankingTrend } from '@/modules/DJRadio/components/RankingTrend'

@@ -1,7 +1,7 @@
 import { useMemo, type FC } from 'react'
 
+import { Box } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box } from '@/components/UI'
 import { useNewAlbumsQuery } from '@/hooks/album/useNewAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 

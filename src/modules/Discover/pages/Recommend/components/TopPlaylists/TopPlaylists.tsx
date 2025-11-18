@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
+import { Box } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box } from '@/components/UI'
 import { useTop3PlaylistsQuery } from '@/hooks/recommend/useTop3PlaylistsQuery'
 
 import { Playlist } from './Playlist'

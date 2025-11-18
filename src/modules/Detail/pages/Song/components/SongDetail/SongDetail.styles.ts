@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import { Flex } from '@/components/UI'
-import { Sprite } from '@/components/UI/Spirit/Sprite'
+import { Flex } from '@/components/Core'
+import { Sprite } from '@/components/Core/Spirit/Sprite'
 
 export const SongDetailWrapper = styled.div`
   display: flex;

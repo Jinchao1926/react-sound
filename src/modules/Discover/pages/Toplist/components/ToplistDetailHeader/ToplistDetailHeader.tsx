@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
+import { Box, Flex, Image, Paragraph, Sprite, Text } from '@/components/Core'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
-import { Box, Flex, Image, Paragraph, Sprite, Text } from '@/components/UI'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatMonthDay } from '@/utils/timeFormat'

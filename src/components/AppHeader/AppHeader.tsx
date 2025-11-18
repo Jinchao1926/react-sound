@@ -13,7 +13,7 @@ import {
   RedTriangle,
   Search,
 } from './AppHeader.styles'
-import { Divider, Flex, FlexContainer, Link } from '../UI'
+import { Divider, Flex, FlexContainer, Link } from '../Core'
 
 export const AppHeader: FC = () => {
   return (

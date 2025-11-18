@@ -1,6 +1,6 @@
 import React, { type FC } from 'react'
 
-import { Box, FlexContainer, Image } from '@/components/UI'
+import { Box, FlexContainer, Image } from '@/components/Core'
 
 import {
   MusicContent,

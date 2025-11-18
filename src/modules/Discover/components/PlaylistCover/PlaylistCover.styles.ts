@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
+import { TextNavLink } from '@/components/Core'
+import { Sprite } from '@/components/Core/Spirit/Sprite'
 import { CoverImage } from '@/components/CoverImage'
-import { TextNavLink } from '@/components/UI'
-import { Sprite } from '@/components/UI/Spirit/Sprite'
 
 export const PlaylistCoverImage = styled(CoverImage)`
   position: relative;

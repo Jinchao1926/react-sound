@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { TextNavLink } from '@/components/UI'
+import { TextNavLink } from '@/components/Core'
 
 export const TopRadioCategoryList = styled.div`
   display: flex;

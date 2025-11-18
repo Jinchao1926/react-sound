@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 
+import { Box, Paragraph } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box, Paragraph } from '@/components/UI'
 import { useRadiosQuery } from '@/hooks/djradio/useRadiosQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 

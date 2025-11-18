@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Flex } from '@/components/UI'
+import { Flex } from '@/components/Core'
 
 // Song
 export const SongIndex = styled.span`

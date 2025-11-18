@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Sprite } from '@/components/UI'
+import { Sprite } from '@/components/Core'
 
 export const RankingTrendWrapper = styled.div`
   text-align: center;

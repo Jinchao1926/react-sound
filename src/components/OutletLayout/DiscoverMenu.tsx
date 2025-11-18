@@ -8,7 +8,7 @@ import {
   DiscoverMenuWrapper,
   DiscoverNavigationItem,
 } from './DiscoverMenu.styles'
-import { FlexContainer } from '../UI'
+import { FlexContainer } from '../Core'
 
 export const DiscoverMenu: FC = () => {
   return (

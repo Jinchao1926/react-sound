@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
+import { Box } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box } from '@/components/UI'
 
 import { FileIcon, FileLink } from './UserWiki.styles'
 

@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { Image } from '@/components/UI'
+import { Image } from '@/components/Core'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import { PlayButton, ProgramCoverWrapper } from './ProgramCover.styles'

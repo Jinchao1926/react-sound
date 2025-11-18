@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Sprite, TextNavLink } from '@/components/UI'
+import { Sprite, TextNavLink } from '@/components/Core'
 
 export const FileLink = styled(TextNavLink)`
   color: #333;

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
+import { Box, Image, Text } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box, Image, Text } from '@/components/UI'
 import { useTopArtistQuery } from '@/hooks/artist/useTopArtistQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 

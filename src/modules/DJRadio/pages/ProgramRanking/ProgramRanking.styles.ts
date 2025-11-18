@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Sprite } from '@/components/UI'
+import { Sprite } from '@/components/Core'
 
 export const ProgramRankingWrapper = styled.div`
   position: relative;

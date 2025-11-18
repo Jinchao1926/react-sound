@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 
+import { Box, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box, TextNavLink } from '@/components/UI'
 import { useSongPlaylistsQuery } from '@/hooks/song/useSongPlaylistsQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Sprite } from '../UI'
+import { Sprite } from '../Core'
 
 /** Play */
 export const PlayButton = styled(Sprite).attrs({

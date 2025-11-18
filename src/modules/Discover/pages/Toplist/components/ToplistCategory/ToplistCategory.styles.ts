@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { Head } from '@/components/UI'
+import { Head } from '@/components/Core'
 
 export const CategoryHead = styled(Head)`
   padding: 0 10px 12px 15px;

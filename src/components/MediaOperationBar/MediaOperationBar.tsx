@@ -1,8 +1,8 @@
 import React, { type FC } from 'react'
 
 import { AddBlueButton, PlayBlueButton } from './MediaOperationBar.styles'
+import { Flex } from '../Core'
 import { GreyButton } from '../GreyButton'
-import { Flex } from '../UI'
 
 interface MediaOperationBarProps {
   titles?: {

@@ -3,7 +3,7 @@ import { ElementRef, FC, useMemo, useRef, useState } from 'react'
 import { Carousel } from 'antd'
 import classNames from 'classnames'
 
-import { Box, Flex, FlexContainer } from '@/components/UI'
+import { Box, Flex, FlexContainer } from '@/components/Core'
 import { useBannersQuery } from '@/hooks/recommend/useBannersQuery'
 
 import {

@@ -8,7 +8,7 @@ import {
   CoverOverlay,
   CoverNavLink,
 } from './CoverImage.styles'
-import { SpriteCategory } from '../UI/Spirit/config'
+import { SpriteCategory } from '../Core/Spirit/config'
 
 export interface CoverImageProps {
   /** Image Source */

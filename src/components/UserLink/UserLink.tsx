@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 import { UserLinks } from './UserLink.styles'
-import { TextNavLink } from '../UI'
+import { TextNavLink } from '../Core'
 
 interface UserLinkProps {
   users: { id: number; name: string }[]

@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 
 import classNames from 'classnames'
 
-import { Box, Flex, Image, Text } from '@/components/UI'
+import { Box, Flex, Image, Text } from '@/components/Core'
 import { TopPlaylist } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 

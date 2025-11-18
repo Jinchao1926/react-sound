@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { FlexContainer } from '@/components/UI'
+import { FlexContainer } from '@/components/Core'
 
 export const ToplistWrapper = styled(FlexContainer)`
   border: 1px solid #d3d3d3;

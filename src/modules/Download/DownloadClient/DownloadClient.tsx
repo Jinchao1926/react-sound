@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 
 import { Popover } from 'antd'
 
-import { Box, FlexContainer, Image, TextNavLink } from '@/components/UI'
+import { Box, FlexContainer, Image, TextNavLink } from '@/components/Core'
 
 import {
   Android,

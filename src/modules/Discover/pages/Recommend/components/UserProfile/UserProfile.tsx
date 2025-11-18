@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { Box } from '@/components/UI'
+import { Box } from '@/components/Core'
 
 import {
   LoginButton,

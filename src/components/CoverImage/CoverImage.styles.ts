@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { Image } from '../UI'
-import { Sprite } from '../UI/Spirit'
+import { Image } from '../Core'
+import { Sprite } from '../Core/Spirit'
 
 interface CoverImageWrapperProps {
   width: number

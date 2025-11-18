@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const PlaylistCover = styled.div`
@@ -10,9 +11,22 @@ export const PlaylistCover = styled.div`
 `
 
 export const PlaylistDescription = styled.p`
-  margin-top: 25px;
-  margin-bottom: 0;
+  margin: 5px 0 0;
   color: #666;
   line-height: 18px;
   white-space: pre-line;
+`
+
+export const PlaylistTagLink = styled(NavLink)`
+  line-height: 22px;
+  padding: 0 13px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  color: #777;
+
+  background-color: #f5f5f5;
+  &:hover {
+    background-color: #fdfdfd;
+  }
 `

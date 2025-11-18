@@ -1,6 +1,6 @@
 import React, { type FC } from 'react'
 
-import { Image, Paragraph } from '@/components/UI'
+import { Image, Paragraph } from '@/components/Core'
 
 import { DownloadQRCodeWrapper } from './DownloadQRCode.styles'
 
