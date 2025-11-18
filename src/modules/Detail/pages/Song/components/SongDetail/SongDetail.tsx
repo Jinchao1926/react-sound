@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo, useRef, useState } from 'react'
 
 import { MediaOperationBar } from '@/components/MediaOperationBar'
-import { SingleBadge } from '@/components/Shared/Logo'
+import { SongBadge } from '@/components/Shared/Logo'
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/UI'
 import { UserLink } from '@/components/UserLink'
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
@@ -90,7 +90,7 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
 
       <Box width={414}>
         <Flex align="center" gap={10} pb={8}>
-          <SingleBadge />
+          <SongBadge />
           <Text fontSize={24}>{song.name}</Text>
         </Flex>
 

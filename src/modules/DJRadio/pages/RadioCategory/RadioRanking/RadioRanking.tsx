@@ -1,9 +1,10 @@
 import React, { FC, useState, useEffect } from 'react'
 
 import { CoverImage } from '@/components/CoverImage'
+import { IdentityIcon } from '@/components/IdentityIcon'
 import { JCPagination } from '@/components/Pagination'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box, Flex, Image, Paragraph, TextNavLink } from '@/components/UI'
+import { Box, Flex, Paragraph, TextNavLink } from '@/components/UI'
 import { useTopRadiosQuery } from '@/hooks/djradio/useTopRadiosQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 
@@ -48,14 +49,7 @@ export const RadioRanking: FC<{ id: number }> = ({ id }) => {
                 <TextNavLink to={`/user/home?=${item.dj.userId}`} ml={8} mr={3}>
                   {item.dj.nickname}
                 </TextNavLink>
-                {item.dj.avatarDetail && (
-                  <Image
-                    src={item.dj.avatarDetail.identityIconUrl}
-                    alt={`${item.dj.avatarDetail.identityLevel}`}
-                    width={13}
-                    height={13}
-                  />
-                )}
+                <IdentityIcon avatarDetail={item.dj.avatarDetail} />
               </Flex>
               <Paragraph color="#999" whiteSpace="pre">
                 {`共${item.programCount}期`} {`订阅${item.subCount}次`}

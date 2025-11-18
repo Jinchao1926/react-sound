@@ -13,13 +13,26 @@ export const MVLogo = styled(Sprite).attrs({
   height: 17px;
 `
 
-export const SingleBadge = styled(Sprite).attrs({
+export const SongBadge = styled(Sprite).attrs({
   sprite: 'icon',
-  icon: 'single',
+  icon: 'song',
   component: 'span',
   title: '单曲',
 })`
   display: inline-block;
   width: 54px;
   height: 24px;
+  flex-shrink: 0;
+`
+
+export const PlaylistBadge = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'playlist',
+  component: 'span',
+  title: '歌单',
+})`
+  display: inline-block;
+  width: 54px;
+  height: 24px;
+  flex-shrink: 0;
 `

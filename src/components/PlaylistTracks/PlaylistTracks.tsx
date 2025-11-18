@@ -22,18 +22,18 @@ import {
   Duration,
   DurationTD,
   New,
-  ToplistDetailHeader,
-  ToplistTracksTable,
-  ToplistTracksTHeader,
-  ToplistTrackTH,
-} from './ToplistDetail.styles'
+  PlaylistTracksHeader,
+  PlaylistTracksTable,
+  PlaylistTracksTHeader,
+  PlaylistTrackTH,
+} from './PlaylistTracks.styles'
 
-export const ToplistDetail: FC<{ playlist: PlaylistDetail }> = ({
+export const PlaylistTracks: FC<{ playlist: PlaylistDetail }> = ({
   playlist,
 }) => {
   return (
-    <Box p="0 30px 40px 40px">
-      <ToplistDetailHeader>
+    <Box>
+      <PlaylistTracksHeader>
         <Box>
           <Text fontSize={20} lineHeight={28}>
             歌曲列表
@@ -45,16 +45,16 @@ export const ToplistDetail: FC<{ playlist: PlaylistDetail }> = ({
         <Text color="#666">
           播放： <Strong color="#c20c0c">{playlist.playCount}</Strong>次
         </Text>
-      </ToplistDetailHeader>
-      <ToplistTracksTable>
-        <ToplistTracksTHeader>
+      </PlaylistTracksHeader>
+      <PlaylistTracksTable>
+        <PlaylistTracksTHeader>
           <tr>
-            <ToplistTrackTH width={77} />
-            <ToplistTrackTH>标题</ToplistTrackTH>
-            <ToplistTrackTH width={91}>时长</ToplistTrackTH>
-            <ToplistTrackTH width={173}>歌手</ToplistTrackTH>
+            <PlaylistTrackTH width={77} />
+            <PlaylistTrackTH>标题</PlaylistTrackTH>
+            <PlaylistTrackTH width={91}>时长</PlaylistTrackTH>
+            <PlaylistTrackTH width={173}>歌手</PlaylistTrackTH>
           </tr>
-        </ToplistTracksTHeader>
+        </PlaylistTracksTHeader>
         <tbody>
           {playlist.tracks?.map((item, idx) => (
             <tr key={item.id}>
@@ -85,7 +85,12 @@ export const ToplistDetail: FC<{ playlist: PlaylistDetail }> = ({
                     ) : null
                   }
                   <PlayButtonSMLight flexShrink={0} onClick={() => {}} />
-                  <TextNavLink to={`/song?id=${item.id}`} nowrap ml={8}>
+                  <TextNavLink
+                    to={`/song?id=${item.id}`}
+                    color="#333"
+                    nowrap
+                    ml={8}
+                  >
                     {item.name}
                   </TextNavLink>
 
@@ -123,12 +128,12 @@ export const ToplistDetail: FC<{ playlist: PlaylistDetail }> = ({
               </DurationTD>
               {/* Singer */}
               <td>
-                <UserLink users={item.ar} block />
+                <UserLink users={item.ar} block color="#333" />
               </td>
             </tr>
           ))}
         </tbody>
-      </ToplistTracksTable>
+      </PlaylistTracksTable>
     </Box>
   )
 }

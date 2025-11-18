@@ -12,9 +12,12 @@ export const ToplistDetailHeader: FC<{ playlist: PlaylistDetail }> = ({
   playlist,
 }) => {
   return (
-    <Flex gap={30} p={40}>
+    <Flex gap={30} mb={40}>
       <ToplistCover>
-        <Image src={formatSizedImage(playlist.coverImgUrl, 150)} alt="" />
+        <Image
+          src={formatSizedImage(playlist.coverImgUrl, 150)}
+          alt={playlist.name}
+        />
         <ToplistCoverBright />
       </ToplistCover>
 

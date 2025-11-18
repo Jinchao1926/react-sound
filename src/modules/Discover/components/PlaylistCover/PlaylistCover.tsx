@@ -1,7 +1,8 @@
 import type { FC } from 'react'
 
 import { CoverImage } from '@/components/CoverImage'
-import { Box, Flex, Image, Text } from '@/components/UI'
+import { IdentityIcon } from '@/components/IdentityIcon'
+import { Box, Flex, Text } from '@/components/UI'
 import { PlaylistDetail, PopularPlaylist } from '@/types/playlist'
 import { formatPlayCount, formatSizedImage } from '@/utils/dataFormat'
 
@@ -34,14 +35,7 @@ export const PlaylistCover: FC<{
         <PlaylistCreatorLink to={`/user/home/id=${creator.userId}`}>
           {creator.nickname}
         </PlaylistCreatorLink>
-        {creator.avatarDetail && (
-          <Image
-            src={creator.avatarDetail.identityIconUrl}
-            alt={`${creator.avatarDetail.identityLevel}`}
-            width={13}
-            height={13}
-          />
-        )}
+        <IdentityIcon avatarDetail={creator.avatarDetail} />
       </Flex>
     )
   }

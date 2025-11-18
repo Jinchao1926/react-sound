@@ -8,6 +8,7 @@ interface PopularPlaylistsApiResponse {
   code: number
 }
 
+// 推荐歌单
 export const usePopularPlaylistsQuery = (limit: number = 8) => {
   const axios = useAxios()
 

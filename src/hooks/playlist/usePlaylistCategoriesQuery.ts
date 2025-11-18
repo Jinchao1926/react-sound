@@ -4,6 +4,7 @@ import { useAxios } from '@/providers/AxiosProvider'
 import { PlaylistCategoriesApiResponse } from '@/types/playlist-category'
 import { parsePlaylistCategories } from '@/utils/playlistCategoriesParser'
 
+// 歌单分类
 export const usePlaylistCategoriesQuery = () => {
   const axios = useAxios()
 
