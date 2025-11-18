@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 import { Box, Flex, Sprite, Text } from '@/components/UI'
 
-export const ToplistDetailHeader = styled(Box)`
+export const PlaylistTracksHeader = styled(Box)`
   height: 33px;
   border-bottom: 2px solid #c20c0c;
   display: flex;
@@ -10,7 +10,7 @@ export const ToplistDetailHeader = styled(Box)`
   align-items: center;
 `
 
-export const ToplistTracksTable = styled.table`
+export const PlaylistTracksTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
@@ -40,13 +40,13 @@ export const ToplistTracksTable = styled.table`
   }
 `
 
-export const ToplistTracksTHeader = styled(Sprite).attrs({
+export const PlaylistTracksTHeader = styled(Sprite).attrs({
   sprite: 'icon',
   icon: 'header',
   component: 'thead',
 })``
 
-export const ToplistTrackTH = styled.th<{ width?: number }>`
+export const PlaylistTrackTH = styled.th<{ width?: number }>`
   height: 36px;
   color: #666;
   font-weight: normal;

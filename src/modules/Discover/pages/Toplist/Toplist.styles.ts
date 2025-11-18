@@ -17,4 +17,6 @@ export const ToplistLeft = styled.div`
 export const ToplistRight = styled.div`
   width: 740px;
   background-color: #fff;
+  padding: 40px 30px 40px 40px;
+  box-sizing: border-box;
 `

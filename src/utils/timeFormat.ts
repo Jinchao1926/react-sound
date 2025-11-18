@@ -14,6 +14,11 @@ export const formatTime = (time: number) => {
   return padLeft(minute) + ':' + padLeft(second)
 }
 
+export const formatYearMonthDay = (timestamp: number) => {
+  const date = new Date(timestamp)
+  return date.toISOString().split('T')[0]
+}
+
 export const formatMonthDay = (timestamp: number) => {
   const date = new Date(timestamp)
   const month = date.getMonth() + 1

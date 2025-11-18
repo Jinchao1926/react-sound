@@ -197,11 +197,13 @@ export interface PlaylistDetail {
   creator: {
     userId: number
     nickname: string
+    avatarUrl: string
     avatarDetail?: {
       identityLevel: number
       identityIconUrl: string
     }
   }
+  description?: string
   updateFrequency?: string
   updateTime: number
   trackUpdateTime: number

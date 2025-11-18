@@ -5,6 +5,7 @@ import type { RouteObject } from 'react-router-dom'
 import { OutletLayout } from '@/components/OutletLayout'
 
 const Song = lazy(() => import('../pages/Song'))
+const Playlist = lazy(() => import('../pages/Playlist'))
 
 export const detailRoutes: RouteObject = {
   path: '/',
@@ -12,7 +13,7 @@ export const detailRoutes: RouteObject = {
   children: [
     {
       path: '/playlist',
-      element: <Song />,
+      element: <Playlist />,
     },
     {
       path: '/program',
