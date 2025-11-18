@@ -144,16 +144,21 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   icon2: {
     url: require('./img/icon2.png'),
     icons: {
-      addTo: { normal: '0 -700px', hover: '-22px -700px' },
-      clock: '-18px -682px',
-      new: '-67px -283px',
       // playlist category
       language: '-20px -735px',
       style: '0 -60px',
       scene: '0 -88px',
       emotion: '0 -117px',
       theme: '0 -141px',
+      // trend
+      trendNew: '-67px -283px',
+      trendKeep: '-74px -274px',
+      trendUp: '-74px -304px',
+      trendDown: '-74px -324px',
       //
+      addTo: { normal: '0 -700px', hover: '-22px -700px' },
+      clock: '-18px -682px',
+      new: '-67px -283px',
       arrowDown: '-70px -543px',
       collapse: '-45px -520px',
       expand: '-65px -520px',

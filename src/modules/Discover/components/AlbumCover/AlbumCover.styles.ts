@@ -15,27 +15,27 @@ export const getAlbumStyleConfig = (isLarge: boolean): IAlbumStyleConfig => {
   return { width, imgSize, isLarge }
 }
 
-export const CoverPlayButton = styled(Sprite).attrs<{ isLarge: boolean }>(
+export const CoverPlayButton = styled(Sprite).attrs<{ $isLarge: boolean }>(
   (props) => ({
     sprite: 'icon',
-    icon: props.isLarge ? 'playInCoverLarge' : 'playInCover',
+    icon: props.$isLarge ? 'playInCoverLarge' : 'playInCover',
     component: 'button',
     title: '播放',
   })
-)<{ isLarge: boolean }>`
+)<{ $isLarge: boolean }>`
   position: absolute;
   right: 8px;
   bottom: 8px;
-  width: ${(props) => (props.isLarge ? '28px' : '22px')};
-  height: ${(props) => (props.isLarge ? '28px' : '22px')};
+  width: ${(props) => (props.$isLarge ? '28px' : '22px')};
+  height: ${(props) => (props.$isLarge ? '28px' : '22px')};
   display: none;
 `
 
-export const AlbumnNameLink = styled(TextNavLink)<{ isLarge: boolean }>`
+export const AlbumnNameLink = styled(TextNavLink)<{ $isLarge: boolean }>`
   line-height: 1.5;
-  font-size: ${(props) => (props.isLarge ? '14px' : '12px')};
-  width: ${(props) => (props.isLarge ? '130px' : '100px')};
-  margin-bottom: ${(props) => (props.isLarge ? '4px' : '0')};
+  font-size: ${(props) => (props.$isLarge ? '14px' : '12px')};
+  width: ${(props) => (props.$isLarge ? '130px' : '100px')};
+  margin-bottom: ${(props) => (props.$isLarge ? '4px' : '0')};
   margin-top: 8px;
 
   color: #000;
@@ -44,14 +44,14 @@ export const AlbumnNameLink = styled(TextNavLink)<{ isLarge: boolean }>`
   }
 `
 
-export const AlbumCoverWrapper = styled.div<IAlbumStyleConfig>`
+export const AlbumCoverWrapper = styled.div<{ width: number }>`
   width: ${(props) => props.width + 'px'};
 
   .cover-image:hover ${CoverPlayButton} {
     display: block;
   }
+`
 
-  .user-links {
-    width: ${(props) => props.imgSize + 'px'} !important;
-  }
+export const UserLinkContainer = styled.div<{ $isLarge: boolean }>`
+  width: ${(props) => (props.$isLarge ? '130px' : '100px')};
 `

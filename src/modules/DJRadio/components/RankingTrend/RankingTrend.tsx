@@ -1,15 +1,11 @@
 import React, { FC, useMemo } from 'react'
 
-import classNames from 'classnames'
-
-import { RankingTrendWrapper } from './RankingTrend.styles'
-
-const Trend = {
-  NEW: 'new',
-  KEEP: 'keep',
-  UP: 'up',
-  DOWN: 'down',
-} as const
+import {
+  RankingTrendWrapper,
+  Trend,
+  TrendIcon,
+  TrendNewIcon,
+} from './RankingTrend.styles'
 
 interface RankingTrendProps {
   lastRank: number
@@ -31,9 +27,14 @@ export const RankingTrend: FC<RankingTrendProps> = ({ lastRank, rank }) => {
 
   return (
     <RankingTrendWrapper className={trend}>
-      <span className={classNames('sprite_icon2', trend)} />
-      {trend !== Trend.NEW &&
-        (trend === Trend.KEEP ? 0 : Math.abs(rank - lastRank))}
+      {trend === Trend.NEW ? (
+        <TrendNewIcon />
+      ) : (
+        <>
+          <TrendIcon trend={trend} />
+          {Math.abs(rank - lastRank)}
+        </>
+      )}
     </RankingTrendWrapper>
   )
 }
