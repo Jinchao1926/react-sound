@@ -46,10 +46,10 @@ export const RankingProgress = styled(Sprite).attrs({
   sprite: 'icon',
   icon: 'rankingProgress',
   component: 'i',
-})<{ widthPercent: number }>`
+})<{ $widthPercent: number }>`
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: ${({ widthPercent }) => widthPercent}%;
+  width: ${({ $widthPercent }) => $widthPercent}%;
 `

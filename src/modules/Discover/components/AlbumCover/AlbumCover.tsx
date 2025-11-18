@@ -1,7 +1,6 @@
 import { FC, useMemo } from 'react'
 
 import { CoverImage } from '@/components/CoverImage'
-import { Box } from '@/components/UI'
 import { UserLink } from '@/components/UserLink'
 import { Album } from '@/types/music'
 import { formatSizedImage } from '@/utils/dataFormat'
@@ -11,6 +10,7 @@ import {
   AlbumnNameLink,
   CoverPlayButton,
   IAlbumStyleConfig,
+  UserLinkContainer,
   getAlbumStyleConfig,
 } from './AlbumCover.styles'
 
@@ -39,12 +39,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
   }
 
   return (
-    <AlbumCoverWrapper
-      className="album-cover"
-      width={config.width}
-      imgSize={config.imgSize}
-      isLarge={config.isLarge}
-    >
+    <AlbumCoverWrapper className="album-cover" width={config.width}>
       <CoverImage
         src={coverUrl}
         to={albumUrl}
@@ -54,19 +49,19 @@ export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
         coverIcon={config.isLarge ? 'albumLarge' : 'album'}
         coverWidth={config.width}
       >
-        <CoverPlayButton isLarge={config.isLarge} onClick={handlePlayAlbumn} />
+        <CoverPlayButton $isLarge={config.isLarge} onClick={handlePlayAlbumn} />
       </CoverImage>
 
-      <AlbumnNameLink to={albumUrl} nowrap isLarge={config.isLarge}>
+      <AlbumnNameLink to={albumUrl} nowrap $isLarge={config.isLarge}>
         {album.name}
       </AlbumnNameLink>
 
-      <Box mr={10}>
+      <UserLinkContainer $isLarge={config.isLarge}>
         <UserLink
           users={album.artists ? album.artists : [album.artist]}
           space
         />
-      </Box>
+      </UserLinkContainer>
     </AlbumCoverWrapper>
   )
 }

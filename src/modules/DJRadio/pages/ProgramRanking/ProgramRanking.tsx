@@ -120,7 +120,7 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
 
             <Ranking marginLeft={isCompact ? 0 : 28}>
               <RankingProgress
-                widthPercent={(item.score / programs[0].score) * 100}
+                $widthPercent={(item.score / programs[0].score) * 100}
               />
             </Ranking>
           </ProgramItem>
