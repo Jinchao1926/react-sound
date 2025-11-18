@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Sprite } from '@/components/UI/Spirit'
+import { Sprite } from '@/components/Core/Spirit'
 
 export const RadioCategoryHeaderWrapper = styled.div`
   position: relative;

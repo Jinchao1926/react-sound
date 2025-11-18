@@ -2,6 +2,8 @@ import React, { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
+import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
+import { Strong } from '@/components/Core/Common/Text'
 import { MVLogo } from '@/components/Shared/Logo'
 import {
   AddToButtonSM,
@@ -10,8 +12,6 @@ import {
   PlayButtonSMLight,
   ShareButton,
 } from '@/components/Shared/Media'
-import { Box, Flex, Image, Text, TextNavLink } from '@/components/UI'
-import { Strong } from '@/components/UI/Common/Text'
 import { UserLink } from '@/components/UserLink'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'

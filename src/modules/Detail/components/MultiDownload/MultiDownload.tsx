@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
+import { Box, Flex, Text } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box, Flex, Text } from '@/components/UI'
 
 import { Android, IOS, PC } from './MultiDownload.styles'
 

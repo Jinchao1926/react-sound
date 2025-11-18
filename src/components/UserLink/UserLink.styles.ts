@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Text } from '../UI'
+import { Text } from '../Core'
 
 interface UserLinksProps {
   block?: boolean

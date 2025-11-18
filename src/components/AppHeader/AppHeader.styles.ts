@@ -1,7 +1,7 @@
 import { Input } from 'antd'
 import styled from 'styled-components'
 
-import { Sprite } from '../UI'
+import { Sprite } from '../Core'
 
 export const AppHeaderWrapper = styled.div`
   height: 75px;

@@ -11,7 +11,7 @@ import {
   Title,
 } from './SectionHeader.styles'
 import { SectionHeaderVariant } from './types'
-import { Box, Flex, TextNavLink } from '../UI'
+import { Box, Flex, TextNavLink } from '../Core'
 
 interface SectionHeaderProps {
   variant?: SectionHeaderVariant

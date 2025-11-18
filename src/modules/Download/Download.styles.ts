@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Box } from '@/components/UI'
+import { Box } from '@/components/Core'
 
 export const DescriptionContent = styled(Box)`
   h3 {

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Sprite, Text } from '../UI'
+import { Sprite, Text } from '../Core'
 
 export const GreyButtonWrapper = styled(Sprite).attrs({
   sprite: 'button',

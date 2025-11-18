@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import classNames from 'classnames'
 
-import { Box, Text } from '@/components/UI'
+import { Box, Text } from '@/components/Core'
 import { usePlaylistCategoriesQuery } from '@/hooks/playlist/usePlaylistCategoriesQuery'
 
 import {

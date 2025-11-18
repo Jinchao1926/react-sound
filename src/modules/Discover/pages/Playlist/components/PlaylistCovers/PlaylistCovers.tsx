@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect, useMemo, useCallback } from 'react'
 
+import { Box } from '@/components/Core'
 import { JCPagination } from '@/components/Pagination'
-import { Box } from '@/components/UI'
 import { useTopPlaylistsQuery } from '@/hooks/playlist/useTopPlaylistsQuery'
 import { PlaylistCover } from '@/modules/Discover/components/PlaylistCover'
 

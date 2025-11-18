@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { Box, Flex, Sprite, Text } from '@/components/UI'
+import { Box, Flex, Sprite, Text } from '@/components/Core'
 
 export const PlaylistTracksHeader = styled(Box)`
   height: 33px;

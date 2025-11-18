@@ -3,7 +3,7 @@ import React, { FC, useRef, useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
 
-import { Box, Flex, FlexContainer } from '@/components/UI'
+import { Box, Flex, FlexContainer } from '@/components/Core'
 import { useBannersQuery } from '@/hooks/recommend/useBannersQuery'
 
 import { BannerTransitionContainer } from './style'

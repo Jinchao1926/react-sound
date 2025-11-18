@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Container } from '@/components/UI'
+import { Container } from '@/components/Core'
 
 export const AlbumWrapper = styled(Container)`
   padding: 40px;

@@ -14,7 +14,7 @@ import {
   FooterLink,
   FooterLinkText,
 } from './AppFooter.styles'
-import { Box, Container, Flex, Text, TextNavLink } from '../UI'
+import { Box, Container, Flex, Text, TextNavLink } from '../Core'
 
 const FillingItem: FC<{
   item: { title: string; link?: string; logo?: string }

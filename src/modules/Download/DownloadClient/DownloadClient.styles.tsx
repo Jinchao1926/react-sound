@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Flex } from '@/components/UI'
+import { Flex } from '@/components/Core'
 
 export const DownloadTitle = styled.div`
   margin-bottom: 23px;

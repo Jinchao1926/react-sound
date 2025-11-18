@@ -1,7 +1,7 @@
 import { Carousel } from 'antd'
 import styled from 'styled-components'
 
-import { Flex, Sprite } from '@/components/UI'
+import { Flex, Sprite } from '@/components/Core'
 
 export const NewAlbumContent = styled(Flex)`
   justify-content: center;

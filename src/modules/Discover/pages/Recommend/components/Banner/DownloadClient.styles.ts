@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Sprite } from '@/components/UI/Spirit/Sprite'
+import { Sprite } from '@/components/Core/Spirit/Sprite'
 
 export const DownloadClientBG = styled(Sprite).attrs({
   sprite: 'background',

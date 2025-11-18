@@ -1,5 +1,6 @@
 import { useMemo, type FC } from 'react'
 
+import { Box, Flex, Head, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import {
   AddToButtonSM,
@@ -8,7 +9,6 @@ import {
   PlayButton,
   PlayButtonSM,
 } from '@/components/Shared/Media'
-import { Box, Flex, Head, TextNavLink } from '@/components/UI'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'

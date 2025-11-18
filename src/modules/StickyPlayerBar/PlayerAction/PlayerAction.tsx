@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 
+import { Flex } from '@/components/Core'
 import {
   CollectButton,
   VolumeButton,
@@ -8,7 +9,6 @@ import {
   PlayModeButton,
   PlaylistCountButton,
 } from '@/components/Shared/Playbar'
-import { Flex } from '@/components/UI'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 
 import { PlayControl } from './PlayerAction.styles'

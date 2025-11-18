@@ -204,6 +204,7 @@ export interface PlaylistDetail {
     }
   }
   description?: string
+  tags: string[]
   updateFrequency?: string
   updateTime: number
   trackUpdateTime: number

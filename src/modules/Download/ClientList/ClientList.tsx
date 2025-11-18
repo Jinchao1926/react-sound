@@ -1,6 +1,6 @@
 import React, { type FC } from 'react'
 
-import { Image } from '@/components/UI'
+import { Image } from '@/components/Core'
 import { platforms } from '@/constants/platform'
 
 import { ClientItem, ClientListWrapper } from './ClientList.styles'

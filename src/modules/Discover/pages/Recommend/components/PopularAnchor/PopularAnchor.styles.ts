@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { Flex } from '@/components/UI'
+import { Flex } from '@/components/Core'
 
 export const PopularAnchorItem = styled(NavLink)`
   display: flex;

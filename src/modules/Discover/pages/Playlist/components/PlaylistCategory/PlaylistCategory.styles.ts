@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import { TextNavLink } from '@/components/UI'
-import { Sprite } from '@/components/UI/Spirit'
+import { TextNavLink } from '@/components/Core'
+import { Sprite } from '@/components/Core/Spirit'
 
 export const PlaylistCategoryWrapper = styled.div`
   position: absolute;

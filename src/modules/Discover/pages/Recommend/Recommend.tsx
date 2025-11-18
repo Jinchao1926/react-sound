@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { Box } from '@/components/UI'
+import { Box } from '@/components/Core'
 
 import { Banner } from './components/Banner'
 // import { JCBanner } from './components/JCBanner'

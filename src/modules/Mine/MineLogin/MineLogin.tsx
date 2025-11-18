@@ -1,6 +1,6 @@
 import React, { type FC } from 'react'
 
-import { Container } from '@/components/UI'
+import { Container } from '@/components/Core'
 
 import { LoginBG, LoginButton } from './MineLogin.styles'
 

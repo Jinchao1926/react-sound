@@ -1,6 +1,6 @@
 import React, { type FC } from 'react'
 
-import { Image } from '../UI'
+import { Image } from '../Core'
 
 interface IdentityIconProps {
   avatarDetail?: {

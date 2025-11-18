@@ -7,13 +7,13 @@ import React, {
   useState,
 } from 'react'
 
+import { Box, Flex, FlexContainer, Text, TextNavLink } from '@/components/Core'
 import {
   NextButton,
   Playbar,
   PlayButton,
   PrevButton,
 } from '@/components/Shared/Playbar'
-import { Box, Flex, FlexContainer, Text, TextNavLink } from '@/components/UI'
 import { UserLink } from '@/components/UserLink'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PLAY_MODE } from '@/types/player'

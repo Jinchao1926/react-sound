@@ -1,6 +1,6 @@
 import React, { type FC } from 'react'
 
-import { Box } from '@/components/UI'
+import { Box } from '@/components/Core'
 
 import { MineLogin } from './MineLogin'
 

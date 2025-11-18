@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Flex, Sprite } from '../UI'
+import { Flex, Sprite } from '../Core'
 
 export const AppFooterWrapper = styled.div`
   height: 325px;

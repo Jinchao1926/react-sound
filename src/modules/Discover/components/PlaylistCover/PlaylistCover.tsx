@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 
+import { Box, Flex, Text } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
-import { Box, Flex, Text } from '@/components/UI'
 import { PlaylistDetail, PopularPlaylist } from '@/types/playlist'
 import { formatPlayCount, formatSizedImage } from '@/utils/dataFormat'
 

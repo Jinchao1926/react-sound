@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Sprite } from '../UI'
+import { Sprite } from '../Core'
 
 export const MVLogo = styled(Sprite).attrs({
   sprite: 'icon',

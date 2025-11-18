@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react'
 
+import { Box } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
-import { Box } from '@/components/UI'
 import { usePopularPlaylistsQuery } from '@/hooks/recommend/usePopularPlaylistsQuery'
 import { PlaylistCover } from '@/modules/Discover/components/PlaylistCover'
 
