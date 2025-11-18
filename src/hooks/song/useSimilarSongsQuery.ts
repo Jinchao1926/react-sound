@@ -8,6 +8,7 @@ interface SongPlaylistsApiResponse {
   code: number
 }
 
+// 获取相似音乐
 export const useSimilarSongsQuery = (id: number) => {
   const axios = useAxios()
 

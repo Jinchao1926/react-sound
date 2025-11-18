@@ -8,6 +8,7 @@ interface ToplistsApiResponse {
   code: number
 }
 
+// 所有榜单
 export const useToplistsQuery = () => {
   const axios = useAxios()
 
