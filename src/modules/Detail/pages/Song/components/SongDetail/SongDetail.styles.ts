@@ -32,21 +32,6 @@ export const SongCDCover = styled(Sprite).attrs({
   background-position: -140px -580px;
 `
 
-export const MusicIcon = styled(Sprite).attrs({
-  sprite: 'icon',
-  icon: 'music',
-  component: 'span',
-})`
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-`
-
-export const MusicLink = styled.a`
-  color: #0c73c2;
-  text-decoration: underline;
-`
-
 export const OpenClientButton = styled.button`
   margin: 10px 0 0 12px;
   width: 176px;

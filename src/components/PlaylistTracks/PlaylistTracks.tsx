@@ -26,8 +26,10 @@ import {
   PlaylistTracksTHeader,
   PlaylistTrackTH,
 } from './PlaylistTracks.styles'
+import { OutchainLink } from '../Links/OutchainLink'
 
 interface PlaylistTracksConfig {
+  showOutchainLink?: boolean
   showAlbumColumn?: boolean
   showIndexTrend?: boolean
   showTitleCoverImage?: boolean
@@ -47,6 +49,7 @@ export interface PlaylistTracksProps {
 export const PlaylistTracks: FC<PlaylistTracksProps> = ({
   playlist,
   config = {
+    showOutchainLink: false,
     showAlbumColumn: false,
     showIndexTrend: true,
     showTitleCoverImage: true,
@@ -58,8 +61,13 @@ export const PlaylistTracks: FC<PlaylistTracksProps> = ({
     },
   },
 }) => {
-  const { showAlbumColumn, showIndexTrend, showTitleCoverImage, columnWidths } =
-    config
+  const {
+    showOutchainLink,
+    showAlbumColumn,
+    showIndexTrend,
+    showTitleCoverImage,
+    columnWidths,
+  } = config
 
   return (
     <Box>
@@ -72,9 +80,14 @@ export const PlaylistTracks: FC<PlaylistTracksProps> = ({
             {playlist.trackCount}首歌
           </Text>
         </Box>
-        <Text color="#666">
-          播放： <Strong color="#c20c0c">{playlist.playCount}</Strong>次
-        </Text>
+        <Flex gap={20} align="center">
+          {showOutchainLink && (
+            <OutchainLink id={playlist.id} type="playlist" />
+          )}
+          <Text color="#666">
+            播放： <Strong color="#c20c0c">{playlist.playCount}</Strong>次
+          </Text>
+        </Flex>
       </PlaylistTracksHeader>
       <PlaylistTracksTable $enlargeFirstThreeRows={showTitleCoverImage}>
         <PlaylistTracksTHeader>
