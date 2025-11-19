@@ -1,11 +1,11 @@
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { PlaylistTracks } from '@/components/PlaylistTracks'
-import { PlaylistBadge } from '@/components/Shared/Logo'
+import { PlaylistBadge } from '@/components/Shared/Badge'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
@@ -18,6 +18,22 @@ import {
 
 export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
   const { data: playlist } = usePlaylistDetailQuery(playlistId)
+
+  const config = useMemo(() => {
+    return {
+      maxRows: 20,
+      showOutchainLink: true,
+      showAlbumColumn: true,
+      showIndexTrend: false,
+      showTitleCoverImage: false,
+      columnWidths: {
+        index: 74,
+        duration: 111,
+        artist: 90,
+        album: 128,
+      },
+    }
+  }, [])
 
   if (!playlist) return null
 
@@ -81,7 +97,7 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
         </Box>
       </Flex>
 
-      <PlaylistTracks playlist={playlist} />
+      <PlaylistTracks playlist={playlist} config={config} />
     </Flex>
   )
 }

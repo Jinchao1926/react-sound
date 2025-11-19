@@ -8,13 +8,13 @@ import React, {
 } from 'react'
 
 import { Box, Flex, FlexContainer, Text, TextNavLink } from '@/components/Core'
+import { UserLink } from '@/components/Links'
 import {
   NextButton,
   Playbar,
   PlayButton,
   PrevButton,
 } from '@/components/Shared/Playbar'
-import { UserLink } from '@/components/UserLink'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PLAY_MODE } from '@/types/player'
 import { getMusicUrl } from '@/utils/dataFormat'

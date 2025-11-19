@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
+import React, { FC, useMemo } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
 import { Strong } from '@/components/Core/Common/Text'
-import { MVLogo } from '@/components/Shared/Logo'
+import { MVLink, UserLink } from '@/components/Links'
 import {
   AddToButtonSM,
   CollectButtonSM,
@@ -12,13 +12,14 @@ import {
   PlayButtonSMLight,
   ShareButton,
 } from '@/components/Shared/Media'
-import { UserLink } from '@/components/UserLink'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatMinuteSecond } from '@/utils/timeFormat'
 
 import {
   Actions,
+  DownloadLink,
+  DownloadText,
   Duration,
   DurationTD,
   New,
@@ -27,10 +28,61 @@ import {
   PlaylistTracksTHeader,
   PlaylistTrackTH,
 } from './PlaylistTracks.styles'
+import { OutchainLink } from '../Links/OutchainLink'
 
-export const PlaylistTracks: FC<{ playlist: PlaylistDetail }> = ({
+interface PlaylistTracksConfig {
+  maxRows?: number
+  showOutchainLink?: boolean
+  showAlbumColumn?: boolean
+  showIndexTrend?: boolean
+  showTitleCoverImage?: boolean
+  columnWidths: {
+    index?: number
+    title?: number
+    duration?: number
+    artist?: number
+    album?: number
+  }
+}
+export interface PlaylistTracksProps {
+  playlist: PlaylistDetail
+  config?: PlaylistTracksConfig
+}
+
+export const PlaylistTracks: FC<PlaylistTracksProps> = ({
   playlist,
+  config = {
+    showOutchainLink: false,
+    showAlbumColumn: false,
+    showIndexTrend: true,
+    showTitleCoverImage: true,
+    columnWidths: {
+      index: 77,
+      title: undefined, // auto
+      duration: 91,
+      artist: 173,
+    },
+  },
 }) => {
+  const {
+    maxRows,
+    showOutchainLink,
+    showAlbumColumn,
+    showIndexTrend,
+    showTitleCoverImage,
+    columnWidths,
+  } = config
+
+  const { tracks, hasMoreTracks } = useMemo(() => {
+    if (maxRows) {
+      return {
+        tracks: playlist.tracks.slice(0, maxRows),
+        hasMoreTracks: playlist.tracks.length > maxRows,
+      }
+    }
+    return { tracks: playlist.tracks, hasMoreTracks: false }
+  }, [playlist.tracks, maxRows])
+
   return (
     <Box>
       <PlaylistTracksHeader>
@@ -42,31 +94,48 @@ export const PlaylistTracks: FC<{ playlist: PlaylistDetail }> = ({
             {playlist.trackCount}首歌
           </Text>
         </Box>
-        <Text color="#666">
-          播放： <Strong color="#c20c0c">{playlist.playCount}</Strong>次
-        </Text>
+        <Flex gap={20} align="center">
+          {showOutchainLink && (
+            <OutchainLink id={playlist.id} type="playlist" />
+          )}
+          <Text color="#666">
+            播放： <Strong color="#c20c0c">{playlist.playCount}</Strong>次
+          </Text>
+        </Flex>
       </PlaylistTracksHeader>
-      <PlaylistTracksTable>
+      <PlaylistTracksTable $enlargeFirstThreeRows={showTitleCoverImage}>
         <PlaylistTracksTHeader>
           <tr>
-            <PlaylistTrackTH width={77} />
-            <PlaylistTrackTH>标题</PlaylistTrackTH>
-            <PlaylistTrackTH width={91}>时长</PlaylistTrackTH>
-            <PlaylistTrackTH width={173}>歌手</PlaylistTrackTH>
+            <PlaylistTrackTH width={columnWidths.index} />
+            <PlaylistTrackTH width={columnWidths.title}>标题</PlaylistTrackTH>
+            <PlaylistTrackTH width={columnWidths.duration}>
+              时长
+            </PlaylistTrackTH>
+            <PlaylistTrackTH width={columnWidths.artist}>歌手</PlaylistTrackTH>
+            {showAlbumColumn && (
+              <PlaylistTrackTH width={columnWidths.album}>专辑</PlaylistTrackTH>
+            )}
           </tr>
         </PlaylistTracksTHeader>
         <tbody>
-          {playlist.tracks?.map((item, idx) => (
+          {tracks.map((item, idx) => (
             <tr key={item.id}>
-              {/* Ranking */}
+              {/* Index */}
               <td>
-                <Flex justify="center" height={18} lineHeight={18}>
+                <Flex
+                  justify={showIndexTrend ? 'center' : 'space-between'}
+                  lineHeight={18}
+                >
                   <Text width={25} color="#999" textAlign="center">
                     {idx + 1}
                   </Text>
-                  <Box width={32}>
-                    <New />
-                  </Box>
+                  {showIndexTrend ? (
+                    <Box width={32}>
+                      <New />
+                    </Box>
+                  ) : (
+                    <PlayButtonSMLight onClick={() => {}} />
+                  )}
                 </Flex>
               </td>
               {/* Song */}
@@ -74,7 +143,7 @@ export const PlaylistTracks: FC<{ playlist: PlaylistDetail }> = ({
                 <Flex align="center">
                   {
                     // 前三行显示 Image
-                    idx < 3 ? (
+                    showTitleCoverImage && idx < 3 ? (
                       <NavLink to={`/song?id=${item.id}`}>
                         <Image
                           src={formatSizedImage(item.al.picUrl, 50)}
@@ -84,7 +153,7 @@ export const PlaylistTracks: FC<{ playlist: PlaylistDetail }> = ({
                       </NavLink>
                     ) : null
                   }
-                  <PlayButtonSMLight flexShrink={0} onClick={() => {}} />
+                  {showIndexTrend && <PlayButtonSMLight onClick={() => {}} />}
                   <TextNavLink
                     to={`/song?id=${item.id}`}
                     color="#333"
@@ -106,14 +175,7 @@ export const PlaylistTracks: FC<{ playlist: PlaylistDetail }> = ({
                       </Text>
                     )
                   }
-                  {
-                    // MV
-                    item.mv !== 0 && (
-                      <NavLink to={`/mv?id=${item.mv}`}>
-                        <MVLogo mt={2} ml={2} />
-                      </NavLink>
-                    )
-                  }
+                  <MVLink mvID={item.mv} />
                 </Flex>
               </td>
               {/* Duration & Action */}
@@ -130,10 +192,29 @@ export const PlaylistTracks: FC<{ playlist: PlaylistDetail }> = ({
               <td>
                 <UserLink users={item.ar} block color="#333" />
               </td>
+              {/* Album */}
+              {showAlbumColumn && (
+                <td>
+                  <TextNavLink
+                    to={`/album?id=${item.al.id}`}
+                    color="#333"
+                    nowrap
+                  >
+                    {item.al.name}
+                  </TextNavLink>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
       </PlaylistTracksTable>
+
+      {hasMoreTracks && (
+        <Flex vertical align="center" gap={20} mt={30}>
+          <DownloadText>查看更多内容，请下载客户端</DownloadText>
+          <DownloadLink to="/download">立即下载</DownloadLink>
+        </Flex>
+      )}
     </Box>
   )
 }

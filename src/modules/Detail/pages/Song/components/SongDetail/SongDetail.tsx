@@ -1,9 +1,10 @@
 import { FC, useEffect, useMemo, useRef, useState } from 'react'
 
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
+import { UserLink } from '@/components/Links'
+import { OutchainLink } from '@/components/Links/OutchainLink'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
-import { SongBadge } from '@/components/Shared/Logo'
-import { UserLink } from '@/components/UserLink'
+import { SongBadge } from '@/components/Shared/Badge'
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { usePlayerContext } from '@/providers/PlayerProvider'
@@ -13,8 +14,6 @@ import {
   ExpandButton,
   ExpandIcon,
   LyricList,
-  MusicIcon,
-  MusicLink,
   OpenClientButton,
   SongCD,
   SongCDCover,
@@ -75,16 +74,7 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
           />
           <SongCDCover />
         </SongCD>
-        <Flex align="center" mt={20} ml={46}>
-          <MusicIcon />
-          <MusicLink
-            href={`https://music.163.com/#/outchain/2/${song.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            生成外链播放器
-          </MusicLink>
-        </Flex>
+        <OutchainLink id={song.id} type="song" mt={20} ml={46} />
         <OpenClientButton>点击打开客户端</OpenClientButton>
       </Box>
 

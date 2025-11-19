@@ -1,9 +1,9 @@
 import type { FC } from 'react'
 
 import { Box, Flex, TextNavLink } from '@/components/Core'
+import { UserLink } from '@/components/Links'
 import { SectionHeader } from '@/components/SectionHeader'
 import { AddToButtonXS, PlayButtonXS } from '@/components/Shared/Media'
-import { UserLink } from '@/components/UserLink'
 import { useSimilarSongsQuery } from '@/hooks/song/useSimilarSongsQuery'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { songToTrack } from '@/utils/trackConverter'
