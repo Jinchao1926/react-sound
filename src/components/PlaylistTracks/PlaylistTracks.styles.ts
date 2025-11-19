@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 import { Box, Flex, Sprite, Text } from '@/components/Core'
@@ -98,4 +99,21 @@ export const DurationTD = styled.td`
   &:hover ${Actions} {
     display: flex;
   }
+`
+
+export const DownloadText = styled.p`
+  line-height: 18px;
+  font-size: 13px;
+  color: #333;
+  margin: 0;
+`
+
+export const DownloadLink = styled(NavLink)`
+  background-color: #ff291c;
+  color: white;
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 18px;
 `

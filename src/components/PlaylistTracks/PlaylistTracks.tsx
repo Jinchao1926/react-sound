@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useMemo } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
@@ -18,6 +18,8 @@ import { formatMinuteSecond } from '@/utils/timeFormat'
 
 import {
   Actions,
+  DownloadLink,
+  DownloadText,
   Duration,
   DurationTD,
   New,
@@ -29,6 +31,7 @@ import {
 import { OutchainLink } from '../Links/OutchainLink'
 
 interface PlaylistTracksConfig {
+  maxRows?: number
   showOutchainLink?: boolean
   showAlbumColumn?: boolean
   showIndexTrend?: boolean
@@ -62,12 +65,23 @@ export const PlaylistTracks: FC<PlaylistTracksProps> = ({
   },
 }) => {
   const {
+    maxRows,
     showOutchainLink,
     showAlbumColumn,
     showIndexTrend,
     showTitleCoverImage,
     columnWidths,
   } = config
+
+  const { tracks, hasMoreTracks } = useMemo(() => {
+    if (maxRows) {
+      return {
+        tracks: playlist.tracks.slice(0, maxRows),
+        hasMoreTracks: playlist.tracks.length > maxRows,
+      }
+    }
+    return { tracks: playlist.tracks, hasMoreTracks: false }
+  }, [playlist.tracks, maxRows])
 
   return (
     <Box>
@@ -104,7 +118,7 @@ export const PlaylistTracks: FC<PlaylistTracksProps> = ({
           </tr>
         </PlaylistTracksTHeader>
         <tbody>
-          {playlist.tracks?.map((item, idx) => (
+          {tracks.map((item, idx) => (
             <tr key={item.id}>
               {/* Index */}
               <td>
@@ -194,6 +208,13 @@ export const PlaylistTracks: FC<PlaylistTracksProps> = ({
           ))}
         </tbody>
       </PlaylistTracksTable>
+
+      {hasMoreTracks && (
+        <Flex vertical align="center" gap={20} mt={30}>
+          <DownloadText>查看更多内容，请下载客户端</DownloadText>
+          <DownloadLink to="/download">立即下载</DownloadLink>
+        </Flex>
+      )}
     </Box>
   )
 }
