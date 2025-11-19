@@ -21,6 +21,7 @@ export const PlayButtonSM = styled(Sprite).attrs({
 })`
   width: 17px;
   height: 17px;
+  flex-shrink: 0;
 `
 
 export const PlayButtonSMLight = styled(Sprite).attrs({
@@ -31,6 +32,7 @@ export const PlayButtonSMLight = styled(Sprite).attrs({
 })`
   width: 17px;
   height: 17px;
+  flex-shrink: 0;
 `
 
 export const PlayButtonXS = styled(Sprite).attrs({
@@ -41,6 +43,7 @@ export const PlayButtonXS = styled(Sprite).attrs({
 })`
   width: 11px;
   height: 11px;
+  flex-shrink: 0;
 `
 
 /** AddTo */
@@ -53,6 +56,7 @@ export const AddToButtonSM = styled(Sprite).attrs({
   width: 17px;
   height: 17px;
   margin: 4px 0 0 2px;
+  flex-shrink: 0;
 `
 
 export const AddToButtonXS = styled(Sprite).attrs({
@@ -63,6 +67,7 @@ export const AddToButtonXS = styled(Sprite).attrs({
 })`
   width: 11px;
   height: 11px;
+  flex-shrink: 0;
 `
 
 /** Collect */
@@ -74,6 +79,7 @@ export const CollectButton = styled(Sprite).attrs({
 })`
   width: 22px;
   height: 22px;
+  flex-shrink: 0;
 `
 
 export const CollectButtonSM = styled(Sprite).attrs({
@@ -84,6 +90,7 @@ export const CollectButtonSM = styled(Sprite).attrs({
 })`
   width: 17px;
   height: 17px;
+  flex-shrink: 0;
 `
 
 /** Share */
@@ -96,6 +103,7 @@ export const ShareButton = styled(Sprite).attrs({
   width: 17px;
   height: 17px;
   margin: 4px 0 0 2px;
+  flex-shrink: 0;
 `
 
 /** Download */
@@ -108,4 +116,5 @@ export const DownloadButton = styled(Sprite).attrs({
   width: 17px;
   height: 17px;
   margin: 2px 0 0 2px;
+  flex-shrink: 0;
 `

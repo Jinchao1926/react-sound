@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { Sprite } from '../Core'
 
-export const MVLogo = styled(Sprite).attrs({
+export const MVBadge = styled(Sprite).attrs({
   sprite: 'icon',
   icon: 'mv',
   component: 'span',

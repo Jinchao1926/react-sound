@@ -10,7 +10,10 @@ export const PlaylistTracksHeader = styled(Box)`
   align-items: center;
 `
 
-export const PlaylistTracksTable = styled.table`
+interface PlaylistTracksTableProps {
+  $enlargeFirstThreeRows?: boolean
+}
+export const PlaylistTracksTable = styled.table<PlaylistTracksTableProps>`
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
@@ -22,7 +25,8 @@ export const PlaylistTracksTable = styled.table`
 
       // 前三行
       &:nth-of-type(-n + 3) {
-        height: 70px;
+        height: ${({ $enlargeFirstThreeRows = true }) =>
+          $enlargeFirstThreeRows ? '70px' : '30px'};
       }
 
       // 奇偶

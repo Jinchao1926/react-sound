@@ -1,9 +1,9 @@
 import { FC, useEffect, useMemo, useRef, useState } from 'react'
 
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
+import { UserLink } from '@/components/Links'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
-import { SongBadge } from '@/components/Shared/Logo'
-import { UserLink } from '@/components/UserLink'
+import { SongBadge } from '@/components/Shared/Badge'
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { usePlayerContext } from '@/providers/PlayerProvider'

@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react'
 
 import { CoverImage } from '@/components/CoverImage'
-import { UserLink } from '@/components/UserLink'
+import { UserLink } from '@/components/Links'
 import { Album } from '@/types/music'
 import { formatSizedImage } from '@/utils/dataFormat'
 
