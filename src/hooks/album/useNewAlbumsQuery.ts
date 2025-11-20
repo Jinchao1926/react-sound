@@ -8,6 +8,10 @@ interface NewAlbumsApiResponse {
   code: number
 }
 
+/**
+ * 最新专辑
+ * 说明 : 调用此接口 ，获取云音乐首页新碟上架数据
+ */
 export const useNewAlbumsQuery = () => {
   const axios = useAxios()
 

@@ -8,6 +8,7 @@ import {
   CoverOverlay,
   CoverNavLink,
 } from './CoverImage.styles'
+import { Box } from '../Core'
 import { SpriteCategory } from '../Core/Spirit/config'
 
 export interface CoverImageProps {
@@ -16,7 +17,7 @@ export interface CoverImageProps {
   /** Image Alt Text */
   alt?: string
   /** NavLink to */
-  to: string
+  to?: string
   /** Image Width & Height */
   size: number
   /** Cover Sprite Category */
@@ -44,13 +45,13 @@ export const CoverImage: FC<PropsWithChildren<CoverImageProps>> = ({
         <CoverOverlay
           sprite={coverSprite}
           icon={coverIcon}
-          component={NavLink}
+          component={to ? NavLink : Box}
           to={to}
           width={coverWidth}
         />
-      ) : (
+      ) : to ? (
         <CoverNavLink to={to} />
-      )}
+      ) : null}
       {children}
     </CoverImageWrapper>
   )

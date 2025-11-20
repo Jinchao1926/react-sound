@@ -104,11 +104,7 @@ export interface Artist {
 export interface Album {
   id: number
   name: string
-  artist: {
-    id: number
-    name: string
-    picUrl: string
-  }
+  artist: Artist
   artists?: Artist[]
   picUrl: string
   publishTime: number

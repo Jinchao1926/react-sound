@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import { SearchOutlined } from '@ant-design/icons'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 import { rootNavigations } from '@/constants/navigation'
 
@@ -16,6 +16,19 @@ import {
 import { Divider, Flex, FlexContainer, Link } from '../Core'
 
 export const AppHeader: FC = () => {
+  const location = useLocation()
+
+  const isDiscoverActiveForPath = (pathname: string) => {
+    // Default behavior
+    if (pathname.startsWith('/discover')) {
+      return true
+    }
+
+    // Detail routes that should also activate the "发现音乐" navigation item
+    const detailRoutes = ['/playlist', '/song', '/album', '/mv', '/program']
+    return detailRoutes.some((route) => pathname.startsWith(route))
+  }
+
   return (
     <AppHeaderWrapper>
       <FlexContainer variant="large">
@@ -26,7 +39,17 @@ export const AppHeader: FC = () => {
             {rootNavigations.map((item) => (
               <AppNavigationItem key={item.title}>
                 {item.type === 'path' ? (
-                  <NavLink to={item.link}>
+                  <NavLink
+                    to={item.link}
+                    className={({ isActive }) => {
+                      if (item.key === 'discover') {
+                        return isDiscoverActiveForPath(location.pathname)
+                          ? 'active'
+                          : ''
+                      }
+                      return isActive ? 'active' : ''
+                    }}
+                  >
                     {item.title}
                     <RedTriangle />
                   </NavLink>

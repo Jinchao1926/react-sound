@@ -2,9 +2,7 @@ import { FC } from 'react'
 
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 
-import { SimilarSong } from './components/SimilarSong'
-import { SongDetail } from './components/SongDetail'
-import { SongPlaylist } from './components/SongPlaylist'
+import { AlbumDetail } from './components/AlbumDetail'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
   DetailLeftContent,
@@ -13,20 +11,21 @@ import {
 } from '../../components/shared'
 import { UserWiki } from '../../components/UserWiki'
 
-export const Song: FC = () => {
-  const { id: songId } = useQueryParamId()
+export const Album: FC = () => {
+  const { id: albumId } = useQueryParamId()
 
-  if (!songId) return null
+  if (!albumId) return null
+
   return (
     <DetailWrapper>
       <DetailLeftContent>
-        <SongDetail songId={songId} />
+        <AlbumDetail albumId={albumId} />
       </DetailLeftContent>
       <DetailRightContent>
-        <SongPlaylist songId={songId} />
-        <SimilarSong songId={songId} />
+        {/* <PlaylistSubscribers playlistId={playlistId} />
+        <RelatedPlaylists playlistId={playlistId} /> */}
         <MultiDownload />
-        <UserWiki id={songId} type="song" />
+        <UserWiki id={albumId} type="album" />
       </DetailRightContent>
     </DetailWrapper>
   )

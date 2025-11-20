@@ -19,3 +19,13 @@ export const FileIcon = styled(Sprite).attrs({
   width: 20px;
   height: 20px;
 `
+
+export const WikiIcon = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'wiki',
+  component: 'span',
+})`
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+`

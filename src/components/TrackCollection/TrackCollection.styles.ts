@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 
 import { Box, Flex, Sprite, Text } from '@/components/Core'
 
-export const PlaylistTracksHeader = styled(Box)`
+export const TrackCollectionHeader = styled(Box)`
   height: 33px;
   border-bottom: 2px solid #c20c0c;
   display: flex;
@@ -11,10 +11,10 @@ export const PlaylistTracksHeader = styled(Box)`
   align-items: center;
 `
 
-interface PlaylistTracksTableProps {
+interface TrackCollectionTableProps {
   $enlargeFirstThreeRows?: boolean
 }
-export const PlaylistTracksTable = styled.table<PlaylistTracksTableProps>`
+export const TrackCollectionTable = styled.table<TrackCollectionTableProps>`
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
@@ -45,13 +45,13 @@ export const PlaylistTracksTable = styled.table<PlaylistTracksTableProps>`
   }
 `
 
-export const PlaylistTracksTHeader = styled(Sprite).attrs({
+export const TrackCollectionTHeader = styled(Sprite).attrs({
   sprite: 'icon',
   icon: 'header',
   component: 'thead',
 })``
 
-export const PlaylistTrackTH = styled.th<{ width?: number }>`
+export const TrackCollectionTH = styled.th<{ width?: number }>`
   height: 36px;
   color: #666;
   font-weight: normal;

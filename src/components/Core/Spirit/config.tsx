@@ -167,6 +167,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       // badges
       song: '0 -463px', // 单曲
       playlist: '0 -243px', // 歌单
+      album: '0 -186px', // 专辑
     },
   },
   icon3: {
@@ -199,6 +200,12 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     url: require('./img/icon/file.png'),
     icons: {
       file: { normal: '0 0', size: '20px 20px' },
+    },
+  },
+  wiki: {
+    url: require('./img/icon/wiki.png'),
+    icons: {
+      wiki: { normal: '0 0', size: '20px 20px' },
     },
   },
   // Player Bar
@@ -262,7 +269,8 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       bright150: '-230px -380px',
       panel: '0 -537px',
       album: '0 -570px',
-      albumLarge: '0 -845px',
+      albumMedium: '0 -845px',
+      albumLarge: '0 -986px',
       CD: '-140px -580px',
     },
   },
@@ -273,7 +281,7 @@ export const SPRITE_VARIANTS: Record<string, string[]> = {
   footer: ['footer', 'footer2'],
   background: ['downloadBG', 'loginBG', 'loginBG2', 'categoryBG'],
   button: ['button', 'button2', 'button3'],
-  icon: ['icon', 'icon2', 'icon3', 'icon4', 'police', 'file'],
+  icon: ['icon', 'icon2', 'icon3', 'icon4', 'police', 'file', 'wiki'],
   playbar: ['playbar', 'pip'],
 }
 

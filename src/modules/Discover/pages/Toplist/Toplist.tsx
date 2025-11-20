@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react'
 
-import { PlaylistTracks } from '@/components/PlaylistTracks'
+import { TrackCollection } from '@/components/TrackCollection'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
 import { useSelectedToplist } from '@/modules/Discover/pages/Toplist/hooks/useSelectedToplist'
 import { PlaylistDetail } from '@/types/playlist'
@@ -30,7 +30,7 @@ export const Toplist: FC = () => {
       {playlistDetail && (
         <ToplistRight>
           <ToplistDetailHeader playlist={playlistDetail} />
-          <PlaylistTracks playlist={playlistDetail} />
+          <TrackCollection dataSource={playlistDetail} />
         </ToplistRight>
       )}
     </ToplistWrapper>

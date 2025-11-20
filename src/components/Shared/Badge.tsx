@@ -36,3 +36,15 @@ export const PlaylistBadge = styled(Sprite).attrs({
   height: 24px;
   flex-shrink: 0;
 `
+
+export const AlbumBadge = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'album',
+  component: 'span',
+  title: '专辑',
+})`
+  display: inline-block;
+  width: 54px;
+  height: 24px;
+  flex-shrink: 0;
+`

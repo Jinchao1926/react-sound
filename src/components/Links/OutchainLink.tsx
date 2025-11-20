@@ -3,9 +3,10 @@ import React, { type FC } from 'react'
 import { MusicIcon, MusicLink } from './OutchainLink.styles'
 import { Flex, Styles } from '../Core'
 
+export type OutchainType = 'playlist' | 'album' | 'song'
 interface OutchainLinkProps extends Omit<Styles, 'id'> {
   id: number | string
-  type: 'playlist' | 'song'
+  type: OutchainType
 }
 
 export const OutchainLink: FC<OutchainLinkProps> = ({
@@ -13,13 +14,17 @@ export const OutchainLink: FC<OutchainLinkProps> = ({
   type,
   ...styleProps
 }) => {
-  const typeNumber = type === 'playlist' ? 0 : 2
+  const typeMapping = {
+    playlist: 0,
+    album: 1,
+    song: 2,
+  }
 
   return (
     <Flex align="center" {...styleProps}>
       <MusicIcon />
       <MusicLink
-        href={`https://music.163.com/#/outchain/${typeNumber}/${id}`}
+        href={`https://music.163.com/#/outchain/${typeMapping[type]}/${id}`}
         target="_blank"
         rel="noopener noreferrer"
       >
