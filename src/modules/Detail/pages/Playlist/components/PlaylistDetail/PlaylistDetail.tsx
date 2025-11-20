@@ -84,7 +84,7 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
             <Flex align="center">
               标签：
               {playlist.tags.map((tag) => (
-                <PlaylistTagLink to={`/discover/playlist?cat=${tag}`}>
+                <PlaylistTagLink key={tag} to={`/discover/playlist?cat=${tag}`}>
                   {tag}
                 </PlaylistTagLink>
               ))}

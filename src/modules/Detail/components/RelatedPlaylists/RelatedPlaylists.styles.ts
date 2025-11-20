@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const SongPlaylistItem = styled.div`
+export const RelatedPlaylistItem = styled.div`
   display: flex;
   gap: 10px;
   width: 200px;
