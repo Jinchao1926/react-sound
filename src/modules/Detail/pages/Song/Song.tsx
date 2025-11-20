@@ -5,13 +5,13 @@ import { useQueryParamId } from '@/hooks/useQueryParamId'
 import { SimilarSong } from './components/SimilarSong'
 import { SongDetail } from './components/SongDetail'
 import { SongPlaylist } from './components/SongPlaylist'
-import { UserWiki } from './components/UserWiki'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
   DetailLeftContent,
   DetailRightContent,
   DetailWrapper,
 } from '../../components/shared'
+import { UserWiki } from '../../components/UserWiki'
 
 export const Song: FC = () => {
   const { id: songId } = useQueryParamId()
@@ -26,7 +26,7 @@ export const Song: FC = () => {
         <SongPlaylist songId={songId} />
         <SimilarSong songId={songId} />
         <MultiDownload />
-        <UserWiki songId={songId} />
+        <UserWiki id={songId} type="song" />
       </DetailRightContent>
     </DetailWrapper>
   )

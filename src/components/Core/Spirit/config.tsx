@@ -201,6 +201,12 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       file: { normal: '0 0', size: '20px 20px' },
     },
   },
+  wiki: {
+    url: require('./img/icon/wiki.png'),
+    icons: {
+      wiki: { normal: '0 0', size: '20px 20px' },
+    },
+  },
   // Player Bar
   playbar: {
     url: require('./img/playbar.png'),
@@ -274,7 +280,7 @@ export const SPRITE_VARIANTS: Record<string, string[]> = {
   footer: ['footer', 'footer2'],
   background: ['downloadBG', 'loginBG', 'loginBG2', 'categoryBG'],
   button: ['button', 'button2', 'button3'],
-  icon: ['icon', 'icon2', 'icon3', 'icon4', 'police', 'file'],
+  icon: ['icon', 'icon2', 'icon3', 'icon4', 'police', 'file', 'wiki'],
   playbar: ['playbar', 'pip'],
 }
 

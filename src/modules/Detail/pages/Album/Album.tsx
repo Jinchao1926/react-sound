@@ -9,6 +9,7 @@ import {
   DetailRightContent,
   DetailWrapper,
 } from '../../components/shared'
+import { UserWiki } from '../../components/UserWiki'
 
 export const Album: FC = () => {
   const { id: albumId } = useQueryParamId()
@@ -24,6 +25,7 @@ export const Album: FC = () => {
         {/* <PlaylistSubscribers playlistId={playlistId} />
         <RelatedPlaylists playlistId={playlistId} /> */}
         <MultiDownload />
+        <UserWiki id={albumId} type="album" />
       </DetailRightContent>
     </DetailWrapper>
   )
