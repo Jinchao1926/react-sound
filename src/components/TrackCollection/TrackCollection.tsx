@@ -12,7 +12,6 @@ import {
   PlayButtonSMLight,
   ShareButton,
 } from '@/components/Shared/Media'
-import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatMinuteSecond } from '@/utils/timeFormat'
 
@@ -23,100 +22,90 @@ import {
   Duration,
   DurationTD,
   New,
-  PlaylistTracksHeader,
-  PlaylistTracksTable,
-  PlaylistTracksTHeader,
-  PlaylistTrackTH,
-} from './PlaylistTracks.styles'
+  TrackCollectionHeader,
+  TrackCollectionTable,
+  TrackCollectionTH,
+  TrackCollectionTHeader,
+} from './TrackCollection.styles'
+import { TrackCollectionConfig, TrackSource } from './TrackCollection.type'
 import { OutchainLink } from '../Links/OutchainLink'
 
-interface PlaylistTracksConfig {
-  maxRows?: number
-  showOutchainLink?: boolean
-  showAlbumColumn?: boolean
-  showIndexTrend?: boolean
-  showTitleCoverImage?: boolean
-  columnWidths: {
-    index?: number
-    title?: number
-    duration?: number
-    artist?: number
-    album?: number
-  }
-}
-export interface PlaylistTracksProps {
-  playlist: PlaylistDetail
-  config?: PlaylistTracksConfig
+export interface TrackCollectionProps {
+  dataSource: TrackSource
+  config?: TrackCollectionConfig
 }
 
-export const PlaylistTracks: FC<PlaylistTracksProps> = ({
-  playlist,
-  config = {
-    showOutchainLink: false,
-    showAlbumColumn: false,
-    showIndexTrend: true,
-    showTitleCoverImage: true,
-    columnWidths: {
+export const TrackCollection: FC<TrackCollectionProps> = ({
+  dataSource,
+  config = {},
+}) => {
+  const {
+    maxRows,
+    showOutchainLink = false,
+    outchainType = 'playlist',
+    showAlbumColumn = false,
+    showIndexTrend = true,
+    showTitleCoverImage = true,
+    columnWidths = {
       index: 77,
       title: undefined, // auto
       duration: 91,
       artist: 173,
     },
-  },
-}) => {
-  const {
-    maxRows,
-    showOutchainLink,
-    showAlbumColumn,
-    showIndexTrend,
-    showTitleCoverImage,
-    columnWidths,
   } = config
 
   const { tracks, hasMoreTracks } = useMemo(() => {
     if (maxRows) {
       return {
-        tracks: playlist.tracks.slice(0, maxRows),
-        hasMoreTracks: playlist.tracks.length > maxRows,
+        tracks: dataSource.tracks.slice(0, maxRows),
+        hasMoreTracks: dataSource.tracks.length > maxRows,
       }
     }
-    return { tracks: playlist.tracks, hasMoreTracks: false }
-  }, [playlist.tracks, maxRows])
+    return { tracks: dataSource.tracks, hasMoreTracks: false }
+  }, [dataSource.tracks, maxRows])
 
   return (
     <Box>
-      <PlaylistTracksHeader>
+      <TrackCollectionHeader>
         <Box>
           <Text fontSize={20} lineHeight={28}>
             歌曲列表
           </Text>
           <Text color="#666" ml={20} mt={9}>
-            {playlist.trackCount}首歌
+            {dataSource.trackCount}首歌
           </Text>
         </Box>
         <Flex gap={20} align="center">
           {showOutchainLink && (
-            <OutchainLink id={playlist.id} type="playlist" />
+            <OutchainLink id={dataSource.id} type={outchainType} />
           )}
-          <Text color="#666">
-            播放： <Strong color="#c20c0c">{playlist.playCount}</Strong>次
-          </Text>
+          {dataSource.playCount && (
+            <Text color="#666">
+              播放： <Strong color="#c20c0c">{dataSource.playCount}</Strong>次
+            </Text>
+          )}
         </Flex>
-      </PlaylistTracksHeader>
-      <PlaylistTracksTable $enlargeFirstThreeRows={showTitleCoverImage}>
-        <PlaylistTracksTHeader>
+      </TrackCollectionHeader>
+      <TrackCollectionTable $enlargeFirstThreeRows={showTitleCoverImage}>
+        <TrackCollectionTHeader>
           <tr>
-            <PlaylistTrackTH width={columnWidths.index} />
-            <PlaylistTrackTH width={columnWidths.title}>标题</PlaylistTrackTH>
-            <PlaylistTrackTH width={columnWidths.duration}>
+            <TrackCollectionTH width={columnWidths.index} />
+            <TrackCollectionTH width={columnWidths.title}>
+              标题
+            </TrackCollectionTH>
+            <TrackCollectionTH width={columnWidths.duration}>
               时长
-            </PlaylistTrackTH>
-            <PlaylistTrackTH width={columnWidths.artist}>歌手</PlaylistTrackTH>
+            </TrackCollectionTH>
+            <TrackCollectionTH width={columnWidths.artist}>
+              歌手
+            </TrackCollectionTH>
             {showAlbumColumn && (
-              <PlaylistTrackTH width={columnWidths.album}>专辑</PlaylistTrackTH>
+              <TrackCollectionTH width={columnWidths.album}>
+                专辑
+              </TrackCollectionTH>
             )}
           </tr>
-        </PlaylistTracksTHeader>
+        </TrackCollectionTHeader>
         <tbody>
           {tracks.map((item, idx) => (
             <tr key={item.id}>
@@ -207,7 +196,7 @@ export const PlaylistTracks: FC<PlaylistTracksProps> = ({
             </tr>
           ))}
         </tbody>
-      </PlaylistTracksTable>
+      </TrackCollectionTable>
 
       {hasMoreTracks && (
         <Flex vertical align="center" gap={20} mt={30}>

@@ -4,8 +4,8 @@ import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
-import { PlaylistTracks } from '@/components/PlaylistTracks'
 import { PlaylistBadge } from '@/components/Shared/Badge'
+import { TrackCollection } from '@/components/TrackCollection'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
@@ -97,7 +97,7 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
         </Box>
       </Flex>
 
-      <PlaylistTracks playlist={playlist} config={config} />
+      <TrackCollection dataSource={playlist} config={config} />
     </Flex>
   )
 }

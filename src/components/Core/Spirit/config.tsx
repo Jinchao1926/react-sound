@@ -167,6 +167,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       // badges
       song: '0 -463px', // 单曲
       playlist: '0 -243px', // 歌单
+      album: '0 -186px', // 专辑
     },
   },
   icon3: {

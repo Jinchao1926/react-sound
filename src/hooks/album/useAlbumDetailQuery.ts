@@ -25,7 +25,7 @@ export const useAlbumDetailQuery = (id?: number) => {
           id,
         },
       })
-      return data.album
+      return { album: data.album, songs: data.songs }
     },
     enabled: !!id,
     staleTime: Infinity,
