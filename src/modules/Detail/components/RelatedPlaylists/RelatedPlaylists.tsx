@@ -3,20 +3,26 @@ import type { FC } from 'react'
 import { Box, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
-import { useSongPlaylistsQuery } from '@/hooks/song/useSongPlaylistsQuery'
+import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 
-import { SongPlaylistItem } from './SongPlaylist.styles'
+import { RelatedPlaylistItem } from './RelatedPlaylists.styles'
 
-export const SongPlaylist: FC<{ songId: number }> = ({ songId }) => {
-  const { data } = useSongPlaylistsQuery(songId)
+export interface RelatedPlaylistsProps {
+  playlists: PlaylistDetail[]
+  title?: string
+}
 
+export const RelatedPlaylists: FC<RelatedPlaylistsProps> = ({
+  playlists,
+  title = '包含这首歌的歌单',
+}) => {
   return (
     <Box mb={40}>
-      <SectionHeader variant="simple" title="包含这首歌的歌单" />
+      <SectionHeader variant="simple" title={title} />
       <Box mt={20}>
-        {data.map((playlist) => (
-          <SongPlaylistItem key={playlist.id}>
+        {playlists.map((playlist) => (
+          <RelatedPlaylistItem key={playlist.id}>
             <CoverImage
               src={formatSizedImage(playlist.coverImgUrl, 50)}
               to={`/playlist?id=${playlist.id}`}
@@ -46,7 +52,7 @@ export const SongPlaylist: FC<{ songId: number }> = ({ songId }) => {
                 </TextNavLink>
               </Box>
             </Box>
-          </SongPlaylistItem>
+          </RelatedPlaylistItem>
         ))}
       </Box>
     </Box>

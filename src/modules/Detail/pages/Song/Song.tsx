@@ -4,7 +4,7 @@ import { useQueryParamId } from '@/hooks/useQueryParamId'
 
 import { SimilarSong } from './components/SimilarSong'
 import { SongDetail } from './components/SongDetail'
-import { SongPlaylist } from './components/SongPlaylist/'
+import { SongPlaylist } from './components/SongPlaylist'
 import { UserWiki } from './components/UserWiki'
 import { MultiDownload } from '../../components/MultiDownload'
 import {

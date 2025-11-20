@@ -3,23 +3,23 @@ import { useQuery } from '@tanstack/react-query'
 import { useAxios } from '@/providers/AxiosProvider'
 import { PlaylistDetail } from '@/types/playlist'
 
-interface SongPlaylistsApiResponse {
+interface RelatedPlaylistsApiResponse {
   playlists: PlaylistDetail[]
   code: number
 }
 
 /**
- * 获取相似歌单
- * 说明 : 调用此接口 , 传入歌曲 id, 可获得相似歌单
+ * 相关歌单推荐
+ * 说明 : 调用此接口,传入歌单 id 可获取相关歌单(对应页面 [https://music.163.com/#/playlist?id=1](https://music.163.com/#/playlist?id=1))
  */
-export const useSongPlaylistsQuery = (id: number) => {
+export const useRelatedPlaylistsQuery = (id: number) => {
   const axios = useAxios()
 
   const queryResult = useQuery({
-    queryKey: ['songPlaylists', id],
+    queryKey: ['relatedPlaylists', id],
     queryFn: async () => {
-      const { data } = await axios.get<SongPlaylistsApiResponse>(
-        '/simi/playlist',
+      const { data } = await axios.get<RelatedPlaylistsApiResponse>(
+        '/related/playlist',
         {
           params: {
             id,
