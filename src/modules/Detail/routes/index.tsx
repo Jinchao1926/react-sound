@@ -6,6 +6,7 @@ import { OutletLayout } from '@/components/OutletLayout'
 
 const Song = lazy(() => import('../pages/Song'))
 const Playlist = lazy(() => import('../pages/Playlist'))
+const Album = lazy(() => import('../pages/Album'))
 
 export const detailRoutes: RouteObject = {
   path: '/',
@@ -21,7 +22,7 @@ export const detailRoutes: RouteObject = {
     },
     {
       path: '/album',
-      element: <Song />,
+      element: <Album />,
     },
     {
       path: '/song',
