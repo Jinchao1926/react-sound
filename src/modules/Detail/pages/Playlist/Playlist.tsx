@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 
 import { PlaylistDetail } from './components/PlaylistDetail'
+import { PlaylistSubscribers } from './components/PlaylistSubscribers'
 import { RelatedPlaylists } from './components/RelatedPlaylists'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
@@ -22,6 +23,7 @@ export const Playlist: FC = () => {
         <PlaylistDetail playlistId={playlistId} />
       </DetailLeftContent>
       <DetailRightContent>
+        <PlaylistSubscribers playlistId={playlistId} />
         <RelatedPlaylists playlistId={playlistId} />
         <MultiDownload />
       </DetailRightContent>

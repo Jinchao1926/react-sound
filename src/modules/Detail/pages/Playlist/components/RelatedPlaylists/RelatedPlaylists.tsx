@@ -1,8 +1,7 @@
 import { FC } from 'react'
 
 import { useRelatedPlaylistsQuery } from '@/hooks/playlist/useRelatedPlaylistsQuery'
-
-import { RelatedPlaylists as Component } from '../../../components/RelatedPlaylists'
+import { RelatedPlaylists as Component } from '@/modules/Detail/components/RelatedPlaylists'
 
 export const RelatedPlaylists: FC<{ playlistId: number }> = ({
   playlistId,
