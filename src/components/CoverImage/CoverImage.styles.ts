@@ -4,21 +4,21 @@ import styled from 'styled-components'
 import { Image } from '../Core'
 import { Sprite } from '../Core/Spirit'
 
-interface CoverImageWrapperProps {
+interface CoverImageProps {
   width: number
   height: number
 }
 
-export const CoverImageWrapper = styled.div<CoverImageWrapperProps>`
+export const CoverImageWrapper = styled.div<CoverImageProps>`
   position: relative;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   /* overflow: hidden; */
 `
 
-export const StyledImage = styled(Image)`
-  width: 100%;
-  height: 100%;
+export const StyledImage = styled(Image)<CoverImageProps>`
+  width: ${({ width }) => width}px;
+  height: ${({ height }) => height}px;
   object-fit: cover;
 `
 

@@ -1,8 +1,10 @@
 import { FC } from 'react'
 
+import { useAlbumDetailQuery } from '@/hooks/album/useAlbumDetailQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 
 import { AlbumDetail } from './components/AlbumDetail'
+import { PopularArtistAlbums } from './components/PopularArtistAlbums'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
   DetailLeftContent,
@@ -13,8 +15,9 @@ import { UserWiki } from '../../components/UserWiki'
 
 export const Album: FC = () => {
   const { id: albumId } = useQueryParamId()
+  const { data } = useAlbumDetailQuery(albumId)
 
-  if (!albumId) return null
+  if (!albumId || !data) return null
 
   return (
     <DetailWrapper>
@@ -22,8 +25,7 @@ export const Album: FC = () => {
         <AlbumDetail albumId={albumId} />
       </DetailLeftContent>
       <DetailRightContent>
-        {/* <PlaylistSubscribers playlistId={playlistId} />
-        <RelatedPlaylists playlistId={playlistId} /> */}
+        <PopularArtistAlbums artistId={data.album.artist.id} />
         <MultiDownload />
         <UserWiki id={albumId} type="album" />
       </DetailRightContent>

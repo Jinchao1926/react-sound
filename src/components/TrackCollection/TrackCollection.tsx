@@ -41,6 +41,7 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
 }) => {
   const {
     maxRows,
+    headerTitle = '歌曲列表',
     showOutchainLink = false,
     outchainType = 'playlist',
     showAlbumColumn = false,
@@ -69,7 +70,7 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
       <TrackCollectionHeader>
         <Box>
           <Text fontSize={20} lineHeight={28}>
-            歌曲列表
+            {headerTitle}
           </Text>
           <Text color="#666" ml={20} mt={9}>
             {dataSource.trackCount}首歌

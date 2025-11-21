@@ -20,6 +20,7 @@ interface SectionHeaderProps {
   subtitle?: string
   tags?: string[] | Array<{ name: string; href: string }>
   tagsHref?: string
+  moreTitle?: string
   moreHref?: string
 }
 
@@ -30,11 +31,14 @@ export const SectionHeader: FC<SectionHeaderProps> = ({
   subtitle,
   tags,
   tagsHref,
+  moreTitle,
   moreHref,
 }) => {
   const tagLinkHref = tagsHref || moreHref
 
   const moreLinkText = useMemo(() => {
+    if (moreTitle) return moreTitle
+
     switch (variant) {
       case 'primary':
         return '更多'
@@ -43,7 +47,7 @@ export const SectionHeader: FC<SectionHeaderProps> = ({
       default:
         return '更多 >'
     }
-  }, [variant])
+  }, [variant, moreTitle])
 
   return (
     <SectionHeaderWrapper variant={variant} disable={variant !== 'primary'}>
