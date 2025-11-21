@@ -7,6 +7,7 @@ import { AlbumBadge } from '@/components/Shared/Badge'
 import { TrackCollection } from '@/components/TrackCollection/TrackCollection'
 import { TrackCollectionConfig } from '@/components/TrackCollection/TrackCollection.type'
 import { useAlbumDetailQuery } from '@/hooks/album/useAlbumDetailQuery'
+import { useAlbumDynamicQuery } from '@/hooks/album/useAlbumDynamicQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
 
@@ -14,6 +15,7 @@ import { AlbumParagraph } from './AlbumDetail.styles'
 
 export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
   const { data } = useAlbumDetailQuery(albumId)
+  const { data: dynamic } = useAlbumDynamicQuery(albumId)
 
   const config: TrackCollectionConfig = useMemo(() => {
     return {
@@ -65,7 +67,13 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
           <AlbumParagraph>发行公司：{data.album.company}</AlbumParagraph>
 
           <Box mt={20}>
-            <MediaOperationBar />
+            <MediaOperationBar
+              counts={{
+                share: dynamic?.shareCount,
+                download: dynamic?.likedCount,
+                comment: dynamic?.commentCount,
+              }}
+            />
           </Box>
         </Box>
       </Flex>

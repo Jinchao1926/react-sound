@@ -111,6 +111,27 @@ export interface Album {
   company: string
 }
 
+/**
+ {
+    "onSale": false,
+    "albumGameInfo": null,
+    "commentCount": 215,
+    "likedCount": 0,
+    "shareCount": 1255,
+    "isSub": false,
+    "subTime": 0,
+    "subCount": 4016,
+    "code": 200
+  }
+ */
+export interface AlbumDynamic {
+  commentCount: number
+  likedCount: number
+  shareCount: number
+  subCount: number
+  isSub: boolean
+}
+
 /** 歌曲 */
 export interface Song {
   id: number
