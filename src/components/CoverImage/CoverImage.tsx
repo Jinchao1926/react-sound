@@ -40,7 +40,7 @@ export const CoverImage: FC<PropsWithChildren<CoverImageProps>> = ({
 }) => {
   return (
     <CoverImageWrapper className="cover-image" width={size} height={size}>
-      <StyledImage src={src} alt={alt} />
+      <StyledImage src={src} alt={alt} width={size} height={size} />
       {coverSprite && coverIcon ? (
         <CoverOverlay
           sprite={coverSprite}
