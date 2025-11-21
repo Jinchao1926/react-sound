@@ -12,6 +12,7 @@ export interface TrackSource {
 
 export interface TrackCollectionConfig {
   maxRows?: number
+  headerTitle?: string
   showOutchainLink?: boolean
   outchainType?: OutchainType
   showAlbumColumn?: boolean
