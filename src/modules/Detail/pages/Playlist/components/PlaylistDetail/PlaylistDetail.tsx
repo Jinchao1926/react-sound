@@ -7,6 +7,7 @@ import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { PlaylistBadge } from '@/components/Shared/Badge'
 import { TrackCollection } from '@/components/TrackCollection'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
+import { usePlaylistDynamicQuery } from '@/hooks/playlist/usePlaylistDynamicQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
 
@@ -18,6 +19,7 @@ import {
 
 export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
   const { data: playlist } = usePlaylistDetailQuery(playlistId)
+  const { data: dynamic } = usePlaylistDynamicQuery(playlistId)
 
   const config = useMemo(() => {
     return {
@@ -77,7 +79,13 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
           </Flex>
 
           <Box mb={25}>
-            <MediaOperationBar />
+            <MediaOperationBar
+              counts={{
+                collect: dynamic?.bookedCount,
+                share: dynamic?.shareCount,
+                comment: dynamic?.commentCount,
+              }}
+            />
           </Box>
 
           {playlist.tags.length > 0 && (

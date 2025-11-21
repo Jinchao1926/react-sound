@@ -486,3 +486,27 @@ export interface PlaylistDetail {
     avatarUrl: string
   }[]
 }
+
+/** 
+ {
+    "commentCount": 577,
+    "shareCount": 2283,
+    "playCount": 52928784,
+    "bookedCount": 381312,
+    "subscribed": false,
+    "remarkName": null,
+    "followed": false,
+    "score": "8.3",
+    "gradeStatus": "OPENED",
+    "remixVideo": null,
+    "code": 200
+  }
+ */
+export interface PlaylistDynamic {
+  commentCount: number
+  shareCount: number
+  playCount: number
+  bookedCount: number
+  subscribed: boolean
+  followed: boolean
+}
