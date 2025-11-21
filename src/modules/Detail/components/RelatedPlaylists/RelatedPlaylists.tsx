@@ -17,6 +17,8 @@ export const RelatedPlaylists: FC<RelatedPlaylistsProps> = ({
   playlists,
   title = '包含这首歌的歌单',
 }) => {
+  if (playlists.length === 0) return null
+
   return (
     <Box mb={40}>
       <SectionHeader variant="simple" title={title} />

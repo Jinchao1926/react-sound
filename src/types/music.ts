@@ -109,6 +109,7 @@ export interface Album {
   picUrl: string
   publishTime: number
   company: string
+  description: string
 }
 
 /**

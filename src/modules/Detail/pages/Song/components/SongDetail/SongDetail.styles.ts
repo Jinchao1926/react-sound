@@ -54,26 +54,3 @@ export const LyricList = styled.div`
   line-height: 23px;
   white-space: pre-line;
 `
-
-export const ExpandButton = styled.div`
-  margin-top: 5px;
-  color: #0c73c2;
-  cursor: pointer;
-  &:hover {
-    text-decoration: underline;
-  }
-`
-
-export const ExpandIcon = styled(Sprite)
-  .withConfig({
-    shouldForwardProp: (prop) => prop !== ('expanded' as string),
-  })
-  .attrs<{ expanded: boolean }>((props) => ({
-    sprite: 'icon',
-    icon: props.expanded ? 'expand' : 'collapse',
-    component: 'span',
-  }))`
-  display: inline-block;
-  width: 11px;
-  height: 8px;
-`

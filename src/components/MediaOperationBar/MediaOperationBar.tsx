@@ -3,8 +3,8 @@ import React, { type FC } from 'react'
 import { formatPlayCount } from '@/utils/dataFormat'
 
 import { AddBlueButton, PlayBlueButton } from './MediaOperationBar.styles'
+import { GreyButton } from '../Buttons'
 import { Flex } from '../Core'
-import { GreyButton } from '../GreyButton'
 
 interface MediaOperationBarProps {
   counts?: {
