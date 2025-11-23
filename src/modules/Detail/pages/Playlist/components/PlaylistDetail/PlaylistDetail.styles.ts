@@ -10,13 +10,6 @@ export const PlaylistCover = styled.div`
   flex-shrink: 0;
 `
 
-export const PlaylistDescription = styled.p`
-  margin: 5px 0 0;
-  color: #666;
-  line-height: 18px;
-  white-space: pre-line;
-`
-
 export const PlaylistTagLink = styled(NavLink)`
   line-height: 22px;
   padding: 0 13px;

@@ -1,23 +1,22 @@
 import { FC, useMemo } from 'react'
 
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
+import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
 import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { PlaylistBadge } from '@/components/Shared/Badge'
 import { TrackCollection } from '@/components/TrackCollection'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
+import { usePlaylistDynamicQuery } from '@/hooks/playlist/usePlaylistDynamicQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
 
-import {
-  PlaylistCover,
-  PlaylistDescription,
-  PlaylistTagLink,
-} from './PlaylistDetail.styles'
+import { PlaylistCover, PlaylistTagLink } from './PlaylistDetail.styles'
 
 export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
   const { data: playlist } = usePlaylistDetailQuery(playlistId)
+  const { data: dynamic } = usePlaylistDynamicQuery(playlistId)
 
   const config = useMemo(() => {
     return {
@@ -49,7 +48,7 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
           />
         </PlaylistCover>
 
-        <Box pt={4}>
+        <Box pt={4} flex={1}>
           <Flex gap={10} mb={12}>
             <PlaylistBadge />
             <Text fontSize={20}>{playlist.name}</Text>
@@ -77,7 +76,13 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
           </Flex>
 
           <Box mb={25}>
-            <MediaOperationBar />
+            <MediaOperationBar
+              counts={{
+                collect: dynamic?.bookedCount,
+                share: dynamic?.shareCount,
+                comment: dynamic?.commentCount,
+              }}
+            />
           </Box>
 
           {playlist.tags.length > 0 && (
@@ -91,9 +96,9 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
             </Flex>
           )}
 
-          <PlaylistDescription>
-            介绍：{playlist.description}
-          </PlaylistDescription>
+          <ExpandableParagraph maxLength={100} mt={5} mb={0}>
+            {`介绍：${playlist.description}`}
+          </ExpandableParagraph>
         </Box>
       </Flex>
 

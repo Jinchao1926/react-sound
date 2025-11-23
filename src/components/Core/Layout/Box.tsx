@@ -166,6 +166,7 @@ export interface Styles extends HTMLAttributes<HTMLDivElement> {
   lineHeight?: CSSProperties['lineHeight'] | number
   textAlign?: CSSProperties['textAlign']
   textDecoration?: CSSProperties['textDecoration']
+  textIndent?: CSSProperties['textIndent'] | number
   whiteSpace?: CSSProperties['whiteSpace']
   textOverflow?: CSSProperties['textOverflow']
   overflow?: CSSProperties['overflow']
@@ -318,6 +319,8 @@ export const Box = styled.div.withConfig({
   ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
   ${({ textDecoration }) =>
     textDecoration && `text-decoration: ${textDecoration};`}
+  ${({ textIndent }) =>
+    textIndent !== undefined && `text-indent: ${toPx(textIndent)};`}
   ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace};`}
   ${({ textOverflow }) => textOverflow && `text-overflow: ${textOverflow};`}
   ${({ overflow }) => overflow && `overflow: ${overflow};`}

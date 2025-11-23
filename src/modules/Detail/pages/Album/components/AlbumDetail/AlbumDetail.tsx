@@ -1,19 +1,22 @@
 import { FC, useMemo } from 'react'
 
 import { Box, Flex, Text, TextNavLink } from '@/components/Core'
+import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
 import { CoverImage } from '@/components/CoverImage'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { AlbumBadge } from '@/components/Shared/Badge'
 import { TrackCollection } from '@/components/TrackCollection/TrackCollection'
 import { TrackCollectionConfig } from '@/components/TrackCollection/TrackCollection.type'
 import { useAlbumDetailQuery } from '@/hooks/album/useAlbumDetailQuery'
+import { useAlbumDynamicQuery } from '@/hooks/album/useAlbumDynamicQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
 
-import { AlbumParagraph } from './AlbumDetail.styles'
+import { AlbumHead3, AlbumParagraph } from './AlbumDetail.styles'
 
 export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
   const { data } = useAlbumDetailQuery(albumId)
+  const { data: dynamic } = useAlbumDynamicQuery(albumId)
 
   const config: TrackCollectionConfig = useMemo(() => {
     return {
@@ -34,7 +37,7 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
   if (!data) return null
 
   return (
-    <Flex vertical gap={27}>
+    <Box>
       <Flex gap={53}>
         <CoverImage
           src={formatSizedImage(data.album.picUrl, 177)}
@@ -65,10 +68,29 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
           <AlbumParagraph>发行公司：{data.album.company}</AlbumParagraph>
 
           <Box mt={20}>
-            <MediaOperationBar />
+            <MediaOperationBar
+              counts={{
+                share: dynamic?.shareCount,
+                download: dynamic?.likedCount,
+                comment: dynamic?.commentCount,
+              }}
+            />
           </Box>
         </Box>
       </Flex>
+
+      <Box mt={20} mb={27}>
+        <AlbumHead3>专辑介绍：</AlbumHead3>
+        <ExpandableParagraph
+          maxLength={160}
+          split={true}
+          mt={4}
+          lineHeight={24}
+          textIndent="2em"
+        >
+          {data?.album.description}
+        </ExpandableParagraph>
+      </Box>
 
       <TrackCollection
         dataSource={{
@@ -79,6 +101,6 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
         }}
         config={config}
       />
-    </Flex>
+    </Box>
   )
 }

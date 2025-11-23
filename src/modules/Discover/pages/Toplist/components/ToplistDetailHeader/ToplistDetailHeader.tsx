@@ -35,10 +35,10 @@ export const ToplistDetailHeader: FC<{ playlist: PlaylistDetail }> = ({
           )}
         </Flex>
         <MediaOperationBar
-          titles={{
-            collect: `(${playlist.subscribedCount})`,
-            share: `(${playlist.shareCount})`,
-            comment: `(${playlist.commentCount})`,
+          counts={{
+            collect: playlist.subscribedCount,
+            share: playlist.shareCount,
+            comment: playlist.commentCount,
           }}
         />
       </Box>

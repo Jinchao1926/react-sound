@@ -7,3 +7,9 @@ export const AlbumParagraph = styled(Paragraph)`
   line-height: 18px;
   color: #666;
 `
+
+export const AlbumHead3 = styled.h3`
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+`

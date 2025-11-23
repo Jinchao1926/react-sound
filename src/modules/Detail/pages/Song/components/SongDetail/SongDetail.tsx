@@ -1,5 +1,6 @@
 import { FC, useEffect, useMemo, useRef, useState } from 'react'
 
+import { ExpandButton } from '@/components/Buttons'
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
 import { UserLink } from '@/components/Links'
 import { OutchainLink } from '@/components/Links/OutchainLink'
@@ -11,8 +12,6 @@ import { usePlayerContext } from '@/providers/PlayerProvider'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
-  ExpandButton,
-  ExpandIcon,
   LyricList,
   OpenClientButton,
   SongCD,
@@ -105,10 +104,10 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
         {/* 歌词显示部分 */}
         <LyricList ref={lyricRef}>{lyricString}</LyricList>
         {lyric.length > INITIAL_LYRIC_COUNT && (
-          <ExpandButton onClick={() => setShowingMore((prev) => !prev)}>
-            {showingMore ? '收起' : '展开'}
-            <ExpandIcon expanded={!showingMore} />
-          </ExpandButton>
+          <ExpandButton
+            expanded={!showingMore}
+            onClick={() => setShowingMore((prev) => !prev)}
+          />
         )}
       </Box>
     </SongDetailWrapper>

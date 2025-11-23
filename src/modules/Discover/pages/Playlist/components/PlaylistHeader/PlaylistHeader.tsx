@@ -2,8 +2,8 @@ import React, { FC, useCallback, useState, useEffect, useRef } from 'react'
 
 import { useLocation } from 'react-router-dom'
 
+import { GreyButton } from '@/components/Buttons'
 import { Box, Flex, Text } from '@/components/Core'
-import { GreyButton } from '@/components/GreyButton'
 
 import {
   PlaylistHeaderWrapper,
