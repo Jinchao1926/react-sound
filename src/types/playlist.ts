@@ -468,7 +468,7 @@ export interface PlaylistDetail {
       identityIconUrl: string
     }
   }
-  description?: string
+  description: string
   tags: string[]
   updateFrequency?: string
   updateTime: number

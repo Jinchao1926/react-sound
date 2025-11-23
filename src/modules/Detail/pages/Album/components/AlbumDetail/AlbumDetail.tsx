@@ -1,7 +1,7 @@
-import { FC, useMemo, useState } from 'react'
+import { FC, useMemo } from 'react'
 
-import { ExpandButton } from '@/components/Buttons'
 import { Box, Flex, Text, TextNavLink } from '@/components/Core'
+import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
 import { CoverImage } from '@/components/CoverImage'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { AlbumBadge } from '@/components/Shared/Badge'
@@ -12,24 +12,11 @@ import { useAlbumDynamicQuery } from '@/hooks/album/useAlbumDynamicQuery'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
 
-import {
-  AlbumDescription,
-  AlbumHead3,
-  AlbumParagraph,
-} from './AlbumDetail.styles'
-
-const INITIAL_DESCRIPTION_COUNT = 160
+import { AlbumHead3, AlbumParagraph } from './AlbumDetail.styles'
 
 export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
   const { data } = useAlbumDetailQuery(albumId)
   const { data: dynamic } = useAlbumDynamicQuery(albumId)
-
-  const [showingMore, setShowingMore] = useState<boolean>(false)
-  const descParagraphs = useMemo(() => {
-    return data?.album.description
-      .slice(0, showingMore ? undefined : INITIAL_DESCRIPTION_COUNT)
-      .split('\n')
-  }, [data?.album.description, showingMore])
 
   const config: TrackCollectionConfig = useMemo(() => {
     return {
@@ -94,25 +81,15 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
 
       <Box mt={20} mb={27}>
         <AlbumHead3>专辑介绍：</AlbumHead3>
-        {descParagraphs?.map((line, index) => {
-          const isLastLine = index === descParagraphs.length - 1
-          const shouldShowEllipsis =
-            !showingMore &&
-            (data?.album.description?.length || 0) > INITIAL_DESCRIPTION_COUNT
-
-          return (
-            <AlbumDescription key={index}>
-              {line}
-              {isLastLine && shouldShowEllipsis && '...'}
-            </AlbumDescription>
-          )
-        })}
-        <Flex justify="flex-end">
-          <ExpandButton
-            expanded={!showingMore}
-            onClick={() => setShowingMore(!showingMore)}
-          />
-        </Flex>
+        <ExpandableParagraph
+          maxLength={160}
+          split={true}
+          mt={4}
+          lineHeight={24}
+          textIndent="2em"
+        >
+          {data?.album.description}
+        </ExpandableParagraph>
       </Box>
 
       <TrackCollection
