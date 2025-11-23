@@ -8,7 +8,7 @@ import { Flex } from '../Layout/Flex'
 
 interface ExpandParagraphProps extends Styles {
   maxLength: number
-  split: boolean
+  split?: boolean
 }
 
 export const ExpandableParagraph: FC<
