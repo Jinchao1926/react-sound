@@ -1,15 +1,15 @@
 import React, { type FC } from 'react'
 
-import { MusicIcon, MusicLink } from './OutchainLink.styles'
+import { MusicIcon, MusicLink } from './ExternalLink.styles'
 import { Flex, Styles } from '../Core'
 
-export type OutchainType = 'playlist' | 'album' | 'song'
-interface OutchainLinkProps extends Omit<Styles, 'id'> {
+export type ExternalLinkType = 'playlist' | 'album' | 'song'
+interface ExternalLinkProps extends Omit<Styles, 'id'> {
   id: number | string
-  type: OutchainType
+  type: ExternalLinkType
 }
 
-export const OutchainLink: FC<OutchainLinkProps> = ({
+export const ExternalLink: FC<ExternalLinkProps> = ({
   id,
   type,
   ...styleProps

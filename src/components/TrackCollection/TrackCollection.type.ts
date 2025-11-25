@@ -1,6 +1,6 @@
 import { Track } from '@/types/track'
 
-import { OutchainType } from '../Links/OutchainLink'
+import { ExternalLinkType } from '../Links'
 
 export interface TrackSource {
   id: number
@@ -13,8 +13,8 @@ export interface TrackSource {
 export interface TrackCollectionConfig {
   maxRows?: number
   headerTitle?: string
-  showOutchainLink?: boolean
-  outchainType?: OutchainType
+  showExternalLink?: boolean
+  externalLinkType?: ExternalLinkType
   showAlbumColumn?: boolean
   showIndexTrend?: boolean
   showTitleCoverImage?: boolean

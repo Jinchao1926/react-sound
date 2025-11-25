@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useMemo, useState } from 'react'
+import { forwardRef, PropsWithChildren, useMemo, useState } from 'react'
 
 import { ExpandButton } from '@/components/Buttons/ExpandButton'
 
@@ -7,50 +7,116 @@ import { Box, Styles } from '../Layout/Box'
 import { Flex } from '../Layout/Flex'
 
 interface ExpandParagraphProps extends Styles {
-  maxLength: number
-  split?: boolean
+  maxLines?: number
+  maxChars?: number
+  ellipsis?: boolean
+  expandPosition?: 'left' | 'right'
+  onExpand?: (expanded: boolean) => void
 }
 
-export const ExpandableParagraph: FC<
+export const ExpandableParagraph = forwardRef<
+  HTMLDivElement,
   PropsWithChildren<ExpandParagraphProps>
-> = ({ maxLength, split, children, ...rest }) => {
-  const [showingMore, setShowingMore] = useState<boolean>(false)
+>(
+  (
+    {
+      maxLines,
+      maxChars,
+      ellipsis = true,
+      expandPosition = 'right',
+      onExpand,
+      children,
+      ...rest
+    },
+    ref
+  ) => {
+    const [expanded, setExpanded] = useState(false)
 
-  const content = children as string
-  const contents = useMemo(() => {
-    const sliced = content.slice(0, showingMore ? undefined : maxLength)
+    const { content, isArray, hasMore } = useMemo(() => {
+      const isArray = Array.isArray(children)
+      const content: string | string[] = isArray
+        ? children
+        : (children as string)
+      // const allLines = Array.isArray(content) ? content : content.split('\n')
 
-    return split ? sliced.split('\n') : [sliced]
-  }, [content, showingMore, maxLength, split])
+      if (expanded) {
+        return { content, isArray, hasMore: false }
+      }
 
-  return (
-    <Box>
-      {contents.map((line, index) => {
-        const isLastLine = index === contents.length - 1
-        const shouldShowEllipsis = !showingMore && content.length > maxLength
+      // Slice by lines
+      if (maxLines && isArray && content.length > maxLines) {
+        return { content: content.slice(0, maxLines), isArray, hasMore: true }
+      }
 
-        return (
+      // Slice by characters
+      if (maxChars) {
+        if (isArray) {
+          const fullText = (content as string[]).join('\n')
+          return {
+            content: fullText.slice(0, maxChars).split('\n'),
+            isArray,
+            hasMore: fullText.length > maxChars,
+          }
+        } else {
+          const fullText = content as string
+          return {
+            content: fullText.slice(0, maxChars),
+            isArray,
+            hasMore: fullText.length > maxChars,
+          }
+        }
+      }
+
+      return { content, isArray, hasMore: false }
+    }, [children, expanded, maxLines, maxChars])
+
+    return (
+      <Box ref={ref}>
+        {isArray ? (
+          (content as string[]).map((line, idx) => (
+            <Paragraph
+              key={idx}
+              whiteSpace="pre-line"
+              color="#666"
+              lineHeight={18}
+              m={0}
+              {...rest}
+            >
+              {line}
+              {idx === (content as string[]).length - 1 &&
+                ellipsis &&
+                hasMore &&
+                '...'}
+            </Paragraph>
+          ))
+        ) : (
           <Paragraph
-            key={index}
             whiteSpace="pre-line"
             color="#666"
             lineHeight={18}
-            mb={0}
+            m={0}
             {...rest}
           >
-            {line}
-            {isLastLine && shouldShowEllipsis && '...'}
+            {content}
+            {ellipsis && hasMore && '...'}
           </Paragraph>
-        )
-      })}
-      <Flex justify="flex-end">
-        {content.length > maxLength && (
-          <ExpandButton
-            expanded={!showingMore}
-            onClick={() => setShowingMore((prev) => !prev)}
-          />
         )}
-      </Flex>
-    </Box>
-  )
-}
+
+        <Flex justify={expandPosition === 'right' ? 'flex-end' : 'flex-start'}>
+          <ExpandButton
+            expanded={!expanded}
+            onClick={() => {
+              setExpanded((prev) => {
+                const next = !prev
+                onExpand?.(next)
+                return next
+              })
+            }}
+          />
+        </Flex>
+      </Box>
+    )
+  }
+)
+
+ExpandableParagraph.displayName = 'ExpandableParagraph'
