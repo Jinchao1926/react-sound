@@ -21,7 +21,7 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
   const config = useMemo(() => {
     return {
       maxRows: 20,
-      showOutchainLink: true,
+      showExternalLink: true,
       showAlbumColumn: true,
       showIndexTrend: false,
       showTitleCoverImage: false,

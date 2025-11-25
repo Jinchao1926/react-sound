@@ -2,8 +2,7 @@ import { FC, useMemo, useRef } from 'react'
 
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
-import { UserLink } from '@/components/Links'
-import { OutchainLink } from '@/components/Links/OutchainLink'
+import { ExternalLink, UserLink } from '@/components/Links'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { SongBadge } from '@/components/Shared/Badge'
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
@@ -63,7 +62,7 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
           />
           <SongCDCover />
         </SongCD>
-        <OutchainLink id={song.id} type="song" mt={20} ml={46} />
+        <ExternalLink id={song.id} type="song" mt={20} ml={46} />
         <OpenClientButton>点击打开客户端</OpenClientButton>
       </Box>
 

@@ -28,7 +28,7 @@ import {
   TrackCollectionTHeader,
 } from './TrackCollection.styles'
 import { TrackCollectionConfig, TrackSource } from './TrackCollection.type'
-import { OutchainLink } from '../Links/OutchainLink'
+import { ExternalLink } from '../Links'
 
 export interface TrackCollectionProps {
   dataSource: TrackSource
@@ -42,8 +42,8 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
   const {
     maxRows,
     headerTitle = '歌曲列表',
-    showOutchainLink = false,
-    outchainType = 'playlist',
+    showExternalLink = false,
+    externalLinkType = 'playlist',
     showAlbumColumn = false,
     showIndexTrend = true,
     showTitleCoverImage = true,
@@ -77,8 +77,8 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
           </Text>
         </Box>
         <Flex gap={20} align="center">
-          {showOutchainLink && (
-            <OutchainLink id={dataSource.id} type={outchainType} />
+          {showExternalLink && (
+            <ExternalLink id={dataSource.id} type={externalLinkType} />
           )}
           {dataSource.playCount && (
             <Text color="#666">

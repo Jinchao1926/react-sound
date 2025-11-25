@@ -25,8 +25,8 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
   const config: TrackCollectionConfig = useMemo(() => {
     return {
       headerTitle: '包含歌曲列表',
-      showOutchainLink: true,
-      outchainType: 'album',
+      showExternalLink: true,
+      externalLinkType: 'album',
       showAlbumColumn: false,
       showIndexTrend: false,
       showTitleCoverImage: false,
