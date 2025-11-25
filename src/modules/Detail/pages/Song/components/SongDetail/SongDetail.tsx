@@ -1,7 +1,7 @@
-import { FC, useEffect, useMemo, useRef, useState } from 'react'
+import { FC, useMemo, useRef } from 'react'
 
-import { ExpandButton } from '@/components/Buttons'
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
+import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
 import { UserLink } from '@/components/Links'
 import { OutchainLink } from '@/components/Links/OutchainLink'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
@@ -12,7 +12,6 @@ import { usePlayerContext } from '@/providers/PlayerProvider'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
-  LyricList,
   OpenClientButton,
   SongCD,
   SongCDCover,
@@ -20,43 +19,34 @@ import {
   SongLink,
 } from './SongDetail.styles'
 
-const INITIAL_LYRIC_COUNT = 13
-
 export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
-  const [showingMore, setShowingMore] = useState<boolean>(false)
   const lyricRef = useRef<HTMLDivElement>(null)
 
   const { data: song } = useSongDetailQuery(songId)
   const { data: lyric } = useSongLyricQuery(songId)
   const { playSong, addToPlaylist } = usePlayerContext()
 
-  const lyricString = useMemo(() => {
-    if (!lyric.length) {
-      return ''
-    }
+  const lyrics = useMemo(() => {
+    return lyric.map((item) => item.text)
+  }, [lyric])
 
-    let lyricContents = lyric.map((item) => item.text)
-    if (!showingMore) {
-      lyricContents = lyricContents.slice(0, INITIAL_LYRIC_COUNT)
-    }
-    return lyricContents.join('\n')
-  }, [lyric, showingMore])
-
-  // 处理展开/收起时的滚动位置
-  useEffect(() => {
+  // 处理展开/收起时的滚动位置，保持按钮在视口中的位置不变
+  const onExpandChange = () => {
+    /*
     if (!lyricRef.current) return
     const scrollY = window.scrollY
     const rect = lyricRef.current.getBoundingClientRect()
+    const buttonTop = rect.bottom // 按钮在底部
 
-    const timeoutId = setTimeout(() => {
+    requestAnimationFrame(() => {
       if (!lyricRef.current) return
       const newRect = lyricRef.current.getBoundingClientRect()
-      const y = scrollY + newRect.height - rect.height
-      window.scrollTo(window.scrollX, y)
-    }, 0)
-
-    return () => clearTimeout(timeoutId)
-  }, [showingMore])
+      const newButtonTop = newRect.bottom
+      const offset = newButtonTop - buttonTop
+      window.scrollTo(window.scrollX, scrollY + offset)
+    })
+      */
+  }
 
   if (!song) return null
 
@@ -94,21 +84,27 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
           </TextNavLink>
         </SongLink>
 
-        <MediaOperationBar
-          callbacks={{
-            onPlayClick: () => playSong(song),
-            onAddClick: () => addToPlaylist(song),
-          }}
-        />
+        <Box mb={38}>
+          <MediaOperationBar
+            callbacks={{
+              onPlayClick: () => playSong(song),
+              onAddClick: () => addToPlaylist(song),
+            }}
+          />
+        </Box>
 
         {/* 歌词显示部分 */}
-        <LyricList ref={lyricRef}>{lyricString}</LyricList>
-        {lyric.length > INITIAL_LYRIC_COUNT && (
-          <ExpandButton
-            expanded={!showingMore}
-            onClick={() => setShowingMore((prev) => !prev)}
-          />
-        )}
+        <ExpandableParagraph
+          ref={lyricRef}
+          maxLines={13}
+          expandPosition="left"
+          ellipsis={false}
+          onExpand={onExpandChange}
+          lineHeight={23}
+          color="#333"
+        >
+          {lyrics}
+        </ExpandableParagraph>
       </Box>
     </SongDetailWrapper>
   )

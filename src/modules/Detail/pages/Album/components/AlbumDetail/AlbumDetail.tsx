@@ -18,6 +18,10 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
   const { data } = useAlbumDetailQuery(albumId)
   const { data: dynamic } = useAlbumDynamicQuery(albumId)
 
+  const descriptions = useMemo(() => {
+    return data?.album.description.split('\n') || []
+  }, [data?.album.description])
+
   const config: TrackCollectionConfig = useMemo(() => {
     return {
       headerTitle: '包含歌曲列表',
@@ -82,13 +86,12 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
       <Box mt={20} mb={27}>
         <AlbumHead3>专辑介绍：</AlbumHead3>
         <ExpandableParagraph
-          maxLength={160}
-          split={true}
+          maxChars={160}
           mt={4}
           lineHeight={24}
           textIndent="2em"
         >
-          {data?.album.description}
+          {descriptions}
         </ExpandableParagraph>
       </Box>
 

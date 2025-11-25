@@ -47,10 +47,3 @@ export const SongLink = styled(Flex)`
   margin: 10px 0;
   color: #999;
 `
-
-export const LyricList = styled.div`
-  display: inline-block;
-  margin-top: 38px;
-  line-height: 23px;
-  white-space: pre-line;
-`

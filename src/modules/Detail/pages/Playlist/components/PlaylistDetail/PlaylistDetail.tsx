@@ -96,7 +96,7 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
             </Flex>
           )}
 
-          <ExpandableParagraph maxLength={100} mt={5} mb={0}>
+          <ExpandableParagraph maxChars={103} mt={5} mb={0}>
             {`介绍：${playlist.description}`}
           </ExpandableParagraph>
         </Box>
