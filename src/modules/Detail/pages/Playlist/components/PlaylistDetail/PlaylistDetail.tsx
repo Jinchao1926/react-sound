@@ -9,6 +9,7 @@ import { PlaylistBadge } from '@/components/Shared/Badge'
 import { TrackCollection } from '@/components/TrackCollection'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
 import { usePlaylistDynamicQuery } from '@/hooks/playlist/usePlaylistDynamicQuery'
+import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
 
@@ -58,11 +59,11 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
             <CoverImage
               src={formatSizedImage(playlist.creator.avatarUrl, 35)}
               alt={playlist.creator.nickname}
-              to={`/user/home?id=${playlist.creator.userId}`}
+              to={routeBuilder.user(playlist.creator.userId)}
               size={35}
             />
             <TextNavLink
-              to={`/user/home?id=${playlist.creator.userId}`}
+              to={routeBuilder.user(playlist.creator.userId)}
               color="#0c73c2"
               ml={10}
             >
@@ -89,7 +90,10 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
             <Flex align="center">
               标签：
               {playlist.tags.map((tag) => (
-                <PlaylistTagLink key={tag} to={`/discover/playlist?cat=${tag}`}>
+                <PlaylistTagLink
+                  key={tag}
+                  to={routeBuilder.discoverPlaylist(tag)}
+                >
                   {tag}
                 </PlaylistTagLink>
               ))}

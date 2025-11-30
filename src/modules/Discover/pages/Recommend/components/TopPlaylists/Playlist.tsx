@@ -10,6 +10,7 @@ import {
   PlayButtonSM,
 } from '@/components/Shared/Media'
 import { usePlayerContext } from '@/providers/PlayerProvider'
+import { routeBuilder } from '@/routers'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 
@@ -60,7 +61,7 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
           <SongItem key={song.id}>
             <SongIndex>{index + 1}</SongIndex>
             <TextNavLink
-              to={`/song?id=${song.id}`}
+              to={routeBuilder.song(song.id)}
               color="#000"
               width={170}
               flex={1}

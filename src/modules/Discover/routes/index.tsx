@@ -3,7 +3,11 @@ import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
 
-import { djRadioRoutes } from '../../DJRadio/routes'
+import {
+  discoverRouteBuilder as rawDiscoverRouteBuilder,
+  discoverRoutePath,
+} from './config'
+import { djRadioRoutes, radioRouteBuilder } from '../../DJRadio/routes'
 
 // Discover 模块页面组件
 const Discover = lazy(() => import('../index'))
@@ -15,33 +19,38 @@ const Artist = lazy(() => import('../pages/Artist'))
 const Album = lazy(() => import('../pages/Album'))
 
 export const discoverRoutes: RouteObject = {
-  path: '/discover',
+  path: discoverRoutePath.discover,
   element: <Discover />,
   children: [
     {
-      path: '/discover',
-      element: <Navigate to="/discover/recommend" />,
+      path: discoverRoutePath.discover,
+      element: <Navigate to={discoverRoutePath.discoverRecommend} />,
     },
     {
-      path: '/discover/recommend',
+      path: discoverRoutePath.discoverRecommend,
       element: <Recommend />,
     },
     {
-      path: '/discover/toplist',
+      path: discoverRoutePath.discoverToplist,
       element: <Toplist />,
     },
     {
-      path: '/discover/playlist',
+      path: discoverRoutePath.discoverPlaylist,
       element: <Playlist />,
     },
     djRadioRoutes,
     {
-      path: '/discover/artist',
+      path: discoverRoutePath.discoverArtist,
       element: <Artist />,
     },
     {
-      path: '/discover/album',
+      path: discoverRoutePath.discoverAlbum,
       element: <Album />,
     },
   ],
+}
+
+export const discoverRouteBuilder = {
+  ...rawDiscoverRouteBuilder,
+  ...radioRouteBuilder,
 }

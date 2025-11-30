@@ -4,6 +4,7 @@ import { Box, Flex } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
+import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 export const PlaylistSubscribers: FC<{ playlistId: number }> = ({
@@ -22,7 +23,7 @@ export const PlaylistSubscribers: FC<{ playlistId: number }> = ({
             key={subscriber.userId}
             src={formatSizedImage(subscriber.avatarUrl, 40)}
             alt={subscriber.nickname}
-            to={`/user/home?id=${subscriber.userId}`}
+            to={routeBuilder.user(subscriber.userId)}
             size={40}
           />
         ))}

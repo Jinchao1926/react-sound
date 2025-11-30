@@ -4,6 +4,7 @@ import { Box, Text, TextNavLink } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useRecommendedProgramsQuery } from '@/hooks/program/useRecommendedProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
+import { routeBuilder } from '@/routers'
 import { Program } from '@/types/program'
 
 import { ProgramRecommendWrapper } from './ProgramRecommend.styles'
@@ -85,7 +86,7 @@ export const ProgramRecommend: FC<{ isCompact?: boolean }> = ({
             {renderProgramContent(item)}
 
             <CategoryLink
-              to={`/discover/djradio/category?id=${item.radio.categoryId}`}
+              to={routeBuilder.discoverRadioCategory(item.radio.categoryId)}
             >
               {item.radio.category}
             </CategoryLink>

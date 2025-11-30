@@ -7,6 +7,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 import { useTopProgramsQuery } from '@/hooks/program/useTopProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { RankingTrend } from '@/modules/DJRadio/components/RankingTrend'
+import { routeBuilder } from '@/routers'
 import { Program } from '@/types/program'
 import { padLeft, formatMonthDay } from '@/utils/timeFormat'
 
@@ -78,7 +79,7 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
         {radioLink}
         <Box width={140} ml={10} mt={1}>
           <CategoryLink
-            to={`/discover/djradio/category?id=${program.radio.categoryId}`}
+            to={routeBuilder.discoverRadioCategory(program.radio.categoryId)}
           >
             {program.radio.category}
           </CategoryLink>

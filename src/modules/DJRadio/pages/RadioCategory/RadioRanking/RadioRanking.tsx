@@ -6,6 +6,7 @@ import { IdentityIcon } from '@/components/IdentityIcon'
 import { JCPagination } from '@/components/Pagination'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useTopRadiosQuery } from '@/hooks/djradio/useTopRadiosQuery'
+import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
@@ -38,7 +39,7 @@ export const RadioRanking: FC<{ id: number }> = ({ id }) => {
             <CoverImage
               src={formatSizedImage(item.picUrl, 120)}
               alt={item.name}
-              to={`/djradio?id=${item.id}`}
+              to={routeBuilder.radio(item.id)}
               size={120}
             />
 
@@ -46,7 +47,11 @@ export const RadioRanking: FC<{ id: number }> = ({ id }) => {
               <RadioName>{item.name}</RadioName>
               <Flex align="center" mb={8} lineHeight={20}>
                 <RadioCreatorIcon />
-                <TextNavLink to={`/user/home?=${item.dj.userId}`} ml={8} mr={3}>
+                <TextNavLink
+                  to={routeBuilder.user(item.dj.userId)}
+                  ml={8}
+                  mr={3}
+                >
                   {item.dj.nickname}
                 </TextNavLink>
                 <IdentityIcon avatarDetail={item.dj.avatarDetail} />

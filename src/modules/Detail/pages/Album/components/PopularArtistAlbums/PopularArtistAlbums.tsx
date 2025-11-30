@@ -4,6 +4,7 @@ import { Box, Paragraph, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useArtistAlbumsQuery } from '@/hooks/artist/useArtistAlbumsQuery'
+import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
 
@@ -25,14 +26,14 @@ export const PopularArtistAlbums: FC<{ artistId: number }> = ({ artistId }) => {
           <PopularAlbumItem key={album.id}>
             <CoverImage
               src={formatSizedImage(album.picUrl, 50)}
-              to={`/playlist?id=${album.id}`}
+              to={routeBuilder.playlist(album.id)}
               alt={album.name}
               size={50}
             />
 
             <Box width={140}>
               <TextNavLink
-                to={`/album?id=${album.id}`}
+                to={routeBuilder.album(album.id)}
                 fontSize={14}
                 lineHeight={24}
                 color="#000"

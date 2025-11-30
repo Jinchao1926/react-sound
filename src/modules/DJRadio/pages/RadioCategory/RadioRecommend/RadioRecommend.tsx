@@ -4,6 +4,7 @@ import { Box, Paragraph } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useRadiosQuery } from '@/hooks/djradio/useRadiosQuery'
+import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import { RadioNameLink, RadioItemList } from './RadioRecommend.styles'
@@ -20,11 +21,11 @@ export const RadioRecommend: FC<{ id: number }> = ({ id }) => {
             <CoverImage
               src={formatSizedImage(item.picUrl, 150)}
               alt={item.name}
-              to={`/djradio?id=${item.id}`}
+              to={routeBuilder.radio(item.id)}
               size={150}
             />
 
-            <RadioNameLink to={`/djradio?id=${item.id}`}>
+            <RadioNameLink to={routeBuilder.radio(item.id)}>
               {item.name}
             </RadioNameLink>
             <Paragraph color="#999" lineHeight={18} m={0}>
