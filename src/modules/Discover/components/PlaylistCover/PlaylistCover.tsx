@@ -3,6 +3,7 @@ import type { FC } from 'react'
 import { Box, Flex, Text } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
+import { routeBuilder } from '@/routers'
 import { PlaylistDetail, PopularPlaylist } from '@/types/playlist'
 import { formatPlayCount, formatSizedImage } from '@/utils/dataFormat'
 
@@ -32,7 +33,7 @@ export const PlaylistCover: FC<{
     return (
       <Flex gap={4} maxWidth={140} color="#999">
         by
-        <PlaylistCreatorLink to={`/user/home/id=${creator.userId}`}>
+        <PlaylistCreatorLink to={routeBuilder.user(creator.userId)}>
           {creator.nickname}
         </PlaylistCreatorLink>
         <IdentityIcon avatarDetail={creator.avatarDetail} />
@@ -45,7 +46,7 @@ export const PlaylistCover: FC<{
       <CoverImage
         src={formatSizedImage(getImageUrl(), 140)}
         alt={playlist.name}
-        to={`/playlist?id=${playlist.id}`}
+        to={routeBuilder.playlist(playlist.id)}
         size={140}
         coverSprite="cover"
         coverIcon="bright140"
@@ -59,7 +60,10 @@ export const PlaylistCover: FC<{
         </PlaylistCoverPanel>
       </CoverImage>
 
-      <PlaylistNameLink to={`/playlist?id=${playlist.id}`} nowrap={hasCreator}>
+      <PlaylistNameLink
+        to={routeBuilder.playlist(playlist.id)}
+        nowrap={hasCreator}
+      >
         {playlist.name}
       </PlaylistNameLink>
 

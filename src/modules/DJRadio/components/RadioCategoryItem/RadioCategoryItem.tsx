@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 
 import classNames from 'classnames'
 
+import { routeBuilder } from '@/routers'
 import { RadioCategory } from '@/types/djradio'
 
 import {
@@ -21,7 +22,7 @@ export const RadioCategoryItem: FC<RadioCategoryItemProps> = ({
 }) => {
   return (
     <RadioCategoryLink
-      to={`/discover/djradio/category?id=${category.id}`}
+      to={routeBuilder.discoverRadioCategory(category.id)}
       className={classNames({ selected })}
     >
       <RadioCategoryImage bgImage={category.picWebUrl} />

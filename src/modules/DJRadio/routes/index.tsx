@@ -2,6 +2,8 @@ import { lazy } from 'react'
 
 import type { RouteObject } from 'react-router-dom'
 
+import { radiorRoutePath } from './config'
+
 // DJRadio 主组件
 const DJRadio = lazy(() => import('../index'))
 
@@ -12,24 +14,26 @@ const ProgramRanking = lazy(() => import('../pages/ProgramRanking'))
 const RadioCategory = lazy(() => import('../pages/RadioCategory'))
 
 export const djRadioRoutes: RouteObject = {
-  path: '/discover/djradio',
+  path: radiorRoutePath.discoverRadio,
   element: <DJRadio />,
   children: [
     {
-      path: '/discover/djradio',
+      path: radiorRoutePath.discoverRadio,
       element: <Podcast />,
     },
     {
-      path: '/discover/djradio/recommend',
+      path: radiorRoutePath.discoverRadioRecommend,
       element: <ProgramRecommend />,
     },
     {
-      path: '/discover/djradio/rank',
+      path: radiorRoutePath.discoverRadioRank,
       element: <ProgramRanking />,
     },
     {
-      path: '/discover/djradio/category',
+      path: radiorRoutePath.discoverRadioCategory,
       element: <RadioCategory />,
     },
   ],
 }
+
+export { radioRouteBuilder } from './config'

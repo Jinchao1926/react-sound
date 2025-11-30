@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
 
+import { routeBuilder } from '@/routers'
+
 import { UserLinks } from './UserLink.styles'
 import { TextNavLink } from '../Core'
 
@@ -24,7 +26,11 @@ export const UserLink: FC<UserLinkProps> = ({
       {users.map((item, idx) => (
         <React.Fragment key={item.id}>
           {idx > 0 && (space ? ' / ' : '/')}
-          <TextNavLink to={`/artist?id=${item.id}`} color={color} fontSize={12}>
+          <TextNavLink
+            to={routeBuilder.artist(item.id)}
+            color={color}
+            fontSize={12}
+          >
             {item.name}
           </TextNavLink>
         </React.Fragment>

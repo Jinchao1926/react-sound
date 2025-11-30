@@ -8,6 +8,7 @@ import { SongBadge } from '@/components/Shared/Badge'
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { usePlayerContext } from '@/providers/PlayerProvider'
+import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
@@ -78,7 +79,7 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
         </SongLink>
         <SongLink>
           所属专辑：
-          <TextNavLink to={`/album?id=${song.al.id}`} color="#0c73c2">
+          <TextNavLink to={routeBuilder.album(song.al.id)} color="#0c73c2">
             {song.al.name}
           </TextNavLink>
         </SongLink>

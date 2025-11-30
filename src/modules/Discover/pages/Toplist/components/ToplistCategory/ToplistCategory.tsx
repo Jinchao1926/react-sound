@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
 
 import { Box, Flex, Image, Text } from '@/components/Core'
+import { routeBuilder } from '@/routers'
 import { TopPlaylist } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 
@@ -44,7 +45,7 @@ export const ToplistCategory: FC<ToplistCategoryProps> = ({ id, toplists }) => {
             {header}
             <CategoryLink
               className={classNames({ selected: selectedIndex === idx })}
-              to={`/discover/toplist?id=${item.id}`}
+              to={routeBuilder.discoverToplist(item.id)}
             >
               <Flex gap={10} height={40}>
                 <Image src={formatSizedImage(item.coverImgUrl, 40)} alt="" />

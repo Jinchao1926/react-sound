@@ -3,6 +3,7 @@ import type { FC } from 'react'
 import { Box, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
+import { routeBuilder } from '@/routers'
 import { PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 
@@ -27,14 +28,14 @@ export const RelatedPlaylists: FC<RelatedPlaylistsProps> = ({
           <RelatedPlaylistItem key={playlist.id}>
             <CoverImage
               src={formatSizedImage(playlist.coverImgUrl, 50)}
-              to={`/playlist?id=${playlist.id}`}
+              to={routeBuilder.playlist(playlist.id)}
               alt={playlist.name}
               size={50}
             />
 
             <Box width={140}>
               <TextNavLink
-                to={`/playlist?id=${playlist.id}`}
+                to={routeBuilder.playlist(playlist.id)}
                 fontSize={14}
                 lineHeight={24}
                 color="#000"
@@ -46,7 +47,7 @@ export const RelatedPlaylists: FC<RelatedPlaylistsProps> = ({
               <Box lineHeight={24} color="#999" nowrap>
                 by
                 <TextNavLink
-                  to={`/user/home?id=${playlist.creator.userId}`}
+                  to={routeBuilder.user(playlist.creator.userId)}
                   color="#666"
                   ml={5}
                 >

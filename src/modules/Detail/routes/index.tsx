@@ -4,6 +4,8 @@ import type { RouteObject } from 'react-router-dom'
 
 import { OutletLayout } from '@/components/OutletLayout'
 
+import { detailRoutePath } from './config'
+
 const Song = lazy(() => import('../pages/Song'))
 const Playlist = lazy(() => import('../pages/Playlist'))
 const Album = lazy(() => import('../pages/Album'))
@@ -13,28 +15,34 @@ export const detailRoutes: RouteObject = {
   element: <OutletLayout />,
   children: [
     {
-      path: '/playlist',
+      path: detailRoutePath.playlist,
       element: <Playlist />,
     },
     {
-      path: '/program',
+      path: detailRoutePath.program,
       element: <Song />,
     },
     {
-      path: '/album',
+      path: detailRoutePath.album,
       element: <Album />,
     },
     {
-      path: '/song',
+      path: detailRoutePath.song,
       element: <Song />,
     },
     {
-      path: '/mv',
+      path: detailRoutePath.mv,
       element: <Song />,
     },
     {
-      path: '/user/home',
+      path: detailRoutePath.artist,
+      element: <Song />,
+    },
+    {
+      path: detailRoutePath.user,
       element: <Song />,
     },
   ],
 }
+
+export { detailRouteBuilder } from './config'

@@ -9,6 +9,7 @@ import { TrackCollection } from '@/components/TrackCollection/TrackCollection'
 import { TrackCollectionConfig } from '@/components/TrackCollection/TrackCollection.type'
 import { useAlbumDetailQuery } from '@/hooks/album/useAlbumDetailQuery'
 import { useAlbumDynamicQuery } from '@/hooks/album/useAlbumDynamicQuery'
+import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
 
@@ -60,7 +61,7 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
           <AlbumParagraph>
             歌手：
             <TextNavLink
-              to={`/user/home?id=${data.album.artist.id}`}
+              to={routeBuilder.user(data.album.artist.id)}
               color="#0c73c2"
             >
               {data.album.artist.name}

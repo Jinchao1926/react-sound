@@ -6,6 +6,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 import { AddToButtonXS, PlayButtonXS } from '@/components/Shared/Media'
 import { useSimilarSongsQuery } from '@/hooks/song/useSimilarSongsQuery'
 import { usePlayerContext } from '@/providers/PlayerProvider'
+import { routeBuilder } from '@/routers'
 import { songToTrack } from '@/utils/trackConverter'
 
 import { SimilarSongItem } from './SimilarSong.styles'
@@ -21,7 +22,7 @@ export const SimilarSong: FC<{ songId: number }> = ({ songId }) => {
         {songs.map((song) => (
           <SimilarSongItem key={song.id}>
             <Box width={156} lineHeight={16}>
-              <TextNavLink to={`/song?id=${song.id}`} color="#333" nowrap>
+              <TextNavLink to={routeBuilder.song(song.id)} color="#333" nowrap>
                 {song.name}
               </TextNavLink>
               <UserLink users={song.artists} block color="#999" />

@@ -12,6 +12,7 @@ import {
   PlayButtonSMLight,
   ShareButton,
 } from '@/components/Shared/Media'
+import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatMinuteSecond } from '@/utils/timeFormat'
 
@@ -134,7 +135,7 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
                   {
                     // 前三行显示 Image
                     showTitleCoverImage && idx < 3 ? (
-                      <NavLink to={`/song?id=${item.id}`}>
+                      <NavLink to={routeBuilder.song(item.id)}>
                         <Image
                           src={formatSizedImage(item.al.picUrl, 50)}
                           alt=""
@@ -145,7 +146,7 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
                   }
                   {showIndexTrend && <PlayButtonSMLight onClick={() => {}} />}
                   <TextNavLink
-                    to={`/song?id=${item.id}`}
+                    to={routeBuilder.song(item.id)}
                     color="#333"
                     nowrap
                     ml={8}
@@ -186,7 +187,7 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
               {showAlbumColumn && (
                 <td>
                   <TextNavLink
-                    to={`/album?id=${item.al.id}`}
+                    to={routeBuilder.album(item.al.id)}
                     color="#333"
                     nowrap
                   >

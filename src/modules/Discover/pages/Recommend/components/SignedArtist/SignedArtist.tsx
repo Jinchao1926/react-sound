@@ -3,6 +3,7 @@ import React, { FC } from 'react'
 import { Box, Image, Text } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useTopArtistQuery } from '@/hooks/artist/useTopArtistQuery'
+import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
@@ -25,7 +26,7 @@ export const SignedArtist: FC = () => {
       </Box>
       <Box mt={6} mb={14} ml={20}>
         {data.map((item) => (
-          <SingerLink key={item.id} to={`/discover/artist?id=${item.id}`}>
+          <SingerLink key={item.id} to={routeBuilder.discoverArtist(item.id)}>
             <Image
               src={formatSizedImage(item.picUrl, 62)}
               alt={item.name}
