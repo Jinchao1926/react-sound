@@ -176,6 +176,12 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       info: { normal: '0 -50px', hover: '-20px -50px' },
       playExtraSmall: '-69px -455px',
       addToExtraSmall: '-87px -454px',
+      //
+      radioIcon: '-50px -20px',
+      star: '-50px 0',
+      starRed: '-70px 0',
+      // badges
+      program: '0 -75px', // 播客节目
     },
   },
   icon4: {
@@ -267,6 +273,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       bright80: '-145px -57px',
       bright140: '0 0',
       bright150: '-230px -380px',
+      bright200: '0 -1285px',
       panel: '0 -537px',
       album: '0 -570px',
       albumMedium: '0 -845px',

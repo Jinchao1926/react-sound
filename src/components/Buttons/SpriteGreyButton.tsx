@@ -4,16 +4,17 @@ import {
   GreyButtonSpan,
   GreyButtonText,
   GreyButtonWrapper,
-} from './GreyButton.styles'
+} from './SpriteGreyButton.styles'
 
-interface GreyButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface SpriteGreyButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: string
   width?: number
   padding?: string
   color?: string
 }
 
-export const GreyButton: FC<PropsWithChildren<GreyButtonProps>> = ({
+export const SpriteGreyButton: FC<PropsWithChildren<SpriteGreyButtonProps>> = ({
   icon,
   width,
   padding,
