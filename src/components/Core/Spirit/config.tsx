@@ -172,6 +172,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       song: '0 -463px', // 单曲
       playlist: '0 -243px', // 歌单
       album: '0 -186px', // 专辑
+      radio: '0 -1014px', // 电台
     },
   },
   icon3: {

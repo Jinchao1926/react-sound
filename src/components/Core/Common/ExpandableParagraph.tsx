@@ -37,7 +37,6 @@ export const ExpandableParagraph = forwardRef<
       const content: string | string[] = isArray
         ? children
         : (children as string)
-      // const allLines = Array.isArray(content) ? content : content.split('\n')
 
       if (expanded) {
         return { content, isArray, hasMore: false }

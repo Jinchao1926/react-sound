@@ -49,6 +49,18 @@ export const AlbumBadge = styled(Sprite).attrs({
   flex-shrink: 0;
 `
 
+export const RadioBadge = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'radio',
+  component: 'span',
+  title: '电台',
+})`
+  display: inline-block;
+  width: 55px;
+  height: 24px;
+  flex-shrink: 0;
+`
+
 export const ProgramBadge = styled(Sprite).attrs({
   sprite: 'icon',
   icon: 'program',

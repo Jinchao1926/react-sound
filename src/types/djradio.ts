@@ -148,6 +148,9 @@ export interface Radio {
   programCount: number
   subCount: number
   playCount: number
+  shareCount: number
+  likedCount: number
+  commentCount: number
   dj: {
     userId: number
     nickname: string
