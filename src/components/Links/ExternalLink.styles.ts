@@ -12,7 +12,11 @@ export const MusicIcon = styled(Sprite).attrs({
   height: 16px;
 `
 
-export const MusicLink = styled.a`
+export const MusicLink = styled.a<{ underline?: boolean }>`
   color: #0c73c2;
-  text-decoration: underline;
+  text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};
+
+  :hover {
+    text-decoration: underline;
+  }
 `

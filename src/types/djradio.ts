@@ -147,6 +147,7 @@ export interface Radio {
   lastProgramCreateTime: number
   programCount: number
   subCount: number
+  playCount: number
   dj: {
     userId: number
     nickname: string
