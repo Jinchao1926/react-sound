@@ -1,2 +1,2 @@
 export { ExpandButton } from './ExpandButton'
-export { GreyButton } from './GreyButton'
+export { SpriteGreyButton } from './SpriteGreyButton'

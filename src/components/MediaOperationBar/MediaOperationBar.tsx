@@ -3,7 +3,7 @@ import React, { type FC } from 'react'
 import { formatPlayCount } from '@/utils/dataFormat'
 
 import { AddBlueButton, PlayBlueButton } from './MediaOperationBar.styles'
-import { GreyButton } from '../Buttons'
+import { SpriteGreyButton } from '../Buttons'
 import { Flex } from '../Core'
 
 interface MediaOperationBarProps {
@@ -42,18 +42,18 @@ export const MediaOperationBar: FC<MediaOperationBarProps> = ({
       <PlayBlueButton onClick={onPlayClick}>播放</PlayBlueButton>
       <AddBlueButton onClick={onAddClick} />
 
-      <GreyButton icon="collectGrey" onClick={onCollectClick}>
+      <SpriteGreyButton icon="collectGrey" onClick={onCollectClick}>
         {collect ? `(${formatPlayCount(collect)})` : '收藏'}
-      </GreyButton>
-      <GreyButton icon="shareGrey" onClick={onShareClick}>
+      </SpriteGreyButton>
+      <SpriteGreyButton icon="shareGrey" onClick={onShareClick}>
         {share ? `(${formatPlayCount(share)})` : '分享'}
-      </GreyButton>
-      <GreyButton icon="downloadGrey" onClick={onDownloadClick}>
+      </SpriteGreyButton>
+      <SpriteGreyButton icon="downloadGrey" onClick={onDownloadClick}>
         {download ? `(${formatPlayCount(download)})` : '下载'}
-      </GreyButton>
-      <GreyButton icon="commentGrey" onClick={onCommentClick}>
+      </SpriteGreyButton>
+      <SpriteGreyButton icon="commentGrey" onClick={onCommentClick}>
         {comment ? `(${formatPlayCount(comment)})` : '评论'}
-      </GreyButton>
+      </SpriteGreyButton>
     </Flex>
   )
 }

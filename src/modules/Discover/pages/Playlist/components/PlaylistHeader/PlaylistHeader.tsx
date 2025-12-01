@@ -2,7 +2,7 @@ import React, { FC, useCallback, useState, useEffect, useRef } from 'react'
 
 import { useLocation } from 'react-router-dom'
 
-import { GreyButton } from '@/components/Buttons'
+import { SpriteGreyButton } from '@/components/Buttons'
 import { Box, Flex, Text } from '@/components/Core'
 
 import {
@@ -52,7 +52,7 @@ export const PlaylistHeader: FC<{ category: string }> = ({ category }) => {
           {category}
         </Text>
         <Box ref={categoryRef} mt={2} ml={12}>
-          <GreyButton
+          <SpriteGreyButton
             onClick={switchCategory}
             icon="categoryGrey"
             width={81}
@@ -61,7 +61,7 @@ export const PlaylistHeader: FC<{ category: string }> = ({ category }) => {
           >
             选择分类
             <ArrowDown />
-          </GreyButton>
+          </SpriteGreyButton>
           {showCategory && <PlaylistCategory category={category} />}
         </Box>
       </Flex>
