@@ -1,6 +1,6 @@
 import { FC, useMemo } from 'react'
 
-import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
+import { Box, Flex, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
 import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
@@ -13,7 +13,7 @@ import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatYearMonthDay } from '@/utils/timeFormat'
 
-import { PlaylistCover, PlaylistTagLink } from './PlaylistDetail.styles'
+import { PlaylistTagLink } from './PlaylistDetail.styles'
 
 export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
   const { data: playlist } = usePlaylistDetailQuery(playlistId)
@@ -38,18 +38,18 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
   if (!playlist) return null
 
   return (
-    <Flex vertical gap={27}>
-      <Flex gap={20} pt={6}>
-        <PlaylistCover>
-          <Image
-            src={formatSizedImage(playlist.coverImgUrl, 200)}
-            alt={playlist.name}
-            width="100%"
-            height="100%"
-          />
-        </PlaylistCover>
+    <Flex vertical gap={27} mt={10}>
+      <Flex gap={30}>
+        <CoverImage
+          src={formatSizedImage(playlist.coverImgUrl, 200)}
+          alt={playlist.name}
+          size={200}
+          coverSprite="cover"
+          coverIcon="bright200"
+          coverEdge={-4}
+        />
 
-        <Box pt={4} flex={1}>
+        <Box flex={1}>
           <Flex gap={10} mb={12}>
             <PlaylistBadge />
             <Text fontSize={20}>{playlist.name}</Text>
@@ -100,8 +100,8 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
             </Flex>
           )}
 
-          <ExpandableParagraph maxChars={103} mt={5} mb={0}>
-            {`介绍：${playlist.description}`}
+          <ExpandableParagraph maxChars={103} mt={8} mb={0}>
+            {`介绍： ${playlist.description}`}
           </ExpandableParagraph>
         </Box>
       </Flex>

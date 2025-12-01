@@ -48,3 +48,15 @@ export const AlbumBadge = styled(Sprite).attrs({
   height: 24px;
   flex-shrink: 0;
 `
+
+export const ProgramBadge = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'program',
+  component: 'span',
+  title: '播客节目',
+})`
+  display: inline-block;
+  width: 73px;
+  height: 24px;
+  flex-shrink: 0;
+`

@@ -20,12 +20,16 @@ export interface CoverImageProps {
   to?: string
   /** Image Width & Height */
   size: number
+  /** Whether to show border */
+  bordered?: boolean
   /** Cover Sprite Category */
   coverSprite?: SpriteCategory
   /** Cover Sprite Icon */
   coverIcon?: string
   /** Cover Image Width, Defaults to `100%` */
   coverWidth?: number
+  /** Cover Image Edge */
+  coverEdge?: number
 }
 
 export const CoverImage: FC<PropsWithChildren<CoverImageProps>> = ({
@@ -33,14 +37,16 @@ export const CoverImage: FC<PropsWithChildren<CoverImageProps>> = ({
   alt,
   to,
   size,
+  bordered,
   coverSprite,
   coverIcon,
   coverWidth,
+  coverEdge,
   children,
 }) => {
   return (
-    <CoverImageWrapper className="cover-image" width={size} height={size}>
-      <StyledImage src={src} alt={alt} width={size} height={size} />
+    <CoverImageWrapper className="cover-image" size={size} bordered={bordered}>
+      <StyledImage src={src} alt={alt} size={size} />
       {coverSprite && coverIcon ? (
         <CoverOverlay
           sprite={coverSprite}
@@ -48,6 +54,7 @@ export const CoverImage: FC<PropsWithChildren<CoverImageProps>> = ({
           component={to ? NavLink : Box}
           to={to}
           width={coverWidth}
+          edge={coverEdge}
         />
       ) : to ? (
         <CoverNavLink to={to} />

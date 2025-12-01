@@ -5,29 +5,47 @@ import { Image } from '../Core'
 import { Sprite } from '../Core/Spirit'
 
 interface CoverImageProps {
-  width: number
-  height: number
+  size: number
+  bordered?: boolean
 }
 
 export const CoverImageWrapper = styled.div<CoverImageProps>`
   position: relative;
-  width: ${({ width }) => width}px;
-  height: ${({ height }) => height}px;
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
+  flex-shrink: 0;
   /* overflow: hidden; */
+
+  ${({ bordered }) =>
+    bordered &&
+    `
+      padding: 4px;
+      border: 1px solid #ccc;
+    `}
 `
 
-export const StyledImage = styled(Image)<CoverImageProps>`
-  width: ${({ width }) => width}px;
-  height: ${({ height }) => height}px;
+export const StyledImage = styled(Image)<{ size: number }>`
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
   object-fit: cover;
 `
 
-export const CoverOverlay = styled(Sprite)<{ width?: number }>`
+interface CoverOverlayProps {
+  width?: number
+  edge?: number
+}
+export const CoverOverlay = styled(Sprite)<CoverOverlayProps>`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: ${({ width }) => (width !== undefined ? `${width}px` : '100%')};
-  height: 100%;
+  top: ${({ edge }) => (edge !== undefined ? `${edge}px` : '0')};
+  left: ${({ edge }) => (edge !== undefined ? `${edge}px` : '0')};
+  width: ${({ width, edge }) =>
+    width !== undefined
+      ? `${width}px`
+      : edge !== undefined
+        ? `calc(100% - ${edge * 2}px)`
+        : '100%'};
+  height: ${({ edge }) =>
+    edge !== undefined ? `calc(100% - ${edge * 2}px)` : '100%'};
   text-indent: -9999px;
   overflow: hidden;
 `
