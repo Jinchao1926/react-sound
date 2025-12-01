@@ -34,6 +34,7 @@ export interface Artist {
   name: string
   picUrl: string
   alias: string[]
+  tns?: string[]
 }
 
 /*
@@ -107,6 +108,8 @@ export interface Album {
   artist: Artist
   artists?: Artist[]
   picUrl: string
+  alias: string[]
+  tns?: string[]
   publishTime: number
   company: string
   description: string

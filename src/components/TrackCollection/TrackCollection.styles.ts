@@ -1,15 +1,7 @@
 import { NavLink } from 'react-router-dom'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
-import { Box, Flex, Sprite, Text } from '@/components/Core'
-
-export const TrackCollectionHeader = styled(Box)`
-  height: 33px;
-  border-bottom: 2px solid #c20c0c;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
+import { Flex, Sprite, Text } from '@/components/Core'
 
 interface TrackCollectionTableProps {
   $enlargeFirstThreeRows?: boolean
@@ -18,7 +10,9 @@ export const TrackCollectionTable = styled.table<TrackCollectionTableProps>`
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  border: 1px solid #d9d9d9;
+  border-left: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
 
   tbody {
     tr {
@@ -45,13 +39,17 @@ export const TrackCollectionTable = styled.table<TrackCollectionTableProps>`
   }
 `
 
+export const TrackCollectionCol = styled.col<{ width?: number }>`
+  width: ${({ width }) => (width ? `${width}px` : 'auto')};
+`
+
 export const TrackCollectionTHeader = styled(Sprite).attrs({
   sprite: 'icon',
   icon: 'header',
   component: 'thead',
 })``
 
-export const TrackCollectionTH = styled.th<{ width?: number }>`
+export const TrackCollectionTH = styled.th`
   height: 36px;
   color: #666;
   font-weight: normal;
@@ -60,12 +58,6 @@ export const TrackCollectionTH = styled.th<{ width?: number }>`
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-width: 0 1px 0 1px;
-
-  ${({ width }) =>
-    width &&
-    css`
-      width: ${width}px;
-    `}
 `
 
 export const New = styled(Sprite).attrs({

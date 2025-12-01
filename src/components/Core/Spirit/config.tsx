@@ -180,6 +180,8 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       radioIcon: '-50px -20px',
       star: '-50px 0',
       starRed: '-70px 0',
+      chevronUp: '-75px -29px',
+      chevronDown: '-75px -20px',
       // badges
       program: '0 -75px', // 播客节目
     },

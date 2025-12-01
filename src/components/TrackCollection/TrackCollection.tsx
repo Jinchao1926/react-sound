@@ -1,9 +1,8 @@
-import React, { FC, useMemo } from 'react'
+import React, { FC, useMemo, useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
-import { Strong } from '@/components/Core/Common/Text'
 import { MVLink, UserLink } from '@/components/Links'
 import {
   AddToButtonSM,
@@ -23,13 +22,13 @@ import {
   Duration,
   DurationTD,
   New,
-  TrackCollectionHeader,
+  TrackCollectionCol,
   TrackCollectionTable,
   TrackCollectionTH,
   TrackCollectionTHeader,
 } from './TrackCollection.styles'
 import { TrackCollectionConfig, TrackSource } from './TrackCollection.type'
-import { ExternalLink } from '../Links'
+import { TrackCollectionHeader } from './TrackCollectionHeader'
 
 export interface TrackCollectionProps {
   dataSource: TrackSource
@@ -42,7 +41,8 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
 }) => {
   const {
     maxRows,
-    headerTitle = '歌曲列表',
+    headerTitle,
+    showExpandableHeader = false,
     showExternalLink = false,
     externalLinkType = 'playlist',
     showAlbumColumn = false,
@@ -56,58 +56,56 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
     },
   } = config
 
+  const [expanded, setExpanded] = useState(true)
+
   const { tracks, hasMoreTracks } = useMemo(() => {
     if (maxRows) {
       return {
-        tracks: dataSource.tracks.slice(0, maxRows),
+        tracks: expanded ? dataSource.tracks.slice(0, maxRows) : [],
         hasMoreTracks: dataSource.tracks.length > maxRows,
       }
     }
-    return { tracks: dataSource.tracks, hasMoreTracks: false }
-  }, [dataSource.tracks, maxRows])
+    return { tracks: expanded ? dataSource.tracks : [], hasMoreTracks: false }
+  }, [dataSource.tracks, maxRows, expanded])
 
   return (
     <Box>
-      <TrackCollectionHeader>
-        <Box>
-          <Text fontSize={20} lineHeight={28}>
-            {headerTitle}
-          </Text>
-          <Text color="#666" ml={20} mt={9}>
-            {dataSource.trackCount}首歌
-          </Text>
-        </Box>
-        <Flex gap={20} align="center">
-          {showExternalLink && (
-            <ExternalLink id={dataSource.id} type={externalLinkType} />
-          )}
-          {dataSource.playCount && (
-            <Text color="#666">
-              播放： <Strong color="#c20c0c">{dataSource.playCount}</Strong>次
-            </Text>
-          )}
-        </Flex>
-      </TrackCollectionHeader>
+      <TrackCollectionHeader
+        config={{
+          headerTitle,
+          showExpandableHeader,
+          showExternalLink,
+          externalId: dataSource.id,
+          externalType: externalLinkType,
+          trackCount: dataSource.trackCount,
+          playCount: dataSource.playCount,
+        }}
+        expanded={expanded}
+        onExpand={setExpanded}
+      />
+
       <TrackCollectionTable $enlargeFirstThreeRows={showTitleCoverImage}>
-        <TrackCollectionTHeader>
-          <tr>
-            <TrackCollectionTH width={columnWidths.index} />
-            <TrackCollectionTH width={columnWidths.title}>
-              标题
-            </TrackCollectionTH>
-            <TrackCollectionTH width={columnWidths.duration}>
-              时长
-            </TrackCollectionTH>
-            <TrackCollectionTH width={columnWidths.artist}>
-              歌手
-            </TrackCollectionTH>
-            {showAlbumColumn && (
-              <TrackCollectionTH width={columnWidths.album}>
-                专辑
-              </TrackCollectionTH>
-            )}
-          </tr>
-        </TrackCollectionTHeader>
+        {/* Define col width - Even if the header is hidden, the column width can still be controlled */}
+        <colgroup>
+          <TrackCollectionCol width={columnWidths.index} />
+          <TrackCollectionCol width={columnWidths.title} />
+          <TrackCollectionCol width={columnWidths.duration} />
+          <TrackCollectionCol width={columnWidths.artist} />
+          {showAlbumColumn && <TrackCollectionCol width={columnWidths.album} />}
+        </colgroup>
+
+        {!showExpandableHeader && (
+          <TrackCollectionTHeader>
+            <tr>
+              <TrackCollectionTH />
+              <TrackCollectionTH>标题</TrackCollectionTH>
+              <TrackCollectionTH>时长</TrackCollectionTH>
+              <TrackCollectionTH>歌手</TrackCollectionTH>
+              {showAlbumColumn && <TrackCollectionTH>专辑</TrackCollectionTH>}
+            </tr>
+          </TrackCollectionTHeader>
+        )}
+
         <tbody>
           {tracks.map((item, idx) => (
             <tr key={item.id}>
@@ -156,22 +154,23 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
 
                   {
                     // Alias
-                    ((item.tns && item.tns.length > 0) ||
-                      item.alia.length > 0) && (
+                    item.tns && item.tns.length > 0 ? (
                       <Text nowrap color="#aeaeae">
-                        &nbsp;-&nbsp;(
-                        {(item.tns && item.tns.length > 0 && item.tns[0]) ||
-                          item.alia[0]}
-                        )
+                        &nbsp;-&nbsp;({item.tns[0]})
                       </Text>
-                    )
+                    ) : item.alia && item.alia.length > 0 ? (
+                      <Text nowrap color="#aeaeae">
+                        &nbsp;-&nbsp;({item.alia[0]})
+                      </Text>
+                    ) : null
                   }
+
                   <MVLink mvID={item.mv} />
                 </Flex>
               </td>
               {/* Duration & Action */}
               <DurationTD>
-                <Duration>{formatMinuteSecond(item.dt)}</Duration>
+                <Duration nowrap>{formatMinuteSecond(item.dt)}</Duration>
                 <Actions>
                   <AddToButtonSM onClick={() => {}} />
                   <CollectButtonSM onClick={() => {}} />

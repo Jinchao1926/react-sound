@@ -361,19 +361,23 @@
 }*/
 
 import { Radio } from './djradio'
+import { Track2 } from './track'
 
 /** 电台节目 */
 export interface Program {
   id: number
   name: string
-  description: string
+  serialNum: number
   coverUrl: string
-  duration: number
+  duration: number // ms
   createTime: number
+  description: string
+  subscribed: boolean
+  shareCount: number
+  commentCount: number
   listenerCount: number
   likedCount: number
+  trackCount: number
+  songs: Track2[]
   radio: Radio
-  dj: {
-    brand: string
-  }
 }
