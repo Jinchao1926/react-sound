@@ -361,7 +361,7 @@
 }*/
 
 import { Radio } from './djradio'
-import { Track } from './track'
+import { Track2 } from './track'
 
 /** 电台节目 */
 export interface Program {
@@ -378,6 +378,6 @@ export interface Program {
   listenerCount: number
   likedCount: number
   trackCount: number
-  songs: Track[]
+  songs: Track2[]
   radio: Radio
 }

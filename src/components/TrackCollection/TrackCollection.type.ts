@@ -13,6 +13,7 @@ export interface TrackSource {
 export interface TrackCollectionConfig {
   maxRows?: number
   headerTitle?: string
+  showExpandableHeader?: boolean
   showExternalLink?: boolean
   externalLinkType?: ExternalLinkType
   showAlbumColumn?: boolean

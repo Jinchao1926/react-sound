@@ -95,30 +95,30 @@
     "video": null
   }
 } */
+
+import { Album, Artist } from './music'
+
 /** 曲目 */
 export interface Track {
   id: number
   name: string
+  // 时长，毫秒
   dt: number
   // 歌手信息
-  ar: {
-    id: number
-    name: string
-    tns: string[]
-    alias: string[]
-  }[]
+  ar: Artist[]
   // 专辑信息
-  al: {
-    id: number
-    name: string
-    picUrl: string
-    tns: string[]
-    alias: string[]
-  }
+  al: Album
   // Track Name Supplement - 曲目名称补充
   tns?: string[]
   alia: string[]
   mv: number
+}
+
+export interface Track2 extends Omit<Track, 'ar' | 'al'> {
+  duration: number
+  artists: Artist[]
+  album: Album
+  mvid: number
 }
 
 /*
@@ -402,16 +402,8 @@ export interface Track {
 export interface Song {
   id: number
   name: string
-  artists: {
-    id: number
-    name: string
-    alias?: string[]
-  }[]
-  album: {
-    id: number
-    name: string
-    picUrl: string
-  }
+  artists: Artist[]
+  album: Album
   duration: number // 歌曲时长，毫秒
   alias: string[] // 歌曲别名
   mvid?: number

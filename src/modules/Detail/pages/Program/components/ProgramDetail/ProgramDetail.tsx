@@ -1,40 +1,38 @@
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 
-import { Box, Flex, Text, TextNavLink } from '@/components/Core'
+import { Box, Flex, Strong, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
-import { Strong } from '@/components/Core/Common/Text'
 import { CoverImage } from '@/components/CoverImage'
 import { ExternalLink } from '@/components/Links'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { ProgramBadge } from '@/components/Shared/Badge'
-// import { TrackCollection } from '@/components/TrackCollection'
+import { TrackCollection } from '@/components/TrackCollection'
 import { useProgramDetailQuery } from '@/hooks/program/useProgramDetailQuery'
 import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
+import { normalizeTracks } from '@/utils/normalizeTrack'
 import { formatYearMonthDay } from '@/utils/timeFormat'
 
 import { RadioCategory, RadioIcon, RadioName } from './ProgramDetail.styles'
 
-// import { PlaylistCover, PlaylistTagLink } from './PlaylistDetail.styles'
-
 export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
   const { data: program } = useProgramDetailQuery(programId)
 
-  //   const config = useMemo(() => {
-  //     return {
-  //       maxRows: 20,
-  //       showExternalLink: true,
-  //       showAlbumColumn: true,
-  //       showIndexTrend: false,
-  //       showTitleCoverImage: false,
-  //       columnWidths: {
-  //         index: 74,
-  //         duration: 111,
-  //         artist: 90,
-  //         album: 128,
-  //       },
-  //     }
-  //   }, [])
+  const config = useMemo(() => {
+    return {
+      headerTitle: '节目包含歌曲列表',
+      showExpandableHeader: true,
+      showAlbumColumn: true,
+      showIndexTrend: false,
+      showTitleCoverImage: false,
+      columnWidths: {
+        index: 75,
+        duration: 89,
+        artist: 90,
+        album: 128,
+      },
+    }
+  }, [])
 
   if (!program) return null
 
@@ -93,11 +91,22 @@ export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
         </Text>
       </Flex>
 
-      <ExpandableParagraph maxChars={166} lineHeight={23} m={0}>
-        {`介绍： ${program.description}`}
-      </ExpandableParagraph>
+      <Box mb={27}>
+        <ExpandableParagraph maxChars={166} lineHeight={23} m={0}>
+          {`介绍： ${program.description}`}
+        </ExpandableParagraph>
+      </Box>
 
-      {/* <TrackCollection dataSource={playlist} config={config} /> */}
+      <TrackCollection
+        dataSource={{
+          id: program.id,
+          name: program.name,
+          tracks: normalizeTracks(program.songs),
+          trackCount: program.trackCount,
+          playCount: program.listenerCount,
+        }}
+        config={config}
+      />
     </Box>
   )
 }
