@@ -19,6 +19,8 @@ import {
   RadioCategory,
   RadioIcon,
   RadioName,
+  StarredIcon,
+  SubscribeButton,
 } from './ProgramDetail.styles'
 
 export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
@@ -67,9 +69,13 @@ export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
             >
               {program.radio.name}
             </TextNavLink>
-          </Flex>
 
-          {/* <GreyButton>{program.subscribed ? '已订阅' : '订阅'}</GreyButton> */}
+            <SubscribeButton>
+              <StarredIcon $starred={program.subscribed} />
+              {program.subscribed ? '已订阅' : '订阅'}
+              {`(${formatPlayCount(program.subscribedCount)})`}
+            </SubscribeButton>
+          </Flex>
         </Box>
       </Flex>
 
