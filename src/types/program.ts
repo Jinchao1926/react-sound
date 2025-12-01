@@ -373,6 +373,7 @@ export interface Program {
   createTime: number
   description: string
   subscribed: boolean
+  subscribedCount: number
   shareCount: number
   commentCount: number
   listenerCount: number

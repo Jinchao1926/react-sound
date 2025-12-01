@@ -97,14 +97,18 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     url: require('./img/button.png'),
     icons: {
       greyRightBG: { normal: 'right -1020px', hover: 'right -1106px' },
-      categoryGrey: { normal: '0 -59px', hover: '0 -141px' },
+      grey: { normal: '0 -59px', hover: '0 -141px' },
       // Media Operation Bar
       playBlue: { normal: '-5px -633px', hover: '-5px -719px' },
+      playBlue2: { normal: '0 -633px', hover: '0 -719px' },
       addBlue: { normal: '0 -1588px', hover: '-40px -1588px' },
       collectGrey: { normal: '0 -977px', hover: '0 -1063px' },
       shareGrey: { normal: '0 -1225px', hover: '0 -1268px' },
       downloadGrey: { normal: '0 -2761px', hover: '0 -2805px' },
       commentGrey: { normal: '0 -1465px', hover: '0 -1508px' },
+      // Others
+      like: '0 -95px',
+      liked: '-30px -95px',
     },
   },
   button2: {
@@ -179,7 +183,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       //
       radioIcon: '-50px -20px',
       star: '-50px 0',
-      starRed: '-70px 0',
+      starred: '-70px 0',
       chevronUp: '-75px -29px',
       chevronDown: '-75px -20px',
       // badges

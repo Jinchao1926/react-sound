@@ -1,19 +1,27 @@
 import { FC, useMemo } from 'react'
 
+import { SpriteGreyButton } from '@/components/Buttons'
 import { Box, Flex, Strong, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
 import { CoverImage } from '@/components/CoverImage'
 import { ExternalLink } from '@/components/Links'
-import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { ProgramBadge } from '@/components/Shared/Badge'
 import { TrackCollection } from '@/components/TrackCollection'
 import { useProgramDetailQuery } from '@/hooks/program/useProgramDetailQuery'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatPlayCount, formatSizedImage } from '@/utils/dataFormat'
 import { normalizeTracks } from '@/utils/normalizeTrack'
-import { formatYearMonthDay } from '@/utils/timeFormat'
+import { formatMinuteSecond, formatYearMonthDay } from '@/utils/timeFormat'
 
-import { RadioCategory, RadioIcon, RadioName } from './ProgramDetail.styles'
+import {
+  LikedIcon,
+  PlayButton,
+  RadioCategory,
+  RadioIcon,
+  RadioName,
+  StarredIcon,
+  SubscribeButton,
+} from './ProgramDetail.styles'
 
 export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
   const { data: program } = useProgramDetailQuery(programId)
@@ -61,20 +69,32 @@ export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
             >
               {program.radio.name}
             </TextNavLink>
-          </Flex>
 
-          {/* <GreyButton>{program.subscribed ? '已订阅' : '订阅'}</GreyButton> */}
+            <SubscribeButton>
+              <StarredIcon $starred={program.subscribed} />
+              {program.subscribed ? '已订阅' : '订阅'}
+              {`(${formatPlayCount(program.subscribedCount)})`}
+            </SubscribeButton>
+          </Flex>
         </Box>
       </Flex>
 
       <Flex gap={26} mt={20} mb={25}>
-        <MediaOperationBar
-          counts={{
-            collect: program.likedCount,
-            share: program.shareCount,
-            comment: program.commentCount,
-          }}
-        />
+        <Flex gap={10} align="center">
+          <PlayButton>
+            {`播放 ${formatMinuteSecond(program.duration, 'chinese')}`}
+          </PlayButton>
+          <SpriteGreyButton icon="grey" padding="0 2px 0 10px">
+            <LikedIcon $liked={false} />
+            {`(${formatPlayCount(program.likedCount)})`}
+          </SpriteGreyButton>
+          <SpriteGreyButton icon="commentGrey">
+            {`(${formatPlayCount(program.commentCount)})`}
+          </SpriteGreyButton>
+          <SpriteGreyButton icon="shareGrey">分享</SpriteGreyButton>
+          <SpriteGreyButton icon="downloadGrey">下载</SpriteGreyButton>
+        </Flex>
+
         <ExternalLink id={program.id} type="program" underline={false} />
       </Flex>
 

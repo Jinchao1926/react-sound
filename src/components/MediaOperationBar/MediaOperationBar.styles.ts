@@ -23,5 +23,4 @@ export const AddBlueButton = styled(Sprite).attrs({
   width: 31px;
   height: 31px;
   padding: 0;
-  margin-right: 5px;
 `

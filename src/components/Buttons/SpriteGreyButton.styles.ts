@@ -7,7 +7,6 @@ export const GreyButtonWrapper = styled(Sprite).attrs({
   icon: 'greyRightBG',
   component: 'button',
 })`
-  margin-right: 6px;
   height: 31px;
   padding: 0 5px 0 0;
 `

@@ -54,7 +54,7 @@ export const PlaylistHeader: FC<{ category: string }> = ({ category }) => {
         <Box ref={categoryRef} mt={2} ml={12}>
           <SpriteGreyButton
             onClick={switchCategory}
-            icon="categoryGrey"
+            icon="grey"
             width={81}
             padding="0 0 0 5px"
             color="#0c73c2"

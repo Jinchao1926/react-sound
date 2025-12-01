@@ -26,9 +26,17 @@ export const formatMonthDay = (timestamp: number) => {
   return `${padLeft(month)}月${padLeft(day)}日`
 }
 
-export const formatMinuteSecond = (timestamp: number) => {
+export const formatMinuteSecond = (
+  timestamp: number,
+  format: 'colon' | 'chinese' = 'colon'
+) => {
   const date = new Date(timestamp)
   const minute = date.getMinutes()
   const second = date.getSeconds()
+
+  if (format === 'chinese') {
+    return `${padLeft(minute)}分${padLeft(second)}秒`
+  }
+
   return `${padLeft(minute)}:${padLeft(second)}`
 }

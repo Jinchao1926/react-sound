@@ -38,9 +38,11 @@ export const MediaOperationBar: FC<MediaOperationBarProps> = ({
   } = callbacks
 
   return (
-    <Flex align="center">
-      <PlayBlueButton onClick={onPlayClick}>播放</PlayBlueButton>
-      <AddBlueButton onClick={onAddClick} />
+    <Flex align="center" gap={6}>
+      <Flex>
+        <PlayBlueButton onClick={onPlayClick}>播放</PlayBlueButton>
+        <AddBlueButton onClick={onAddClick} />
+      </Flex>
 
       <SpriteGreyButton icon="collectGrey" onClick={onCollectClick}>
         {collect ? `(${formatPlayCount(collect)})` : '收藏'}
