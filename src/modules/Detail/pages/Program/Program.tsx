@@ -1,7 +1,9 @@
 import { FC } from 'react'
 
+import { useProgramDetailQuery } from '@/hooks/program/useProgramDetailQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 
+import { MorePrograms } from './MorePrograms'
 import { ProgramDetail } from './ProgramDetail'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
@@ -12,8 +14,9 @@ import {
 
 export const Program: FC = () => {
   const { id: programId } = useQueryParamId()
+  const { data: program } = useProgramDetailQuery(programId)
 
-  if (!programId) return null
+  if (!programId || !program) return null
 
   return (
     <DetailWrapper>
@@ -21,6 +24,7 @@ export const Program: FC = () => {
         <ProgramDetail programId={programId} />
       </DetailLeftContent>
       <DetailRightContent>
+        <MorePrograms radioId={program.radio.id} />
         <MultiDownload />
       </DetailRightContent>
     </DetailWrapper>

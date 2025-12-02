@@ -21,6 +21,7 @@ export const DJRadio: FC = () => {
         <RadioDetail radioId={radioId} />
       </DetailLeftContent>
       <DetailRightContent>
+        {/* no `你可能也喜欢` endpoint */}
         <MultiDownload />
       </DetailRightContent>
     </DetailWrapper>

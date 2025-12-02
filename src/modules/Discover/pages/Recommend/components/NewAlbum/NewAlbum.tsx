@@ -6,6 +6,7 @@ import { Box } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useNewAlbumsQuery } from '@/hooks/album/useNewAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
+import { routeBuilder } from '@/routers'
 
 import {
   AlbumList,
@@ -31,8 +32,8 @@ export const NewAlbum: FC = () => {
       <SectionHeader
         variant="primary"
         title="新碟上架"
-        titleHref="/discover/album"
-        moreHref="/discover/album"
+        titleHref={routeBuilder.discoverAlbum()}
+        moreHref={routeBuilder.discoverAlbum()}
       />
       <NewAlbumContent>
         <Left onClick={() => pageRef.current?.prev()} />

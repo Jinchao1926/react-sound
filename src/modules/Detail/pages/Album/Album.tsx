@@ -25,6 +25,7 @@ export const Album: FC = () => {
         <AlbumDetail albumId={albumId} />
       </DetailLeftContent>
       <DetailRightContent>
+        {/* no `喜欢这张专辑的人` endpoint */}
         <PopularArtistAlbums artistId={data.album.artist.id} />
         <MultiDownload />
         <UserWiki id={albumId} type="album" />
