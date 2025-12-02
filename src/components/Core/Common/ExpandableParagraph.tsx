@@ -1,4 +1,11 @@
-import { forwardRef, PropsWithChildren, useMemo, useState } from 'react'
+import {
+  forwardRef,
+  PropsWithChildren,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 
 import { ExpandButton } from '@/components/Buttons/ExpandButton'
 
@@ -30,6 +37,7 @@ export const ExpandableParagraph = forwardRef<
     },
     ref
   ) => {
+    const showExpand = useRef<boolean | undefined>(undefined)
     const [expanded, setExpanded] = useState(false)
 
     const { content, isArray, hasMore } = useMemo(() => {
@@ -69,6 +77,12 @@ export const ExpandableParagraph = forwardRef<
       return { content, isArray, hasMore: false }
     }, [children, expanded, maxLines, maxChars])
 
+    useEffect(() => {
+      if (showExpand.current === undefined) {
+        showExpand.current = hasMore
+      }
+    }, [hasMore])
+
     return (
       <Box ref={ref}>
         {isArray ? (
@@ -101,18 +115,22 @@ export const ExpandableParagraph = forwardRef<
           </Paragraph>
         )}
 
-        <Flex justify={expandPosition === 'right' ? 'flex-end' : 'flex-start'}>
-          <ExpandButton
-            expanded={!expanded}
-            onClick={() => {
-              setExpanded((prev) => {
-                const next = !prev
-                onExpand?.(next)
-                return next
-              })
-            }}
-          />
-        </Flex>
+        {showExpand.current && (
+          <Flex
+            justify={expandPosition === 'right' ? 'flex-end' : 'flex-start'}
+          >
+            <ExpandButton
+              expanded={!expanded}
+              onClick={() => {
+                setExpanded((prev) => {
+                  const next = !prev
+                  onExpand?.(next)
+                  return next
+                })
+              }}
+            />
+          </Flex>
+        )}
       </Box>
     )
   }
