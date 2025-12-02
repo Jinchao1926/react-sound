@@ -118,6 +118,7 @@ export interface Track2 extends Omit<Track, 'ar' | 'al'> {
   duration: number
   artists: Artist[]
   album: Album
+  transNames?: string[]
   mvid: number
 }
 

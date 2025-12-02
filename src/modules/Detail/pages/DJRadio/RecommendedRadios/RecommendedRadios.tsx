@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 
 import { Box, Paragraph, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
-import { IdentityIcon } from '@/components/IdentityIcon'
 import { SectionHeader } from '@/components/SectionHeader/SectionHeader'
 import { useRecommendedRadioQuery } from '@/hooks/djradio/useRecommendedRadioQuery'
 import { routeBuilder } from '@/routers'
@@ -42,7 +41,6 @@ export const RecommendedRadios: FC = () => {
                 <TextNavLink to={routeBuilder.user(radio.dj.userId)} ml={4}>
                   {radio.dj.nickname}
                 </TextNavLink>
-                <IdentityIcon avatarDetail={radio.dj.avatarDetail} />
               </Paragraph>
             </Box>
           </RadioItem>
