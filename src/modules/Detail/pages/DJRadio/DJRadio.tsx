@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 
 import { RadioDetail } from './RadioDetail'
+import { RecommendedRadios } from './RecommendedRadios'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
   DetailLeftContent,
@@ -21,7 +22,7 @@ export const DJRadio: FC = () => {
         <RadioDetail radioId={radioId} />
       </DetailLeftContent>
       <DetailRightContent>
-        {/* no `你可能也喜欢` endpoint */}
+        <RecommendedRadios />
         <MultiDownload />
       </DetailRightContent>
     </DetailWrapper>
