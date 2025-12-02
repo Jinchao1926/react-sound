@@ -22,7 +22,7 @@ export const TopRadioCategory: FC = () => {
         <Box key={category.categoryId} mt={35}>
           <SectionHeader
             title={`${category.categoryName}·电台`}
-            moreHref={`/discover/djradio/category?id=${category.categoryId}`}
+            moreHref={routeBuilder.discoverRadioCategory(category.categoryId)}
           />
           <TopRadioCategoryList>
             {category.djRadios.map((radio) => (

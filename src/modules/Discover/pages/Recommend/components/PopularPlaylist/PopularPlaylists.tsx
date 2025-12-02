@@ -4,6 +4,7 @@ import { Box } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
 import { usePopularPlaylistsQuery } from '@/hooks/recommend/usePopularPlaylistsQuery'
 import { PlaylistCover } from '@/modules/Discover/components/PlaylistCover'
+import { routeBuilder } from '@/routers'
 
 import { PopularPlaylistContainer } from './PopularPlaylists.styles'
 
@@ -17,10 +18,10 @@ export const PopularPlaylists: FC = () => {
       <SectionHeader
         variant="primary"
         title="热门推荐"
-        titleHref="/discover/playlist"
+        titleHref={routeBuilder.discoverPlaylist()}
         tags={tags}
-        tagsHref="/discover/playlist?cat="
-        moreHref="/discover/playlist"
+        tagsHref={routeBuilder.discoverPlaylist('')}
+        moreHref={routeBuilder.discoverPlaylist()}
       />
       <PopularPlaylistContainer>
         {data.map((item) => (

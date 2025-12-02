@@ -16,11 +16,14 @@ export const discoverRouteBuilder = {
       : discoverRoutePath.discoverToplist
   },
   discoverPlaylist: (category?: string) => {
-    return category
+    return category !== undefined
       ? `${discoverRoutePath.discoverPlaylist}?cat=${category}`
       : discoverRoutePath.discoverPlaylist
   },
-  discoverArtist: (id: number) =>
-    `${discoverRoutePath.discoverArtist}?id=${id}`,
+  discoverArtist: (id?: number) => {
+    return id
+      ? `${discoverRoutePath.discoverArtist}?id=${id}`
+      : discoverRoutePath.discoverArtist
+  },
   discoverAlbum: () => discoverRoutePath.discoverAlbum,
 }

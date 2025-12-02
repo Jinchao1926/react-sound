@@ -21,7 +21,7 @@ export const SignedArtist: FC = () => {
         <SectionHeader
           variant="simple"
           title="入驻歌手"
-          moreHref="/discover/artist"
+          moreHref={routeBuilder.discoverArtist()}
         />
       </Box>
       <Box mt={6} mb={14} ml={20}>
