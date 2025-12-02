@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 
-import { ProgramDetail } from './components/ProgramDetail'
+import { ProgramDetail } from './ProgramDetail'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
   DetailLeftContent,

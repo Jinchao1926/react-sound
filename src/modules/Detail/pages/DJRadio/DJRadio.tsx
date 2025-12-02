@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 
-import { RadioDetail } from './components/RadioDetail'
+import { RadioDetail } from './RadioDetail'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
   DetailLeftContent,

@@ -3,8 +3,8 @@ import { FC } from 'react'
 import { useAlbumDetailQuery } from '@/hooks/album/useAlbumDetailQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 
-import { AlbumDetail } from './components/AlbumDetail'
-import { PopularArtistAlbums } from './components/PopularArtistAlbums'
+import { AlbumDetail } from './AlbumDetail'
+import { PopularArtistAlbums } from './PopularArtistAlbums'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
   DetailLeftContent,

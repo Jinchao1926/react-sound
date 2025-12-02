@@ -2,9 +2,9 @@ import { FC } from 'react'
 
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 
-import { PlaylistDetail } from './components/PlaylistDetail'
-import { PlaylistSubscribers } from './components/PlaylistSubscribers'
-import { RelatedPlaylists } from './components/RelatedPlaylists'
+import { PlaylistDetail } from './PlaylistDetail'
+import { PlaylistSubscribers } from './PlaylistSubscribers'
+import { RelatedPlaylists } from './RelatedPlaylists'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
   DetailLeftContent,
