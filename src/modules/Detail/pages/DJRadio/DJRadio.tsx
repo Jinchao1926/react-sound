@@ -2,9 +2,7 @@ import { FC } from 'react'
 
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 
-import { PlaylistDetail } from './PlaylistDetail'
-import { PlaylistSubscribers } from './PlaylistSubscribers'
-import { RelatedPlaylists } from './RelatedPlaylists'
+import { RadioDetail } from './RadioDetail'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
   DetailLeftContent,
@@ -12,19 +10,17 @@ import {
   DetailWrapper,
 } from '../../components/shared'
 
-export const Playlist: FC = () => {
-  const { id: playlistId } = useQueryParamId()
+export const DJRadio: FC = () => {
+  const { id: radioId } = useQueryParamId()
 
-  if (!playlistId) return null
+  if (!radioId) return null
 
   return (
     <DetailWrapper>
       <DetailLeftContent>
-        <PlaylistDetail playlistId={playlistId} />
+        <RadioDetail radioId={radioId} />
       </DetailLeftContent>
       <DetailRightContent>
-        <PlaylistSubscribers playlistId={playlistId} />
-        <RelatedPlaylists playlistId={playlistId} />
         <MultiDownload />
       </DetailRightContent>
     </DetailWrapper>

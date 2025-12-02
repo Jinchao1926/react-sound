@@ -87,7 +87,7 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
       <Box mt={20} mb={27}>
         <AlbumHead3>专辑介绍：</AlbumHead3>
         <ExpandableParagraph
-          maxChars={160}
+          maxChars={320}
           mt={4}
           lineHeight={24}
           textIndent="2em"

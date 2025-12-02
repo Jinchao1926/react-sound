@@ -1,10 +1,16 @@
-import { forwardRef, PropsWithChildren, useMemo, useState } from 'react'
+import {
+  forwardRef,
+  PropsWithChildren,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 
 import { ExpandButton } from '@/components/Buttons/ExpandButton'
+import { getDisplayLength, sliceByDisplayLength } from '@/utils/stringUtils'
 
 import { Paragraph } from './Text'
 import { Box, Styles } from '../Layout/Box'
-import { Flex } from '../Layout/Flex'
 
 interface ExpandParagraphProps extends Styles {
   maxLines?: number
@@ -30,6 +36,7 @@ export const ExpandableParagraph = forwardRef<
     },
     ref
   ) => {
+    const [showExpand, setShowExpand] = useState<boolean | undefined>(undefined)
     const [expanded, setExpanded] = useState(false)
 
     const { content, isArray, hasMore } = useMemo(() => {
@@ -37,7 +44,6 @@ export const ExpandableParagraph = forwardRef<
       const content: string | string[] = isArray
         ? children
         : (children as string)
-      // const allLines = Array.isArray(content) ? content : content.split('\n')
 
       if (expanded) {
         return { content, isArray, hasMore: false }
@@ -48,21 +54,21 @@ export const ExpandableParagraph = forwardRef<
         return { content: content.slice(0, maxLines), isArray, hasMore: true }
       }
 
-      // Slice by characters
+      // Slice by characters (display length)
       if (maxChars) {
         if (isArray) {
           const fullText = (content as string[]).join('\n')
           return {
-            content: fullText.slice(0, maxChars).split('\n'),
+            content: sliceByDisplayLength(fullText, maxChars).split('\n'),
             isArray,
-            hasMore: fullText.length > maxChars,
+            hasMore: getDisplayLength(fullText) > maxChars,
           }
         } else {
           const fullText = content as string
           return {
-            content: fullText.slice(0, maxChars),
+            content: sliceByDisplayLength(fullText, maxChars),
             isArray,
-            hasMore: fullText.length > maxChars,
+            hasMore: getDisplayLength(fullText) > maxChars,
           }
         }
       }
@@ -70,8 +76,14 @@ export const ExpandableParagraph = forwardRef<
       return { content, isArray, hasMore: false }
     }, [children, expanded, maxLines, maxChars])
 
+    useEffect(() => {
+      if (showExpand === undefined) {
+        setShowExpand(hasMore)
+      }
+    }, [showExpand, hasMore])
+
     return (
-      <Box ref={ref}>
+      <Box ref={ref} display={rest.display}>
         {isArray ? (
           (content as string[]).map((line, idx) => (
             <Paragraph
@@ -102,18 +114,20 @@ export const ExpandableParagraph = forwardRef<
           </Paragraph>
         )}
 
-        <Flex justify={expandPosition === 'right' ? 'flex-end' : 'flex-start'}>
-          <ExpandButton
-            expanded={!expanded}
-            onClick={() => {
-              setExpanded((prev) => {
-                const next = !prev
-                onExpand?.(next)
-                return next
-              })
-            }}
-          />
-        </Flex>
+        {showExpand && (
+          <Box textAlign={expandPosition}>
+            <ExpandButton
+              expanded={!expanded}
+              onClick={() => {
+                setExpanded((prev) => {
+                  const next = !prev
+                  onExpand?.(next)
+                  return next
+                })
+              }}
+            />
+          </Box>
+        )}
       </Box>
     )
   }

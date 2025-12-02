@@ -9,6 +9,7 @@ import { detailRoutePath } from './config'
 const Song = lazy(() => import('../pages/Song'))
 const Playlist = lazy(() => import('../pages/Playlist'))
 const Album = lazy(() => import('../pages/Album'))
+const DJRadio = lazy(() => import('../pages/DJRadio'))
 const Program = lazy(() => import('../pages/Program'))
 
 export const detailRoutes: RouteObject = {
@@ -29,7 +30,7 @@ export const detailRoutes: RouteObject = {
     },
     {
       path: detailRoutePath.radio,
-      element: <Song />,
+      element: <DJRadio />,
     },
     {
       path: detailRoutePath.program,
