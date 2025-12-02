@@ -102,10 +102,13 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       playBlue: { normal: '-5px -633px', hover: '-5px -719px' },
       playBlue2: { normal: '0 -633px', hover: '0 -719px' },
       addBlue: { normal: '0 -1588px', hover: '-40px -1588px' },
+      starBlue: { normal: '0 -2125px', hover: '0 -2516px' },
+      playGrey: { normal: '0 -2285px', hover: '0 -2680px' },
       collectGrey: { normal: '0 -977px', hover: '0 -1063px' },
       shareGrey: { normal: '0 -1225px', hover: '0 -1268px' },
       downloadGrey: { normal: '0 -2761px', hover: '0 -2805px' },
       commentGrey: { normal: '0 -1465px', hover: '0 -1508px' },
+
       // Others
       like: '0 -95px',
       liked: '-30px -95px',

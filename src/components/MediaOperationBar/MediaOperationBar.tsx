@@ -1,10 +1,13 @@
 import React, { type FC } from 'react'
 
-import { formatPlayCount } from '@/utils/dataFormat'
-
 import { AddBlueButton, PlayBlueButton } from './MediaOperationBar.styles'
-import { SpriteGreyButton } from '../Buttons'
 import { Flex } from '../Core'
+import {
+  CollectGreyButton,
+  CommentGreyButton,
+  DownloadGreyButton,
+  ShareGreyButton,
+} from '../Shared/Social'
 
 interface MediaOperationBarProps {
   counts?: {
@@ -44,18 +47,10 @@ export const MediaOperationBar: FC<MediaOperationBarProps> = ({
         <AddBlueButton onClick={onAddClick} />
       </Flex>
 
-      <SpriteGreyButton icon="collectGrey" onClick={onCollectClick}>
-        {collect ? `(${formatPlayCount(collect)})` : '收藏'}
-      </SpriteGreyButton>
-      <SpriteGreyButton icon="shareGrey" onClick={onShareClick}>
-        {share ? `(${formatPlayCount(share)})` : '分享'}
-      </SpriteGreyButton>
-      <SpriteGreyButton icon="downloadGrey" onClick={onDownloadClick}>
-        {download ? `(${formatPlayCount(download)})` : '下载'}
-      </SpriteGreyButton>
-      <SpriteGreyButton icon="commentGrey" onClick={onCommentClick}>
-        {comment ? `(${formatPlayCount(comment)})` : '评论'}
-      </SpriteGreyButton>
+      <CollectGreyButton count={collect} onClick={onCollectClick} />
+      <ShareGreyButton count={share} onClick={onShareClick} />
+      <DownloadGreyButton count={download} onClick={onDownloadClick} />
+      <CommentGreyButton count={comment} onClick={onCommentClick} />
     </Flex>
   )
 }

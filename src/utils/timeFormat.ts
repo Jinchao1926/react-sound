@@ -30,9 +30,9 @@ export const formatMinuteSecond = (
   timestamp: number,
   format: 'colon' | 'chinese' = 'colon'
 ) => {
-  const date = new Date(timestamp)
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
+  const totalSeconds = Math.floor(timestamp / 1000)
+  const minute = Math.floor(totalSeconds / 60)
+  const second = totalSeconds % 60
 
   if (format === 'chinese') {
     return `${padLeft(minute)}分${padLeft(second)}秒`

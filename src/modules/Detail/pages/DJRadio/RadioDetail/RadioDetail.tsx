@@ -1,12 +1,16 @@
 import { FC } from 'react'
 
-import { SpriteGreyButton } from '@/components/Buttons'
 import { Box, Flex, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
 import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
 import { RadioCategoryLink } from '@/components/Links'
 import { RadioBadge } from '@/components/Shared/Badge'
+import {
+  PlayGreyButton,
+  ShareGreyButton,
+  SubscribeBlueButton,
+} from '@/components/Shared/Social'
 import { useRadioDetailQuery } from '@/hooks/djradio/useRadioDetailQuery'
 import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
@@ -53,17 +57,9 @@ export const RadioDetail: FC<{ radioId: number }> = ({ radioId }) => {
 
           <Flex gap={26} mt={20} mb={25}>
             <Flex gap={10} align="center">
-              {/* <PlayButton>
-                {`播放 ${formatMinuteSecond(program.duration, 'chinese')}`}
-              </PlayButton>
-              <SpriteGreyButton icon="grey" padding="0 2px 0 10px">
-                <LikedIcon $liked={false} />
-                {`(${formatPlayCount(program.likedCount)})`}
-              </SpriteGreyButton>
-              <SpriteGreyButton icon="commentGrey">
-                {`(${formatPlayCount(program.commentCount)})`}
-              </SpriteGreyButton> */}
-              <SpriteGreyButton icon="shareGrey">{`分享(${radio.shareCount})`}</SpriteGreyButton>
+              <SubscribeBlueButton count={radio.subCount} hasPrefix />
+              <PlayGreyButton title="播放全部" />
+              <ShareGreyButton count={radio.shareCount} hasPrefix />
             </Flex>
           </Flex>
 

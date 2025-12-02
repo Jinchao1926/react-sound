@@ -1,11 +1,17 @@
 import { FC, useMemo } from 'react'
 
-import { SpriteGreyButton } from '@/components/Buttons'
 import { Box, Flex, Strong, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
 import { CoverImage } from '@/components/CoverImage'
 import { ExternalLink, RadioCategoryLink } from '@/components/Links'
 import { ProgramBadge } from '@/components/Shared/Badge'
+import {
+  CommentGreyButton,
+  DownloadGreyButton,
+  LikeGreyButton,
+  PlayBlueButton,
+  ShareGreyButton,
+} from '@/components/Shared/Social'
 import { TrackCollection } from '@/components/TrackCollection'
 import { useProgramDetailQuery } from '@/hooks/program/useProgramDetailQuery'
 import { routeBuilder } from '@/routers'
@@ -14,8 +20,6 @@ import { normalizeTracks } from '@/utils/normalizeTrack'
 import { formatMinuteSecond, formatYearMonthDay } from '@/utils/timeFormat'
 
 import {
-  LikedIcon,
-  PlayButton,
   RadioIcon,
   RadioName,
   StarredIcon,
@@ -80,18 +84,13 @@ export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
 
       <Flex gap={26} mt={20} mb={25}>
         <Flex gap={10} align="center">
-          <PlayButton>
-            {`播放 ${formatMinuteSecond(program.duration, 'chinese')}`}
-          </PlayButton>
-          <SpriteGreyButton icon="grey" padding="0 2px 0 10px">
-            <LikedIcon $liked={false} />
-            {`(${formatPlayCount(program.likedCount)})`}
-          </SpriteGreyButton>
-          <SpriteGreyButton icon="commentGrey">
-            {`(${formatPlayCount(program.commentCount)})`}
-          </SpriteGreyButton>
-          <SpriteGreyButton icon="shareGrey">分享</SpriteGreyButton>
-          <SpriteGreyButton icon="downloadGrey">下载</SpriteGreyButton>
+          <PlayBlueButton
+            title={`播放 ${formatMinuteSecond(program.duration, 'chinese')}`}
+          />
+          <LikeGreyButton count={program.likedCount} />
+          <CommentGreyButton count={program.commentCount} />
+          <ShareGreyButton count={program.shareCount} />
+          <DownloadGreyButton />
         </Flex>
 
         <ExternalLink id={program.id} type="program" underline={false} />
@@ -119,16 +118,18 @@ export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
         </ExpandableParagraph>
       </Box>
 
-      <TrackCollection
-        dataSource={{
-          id: program.id,
-          name: program.name,
-          tracks: normalizeTracks(program.songs),
-          trackCount: program.trackCount,
-          playCount: program.listenerCount,
-        }}
-        config={config}
-      />
+      {program.trackCount > 0 && (
+        <TrackCollection
+          dataSource={{
+            id: program.id,
+            name: program.name,
+            tracks: normalizeTracks(program.songs),
+            trackCount: program.trackCount,
+            playCount: program.listenerCount,
+          }}
+          config={config}
+        />
+      )}
     </Box>
   )
 }
