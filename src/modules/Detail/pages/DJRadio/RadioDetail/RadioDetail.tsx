@@ -5,6 +5,7 @@ import { Box, Flex, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
 import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
+import { RadioCategoryLink } from '@/components/Links'
 import { RadioBadge } from '@/components/Shared/Badge'
 import { useRadioDetailQuery } from '@/hooks/djradio/useRadioDetailQuery'
 import { routeBuilder } from '@/routers'
@@ -67,7 +68,13 @@ export const RadioDetail: FC<{ radioId: number }> = ({ radioId }) => {
           </Flex>
 
           <Box mb={27}>
-            <ExpandableParagraph maxChars={100} m={0}>
+            <RadioCategoryLink
+              category={{
+                id: radio.categoryId,
+                name: radio.category,
+              }}
+            />
+            <ExpandableParagraph maxChars={128} my={0} ml={10} display="inline">
               {`${radio.desc}`}
             </ExpandableParagraph>
           </Box>

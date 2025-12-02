@@ -4,7 +4,7 @@ import { SpriteGreyButton } from '@/components/Buttons'
 import { Box, Flex, Strong, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
 import { CoverImage } from '@/components/CoverImage'
-import { ExternalLink } from '@/components/Links'
+import { ExternalLink, RadioCategoryLink } from '@/components/Links'
 import { ProgramBadge } from '@/components/Shared/Badge'
 import { TrackCollection } from '@/components/TrackCollection'
 import { useProgramDetailQuery } from '@/hooks/program/useProgramDetailQuery'
@@ -16,7 +16,6 @@ import { formatMinuteSecond, formatYearMonthDay } from '@/utils/timeFormat'
 import {
   LikedIcon,
   PlayButton,
-  RadioCategory,
   RadioIcon,
   RadioName,
   StarredIcon,
@@ -99,9 +98,12 @@ export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
       </Flex>
 
       <Flex align="center" height={35}>
-        <RadioCategory to={routeBuilder.radio(program.radio.id)}>
-          {program.radio.category}
-        </RadioCategory>
+        <RadioCategoryLink
+          category={{
+            id: program.radio.categoryId,
+            name: program.radio.category,
+          }}
+        />
         <RadioName>{`${program.radio.name}  第${program.serialNum}期`}</RadioName>
         <Text mx={18} color="#999">
           {formatYearMonthDay(program.createTime)} 创建
@@ -112,7 +114,7 @@ export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
       </Flex>
 
       <Box mb={27}>
-        <ExpandableParagraph maxChars={166} lineHeight={23} m={0}>
+        <ExpandableParagraph maxChars={320} lineHeight={23} m={0}>
           {`介绍： ${program.description}`}
         </ExpandableParagraph>
       </Box>
