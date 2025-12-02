@@ -15,6 +15,8 @@ import { useRadioDetailQuery } from '@/hooks/djradio/useRadioDetailQuery'
 import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/dataFormat'
 
+import { RadioPrograms } from '../RadioPrograms'
+
 export const RadioDetail: FC<{ radioId: number }> = ({ radioId }) => {
   const { data: radio } = useRadioDetailQuery(radioId)
 
@@ -76,6 +78,8 @@ export const RadioDetail: FC<{ radioId: number }> = ({ radioId }) => {
           </Box>
         </Box>
       </Flex>
+
+      <RadioPrograms radioId={radioId} />
     </Box>
   )
 }

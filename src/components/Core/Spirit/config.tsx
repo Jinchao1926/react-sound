@@ -291,6 +291,16 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       CD: '-140px -580px',
     },
   },
+  // Radio
+  sort: {
+    url: require('./img/sort.png'),
+    icons: {
+      desc: { normal: '0 0', hover: '0 -60px' },
+      desced: { normal: '0 -30px' },
+      asc: { normal: '-40px 0', hover: '-40px -60px' },
+      asced: { normal: '-40px -30px' },
+    },
+  },
 }
 
 // Variant group configuration
@@ -314,6 +324,7 @@ export type SpriteCategory =
   | 'progress'
   | 'radio'
   | 'cover'
+  | 'sort'
 
 export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   header: INTERNAL_SPRITE_CONFIG.header,
@@ -326,4 +337,5 @@ export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   progress: INTERNAL_SPRITE_CONFIG.progress,
   radio: INTERNAL_SPRITE_CONFIG.radio,
   cover: INTERNAL_SPRITE_CONFIG.cover,
+  sort: INTERNAL_SPRITE_CONFIG.sort,
 }
