@@ -28,6 +28,22 @@ export const useRadioProgramsQuery = (options: {
   const { radioId, offset = 0, limit = 100, asc = false } = options
   const axios = useAxios()
 
+  /* 
+  const queryClient = useQueryClient()
+  const prevAscRef = useRef<boolean>(asc)
+
+  // Cache handling when asc changes 
+  useEffect(() => {
+    if (prevAscRef.current !== asc) {
+      queryClient.removeQueries({
+        queryKey: ['radioPrograms', { radioId, asc: prevAscRef.current }],
+        exact: false,
+      })
+      prevAscRef.current = asc
+    }
+  }, [asc, radioId, queryClient])
+  */
+
   const queryResult = useQuery({
     queryKey: ['radioPrograms', { radioId, offset, limit, asc }],
     queryFn: async () => {

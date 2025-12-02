@@ -1,4 +1,6 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useMemo, useState } from 'react'
+
+import { useNavigate } from 'react-router-dom'
 
 import { Box, Flex, Text, TextNavLink } from '@/components/Core'
 import { ExternalLink } from '@/components/Links'
@@ -10,6 +12,7 @@ import {
   ShareButton,
 } from '@/components/Shared/Media'
 import { useRadioProgramsQuery } from '@/hooks/program/useRadioProgramsQuery'
+import { useUrlParams } from '@/hooks/useUrlParams'
 import { routeBuilder } from '@/routers'
 import { formatPlayCount } from '@/utils/dataFormat'
 import { formatMinuteSecond, formatYearMonthDay } from '@/utils/timeFormat'
@@ -26,8 +29,16 @@ import { RadioSort } from './RadioSort'
 const PAGE_SIZE = 100
 
 export const RadioPrograms: FC<{ radioId: number }> = ({ radioId }) => {
+  const navigate = useNavigate()
+  const queryParams = useUrlParams()
+
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [asc, setAsc] = useState<boolean>(false)
+
+  // Parse asc from URL: order=1 means asc=false, order=2 means asc=true
+  const asc = useMemo(() => {
+    const order = queryParams.get('order')
+    return order === '2'
+  }, [queryParams])
 
   const { data: programs, count } = useRadioProgramsQuery({
     radioId,
@@ -37,7 +48,9 @@ export const RadioPrograms: FC<{ radioId: number }> = ({ radioId }) => {
   })
 
   const handleSortChange = (newAsc: boolean) => {
-    setAsc(newAsc)
+    const newOrder = newAsc ? '2' : '1'
+    queryParams.set('order', newOrder)
+    navigate({ search: queryParams.toString() }, { replace: true })
     setCurrentPage(1)
   }
 
