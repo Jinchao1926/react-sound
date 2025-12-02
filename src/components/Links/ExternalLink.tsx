@@ -3,7 +3,12 @@ import React, { type FC } from 'react'
 import { MusicIcon, MusicLink } from './ExternalLink.styles'
 import { Flex, Styles } from '../Core'
 
-export type ExternalLinkType = 'playlist' | 'album' | 'song' | 'program'
+export type ExternalLinkType =
+  | 'playlist'
+  | 'album'
+  | 'song'
+  | 'program'
+  | 'radio'
 interface ExternalLinkProps extends Omit<Styles, 'id'> {
   id: number | string
   type: ExternalLinkType
@@ -21,6 +26,7 @@ export const ExternalLink: FC<ExternalLinkProps> = ({
     album: 1,
     song: 2,
     program: 3,
+    radio: 4,
   }
 
   return (

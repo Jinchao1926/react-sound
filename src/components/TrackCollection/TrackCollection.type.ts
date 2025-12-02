@@ -19,7 +19,7 @@ export interface TrackCollectionConfig {
   showAlbumColumn?: boolean
   showIndexTrend?: boolean
   showTitleCoverImage?: boolean
-  columnWidths: {
+  columnWidths?: {
     index?: number
     title?: number
     duration?: number

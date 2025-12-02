@@ -10,7 +10,7 @@ export const PaginationButton = styled.button`
   border-radius: 2px;
 
   &:disabled {
-    color: #cacaca;
+    color: #cacaca !important;
   }
 `
 
