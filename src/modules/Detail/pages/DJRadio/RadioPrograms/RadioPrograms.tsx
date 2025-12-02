@@ -89,9 +89,7 @@ export const RadioPrograms: FC<{ radioId: number }> = ({ radioId }) => {
               <td>
                 <Flex justify="space-between" lineHeight={18}>
                   <Text width={25} color="#999" textAlign="center">
-                    {asc
-                      ? (currentPage - 1) * PAGE_SIZE + idx + 1
-                      : count - (currentPage - 1) * PAGE_SIZE - idx}
+                    {program.serialNum}
                   </Text>
                   <PlayButtonSMLight onClick={() => {}} />
                 </Flex>
