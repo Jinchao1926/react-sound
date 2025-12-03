@@ -1,0 +1,1 @@
+export { ArtistCategory } from './ArtistCategory'
