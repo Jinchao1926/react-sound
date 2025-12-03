@@ -11,6 +11,7 @@ export const MVBadge = styled(Sprite).attrs({
   display: inline-block;
   width: 23px;
   height: 17px;
+  flex-shrink: 0;
 `
 
 export const SongBadge = styled(Sprite).attrs({

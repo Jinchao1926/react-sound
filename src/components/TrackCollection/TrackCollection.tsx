@@ -148,6 +148,7 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
                     color="#333"
                     nowrap
                     ml={8}
+                    flexShrink={0}
                   >
                     {item.name}
                   </TextNavLink>

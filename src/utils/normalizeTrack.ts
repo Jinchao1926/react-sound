@@ -6,12 +6,13 @@ import { Track, Track2 } from '@/types/track'
  * @returns normalized track data
  */
 export function normalizeTrack(track: Track2): Track {
-  const { duration, artists, album, mvid, ...rest } = track
+  const { duration, artists, album, transNames, mvid, ...rest } = track
   return {
     ...rest,
     dt: duration,
     ar: artists,
     al: album,
+    tns: transNames,
     mv: mvid,
   }
 }
