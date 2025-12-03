@@ -90,6 +90,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       iOS: { normal: '0 -392px', hover: '0 -472px' },
       pc: { normal: '-70.5px -392px', hover: '-70.5px -472px' },
       android: { normal: '-159px -392px', hover: '-159px -472px' },
+      qrCode: '0 -300px',
     },
   },
   // Buttons
@@ -192,13 +193,14 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       chevronDown: '-75px -20px',
       // badges
       program: '0 -75px', // 播客节目
+      mv: '-230px -480px', // MV
     },
   },
   icon4: {
     url: require('./img/icon4.png'),
     icons: {
       header: { normal: '0 0', repeat: 'repeat-x' },
-      mv: '0 -151px',
+      mvIcon: '0 -151px',
       play: { normal: '0 -103px', hover: '0 -128px' },
       share: { normal: '0 -195px', hover: '-20px -195px' },
       download: { normal: '-81px -174px', hover: '-104px -174px' },
