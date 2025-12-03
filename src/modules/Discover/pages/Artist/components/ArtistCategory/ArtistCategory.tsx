@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 
 import { Box } from '@/components/Core'
+import { routeBuilder } from '@/routers'
 
 import {
   ArtistCategoryHeader,
@@ -10,7 +11,7 @@ import {
 import { useSelectedCategory } from '../../hooks/useSelectedCategory'
 
 export const ArtistCategory: FC = () => {
-  const { categories, selectedArea, selectedType } = useSelectedCategory()
+  const { categories, selectedCategory } = useSelectedCategory()
 
   return (
     <Box pt={51} px={10} pb={40}>
@@ -22,9 +23,13 @@ export const ArtistCategory: FC = () => {
               {category.types.map((type) => (
                 <ArtistCategoryLink
                   key={type.type}
-                  to={`/discover/artist?area=${category.area}&type=${type.type}`}
+                  to={routeBuilder.discoverArtist({
+                    area: category.area,
+                    type: type.type,
+                  })}
                   $selected={
-                    category.area === selectedArea && type.type === selectedType
+                    category.area === selectedCategory?.area &&
+                    type.type === selectedCategory?.type
                   }
                 >
                   {`${category.label}${type.label}`}

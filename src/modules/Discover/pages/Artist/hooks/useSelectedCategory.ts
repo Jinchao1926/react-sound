@@ -1,5 +1,9 @@
+import { useMemo } from 'react'
+
 import {
+  ArtistArea,
   ArtistAreaEnum,
+  ArtistType,
   ArtistTypeEnum,
 } from '@/hooks/artist/useArtistListQuery'
 import { useUrlParams } from '@/hooks/useUrlParams'
@@ -47,13 +51,34 @@ export const useSelectedCategory = () => {
   const queryParams = useUrlParams()
   const areaParam = queryParams.get('area')
   const typeParam = queryParams.get('type')
+  const initialParam = queryParams.get('initial')
 
-  const selectedArea = areaParam ? Number(areaParam) : ArtistAreaEnum.ALL
-  const selectedType = typeParam ? Number(typeParam) : ArtistTypeEnum.ALL
+  const selectedArea: ArtistArea = areaParam
+    ? (Number(areaParam) as ArtistArea)
+    : ArtistAreaEnum.ALL
+  const selectedType: ArtistType = typeParam
+    ? (Number(typeParam) as ArtistType)
+    : ArtistTypeEnum.ALL
+
+  const selectedCategory = useMemo(() => {
+    const category = artistCategories
+      .flatMap((category) =>
+        category.types.map((type) => ({
+          area: category.area,
+          type: type.type,
+          label: `${category.label}${type.label}`,
+        }))
+      )
+      .find((item) => item.area === selectedArea && item.type === selectedType)
+
+    return category || { area: selectedArea, type: selectedType, label: '' }
+  }, [selectedArea, selectedType])
+
+  const selectedInitial = initialParam ? Number(initialParam) : -1
 
   return {
     categories: artistCategories,
-    selectedArea,
-    selectedType,
+    selectedCategory,
+    selectedInitial,
   }
 }

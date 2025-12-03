@@ -172,6 +172,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       expand: '-65px -520px',
       music: '-34px -863px',
       people: '-50px -300px',
+      user: '0 -740px',
       // badges
       song: '0 -463px', // 单曲
       playlist: '0 -243px', // 歌单
@@ -283,6 +284,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     icons: {
       // bright-width
       bright80: '-145px -57px',
+      bright130: '0 -680px',
       bright140: '0 0',
       bright150: '-230px -380px',
       bright200: '0 -1285px',

@@ -32,6 +32,7 @@
 export interface Artist {
   id: number
   name: string
+  img1v1Url: string
   picUrl: string
   alias: string[]
   tns?: string[]
