@@ -23,7 +23,7 @@ export const MVDetail: FC<{ mv: MV }> = ({ mv }) => {
     <Box mt={-10}>
       <Flex gap={5} align="baseline" mb={8}>
         <MVBadge />
-        <Text fontSize={24} mr={3}>
+        <Text fontSize={24} lineHeight={32} mr={3}>
           {mv.name}
         </Text>
         <UserLink users={mv.artists} color="#0c73c2" />
