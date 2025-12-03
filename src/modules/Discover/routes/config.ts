@@ -1,3 +1,5 @@
+import { ArtistArea, ArtistType } from '@/hooks/artist/useArtistListQuery'
+
 export const discoverRoutePath = {
   discover: '/discover',
   discoverRecommend: '/discover/recommend',
@@ -20,9 +22,20 @@ export const discoverRouteBuilder = {
       ? `${discoverRoutePath.discoverPlaylist}?cat=${category}`
       : discoverRoutePath.discoverPlaylist
   },
-  discoverArtist: (id?: number) => {
-    return id
-      ? `${discoverRoutePath.discoverArtist}?id=${id}`
+  discoverArtist: (options?: {
+    area?: ArtistArea
+    type?: ArtistType
+    initial?: number
+  }) => {
+    const { area, type, initial } = options || {}
+    const params = new URLSearchParams()
+    if (area !== undefined) params.append('area', String(area))
+    if (type !== undefined) params.append('type', String(type))
+    if (initial !== undefined) params.append('initial', String(initial))
+
+    const queryString = params.toString()
+    return queryString
+      ? `${discoverRoutePath.discoverArtist}?${queryString}`
       : discoverRoutePath.discoverArtist
   },
   discoverAlbum: () => discoverRoutePath.discoverAlbum,

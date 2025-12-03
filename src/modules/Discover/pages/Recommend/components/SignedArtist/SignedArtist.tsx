@@ -26,7 +26,7 @@ export const SignedArtist: FC = () => {
       </Box>
       <Box mt={6} mb={14} ml={20}>
         {data.map((item) => (
-          <SingerLink key={item.id} to={routeBuilder.discoverArtist(item.id)}>
+          <SingerLink key={item.id} to={routeBuilder.user(item.id)}>
             <Image
               src={formatSizedImage(item.picUrl, 62)}
               alt={item.name}
