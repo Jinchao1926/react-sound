@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import { routeBuilder } from '@/routers'
 
-import { MVBadge } from '../Shared/Badge'
+import { MVIcon } from '../Shared/Badge'
 
 interface MVLinkProps {
   mvID?: number
@@ -15,7 +15,7 @@ export const MVLink: FC<MVLinkProps> = ({ mvID }) => {
 
   return (
     <NavLink to={routeBuilder.mv(mvID)}>
-      <MVBadge mt={2} ml={2} />
+      <MVIcon mt={2} ml={2} />
     </NavLink>
   )
 }

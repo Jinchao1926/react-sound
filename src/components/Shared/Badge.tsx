@@ -2,15 +2,27 @@ import styled from 'styled-components'
 
 import { Sprite } from '../Core'
 
-export const MVBadge = styled(Sprite).attrs({
+export const MVIcon = styled(Sprite).attrs({
   sprite: 'icon',
-  icon: 'mv',
+  icon: 'mvIcon',
   component: 'span',
   title: '播放MV',
 })`
   display: inline-block;
   width: 23px;
   height: 17px;
+  flex-shrink: 0;
+`
+
+export const MVBadge = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'mv',
+  component: 'span',
+  title: 'MV',
+})`
+  display: inline-block;
+  width: 29px;
+  height: 18px;
   flex-shrink: 0;
 `
 
@@ -21,8 +33,8 @@ export const SongBadge = styled(Sprite).attrs({
   title: '单曲',
 })`
   display: inline-block;
-  width: 54px;
-  height: 24px;
+  width: 29px;
+  height: 18px;
   flex-shrink: 0;
 `
 
