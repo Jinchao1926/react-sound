@@ -90,6 +90,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       iOS: { normal: '0 -392px', hover: '0 -472px' },
       pc: { normal: '-70.5px -392px', hover: '-70.5px -472px' },
       android: { normal: '-159px -392px', hover: '-159px -472px' },
+      qrCode: '0 -300px',
     },
   },
   // Buttons

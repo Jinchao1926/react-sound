@@ -5,6 +5,7 @@ import { useQueryParamId } from '@/hooks/useQueryParamId'
 
 import { MVDetail } from './MVDetail'
 import { MVIntroduction } from './MVIntroduction'
+import { WechatQRCode } from './WechatQRCode'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
   DetailLeftContent,
@@ -27,7 +28,8 @@ export const MV: FC = () => {
       <DetailRightContent>
         <MVIntroduction mv={mv} />
         <MultiDownload />
-        <UserWiki id={123} type="song" />
+        <WechatQRCode />
+        <UserWiki id={mv.id} type="mv" />
       </DetailRightContent>
     </DetailWrapper>
   )

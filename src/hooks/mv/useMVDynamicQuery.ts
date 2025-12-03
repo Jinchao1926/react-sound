@@ -29,7 +29,12 @@ export const useMVDynamicQuery = (id?: number) => {
           },
         }
       )
-      return data
+      return {
+        liked: data?.liked ?? false,
+        likedCount: data?.likedCount ?? 0,
+        shareCount: data?.shareCount ?? 0,
+        commentCount: data?.commentCount ?? 0,
+      }
     },
     enabled: !!id,
     staleTime: Infinity,
