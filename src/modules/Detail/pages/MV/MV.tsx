@@ -4,6 +4,7 @@ import { useMVDetailQuery } from '@/hooks/mv/useMVDetailQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 
 import { MVDetail } from './MVDetail'
+import { MVIntroduction } from './MVIntroduction'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
   DetailLeftContent,
@@ -24,6 +25,7 @@ export const MV: FC = () => {
         <MVDetail mv={mv} />
       </DetailLeftContent>
       <DetailRightContent>
+        <MVIntroduction mv={mv} />
         <MultiDownload />
         <UserWiki id={123} type="song" />
       </DetailRightContent>
