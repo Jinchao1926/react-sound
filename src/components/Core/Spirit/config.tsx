@@ -293,7 +293,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       CD: '-140px -580px',
     },
   },
-  // Radio
+  // Sort
   sort: {
     url: require('./img/sort.png'),
     icons: {
@@ -301,6 +301,14 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       desced: { normal: '0 -30px' },
       asc: { normal: '-40px 0', hover: '-40px -60px' },
       asced: { normal: '-40px -30px' },
+    },
+  },
+  // Selection
+  selection: {
+    url: require('./img/selection.png'),
+    icons: {
+      normal: { normal: '0 -30px' },
+      selected: { normal: '0 0' },
     },
   },
 }
