@@ -78,3 +78,23 @@ export const discoverNavigations = [
     link: '/discover/album',
   },
 ]
+
+// Artist Header
+export const artistNavigations = [
+  {
+    title: '热门作品',
+    link: '/artist',
+  },
+  {
+    title: '所有专辑',
+    link: '/artist/album',
+  },
+  {
+    title: '相关MV',
+    link: '/artist/mv',
+  },
+  {
+    title: '艺人介绍',
+    link: '/artist/desc',
+  },
+]

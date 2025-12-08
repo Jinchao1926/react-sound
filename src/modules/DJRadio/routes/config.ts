@@ -1,4 +1,4 @@
-export const radiorRoutePath = {
+export const radioRoutePath = {
   discoverRadio: '/discover/djradio',
   discoverRadioRecommend: '/discover/djradio/recommend',
   discoverRadioRank: '/discover/djradio/rank',
@@ -6,9 +6,9 @@ export const radiorRoutePath = {
 }
 
 export const radioRouteBuilder = {
-  discoverRadio: () => radiorRoutePath.discoverRadio,
-  discoverRadioRecommend: () => radiorRoutePath.discoverRadioRecommend,
-  discoverRadioRank: () => radiorRoutePath.discoverRadioRank,
+  discoverRadio: () => radioRoutePath.discoverRadio,
+  discoverRadioRecommend: () => radioRoutePath.discoverRadioRecommend,
+  discoverRadioRank: () => radioRoutePath.discoverRadioRank,
   discoverRadioCategory: (id: number) =>
-    `${radiorRoutePath.discoverRadioCategory}?id=${id}`,
+    `${radioRoutePath.discoverRadioCategory}?id=${id}`,
 }

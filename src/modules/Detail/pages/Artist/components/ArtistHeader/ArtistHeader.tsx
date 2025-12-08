@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 
 import { Box, Flex, Image } from '@/components/Core'
+import { artistNavigations } from '@/constants/navigation'
 import { useArtistQuery } from '@/hooks/artist/useArtistsQuery'
 import { routeBuilder } from '@/routers'
 import { formatImage } from '@/utils/dataFormat'
@@ -10,6 +11,8 @@ import {
   ArtistAlias,
   ArtistCover,
   ArtistName,
+  ArtistNavigationBar,
+  ArtistNavigationLink,
   Favorite,
   HomepageLink,
 } from './ArtistHeader.styles'
@@ -26,7 +29,7 @@ export const ArtistHeader: FC<{ artistId: number }> = ({ artistId }) => {
         <ArtistAlias>{artist.alias?.join(';')}</ArtistAlias>
       </Flex>
 
-      <Box position="relative">
+      <Box position="relative" width={640} height={300}>
         <Image
           src={formatImage(artist.picUrl, 640, 300)}
           alt={artist.name}
@@ -39,6 +42,18 @@ export const ArtistHeader: FC<{ artistId: number }> = ({ artistId }) => {
           <Favorite />
         </Actions>
       </Box>
+
+      <ArtistNavigationBar>
+        {artistNavigations.map((item) => (
+          <ArtistNavigationLink
+            key={item.title}
+            to={`${item.link}?id=${artistId}`}
+            end={item.link === '/artist'}
+          >
+            {item.title}
+          </ArtistNavigationLink>
+        ))}
+      </ArtistNavigationBar>
     </Box>
   )
 }

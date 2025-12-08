@@ -1,4 +1,6 @@
-import { FC } from 'react'
+import { FC, Suspense } from 'react'
+
+import { Outlet } from 'react-router-dom'
 
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 
@@ -20,6 +22,9 @@ export const Artist: FC = () => {
     <DetailWrapper>
       <DetailLeftContent>
         <ArtistHeader artistId={artistId} />
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </DetailLeftContent>
       <DetailRightContent>
         <MultiDownload />

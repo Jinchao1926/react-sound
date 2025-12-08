@@ -351,6 +351,7 @@ export type SpriteCategory =
   | 'radio'
   | 'cover'
   | 'sort'
+  | 'selection'
 
 export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   header: INTERNAL_SPRITE_CONFIG.header,
@@ -364,4 +365,5 @@ export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   radio: INTERNAL_SPRITE_CONFIG.radio,
   cover: INTERNAL_SPRITE_CONFIG.cover,
   sort: INTERNAL_SPRITE_CONFIG.sort,
+  selection: INTERNAL_SPRITE_CONFIG.selection,
 }

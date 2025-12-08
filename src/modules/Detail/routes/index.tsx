@@ -5,6 +5,7 @@ import type { RouteObject } from 'react-router-dom'
 import { OutletLayout } from '@/components/OutletLayout'
 
 import { detailRoutePath } from './config'
+import { artistRoutes } from '../pages/Artist/routes'
 
 const Song = lazy(() => import('../pages/Song'))
 const Playlist = lazy(() => import('../pages/Playlist'))
@@ -12,7 +13,6 @@ const Album = lazy(() => import('../pages/Album'))
 const DJRadio = lazy(() => import('../pages/DJRadio'))
 const Program = lazy(() => import('../pages/Program'))
 const MV = lazy(() => import('../pages/MV'))
-const Artist = lazy(() => import('../pages/Artist'))
 
 export const detailRoutes: RouteObject = {
   path: '/',
@@ -42,10 +42,7 @@ export const detailRoutes: RouteObject = {
       path: detailRoutePath.mv,
       element: <MV />,
     },
-    {
-      path: detailRoutePath.artist,
-      element: <Artist />,
-    },
+    artistRoutes,
     {
       path: detailRoutePath.user,
       element: <Song />,
