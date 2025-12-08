@@ -31,6 +31,7 @@
 /** 艺术家 */
 export interface Artist {
   id: number
+  accountId: number // user id
   name: string
   img1v1Url: string
   picUrl: string

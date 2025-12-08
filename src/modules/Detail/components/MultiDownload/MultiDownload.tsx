@@ -16,7 +16,7 @@ export const MultiDownload: FC = () => {
           Android
         </Android>
       </Flex>
-      <Text color="#999">同步歌单，随时畅听320k好音乐</Text>
+      <Text color="#999">同步歌单，随时畅听好音乐</Text>
     </Box>
   )
 }

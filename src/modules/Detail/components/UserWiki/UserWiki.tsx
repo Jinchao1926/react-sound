@@ -7,7 +7,7 @@ import { FileIcon, FileLink, WikiIcon } from './UserWiki.styles'
 
 export interface UserWikiProps {
   id: number
-  type: 'song' | 'album' | 'mv'
+  type: 'song' | 'album' | 'mv' | 'artist'
 }
 
 export const UserWiki: FC<UserWikiProps> = ({ id, type }) => {
@@ -27,6 +27,11 @@ export const UserWiki: FC<UserWikiProps> = ({ id, type }) => {
         return {
           link: `https://music.163.com/#/wiki/mv?mvId=${id}`,
           name: 'MV',
+        }
+      case 'artist':
+        return {
+          link: `https://music.163.com/#/wiki/artist?artistId=${id}`,
+          name: '艺人',
         }
       default:
         return { link: '', name: '' }

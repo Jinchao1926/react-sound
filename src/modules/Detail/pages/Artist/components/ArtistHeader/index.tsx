@@ -1,0 +1,1 @@
+export { ArtistHeader } from './ArtistHeader'

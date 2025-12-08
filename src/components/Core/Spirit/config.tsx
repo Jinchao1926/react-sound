@@ -209,6 +209,13 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       rankingProgress: '0 -304px',
     },
   },
+  icon5: {
+    url: require('./img/icon5.png'),
+    icons: {
+      homepage: { normal: '0 -1156px', hover: '0 -1196px' },
+      favorite: { normal: '0px -500px', hover: '0 -540px' },
+    },
+  },
   police: {
     url: require('./img/icon/police.png'),
     icons: {
@@ -295,6 +302,12 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       CD: '-140px -580px',
     },
   },
+  coverMask: {
+    url: require('./img/cover_mask.png'),
+    icons: {
+      mask: '0 0',
+    },
+  },
   // Sort
   sort: {
     url: require('./img/sort.png'),
@@ -320,8 +333,9 @@ export const SPRITE_VARIANTS: Record<string, string[]> = {
   footer: ['footer', 'footer2'],
   background: ['downloadBG', 'loginBG', 'loginBG2', 'categoryBG'],
   button: ['button', 'button2', 'button3'],
-  icon: ['icon', 'icon2', 'icon3', 'icon4', 'police', 'file', 'wiki'],
+  icon: ['icon', 'icon2', 'icon3', 'icon4', 'icon5', 'police', 'file', 'wiki'],
   playbar: ['playbar', 'pip'],
+  cover: ['cover', 'coverMask'],
 }
 
 // Public API - Export types for external use
