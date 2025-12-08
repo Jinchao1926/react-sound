@@ -55,3 +55,27 @@ export const Favorite = styled(Sprite).attrs({
   width: 76px;
   height: 32px;
 `
+
+export const ArtistNavigationBar = styled.div`
+  background: url(${require('@/assets/img/tab.png')}) repeat-x 0 0;
+  display: flex;
+`
+
+export const ArtistNavigationLink = styled(NavLink)`
+  background: url(${require('@/assets/img/tab.png')}) no-repeat 0 9999px;
+  display: block;
+  width: 138px;
+  height: 39px;
+  line-height: 39px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+
+  background-position: 0 0;
+  &:hover {
+    background-position: 0 -45px;
+  }
+  &.active {
+    background-position: 0 -90px;
+  }
+`
