@@ -25,6 +25,14 @@ export const formatSizedImage = (imgUrl: string, size: number = 140) => {
   return `${imgUrl}?param=${size}y${size}`
 }
 
+export const formatImage = (
+  imgUrl: string,
+  width: number = 140,
+  height: number = 140
+) => {
+  return `${imgUrl}?param=${width}y${height}`
+}
+
 export const getMusicUrl = (id: number) => {
   return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
 }
