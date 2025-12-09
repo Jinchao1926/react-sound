@@ -45,6 +45,7 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
     showExpandableHeader = false,
     showExternalLink = false,
     externalLinkType = 'playlist',
+    showArtistColumn = true,
     showAlbumColumn = false,
     showIndexTrend = true,
     showTitleCoverImage = true,
@@ -68,39 +69,51 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
     return { tracks: expanded ? dataSource.tracks : [], hasMoreTracks: false }
   }, [dataSource.tracks, maxRows, expanded])
 
+  const showHeader = Boolean(
+    dataSource.id && dataSource.trackCount && dataSource.playCount
+  )
+  const showTHeader = !showExpandableHeader
+
   return (
     <Box>
-      <TrackCollectionHeader
-        config={{
-          headerTitle,
-          showExpandableHeader,
-          showExternalLink,
-          externalId: dataSource.id,
-          externalType: externalLinkType,
-          trackCount: dataSource.trackCount,
-          playCount: dataSource.playCount,
-        }}
-        expanded={expanded}
-        onExpand={setExpanded}
-      />
+      {showHeader && (
+        <TrackCollectionHeader
+          config={{
+            headerTitle,
+            showExpandableHeader,
+            showExternalLink,
+            externalId: dataSource.id,
+            externalType: externalLinkType,
+            trackCount: dataSource.trackCount,
+            playCount: dataSource.playCount,
+          }}
+          expanded={expanded}
+          onExpand={setExpanded}
+        />
+      )}
 
-      <TrackCollectionTable $enlargeFirstThreeRows={showTitleCoverImage}>
+      <TrackCollectionTable
+        $enlargeFirstThreeRows={showTitleCoverImage}
+        $bordered={showHeader || showTHeader}
+      >
         {/* Define col width - Even if the header is hidden, the column width can still be controlled */}
         <colgroup>
           <TrackCollectionCol width={columnWidths.index} />
           <TrackCollectionCol width={columnWidths.title} />
           <TrackCollectionCol width={columnWidths.duration} />
-          <TrackCollectionCol width={columnWidths.artist} />
+          {showArtistColumn && (
+            <TrackCollectionCol width={columnWidths.artist} />
+          )}
           {showAlbumColumn && <TrackCollectionCol width={columnWidths.album} />}
         </colgroup>
 
-        {!showExpandableHeader && (
+        {showTHeader && (
           <TrackCollectionTHeader>
             <tr>
               <TrackCollectionTH />
               <TrackCollectionTH>标题</TrackCollectionTH>
               <TrackCollectionTH>时长</TrackCollectionTH>
-              <TrackCollectionTH>歌手</TrackCollectionTH>
+              {showArtistColumn && <TrackCollectionTH>歌手</TrackCollectionTH>}
               {showAlbumColumn && <TrackCollectionTH>专辑</TrackCollectionTH>}
             </tr>
           </TrackCollectionTHeader>
@@ -179,10 +192,12 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
                   <DownloadButton onClick={() => {}} />
                 </Actions>
               </DurationTD>
-              {/* Singer */}
-              <td>
-                <UserLink users={item.ar} block color="#333" />
-              </td>
+              {/* Artist */}
+              {showArtistColumn && (
+                <td>
+                  <UserLink users={item.ar} block color="#333" />
+                </td>
+              )}
               {/* Album */}
               {showAlbumColumn && (
                 <td>

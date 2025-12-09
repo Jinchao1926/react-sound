@@ -5,14 +5,20 @@ import { Flex, Sprite, Text } from '@/components/Core'
 
 interface TrackCollectionTableProps {
   $enlargeFirstThreeRows?: boolean
+  $bordered?: boolean
 }
 export const TrackCollectionTable = styled.table<TrackCollectionTableProps>`
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  border-left: 1px solid #d9d9d9;
-  border-right: 1px solid #d9d9d9;
-  border-bottom: 1px solid #d9d9d9;
+
+  ${({ $bordered = true }) =>
+    $bordered &&
+    `
+      border-left: 1px solid #d9d9d9;
+      border-right: 1px solid #d9d9d9;
+      border-bottom: 1px solid #d9d9d9;
+    `}
 
   tbody {
     tr {

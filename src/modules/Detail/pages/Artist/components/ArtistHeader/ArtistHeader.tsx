@@ -23,7 +23,7 @@ export const ArtistHeader: FC<{ artistId: number }> = ({ artistId }) => {
   if (!artist) return null
 
   return (
-    <Box mt={-10}>
+    <Box mt={-10} mb={20}>
       <Flex alignItems="end" gap={10}>
         <ArtistName>{artist.name}</ArtistName>
         <ArtistAlias>{artist.alias?.join(';')}</ArtistAlias>
