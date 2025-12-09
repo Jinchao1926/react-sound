@@ -14,9 +14,9 @@ interface TrackCollectionHeaderProps {
     headerTitle?: string
     showExpandableHeader?: boolean
     showExternalLink?: boolean
-    externalId: number
+    externalId?: number
     externalType: ExternalLinkType
-    trackCount: number
+    trackCount?: number
     playCount?: number
   }
   expanded: boolean
@@ -42,7 +42,7 @@ export const TrackCollectionHeader: FC<TrackCollectionHeaderProps> = ({
         <TrackCollectionExpandableHeader>
           <Text>
             <Strong>{headerTitle}</Strong>
-            {`（${trackCount}首歌）`}
+            {trackCount ? `（${trackCount}首歌）` : ''}
           </Text>
           <TrackCollectionButton onClick={() => onExpand(!expanded)}>
             {expanded ? '收起' : '展开'}
@@ -56,11 +56,11 @@ export const TrackCollectionHeader: FC<TrackCollectionHeaderProps> = ({
               {headerTitle}
             </Text>
             <Text color="#666" ml={20} mt={9}>
-              {trackCount}首歌
+              {trackCount ? `${trackCount}首歌` : ''}
             </Text>
           </Box>
           <Flex gap={20} align="center">
-            {showExternalLink && (
+            {showExternalLink && externalId && (
               <ExternalLink id={externalId} type={externalType} />
             )}
             {playCount && (

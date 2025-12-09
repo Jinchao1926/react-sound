@@ -33,8 +33,8 @@ export const SongBadge = styled(Sprite).attrs({
   title: '单曲',
 })`
   display: inline-block;
-  width: 29px;
-  height: 18px;
+  width: 54px;
+  height: 24px;
   flex-shrink: 0;
 `
 

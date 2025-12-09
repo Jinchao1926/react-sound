@@ -3,10 +3,10 @@ import { Track } from '@/types/track'
 import { ExternalLinkType } from '../Links'
 
 export interface TrackSource {
-  id: number
-  name: string
+  id?: number
+  name?: string
   tracks: Track[]
-  trackCount: number
+  trackCount?: number
   playCount?: number
 }
 
@@ -16,6 +16,7 @@ export interface TrackCollectionConfig {
   showExpandableHeader?: boolean
   showExternalLink?: boolean
   externalLinkType?: ExternalLinkType
+  showArtistColumn?: boolean
   showAlbumColumn?: boolean
   showIndexTrend?: boolean
   showTitleCoverImage?: boolean
