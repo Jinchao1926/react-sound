@@ -67,7 +67,7 @@ export const RadioRanking: FC<{ id: number }> = ({ id }) => {
         current={currentPage}
         pageSize={PAGE_SIZE}
         total={count}
-        onPageChange={(page) => setCurrentPage(page)}
+        onPageChange={setCurrentPage}
       />
     </Box>
   )

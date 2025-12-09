@@ -214,6 +214,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     icons: {
       homepage: { normal: '0 -1156px', hover: '0 -1196px' },
       favorite: { normal: '0px -500px', hover: '0 -540px' },
+      playMV: { normal: '-30px -135px', hover: '-30px -85px' },
     },
   },
   police: {
@@ -301,6 +302,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       albumLarge: '-170px -850px',
       albumXLarge: '0 -986px',
       CD: '-140px -580px',
+      MV: '0 -1170px',
     },
   },
   coverMask: {

@@ -19,7 +19,7 @@ export interface CoverImageProps {
   /** NavLink to */
   to?: string
   /** Image Width & Height */
-  size: number
+  size: number | { width: number; height: number }
   /** Whether to show border */
   bordered?: boolean
   /** Cover Sprite Category */
@@ -44,9 +44,16 @@ export const CoverImage: FC<PropsWithChildren<CoverImageProps>> = ({
   coverEdge,
   children,
 }) => {
+  const sizeObj =
+    typeof size === 'number' ? { width: size, height: size } : size
+
   return (
-    <CoverImageWrapper className="cover-image" size={size} bordered={bordered}>
-      <StyledImage src={src} alt={alt} size={size} />
+    <CoverImageWrapper
+      className="cover-image"
+      size={sizeObj}
+      bordered={bordered}
+    >
+      <StyledImage src={src} alt={alt} size={sizeObj} />
       {coverSprite && coverIcon ? (
         <CoverOverlay
           sprite={coverSprite}

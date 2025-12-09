@@ -4,16 +4,9 @@ import { Sprite, TextNavLink } from '@/components/Core'
 
 export const AlbumList = styled.div`
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
-  padding-right: 25px;
+  margin-right: -18px;
   margin-bottom: 20px;
-
-  .album-cover {
-    flex-basis: 20%;
-    margin-bottom: 30px;
-  }
 `
 
 export const AlbumName = styled.p`
@@ -49,6 +42,7 @@ export const CoverPlayButton = styled(Sprite).attrs({
 
 export const AlbumItem = styled.div`
   margin-bottom: 10px;
+  flex-basis: 25%;
 
   .cover-image:hover ${CoverPlayButton} {
     display: block;
