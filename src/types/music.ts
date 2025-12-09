@@ -111,7 +111,7 @@ export interface Album {
   artists?: Artist[]
   picUrl: string
   alias: string[]
-  tns?: string[]
+  transNames?: string[]
   publishTime: number
   company: string
   description: string

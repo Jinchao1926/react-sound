@@ -49,7 +49,7 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
           alt={data.album.name}
           size={177}
           coverSprite="cover"
-          coverIcon={'albumLarge'}
+          coverIcon={'albumXLarge'}
           coverWidth={209}
         />
 

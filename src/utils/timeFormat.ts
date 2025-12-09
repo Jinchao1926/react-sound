@@ -14,9 +14,21 @@ export const formatTime = (time: number) => {
   return padLeft(minute) + ':' + padLeft(second)
 }
 
-export const formatYearMonthDay = (timestamp: number) => {
+export const formatYearMonthDay = (
+  timestamp: number,
+  format: 'dash' | 'dot' = 'dash'
+) => {
   const date = new Date(timestamp)
-  return date.toISOString().split('T')[0]
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+
+  if (format === 'dot') {
+    return `${year}.${month}.${day}`
+  }
+  return `${year}-${month}-${day}`
+
+  // return date.toISOString().split('T')[0]
 }
 
 export const formatMonthDay = (timestamp: number) => {
