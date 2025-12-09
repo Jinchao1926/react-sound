@@ -11,7 +11,9 @@ const Artist = lazy(() => import('../index'))
 const ArtistSongs = lazy(() => import('../components/ArtistSongs'))
 const ArtistAlbums = lazy(() => import('../components/ArtistAlbums'))
 const ArtistMVs = lazy(() => import('../components/ArtistMVs'))
-const ArtistDescription = lazy(() => import('../components/ArtistDescription'))
+const ArtistIntroduction = lazy(
+  () => import('../components/ArtistIntroduction')
+)
 
 export const artistRoutes: RouteObject = {
   path: artistRoutePath.artist,
@@ -31,7 +33,7 @@ export const artistRoutes: RouteObject = {
     },
     {
       path: artistRoutePath.artistDesc,
-      element: <ArtistDescription />,
+      element: <ArtistIntroduction />,
     },
   ],
 }

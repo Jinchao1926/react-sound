@@ -39,6 +39,12 @@ export interface Artist {
   tns?: string[]
 }
 
+export interface ArtistIntroduction {
+  briefDesc: string
+  introduction: { ti: string; txt: string }[]
+  // topicData: any
+}
+
 /*
 {
     "songs": [],
