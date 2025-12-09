@@ -143,7 +143,7 @@ export const RadioPrograms: FC<{ radioId: number }> = ({ radioId }) => {
         total={count}
         pageSize={PAGE_SIZE}
         current={currentPage}
-        onPageChange={(page) => setCurrentPage(page)}
+        onPageChange={setCurrentPage}
       />
     </Box>
   )

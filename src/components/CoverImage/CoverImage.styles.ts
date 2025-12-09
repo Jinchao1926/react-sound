@@ -5,14 +5,14 @@ import { Image } from '../Core'
 import { Sprite } from '../Core/Spirit'
 
 interface CoverImageProps {
-  size: number
+  size: { width: number; height: number }
   bordered?: boolean
 }
 
 export const CoverImageWrapper = styled.div<CoverImageProps>`
   position: relative;
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
+  width: ${({ size }) => size.width}px;
+  height: ${({ size }) => size.height}px;
   flex-shrink: 0;
   /* overflow: hidden; */
 
@@ -24,9 +24,11 @@ export const CoverImageWrapper = styled.div<CoverImageProps>`
     `}
 `
 
-export const StyledImage = styled(Image)<{ size: number }>`
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
+export const StyledImage = styled(Image)<{
+  size: { width: number; height: number }
+}>`
+  width: ${({ size }) => size.width}px;
+  height: ${({ size }) => size.height}px;
   object-fit: cover;
 `
 

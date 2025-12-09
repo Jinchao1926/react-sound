@@ -42,6 +42,6 @@ export const useArtistAlbumsQuery = (options: {
   return {
     ...queryResult,
     data: queryResult.data?.hotAlbums || [],
-    more: queryResult.data?.more || false,
+    more: queryResult.data?.more,
   }
 }

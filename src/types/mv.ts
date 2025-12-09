@@ -89,6 +89,49 @@ export interface MV {
 
 /*
 {
+    "id": 22792682,
+    "name": "Sacrifice（争）（2025英雄联盟全球总决赛主题曲）",
+    "status": 0,
+    "artistName": "英雄联盟",
+    "imgurl": "http://p1.music.126.net/cOjvV3gA7YL5OtPLgXjDZg==/109951172144930423.jpg",
+    "imgurl16v9": "http://p1.music.126.net/VHyXQMd7mUrqED6FrOM4sg==/109951172144930896.jpg",
+    "artist": {
+        "img1v1Id": 18686200114669624,
+        "topicPerson": 0,
+        "picId": 0,
+        "alias": [],
+        "briefDesc": "",
+        "picUrl": "",
+        "img1v1Url": "http://p1.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg",
+        "albumSize": 0,
+        "trans": "",
+        "musicSize": 0,
+        "name": "英雄联盟",
+        "id": 1047337,
+        "img1v1Id_str": "18686200114669622"
+    },
+    "duration": 241000,
+    "playCount": 65499,
+    "publishTime": "2025-10-13",
+    "subed": false
+}
+*/
+
+export interface MV2 {
+  id: number
+  name: string
+  artistId: number
+  artistName: string
+  imgurl: string
+  imgurl16v9: string
+  playCount: number
+  duration: number
+  publishTime: string
+  artists: Artist[]
+}
+
+/*
+{
     "id": 349989,
     "url": "http://vodkgeyttp8.vod.126.net/cloudmusic/IyQhMSAyIDBgMDUmISFiIQ==/mv/349989/30cdeb0e52a60a45298e8eef1757a53a.mp4?wsSecret=e00da529da2efd0a406fb0f93249f2c2&wsTime=1764729475",
     "r": 1080,

@@ -33,7 +33,7 @@ export const ArtistAlbums: FC = () => {
   if (!albums) return null
 
   // 当到达最后一页时，固定 totalCount
-  if (!more && totalCountRef.current === null) {
+  if (more === false && totalCountRef.current === null) {
     totalCountRef.current = (currentPage - 1) * PAGE_SIZE + albums.length
   }
 
@@ -83,7 +83,7 @@ export const ArtistAlbums: FC = () => {
         total={count}
         pageSize={PAGE_SIZE}
         current={currentPage}
-        onPageChange={(page) => setCurrentPage(page)}
+        onPageChange={setCurrentPage}
       />
     </Box>
   )

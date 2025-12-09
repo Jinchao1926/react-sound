@@ -38,7 +38,7 @@ export const AllAlbum: FC = () => {
         total={total}
         pageSize={PAGE_SIZE}
         current={currentPage}
-        onPageChange={(page) => setCurrentPage(page)}
+        onPageChange={setCurrentPage}
       />
     </Box>
   )
