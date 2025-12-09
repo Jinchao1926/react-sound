@@ -19,7 +19,7 @@ interface ArtistAlbumsApiResponse {
  * offset`: 偏移数量 , 用于分页 , 如 :( 页数 -1)\*30, 其中 30 为 limit 的值 , 默认为 0
  */
 export const useArtistAlbumsQuery = (options: {
-  id: number
+  id?: number
   offset?: number
   limit?: number
 }) => {
@@ -33,13 +33,15 @@ export const useArtistAlbumsQuery = (options: {
         '/artist/album',
         { params: { id, offset, limit } }
       )
-      return data.hotAlbums || []
+      return data
     },
+    enabled: !!id,
     retry: false,
   })
 
   return {
     ...queryResult,
-    data: queryResult.data || [],
+    data: queryResult.data?.hotAlbums || [],
+    more: queryResult.data?.more || false,
   }
 }
