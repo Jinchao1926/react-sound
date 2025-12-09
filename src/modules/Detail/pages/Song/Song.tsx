@@ -4,7 +4,7 @@ import { useQueryParamId } from '@/hooks/useQueryParamId'
 
 import { SimilarSong } from './SimilarSong'
 import { SongDetail } from './SongDetail'
-import { SongPlaylist } from './SongPlaylist'
+import { SongSimilarPlaylist } from './SongSimilarPlaylist'
 import { MultiDownload } from '../../components/MultiDownload'
 import {
   DetailLeftContent,
@@ -23,7 +23,7 @@ export const Song: FC = () => {
         <SongDetail songId={songId} />
       </DetailLeftContent>
       <DetailRightContent>
-        <SongPlaylist songId={songId} />
+        <SongSimilarPlaylist songId={songId} />
         <SimilarSong songId={songId} />
         <MultiDownload />
         <UserWiki id={songId} type="song" />
