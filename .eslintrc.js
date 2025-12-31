@@ -1,6 +1,29 @@
 module.exports = {
-  extends: ['react-app', 'react-app/jest', 'plugin:prettier/recommended'],
-  plugins: ['import'],
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  plugins: ['react', '@typescript-eslint', 'import'],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   rules: {
     eqeqeq: ['error', 'always'],
     'import/order': [
@@ -33,7 +56,7 @@ module.exports = {
       },
     ],
     'no-console': 'warn',
-    'no-unused-vars': [
+    '@typescript-eslint/no-unused-vars': [
       'error',
       {
         ignoreRestSiblings: true,
