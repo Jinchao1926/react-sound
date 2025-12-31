@@ -1,39 +1,46 @@
+import androidImg from '@/assets/img/platform/android.png'
+import chromeImg from '@/assets/img/platform/chrome.png'
+import iOSImg from '@/assets/img/platform/iOS.png'
+import macImg from '@/assets/img/platform/mac.png'
+import pcImg from '@/assets/img/platform/pc.png'
+import tvImg from '@/assets/img/platform/tv.png'
+
 // Platforms
 export const platforms = [
   {
     title: 'Android',
-    picUrl: require('@/assets/img/platform/android.png'),
+    picUrl: androidImg,
   },
   {
     title: 'iPhone',
-    picUrl: require('@/assets/img/platform/iOS.png'),
+    picUrl: iOSImg,
   },
   {
     title: 'iPad',
-    picUrl: require('@/assets/img/platform/iOS.png'),
+    picUrl: iOSImg,
   },
   {
     title: 'Mac',
-    picUrl: require('@/assets/img/platform/mac.png'),
+    picUrl: macImg,
   },
   {
     title: 'PC',
-    picUrl: require('@/assets/img/platform/pc.png'),
+    picUrl: pcImg,
   },
   {
     title: 'UWP',
-    picUrl: require('@/assets/img/platform/pc.png'),
+    picUrl: pcImg,
   },
   {
     title: 'Android 5.x',
-    picUrl: require('@/assets/img/platform/android.png'),
+    picUrl: androidImg,
   },
   {
     title: 'Chrome',
-    picUrl: require('@/assets/img/platform/chrome.png'),
+    picUrl: chromeImg,
   },
   {
     title: 'TV',
-    picUrl: require('@/assets/img/platform/tv.png'),
+    picUrl: tvImg,
   },
 ]

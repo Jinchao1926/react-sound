@@ -1,8 +1,12 @@
-import React, { FC, useState } from 'react'
+import type { FC } from 'react'
+import React, { useState } from 'react'
 
 import { Popover } from 'antd'
 
 import { Box, FlexContainer, Image, TextNavLink } from '@/components/Core'
+
+import mobileImg from '@/assets/img/download/mobile.png'
+import pcImg from '@/assets/img/download/pc.png'
 
 import {
   Android,
@@ -37,12 +41,7 @@ export const DownloadClient: FC = () => {
         {/* PC */}
         <Box width={556}>
           <DownloadTitle>在电脑上听</DownloadTitle>
-          <Image
-            src={require('@/assets/img/download/pc.png')}
-            alt="pc"
-            width={464}
-            height={273}
-          />
+          <Image src={pcImg} alt="pc" width={464} height={273} />
           <DownloadPlatform>
             <Mac />
             <Windows />
@@ -64,12 +63,7 @@ export const DownloadClient: FC = () => {
         {/* Mobile */}
         <Box width={400} marginLeft={220}>
           <DownloadTitle>在手机上听</DownloadTitle>
-          <Image
-            src={require('@/assets/img/download/mobile.png')}
-            alt="mobile"
-            width={246}
-            height={273}
-          />
+          <Image src={mobileImg} alt="mobile" width={246} height={273} />
           <DownloadPlatform>
             <IOS />
             <Android />

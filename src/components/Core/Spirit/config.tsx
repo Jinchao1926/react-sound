@@ -1,3 +1,32 @@
+import bannerImg from './img/banner.png'
+import buttonImg from './img/button.png'
+import button2Img from './img/button2.png'
+import button3Img from './img/button3.png'
+import categoryBgImg from './img/category_bg.png'
+import coverImg from './img/cover.png'
+import coverMaskImg from './img/cover_mask.png'
+import platformDownloadImg from './img/download.png'
+import downloadBgImg from './img/download_bg.png'
+import footerImg from './img/footer.png'
+import footer2Img from './img/footer2.png'
+import headerImg from './img/header.png'
+import fileImg from './img/icon/file.png'
+import pipImg from './img/icon/pip.png'
+import policeImg from './img/icon/police.png'
+import wikiImg from './img/icon/wiki.png'
+import iconImg from './img/icon.png'
+import icon2Img from './img/icon2.png'
+import icon3Img from './img/icon3.png'
+import icon4Img from './img/icon4.png'
+import icon5Img from './img/icon5.png'
+import loginBgImg from './img/login_bg.png'
+import loginBg2Img from './img/login_bg2.png'
+import playbarImg from './img/playbar.png'
+import progressImg from './img/progress.png'
+import radioImg from './img/radio_slider.png'
+import selectionImg from './img/selection.png'
+import sortImg from './img/sort.png'
+
 // Icon configuration with optional hover state
 export interface SpriteIconConfig {
   normal: string
@@ -16,7 +45,7 @@ export interface SpriteConfig {
 export type InternalSpriteConfig = Record<string, SpriteConfig>
 export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   header: {
-    url: require('./img/header.png'),
+    url: headerImg,
     icons: {
       logo: '0 0',
       redTriangle: { normal: '-105px -70px', size: '120px auto' },
@@ -24,7 +53,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   },
   // Footers
   footer: {
-    url: require('./img/footer.png'),
+    url: footerImg,
     defaultSize: '220px 220px',
     icons: {
       openPlatform: { normal: '-170px -5px', hover: '-5px -115px' },
@@ -37,7 +66,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   footer2: {
-    url: require('./img/footer2.png'),
+    url: footer2Img,
     defaultSize: '270px 45px',
     icons: {
       aiLogo: { normal: '0 0', hover: '-45px 0' },
@@ -46,7 +75,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   banner: {
-    url: require('./img/banner.png'),
+    url: bannerImg,
     icons: {
       dot: { normal: '3px -343px', hover: '-16px -343px' },
       left: { normal: '0 -360px' },
@@ -55,28 +84,28 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   },
   // Backgrounds
   downloadBG: {
-    url: require('./img/download_bg.png'),
+    url: downloadBgImg,
     icons: {
       downloadBG: { normal: '0 0' },
       download: { normal: '0 9999px', hover: '0 -290px' },
     },
   },
   loginBG: {
-    url: require('./img/login_bg.png'),
+    url: loginBgImg,
     icons: {
       mineBG: { normal: '0 104px' },
       mineLogin: { normal: '0 9999px', hover: '0 -278px' },
     },
   },
   loginBG2: {
-    url: require('./img/login_bg2.png'),
+    url: loginBg2Img,
     icons: {
       discoverBG: { normal: '0 70px' },
       discoverLogin: { normal: '0 9999px', hover: '0 -430px' },
     },
   },
   categoryBG: {
-    url: require('./img/category_bg.png'),
+    url: categoryBgImg,
     icons: {
       header: '0 0',
       body: { normal: '-720px 0', repeat: 'repeat-y' },
@@ -85,7 +114,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   },
   // Platform Download
   platformDownload: {
-    url: require('./img/download.png'),
+    url: platformDownloadImg,
     icons: {
       iOS: { normal: '0 -392px', hover: '0 -472px' },
       pc: { normal: '-70.5px -392px', hover: '-70.5px -472px' },
@@ -95,7 +124,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   },
   // Buttons
   button: {
-    url: require('./img/button.png'),
+    url: buttonImg,
     icons: {
       greyRightBG: { normal: 'right -1020px', hover: 'right -1106px' },
       grey: { normal: '0 -59px', hover: '0 -141px' },
@@ -116,14 +145,14 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   button2: {
-    url: require('./img/button2.png'),
+    url: button2Img,
     icons: {
       redButton: '0 0',
       greyButton: '0 -64px',
     },
   },
   button3: {
-    url: require('./img/button3.png'),
+    url: button3Img,
     icons: {
       greyBG: '0 0',
       loginButton: { normal: '0 -195px', hover: '-110px -195px' },
@@ -139,7 +168,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   },
   // Icons
   icon: {
-    url: require('./img/icon.png'),
+    url: iconImg,
     icons: {
       arrow: '-48px 0',
       playInCover: '0 -85px',
@@ -150,7 +179,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   icon2: {
-    url: require('./img/icon2.png'),
+    url: icon2Img,
     icons: {
       // playlist category
       language: '-20px -735px',
@@ -181,7 +210,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   icon3: {
-    url: require('./img/icon3.png'),
+    url: icon3Img,
     icons: {
       info: { normal: '0 -50px', hover: '-20px -50px' },
       playExtraSmall: '-69px -455px',
@@ -198,7 +227,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   icon4: {
-    url: require('./img/icon4.png'),
+    url: icon4Img,
     icons: {
       header: { normal: '0 0', repeat: 'repeat-x' },
       mvIcon: '0 -151px',
@@ -210,7 +239,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   icon5: {
-    url: require('./img/icon5.png'),
+    url: icon5Img,
     icons: {
       homepage: { normal: '0 -1156px', hover: '0 -1196px' },
       favorite: { normal: '0px -500px', hover: '0 -540px' },
@@ -218,26 +247,26 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   police: {
-    url: require('./img/icon/police.png'),
+    url: policeImg,
     icons: {
       police: { normal: '0 0', size: '14px 14px' },
     },
   },
   file: {
-    url: require('./img/icon/file.png'),
+    url: fileImg,
     icons: {
       file: { normal: '0 0', size: '20px 20px' },
     },
   },
   wiki: {
-    url: require('./img/icon/wiki.png'),
+    url: wikiImg,
     icons: {
       wiki: { normal: '0 0', size: '20px 20px' },
     },
   },
   // Player Bar
   playbar: {
-    url: require('./img/playbar.png'),
+    url: playbarImg,
     icons: {
       // Lock
       lockBar: '0 -380px',
@@ -264,14 +293,14 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   pip: {
-    url: require('./img/icon/pip.png'),
+    url: pipImg,
     icons: {
       pip: { normal: '0 0', hover: '0 -25px' },
     },
   },
   // Progress Bar
   progress: {
-    url: require('./img/progress.png'),
+    url: progressImg,
     icons: {
       full: { normal: 'right 0' },
       loaded: { normal: 'right -30px' },
@@ -280,7 +309,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   },
   // Radio
   radio: {
-    url: require('./img/radio_slider.png'),
+    url: radioImg,
     icons: {
       arrowLeft: '0 -30px',
       arrowRight: '-30px -30px',
@@ -288,7 +317,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   },
   // Covers
   cover: {
-    url: require('./img/cover.png'),
+    url: coverImg,
     icons: {
       // bright-width
       bright80: '-145px -57px',
@@ -306,14 +335,14 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     },
   },
   coverMask: {
-    url: require('./img/cover_mask.png'),
+    url: coverMaskImg,
     icons: {
       mask: '0 0',
     },
   },
   // Sort
   sort: {
-    url: require('./img/sort.png'),
+    url: sortImg,
     icons: {
       desc: { normal: '0 0', hover: '0 -60px' },
       desced: { normal: '0 -30px' },
@@ -323,7 +352,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
   },
   // Selection
   selection: {
-    url: require('./img/selection.png'),
+    url: selectionImg,
     icons: {
       normal: { normal: '0 -30px' },
       selected: { normal: '0 0' },

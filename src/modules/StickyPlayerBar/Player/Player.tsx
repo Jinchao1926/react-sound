@@ -1,11 +1,6 @@
-import React, {
-  FC,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import type { FC } from 'react'
+import type React from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { Box, Flex, FlexContainer, Text, TextNavLink } from '@/components/Core'
 import { UserLink } from '@/components/Links'
@@ -15,10 +10,11 @@ import {
   PlayButton,
   PrevButton,
 } from '@/components/Shared/Playbar'
+
+import defaultAlbumImg from '@/assets/img/default_album.png'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PLAY_MODE } from '@/types/player'
-import { getMusicUrl } from '@/utils/dataFormat'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { getMusicUrl, formatSizedImage } from '@/utils/dataFormat'
 import { formatTime } from '@/utils/timeFormat'
 
 import {
@@ -67,7 +63,7 @@ export const Player: FC = () => {
       songDetailUrl: currentSong ? `/song?id=${currentSong.id}` : '',
       songAvatar: currentSong
         ? formatSizedImage(currentSong.al.picUrl, 35)
-        : require('@/assets/img/default_album.png'),
+        : defaultAlbumImg,
       duration: currentSong ? currentSong.dt : 0, // ms
     }
   }, [currentSong])
@@ -251,7 +247,7 @@ export const Player: FC = () => {
             alt={currentSong?.name}
             to={songDetailUrl}
           />
-          <Box width={581} height={'100%'}>
+          <Box width={581} height="100%">
             {/* Music Name and Artist */}
             <Flex gap={15} height={28} lineHeight={28}>
               <TextNavLink

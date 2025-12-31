@@ -2,6 +2,12 @@ import React, { type FC } from 'react'
 
 import { Box, FlexContainer, Image } from '@/components/Core'
 
+import cloudImg from '@/assets/img/download/cloud.png'
+import musicCoverImg from '@/assets/img/download/music_cover.png'
+import recognizeImg from '@/assets/img/download/recognize.png'
+import socialImg from '@/assets/img/download/social.png'
+import starsImg from '@/assets/img/download/stars.png'
+
 import {
   MusicContent,
   StarContent,
@@ -27,21 +33,13 @@ export const Download: FC = () => {
               也能感受到纤毫毕现的CD音质，更能免费离线收听
             </p>
           </DescriptionContent>
-          <Image
-            src={require('@/assets/img/download/music_cover.png')}
-            width={408}
-            height={190}
-          />
+          <Image src={musicCoverImg} width={408} height={190} />
         </FlexContainer>
       </MusicContent>
 
       <StarContent>
         <FlexContainer justifyContent="space-between">
-          <Image
-            src={require('@/assets/img/download/stars.png')}
-            width={447}
-            height={272}
-          />
+          <Image src={starsImg} width={447} height={272} />
           <DescriptionContent>
             <h3>千位明星 亲自推荐音乐</h3>
             <p>
@@ -67,21 +65,13 @@ export const Download: FC = () => {
               分享，发现更多全新好音乐
             </p>
           </DescriptionContent>
-          <Image
-            src={require('@/assets/img/download/social.png')}
-            width={463}
-            height={289}
-          />
+          <Image src={socialImg} width={463} height={289} />
         </FlexContainer>
       </SocialContent>
 
       <CloudContent>
         <FlexContainer justifyContent="space-between">
-          <Image
-            src={require('@/assets/img/download/cloud.png')}
-            width={435}
-            height={246}
-          />
+          <Image src={cloudImg} width={435} height={246} />
           <DescriptionContent>
             <h3>手机电脑 歌单实时同步</h3>
             <p>
@@ -104,11 +94,7 @@ export const Download: FC = () => {
               功能，几秒钟就知道歌名
             </p>
           </DescriptionContent>
-          <Image
-            src={require('@/assets/img/download/recognize.png')}
-            width={359}
-            height={355}
-          />
+          <Image src={recognizeImg} width={359} height={355} />
         </FlexContainer>
       </RecognizeContent>
       <DownloadQRCode />

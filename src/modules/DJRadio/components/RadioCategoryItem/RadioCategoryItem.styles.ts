@@ -1,5 +1,8 @@
 import { NavLink } from 'react-router-dom'
+
 import styled from 'styled-components'
+
+import radioCategoryImg from '@/assets/img/radio_category.png'
 
 export const RadioCategoryImage = styled.div<{ bgImage: string }>`
   width: 48px;
@@ -14,8 +17,7 @@ export const RadioCategoryName = styled.span`
 `
 
 export const RadioCategoryLink = styled(NavLink)`
-  background: url(${require('@/assets/img/radio_category.png')}) no-repeat 0
-    9999px;
+  background: url(${radioCategoryImg}) no-repeat 0 9999px;
   width: 70px;
   height: 70px;
   text-align: center;

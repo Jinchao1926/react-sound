@@ -1,8 +1,11 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
+import React from 'react'
 
 import { NavLink } from 'react-router-dom'
 
 import { Box } from '@/components/Core'
+
+import disVipCardImg from '@/assets/img/dis_vip_card.png'
 
 import {
   LoginButton,
@@ -14,10 +17,7 @@ import {
 export const UserProfile: FC = () => {
   return (
     <Box>
-      <VipImage
-        src={require('@/assets/img/dis_vip_card.png')}
-        alt="user-profile"
-      />
+      <VipImage src={disVipCardImg} alt="user-profile" />
       <UserProfileBG>
         <LoginDesc>
           登录网易云音乐，可以享受无限收藏的乐趣，并且无限同步到手机
