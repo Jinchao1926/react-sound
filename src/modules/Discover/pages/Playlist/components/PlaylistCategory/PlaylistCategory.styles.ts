@@ -81,11 +81,13 @@ export const PlaylistCategoryAll = styled(Sprite).attrs({
 `
 
 const icons = ['language', 'style', 'scene', 'emotion', 'theme']
-export const PlaylistCategoryIcon = styled(Sprite).attrs(({ index }) => ({
-  sprite: 'icon',
-  icon: icons[index],
-  component: 'i',
-}))`
+export const PlaylistCategoryIcon = styled(Sprite).attrs<{ index: number }>(
+  ({ index }) => ({
+    sprite: 'icon',
+    icon: icons[index],
+    component: 'i',
+  })
+)`
   width: 23px;
   height: 23px;
   margin: 0 8px 4px 0;
