@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router-dom'
+
 import styled from 'styled-components'
 
 import { Flex, Sprite } from '@/components/Core'
+
+import tabImg from '@/assets/img/tab.png'
 
 export const ArtistName = styled.h2`
   margin: 0;
@@ -57,12 +60,12 @@ export const Favorite = styled(Sprite).attrs({
 `
 
 export const ArtistNavigationBar = styled.div`
-  background: url(${require('@/assets/img/tab.png')}) repeat-x 0 0;
+  background: url(${tabImg}) repeat-x 0 0;
   display: flex;
 `
 
 export const ArtistNavigationLink = styled(NavLink)`
-  background: url(${require('@/assets/img/tab.png')}) no-repeat 0 9999px;
+  background: url(${tabImg}) no-repeat 0 9999px;
   display: block;
   width: 138px;
   height: 39px;

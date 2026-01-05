@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 
+import paginationImg from '@/assets/img/pagination.png'
+
 export const PaginationButton = styled.button`
-  background: url(${require('@/assets/img/pagination.png')}) no-repeat 0 9999px;
+  background: url(${paginationImg}) no-repeat 0 9999px;
   width: 71px;
   height: 26px;
   line-height: 24px;
@@ -36,8 +38,7 @@ export const PaginationWrapper = styled.div`
     text-align: center;
 
     .ant-pagination-item {
-      background: url(${require('@/assets/img/pagination.png')}) no-repeat 0
-        9999px;
+      background: url(${paginationImg}) no-repeat 0 9999px;
       border: 1px solid #ccc !important;
       border-radius: 2px;
       margin: 0 5px;
@@ -50,8 +51,7 @@ export const PaginationWrapper = styled.div`
       &.ant-pagination-item-active {
         border-color: #a2161b !important;
         a {
-          background: url(${require('@/assets/img/pagination.png')}) no-repeat 0
-            9999px;
+          background: url(${paginationImg}) no-repeat 0 9999px;
           background-position: 0 -650px;
           color: #fff;
         }

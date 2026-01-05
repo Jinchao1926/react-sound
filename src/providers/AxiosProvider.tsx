@@ -1,10 +1,14 @@
-import React, { createContext, useContext, ReactNode, useMemo } from 'react'
+import type { ReactNode } from 'react'
+import type React from 'react'
+import { createContext, useContext, useMemo } from 'react'
 
-import Axios, { AxiosInstance } from 'axios'
+import Axios from 'axios'
+
+import type { AxiosInstance } from 'axios'
 
 const createDefaultAxiosInstance = (): AxiosInstance => {
   const instance = Axios.create({
-    baseURL: process.env.REACT_APP_API_BASE_URL,
+    baseURL: import.meta.env.VITE_API_BASE_URL,
     timeout: 10000,
     headers: {
       'Content-Type': 'application/json',
