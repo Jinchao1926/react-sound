@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { type FC } from 'react'
 
 import { Box, Flex, Paragraph, Sprite } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'

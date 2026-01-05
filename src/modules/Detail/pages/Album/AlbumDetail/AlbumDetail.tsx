@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react'
+import { type FC, useMemo } from 'react'
 
 import { Box, Flex, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
@@ -6,7 +6,7 @@ import { CoverImage } from '@/components/CoverImage'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { AlbumBadge } from '@/components/Shared/Badge'
 import { TrackCollection } from '@/components/TrackCollection/TrackCollection'
-import { TrackCollectionConfig } from '@/components/TrackCollection/TrackCollection.type'
+import { type TrackCollectionConfig } from '@/components/TrackCollection/TrackCollection.type'
 import { useAlbumDetailQuery } from '@/hooks/album/useAlbumDetailQuery'
 import { useAlbumDynamicQuery } from '@/hooks/album/useAlbumDynamicQuery'
 import { routeBuilder } from '@/routers'
@@ -49,7 +49,7 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
           alt={data.album.name}
           size={177}
           coverSprite="cover"
-          coverIcon={'albumXLarge'}
+          coverIcon="albumXLarge"
           coverWidth={209}
         />
 

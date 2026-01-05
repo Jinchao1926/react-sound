@@ -4,7 +4,9 @@
       "Bash(ls:*)",
       "Bash(yarn install)",
       "Bash(yarn dev)",
-      "Bash(yarn build)"
+      "Bash(yarn build)",
+      "Bash(yarn add:*)",
+      "Bash(yarn eslint:*)"
     ]
   }
 }

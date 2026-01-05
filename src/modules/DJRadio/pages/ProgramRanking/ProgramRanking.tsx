@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react'
+import { type FC, useMemo } from 'react'
 
 import { Tooltip } from 'antd'
 
@@ -8,7 +8,7 @@ import { useTopProgramsQuery } from '@/hooks/program/useTopProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { RankingTrend } from '@/modules/DJRadio/components/RankingTrend'
 import { routeBuilder } from '@/routers'
-import { Program } from '@/types/program'
+import { type Program } from '@/types/program'
 import { padLeft, formatMonthDay } from '@/utils/timeFormat'
 
 import {

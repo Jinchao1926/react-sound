@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { type FC } from 'react'
 
 import { PlaylistCovers } from './components/PlaylistCovers'
 import { PlaylistHeader } from './components/PlaylistHeader'

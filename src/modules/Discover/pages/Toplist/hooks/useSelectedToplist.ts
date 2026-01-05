@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { useToplistsQuery } from '@/hooks/recommend/useToplistsQuery'
 import { useUrlParams } from '@/hooks/useUrlParams'
-import { TopPlaylist } from '@/types/playlist'
+import { type TopPlaylist } from '@/types/playlist'
 
 export const useSelectedToplist = () => {
   const queryParams = useUrlParams()

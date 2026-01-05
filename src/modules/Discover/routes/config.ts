@@ -1,4 +1,7 @@
-import { ArtistArea, ArtistType } from '@/hooks/artist/useArtistListQuery'
+import {
+  type ArtistArea,
+  type ArtistType,
+} from '@/hooks/artist/useArtistListQuery'
 
 export const discoverRoutePath = {
   discover: '/discover',

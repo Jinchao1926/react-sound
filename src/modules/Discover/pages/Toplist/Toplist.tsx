@@ -1,9 +1,9 @@
-import React, { FC, useMemo } from 'react'
+import { type FC, useMemo } from 'react'
 
 import { TrackCollection } from '@/components/TrackCollection'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
 import { useSelectedToplist } from '@/modules/Discover/pages/Toplist/hooks/useSelectedToplist'
-import { PlaylistDetail } from '@/types/playlist'
+import { type PlaylistDetail } from '@/types/playlist'
 
 import { ToplistCategory } from './components/ToplistCategory'
 import { ToplistDetailHeader } from './components/ToplistDetailHeader'

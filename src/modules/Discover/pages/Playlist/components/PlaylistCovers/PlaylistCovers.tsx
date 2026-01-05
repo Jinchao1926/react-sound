@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useMemo, useCallback } from 'react'
+import { type FC, useState, useEffect, useMemo, useCallback } from 'react'
 
 import { Box } from '@/components/Core'
 import { JCPagination } from '@/components/Pagination'

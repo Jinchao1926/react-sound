@@ -7,7 +7,7 @@
  * [00:15.72] 我的外婆总会唱歌哄我
  */
 
-import { LyricLine } from '@/types/lyric'
+import { type LyricLine } from '@/types/lyric'
 
 // 正则表达式
 // \[ 和 \]，表示 [ 和 ] 字符，特殊字符需要转义

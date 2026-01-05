@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from 'react'
+import { type FC, useMemo, useState } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
@@ -27,7 +27,10 @@ import {
   TrackCollectionTH,
   TrackCollectionTHeader,
 } from './TrackCollection.styles'
-import { TrackCollectionConfig, TrackSource } from './TrackCollection.type'
+import {
+  type TrackCollectionConfig,
+  type TrackSource,
+} from './TrackCollection.type'
 import { TrackCollectionHeader } from './TrackCollectionHeader'
 
 export interface TrackCollectionProps {

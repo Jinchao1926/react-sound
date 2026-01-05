@@ -1,4 +1,4 @@
-import React, { type FC } from 'react'
+import { type FC } from 'react'
 
 import {
   TrackCollectionButton,
@@ -7,7 +7,7 @@ import {
   TrackCollectionHeaderWrapper,
 } from './TrackCollectionHeader.styles'
 import { Box, Flex, Strong, Text } from '../Core'
-import { ExternalLink, ExternalLinkType } from '../Links'
+import { ExternalLink, type ExternalLinkType } from '../Links'
 
 interface TrackCollectionHeaderProps {
   config: {

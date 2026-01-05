@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react'
+import { type FC, useMemo } from 'react'
 
 import { Box } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'

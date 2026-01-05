@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { MVUrl } from '@/types/mv'
+import { type MVUrl } from '@/types/mv'
 
 interface MVUrlApiResponse {
   data: MVUrl

@@ -1,11 +1,9 @@
 import type { FC } from 'react'
-import React from 'react'
 
 import { NavLink } from 'react-router-dom'
 
-import { Box } from '@/components/Core'
-
 import disVipCardImg from '@/assets/img/dis_vip_card.png'
+import { Box } from '@/components/Core'
 
 import {
   LoginButton,

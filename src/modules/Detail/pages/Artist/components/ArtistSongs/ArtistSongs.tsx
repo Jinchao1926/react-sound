@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { type FC } from 'react'
 
 import { Box, Flex } from '@/components/Core'
 import { CollectGreyButton } from '@/components/Shared/Social'

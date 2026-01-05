@@ -4,7 +4,7 @@ import { Box, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
 import { routeBuilder } from '@/routers'
-import { PlaylistDetail } from '@/types/playlist'
+import { type PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import { RelatedPlaylistItem } from './RelatedPlaylists.styles'

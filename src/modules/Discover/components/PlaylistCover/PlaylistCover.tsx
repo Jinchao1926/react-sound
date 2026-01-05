@@ -4,7 +4,7 @@ import { Box, Flex, Text } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
 import { routeBuilder } from '@/routers'
-import { PlaylistDetail, PopularPlaylist } from '@/types/playlist'
+import { type PlaylistDetail, type PopularPlaylist } from '@/types/playlist'
 import { formatPlayCount, formatSizedImage } from '@/utils/dataFormat'
 
 import {

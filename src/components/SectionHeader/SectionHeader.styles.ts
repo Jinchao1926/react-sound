@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components'
 
-import type { SectionHeaderVariant } from './types'
 import { Sprite } from '../Core'
+
+import type { SectionHeaderVariant } from './types'
 
 export const SectionHeaderWrapper = styled(Sprite).attrs({
   sprite: 'button',

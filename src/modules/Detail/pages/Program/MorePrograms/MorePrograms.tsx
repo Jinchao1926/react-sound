@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { type FC } from 'react'
 
 import { Box, Text, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'

@@ -1,12 +1,11 @@
 import type { FC } from 'react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import { Popover } from 'antd'
 
-import { Box, FlexContainer, Image, TextNavLink } from '@/components/Core'
-
 import mobileImg from '@/assets/img/download/mobile.png'
 import pcImg from '@/assets/img/download/pc.png'
+import { Box, FlexContainer, Image, TextNavLink } from '@/components/Core'
 
 import {
   Android,

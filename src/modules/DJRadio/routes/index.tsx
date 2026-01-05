@@ -1,8 +1,8 @@
 import { lazy } from 'react'
 
-import type { RouteObject } from 'react-router-dom'
-
 import { radioRoutePath } from './config'
+
+import type { RouteObject } from 'react-router-dom'
 
 // DJRadio 主组件
 const DJRadio = lazy(() => import('../index'))

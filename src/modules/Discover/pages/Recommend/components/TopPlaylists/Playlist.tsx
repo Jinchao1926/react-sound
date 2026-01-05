@@ -11,7 +11,8 @@ import {
 } from '@/components/Shared/Media'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { routeBuilder } from '@/routers'
-import { PlaylistDetail } from '@/types/playlist'
+import { type PlaylistDetail } from '@/types/playlist'
+import { type Track } from '@/types/track'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import { SongActions, SongIndex, SongItem } from './Playlist.styles'
@@ -30,8 +31,8 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
 
   const rankingUrl = `/discover/toplist?id=${playlist.id}`
 
-  // eslint-disable-next-line no-unused-vars
-  const collectMusic = (item: any) => {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const collectMusic = (_item: Track) => {}
 
   return (
     <Box width={230}>

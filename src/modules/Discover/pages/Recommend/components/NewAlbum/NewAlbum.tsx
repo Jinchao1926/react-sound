@@ -1,6 +1,6 @@
-import React, { FC, ElementRef, useRef, useMemo } from 'react'
+import { type FC, type ElementRef, useRef, useMemo } from 'react'
 
-import { Carousel } from 'antd'
+import { type Carousel } from 'antd'
 
 import { Box } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'

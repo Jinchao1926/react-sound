@@ -1,8 +1,8 @@
 import { lazy } from 'react'
 
-import type { RouteObject } from 'react-router-dom'
-
 import { artistRoutePath } from './config'
+
+import type { RouteObject } from 'react-router-dom'
 
 // Artist 主组件
 const Artist = lazy(() => import('../index'))

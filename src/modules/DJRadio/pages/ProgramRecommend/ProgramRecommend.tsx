@@ -1,11 +1,11 @@
-import React, { FC, useMemo } from 'react'
+import { type FC, useMemo } from 'react'
 
 import { Box, Text, TextNavLink } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useRecommendedProgramsQuery } from '@/hooks/program/useRecommendedProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { routeBuilder } from '@/routers'
-import { Program } from '@/types/program'
+import { type Program } from '@/types/program'
 
 import { ProgramRecommendWrapper } from './ProgramRecommend.styles'
 import { CategoryLink, ProgramItem, ProgramList } from '../../components/shared'

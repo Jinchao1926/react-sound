@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { Artist } from '@/types/music'
-import { Track } from '@/types/track'
+import { type Artist } from '@/types/music'
+import { type Track } from '@/types/track'
 
 interface SimilarArtistsApiResponse {
   artist: Artist

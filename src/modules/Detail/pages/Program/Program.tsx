@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { type FC } from 'react'
 
 import { useProgramDetailQuery } from '@/hooks/program/useProgramDetailQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'

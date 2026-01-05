@@ -2,7 +2,7 @@
 {
     "id": 171037362,
     "type": 0,
-    "name": "香港电影中的50首经典歌曲 [追忆录]",
+    "name": "香港电影中的50首经典歌曲 [追忆录]",
     "copywriter": "",
     "picUrl": "https://p1.music.126.net/aRMEx-fiTudOmPIhkOe41g==/109951165493447833.jpg",
     "canDislike": true,
@@ -14,7 +14,7 @@
 }
 */
 
-import { Track } from './track'
+import { type Track } from './track'
 
 /** 热门推荐歌单 */
 export interface PopularPlaylist {

@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import { type FC } from 'react'
 
 import { Box, Flex, Image, Paragraph, Sprite, Text } from '@/components/Core'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
-import { PlaylistDetail } from '@/types/playlist'
+import { type PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 import { formatMonthDay } from '@/utils/timeFormat'
 

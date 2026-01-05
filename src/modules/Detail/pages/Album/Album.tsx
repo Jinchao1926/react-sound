@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { type FC } from 'react'
 
 import { useAlbumDetailQuery } from '@/hooks/album/useAlbumDetailQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'

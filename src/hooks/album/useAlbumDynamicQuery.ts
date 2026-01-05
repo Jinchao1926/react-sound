@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { AlbumDynamic } from '@/types/music'
+import { type AlbumDynamic } from '@/types/music'
 
 interface AlbumDynamicApiResponse extends AlbumDynamic {
   code: number

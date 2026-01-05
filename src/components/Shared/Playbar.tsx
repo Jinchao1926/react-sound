@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { Sprite } from '@/components/Core'
-import { PLAY_MODE, PlayModeType } from '@/types/player'
+import { PLAY_MODE, type PlayModeType } from '@/types/player'
 
 export const Playbar = styled(Sprite).attrs({
   sprite: 'playbar',
@@ -14,7 +14,7 @@ export const Playbar = styled(Sprite).attrs({
 
 // Play
 interface PlayButtonProps {
-  isPlaying: Boolean
+  isPlaying: boolean
 }
 export const PlayButton = styled(Sprite)
   .withConfig({

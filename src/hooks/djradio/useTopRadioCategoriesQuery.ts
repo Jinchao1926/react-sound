@@ -1,4 +1,4 @@
-import { Radio } from '@/types/djradio'
+import { type Radio } from '@/types/djradio'
 
 import { useRadiosQuery } from './useRadiosQuery'
 

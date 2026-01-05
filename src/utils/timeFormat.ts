@@ -1,5 +1,5 @@
 export const padLeft = (num: number): string => {
-  return num < 10 ? '0' + num : num + ''
+  return num < 10 ? `0${num}` : `${num}`
 }
 
 export const formatTime = (time: number) => {
@@ -11,7 +11,7 @@ export const formatTime = (time: number) => {
   const second = Math.floor(time) % 60
 
   // 2.拼接字符串
-  return padLeft(minute) + ':' + padLeft(second)
+  return `${padLeft(minute)}:${padLeft(second)}`
 }
 
 export const formatYearMonthDay = (

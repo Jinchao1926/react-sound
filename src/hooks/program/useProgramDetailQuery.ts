@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { Program } from '@/types/program'
+import { type Program } from '@/types/program'
 
 interface ProgramDetailApiResponse {
   program: Program

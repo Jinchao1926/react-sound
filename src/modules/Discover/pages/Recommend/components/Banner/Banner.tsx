@@ -1,4 +1,4 @@
-import { ElementRef, FC, useMemo, useRef, useState } from 'react'
+import { type ElementRef, type FC, useMemo, useRef, useState } from 'react'
 
 import { Carousel } from 'antd'
 import classNames from 'classnames'
@@ -25,7 +25,7 @@ export const Banner: FC = () => {
   const bgImage = useMemo(() => {
     if (currentIndex >= banners.length) return undefined
 
-    return banners[currentIndex].imageUrl + '?imageView&blur=40x20'
+    return `${banners[currentIndex].imageUrl}?imageView&blur=40x20`
   }, [banners, currentIndex])
 
   // 事件监听
@@ -44,10 +44,10 @@ export const Banner: FC = () => {
         <Box width={730}>
           <Carousel
             effect="fade"
-            autoplay={true}
+            autoplay
             ref={bannerRef}
-            pauseOnHover={true}
-            pauseOnDotsHover={true}
+            pauseOnHover
+            pauseOnDotsHover
             dotPosition="top"
             dots={false}
             beforeChange={handleBeforeChange}

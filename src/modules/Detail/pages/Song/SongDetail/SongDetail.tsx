@@ -1,4 +1,4 @@
-import { FC, useMemo, useRef } from 'react'
+import { type FC, useMemo, useRef } from 'react'
 
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'

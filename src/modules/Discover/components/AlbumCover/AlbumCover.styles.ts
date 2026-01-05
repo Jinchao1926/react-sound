@@ -45,7 +45,7 @@ export const AlbumnNameLink = styled(TextNavLink)<{ $isLarge: boolean }>`
 `
 
 export const AlbumCoverWrapper = styled.div<{ width: number }>`
-  width: ${(props) => props.width + 'px'};
+  width: ${(props) => `${props.width}px`};
 
   .cover-image:hover ${CoverPlayButton} {
     display: block;

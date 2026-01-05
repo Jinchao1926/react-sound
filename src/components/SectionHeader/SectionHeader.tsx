@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import type { FC } from 'react'
 
 import { NavLink } from 'react-router-dom'
@@ -10,7 +10,7 @@ import {
   SubTitle,
   Title,
 } from './SectionHeader.styles'
-import { SectionHeaderVariant } from './types'
+import { type SectionHeaderVariant } from './types'
 import { Box, Flex, TextNavLink } from '../Core'
 
 interface SectionHeaderProps {

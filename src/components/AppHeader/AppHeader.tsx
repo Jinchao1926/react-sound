@@ -75,7 +75,7 @@ export const AppHeader: FC = () => {
           >
             创作者中心
           </CreatorCenter>
-          <Link hoverUnderline color="#787878" padding="0 10px">
+          <Link href="#/login" hoverUnderline color="#787878" padding="0 10px">
             登录
           </Link>
         </Flex>

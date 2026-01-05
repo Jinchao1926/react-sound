@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react'
+import { type FC, useMemo } from 'react'
 
 import { Flex } from '@/components/Core'
 import { routeBuilder } from '@/routers'

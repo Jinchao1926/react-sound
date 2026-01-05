@@ -1,5 +1,5 @@
-import { PlayModeType } from '@/types/player'
-import { Track } from '@/types/track'
+import { type PlayModeType } from '@/types/player'
+import { type Track } from '@/types/track'
 
 import { getStorage, setStorage } from './localStorage'
 
