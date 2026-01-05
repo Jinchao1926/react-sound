@@ -12,6 +12,9 @@
 /build
 /dist
 
+# bundle analysis
+/bundle-analysis/*.html
+
 # misc
 .DS_Store
 .env.local

@@ -99,9 +99,10 @@ interface SpriteProps extends Styles {
   disable?: boolean
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Sprite = forwardRef<
   HTMLElement,
-  PropsWithChildren<SpriteProps & Record<string, unknown>>
+  PropsWithChildren<SpriteProps & any>
 >(
   (
     {
