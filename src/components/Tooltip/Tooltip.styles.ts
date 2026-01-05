@@ -1,17 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const TooltipWrapper = styled.div`
-  display: inline-block;
-  cursor: pointer;
-
-  /* 让包装器适应子元素，特别是 absolute 定位的子元素 */
-  > * {
-    display: block;
-  }
-`
-
 interface TooltipContentProps {
-  $visible: boolean
   $color: string
 }
 
@@ -30,18 +19,33 @@ export const TooltipContent = styled.div<TooltipContentProps>`
     0 6px 16px 0 rgba(0, 0, 0, 0.08),
     0 9px 28px 8px rgba(0, 0, 0, 0.05);
   pointer-events: none;
-  opacity: 0;
-  transform: translateY(-4px);
-  transition:
-    opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1),
-    transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
 
-  ${({ $visible }) =>
-    $visible &&
-    css`
-      opacity: 1;
-      transform: translateY(0);
-    `}
+  /* CSSTransition 动画 */
+  &.tooltip-enter {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  &.tooltip-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 200ms cubic-bezier(0.23, 1, 0.32, 1),
+      transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  &.tooltip-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.tooltip-exit-active {
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+      opacity 200ms cubic-bezier(0.23, 1, 0.32, 1),
+      transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
 `
 
 interface TooltipArrowProps {
@@ -67,6 +71,7 @@ export const TooltipArrow = styled.div<TooltipArrowProps>`
           bottom: -5px;
           left: ${$offset}px;
           margin-left: -5px;
+          transform: rotate(45deg);
         `
       case 'bottom':
       case 'bottomLeft':
@@ -75,18 +80,21 @@ export const TooltipArrow = styled.div<TooltipArrowProps>`
           top: -5px;
           left: ${$offset}px;
           margin-left: -5px;
+          transform: rotate(45deg);
         `
       case 'left':
         return css`
           right: -5px;
-          top: 50%;
+          top: ${$offset}px;
           margin-top: -5px;
+          transform: rotate(45deg);
         `
       case 'right':
         return css`
           left: -5px;
-          top: 50%;
+          top: ${$offset}px;
           margin-top: -5px;
+          transform: rotate(45deg);
         `
       default:
         return ''
