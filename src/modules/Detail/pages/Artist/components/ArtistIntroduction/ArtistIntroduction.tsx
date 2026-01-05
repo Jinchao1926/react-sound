@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { Fragment, type FC } from 'react'
 
 import { Box } from '@/components/Core'
 import { useArtistIntroductionQuery } from '@/hooks/artist/useArtistIntroductionQuery'
@@ -27,10 +27,10 @@ export const ArtistIntroduction: FC = () => {
       <BriefIntroduction>{introduction?.briefDesc}</BriefIntroduction>
 
       {introduction?.introduction.map((item, index) => (
-        <React.Fragment key={index}>
+        <Fragment key={index}>
           <HeaderTitle>{item.ti}</HeaderTitle>
           <IntroductionText>{item.txt}</IntroductionText>
-        </React.Fragment>
+        </Fragment>
       ))}
     </Box>
   )

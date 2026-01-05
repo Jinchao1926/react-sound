@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { MV2 } from '@/types/mv'
+import { type MV2 } from '@/types/mv'
 
 interface ArtistMVsApiResponse {
   mvs: MV2[]

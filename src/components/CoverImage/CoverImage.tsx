@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react'
+import { type FC, type PropsWithChildren } from 'react'
 
 import { NavLink } from 'react-router-dom'
 
@@ -9,7 +9,7 @@ import {
   CoverNavLink,
 } from './CoverImage.styles'
 import { Box } from '../Core'
-import { SpriteCategory } from '../Core/Spirit/config'
+import { type SpriteCategory } from '../Core/Spirit/config'
 
 export interface CoverImageProps {
   /** Image Source */

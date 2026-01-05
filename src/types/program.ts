@@ -360,8 +360,8 @@
     "commentCount": 2
 }*/
 
-import { Radio } from './djradio'
-import { Track2 } from './track'
+import { type Radio } from './djradio'
+import { type Track2 } from './track'
 
 /** 电台节目 */
 export interface Program {

@@ -1,4 +1,4 @@
-import React, { type FC } from 'react'
+import { type FC } from 'react'
 
 import { ExpandButtonWrapper, ExpandIcon } from './ExpandButton.styles'
 

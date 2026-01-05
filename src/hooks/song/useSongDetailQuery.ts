@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { Track } from '@/types/track'
+import { type Track } from '@/types/track'
 
 interface SongDetailApiResponse {
   songs: Track[]

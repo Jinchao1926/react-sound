@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import { type FC } from 'react'
 
 import { Box, Paragraph } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
-import { MV } from '@/types/mv'
+import { type MV } from '@/types/mv'
 
 export const MVIntroduction: FC<{ mv: MV }> = ({ mv }) => {
   return (

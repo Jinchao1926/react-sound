@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { Fragment, type FC } from 'react'
 
 import { routeBuilder } from '@/routers'
 
@@ -24,7 +24,7 @@ export const UserLink: FC<UserLinkProps> = ({
   return (
     <UserLinks nowrap block={block}>
       {users.map((item, idx) => (
-        <React.Fragment key={item.id}>
+        <Fragment key={item.id}>
           {idx > 0 && (space ? ' / ' : '/')}
           <TextNavLink
             to={routeBuilder.artist(item.id)}
@@ -33,7 +33,7 @@ export const UserLink: FC<UserLinkProps> = ({
           >
             {item.name}
           </TextNavLink>
-        </React.Fragment>
+        </Fragment>
       ))}
     </UserLinks>
   )

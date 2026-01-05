@@ -1,10 +1,10 @@
-import React, { FC, useEffect, useState } from 'react'
+import { Fragment, type FC, useEffect, useState } from 'react'
 
 import classNames from 'classnames'
 
 import { Box, Flex, Image, Text } from '@/components/Core'
 import { routeBuilder } from '@/routers'
-import { TopPlaylist } from '@/types/playlist'
+import { type TopPlaylist } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import { CategoryHead, CategoryLink } from './ToplistCategory.styles'
@@ -41,7 +41,7 @@ export const ToplistCategory: FC<ToplistCategoryProps> = ({ id, toplists }) => {
           ) : null
 
         return (
-          <React.Fragment key={item.id}>
+          <Fragment key={item.id}>
             {header}
             <CategoryLink
               className={classNames({ selected: selectedIndex === idx })}
@@ -55,7 +55,7 @@ export const ToplistCategory: FC<ToplistCategoryProps> = ({ id, toplists }) => {
                 </Flex>
               </Flex>
             </CategoryLink>
-          </React.Fragment>
+          </Fragment>
         )
       })}
     </Box>

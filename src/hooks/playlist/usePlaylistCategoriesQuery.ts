@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { PlaylistCategoriesApiResponse } from '@/types/playlist-category'
+import { type PlaylistCategoriesApiResponse } from '@/types/playlist-category'
 import { parsePlaylistCategories } from '@/utils/playlistCategoriesParser'
 
 /**

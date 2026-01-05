@@ -1,16 +1,21 @@
-import React, { CSSProperties, ElementType, PropsWithChildren } from 'react'
+import {
+  forwardRef,
+  type CSSProperties,
+  type ElementType,
+  type PropsWithChildren,
+} from 'react'
 
 import classNames from 'classnames'
 import styled, { css } from 'styled-components'
 
 import {
-  SpriteCategory,
+  type SpriteCategory,
   INTERNAL_SPRITE_CONFIG,
   SPRITE_VARIANTS,
-  SpriteConfig,
-  SpriteIconConfig,
+  type SpriteConfig,
+  type SpriteIconConfig,
 } from './config'
-import { Box, Styles } from '../Layout/Box'
+import { Box, type Styles } from '../Layout/Box'
 
 // Search for sprite configuration
 const findSpriteConfig = (
@@ -94,9 +99,9 @@ interface SpriteProps extends Styles {
   disable?: boolean
 }
 
-export const Sprite = React.forwardRef<
+export const Sprite = forwardRef<
   HTMLElement,
-  PropsWithChildren<SpriteProps & any>
+  PropsWithChildren<SpriteProps & Record<string, unknown>>
 >(
   (
     {
@@ -148,3 +153,5 @@ export const Sprite = React.forwardRef<
     )
   }
 )
+
+Sprite.displayName = 'Sprite'

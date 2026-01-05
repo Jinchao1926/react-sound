@@ -1,6 +1,6 @@
 import {
-  PlaylistCategoriesApiResponse,
-  PlaylistCategoryDetail,
+  type PlaylistCategoriesApiResponse,
+  type PlaylistCategoryDetail,
 } from '@/types/playlist-category'
 
 export const parsePlaylistCategories = (

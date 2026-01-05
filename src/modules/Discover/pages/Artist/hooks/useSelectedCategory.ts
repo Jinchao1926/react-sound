@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 
 import {
-  ArtistArea,
+  type ArtistArea,
   ArtistAreaEnum,
-  ArtistType,
+  type ArtistType,
   ArtistTypeEnum,
 } from '@/hooks/artist/useArtistListQuery'
 import { useUrlParams } from '@/hooks/useUrlParams'

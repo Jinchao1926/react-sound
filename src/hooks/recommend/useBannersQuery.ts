@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { Banner } from '@/types/banner'
+import { type Banner } from '@/types/banner'
 
 interface BannersApiResponse {
   banners: Banner[]

@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 
-import { Flex } from '@/components/Core'
-
 import androidImg from '@/assets/img/download/android.png'
 import downloadIconImg from '@/assets/img/download/download_icon.png'
 import iosImg from '@/assets/img/download/iOS.png'
 import macImg from '@/assets/img/download/mac.png'
 import windowsImg from '@/assets/img/download/windows.png'
+import { Flex } from '@/components/Core'
 
 export const DownloadTitle = styled.div`
   margin-bottom: 23px;

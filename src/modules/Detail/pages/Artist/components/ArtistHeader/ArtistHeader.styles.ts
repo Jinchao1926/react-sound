@@ -1,10 +1,8 @@
 import { NavLink } from 'react-router-dom'
-
 import styled from 'styled-components'
 
-import { Flex, Sprite } from '@/components/Core'
-
 import tabImg from '@/assets/img/tab.png'
+import { Flex, Sprite } from '@/components/Core'
 
 export const ArtistName = styled.h2`
   margin: 0;

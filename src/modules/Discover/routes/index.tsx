@@ -1,13 +1,14 @@
 import { lazy } from 'react'
 
 import { Navigate } from 'react-router-dom'
-import type { RouteObject } from 'react-router-dom'
 
 import {
   discoverRouteBuilder as rawDiscoverRouteBuilder,
   discoverRoutePath,
 } from './config'
 import { djRadioRoutes, radioRouteBuilder } from '../../DJRadio/routes'
+
+import type { RouteObject } from 'react-router-dom'
 
 // Discover 模块页面组件
 const Discover = lazy(() => import('../index'))

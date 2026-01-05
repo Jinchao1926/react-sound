@@ -1,7 +1,7 @@
-import React, { type FC } from 'react'
+import { type FC } from 'react'
 
 import { MusicIcon, MusicLink } from './ExternalLink.styles'
-import { Flex, Styles } from '../Core'
+import { Flex, type Styles } from '../Core'
 
 export type ExternalLinkType =
   | 'playlist'

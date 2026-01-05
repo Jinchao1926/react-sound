@@ -1,4 +1,8 @@
-import React, { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react'
+import {
+  type ButtonHTMLAttributes,
+  type FC,
+  type PropsWithChildren,
+} from 'react'
 
 import styled, { css } from 'styled-components'
 

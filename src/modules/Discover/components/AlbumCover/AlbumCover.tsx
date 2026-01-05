@@ -1,15 +1,15 @@
-import { FC, useMemo } from 'react'
+import { type FC, useMemo } from 'react'
 
 import { CoverImage } from '@/components/CoverImage'
 import { UserLink } from '@/components/Links'
-import { Album } from '@/types/music'
+import { type Album } from '@/types/music'
 import { formatSizedImage } from '@/utils/dataFormat'
 
 import {
   AlbumCoverWrapper,
   AlbumnNameLink,
   CoverPlayButton,
-  IAlbumStyleConfig,
+  type IAlbumStyleConfig,
   UserLinkContainer,
   getAlbumStyleConfig,
 } from './AlbumCover.styles'

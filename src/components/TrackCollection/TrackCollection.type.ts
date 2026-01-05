@@ -1,6 +1,6 @@
-import { Track } from '@/types/track'
+import { type Track } from '@/types/track'
 
-import { ExternalLinkType } from '../Links'
+import { type ExternalLinkType } from '../Links'
 
 export interface TrackSource {
   id?: number

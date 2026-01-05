@@ -2,6 +2,7 @@ import type { FC } from 'react'
 import type React from 'react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
+import defaultAlbumImg from '@/assets/img/default_album.png'
 import { Box, Flex, FlexContainer, Text, TextNavLink } from '@/components/Core'
 import { UserLink } from '@/components/Links'
 import {
@@ -10,8 +11,6 @@ import {
   PlayButton,
   PrevButton,
 } from '@/components/Shared/Playbar'
-
-import defaultAlbumImg from '@/assets/img/default_album.png'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PLAY_MODE } from '@/types/player'
 import { getMusicUrl, formatSizedImage } from '@/utils/dataFormat'
@@ -280,6 +279,7 @@ export const Player: FC = () => {
         {/* Player Actions */}
         <PlayerAction />
       </FlexContainer>
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio
         ref={audioRef}
         onTimeUpdate={handlePlayerTimeUpdate}

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Box, Styles } from '../Layout/Box'
+import { Box, type Styles } from '../Layout/Box'
 
 interface HeadProps extends Styles {
   level?: 1 | 2 | 3 | 4 | 5

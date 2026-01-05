@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, ElementRef } from 'react'
+import { type FC, useState, useRef, type ElementRef } from 'react'
 
 import { Carousel } from 'antd'
 

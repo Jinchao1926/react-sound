@@ -1,4 +1,6 @@
-import React, { FC, useCallback, useEffect, useMemo, useRef } from 'react'
+import type React from 'react'
+import { type FC } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 
 import { roundToDecimal } from '@/utils/dataFormat'
 

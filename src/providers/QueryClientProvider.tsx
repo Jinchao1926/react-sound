@@ -1,7 +1,7 @@
-import React, { FC, ReactNode } from 'react'
+import { type FC, type ReactNode } from 'react'
 
 import {
-  DefaultOptions,
+  type DefaultOptions,
   QueryClient,
   QueryClientProvider as Provider,
 } from '@tanstack/react-query'

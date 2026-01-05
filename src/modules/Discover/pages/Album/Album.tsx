@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { type FC } from 'react'
 
 import { AlbumWrapper } from './Album.styles'
 import { AllAlbum } from './components/AllAlbum/AllAlbum'

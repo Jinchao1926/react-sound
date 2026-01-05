@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { RadioCategory } from '@/types/djradio'
+import { type RadioCategory } from '@/types/djradio'
 
 interface RadioCategoriesApiResponse {
   categories: RadioCategory[]

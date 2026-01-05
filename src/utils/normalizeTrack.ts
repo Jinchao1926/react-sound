@@ -1,4 +1,4 @@
-import { Track, Track2 } from '@/types/track'
+import { type Track, type Track2 } from '@/types/track'
 
 /**
  * Normalize Track data to ensure consistent artist and album fields

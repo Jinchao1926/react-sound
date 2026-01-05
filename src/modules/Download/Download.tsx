@@ -1,12 +1,11 @@
-import React, { type FC } from 'react'
-
-import { Box, FlexContainer, Image } from '@/components/Core'
+import { type FC } from 'react'
 
 import cloudImg from '@/assets/img/download/cloud.png'
 import musicCoverImg from '@/assets/img/download/music_cover.png'
 import recognizeImg from '@/assets/img/download/recognize.png'
 import socialImg from '@/assets/img/download/social.png'
 import starsImg from '@/assets/img/download/stars.png'
+import { Box, FlexContainer, Image } from '@/components/Core'
 
 import {
   MusicContent,

@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import { type FC } from 'react'
 
 import classNames from 'classnames'
 
 import { routeBuilder } from '@/routers'
-import { RadioCategory } from '@/types/djradio'
+import { type RadioCategory } from '@/types/djradio'
 
 import {
   RadioCategoryImage,

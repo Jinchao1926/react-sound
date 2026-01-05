@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { PlaylistDynamic } from '@/types/playlist'
+import { type PlaylistDynamic } from '@/types/playlist'
 
 interface PlaylistDynamicApiResponse extends PlaylistDynamic {
   code: number

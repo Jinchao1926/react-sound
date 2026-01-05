@@ -96,7 +96,7 @@
   }
 } */
 
-import { Album, Artist } from './music'
+import { type Album, type Artist } from './music'
 
 /** 曲目 */
 export interface Track {

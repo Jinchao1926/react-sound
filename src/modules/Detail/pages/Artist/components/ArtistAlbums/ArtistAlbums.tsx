@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react'
+import { type FC, useRef, useState } from 'react'
 
 import { Box, Paragraph, Text } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'

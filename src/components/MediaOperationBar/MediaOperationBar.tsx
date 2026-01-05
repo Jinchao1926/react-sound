@@ -1,4 +1,4 @@
-import React, { type FC } from 'react'
+import { type FC } from 'react'
 
 import { AddBlueButton, PlayBlueButton } from './MediaOperationBar.styles'
 import { Flex } from '../Core'

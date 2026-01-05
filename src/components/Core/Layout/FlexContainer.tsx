@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
-import { ContainerProps } from './Container'
-import { Flex, FlexProps } from './Flex'
+import { type ContainerProps } from './Container'
+import { Flex, type FlexProps } from './Flex'
 
 export const FlexContainer = styled(Flex)<ContainerProps & FlexProps>`
   ${({ variant = 'normal' }) => css`

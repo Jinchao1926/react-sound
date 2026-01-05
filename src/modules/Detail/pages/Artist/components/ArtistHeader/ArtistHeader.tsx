@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { type FC } from 'react'
 
 import { Box, Flex, Image } from '@/components/Core'
 import { artistNavigations } from '@/constants/navigation'

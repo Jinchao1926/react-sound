@@ -1,9 +1,9 @@
-import { ComponentProps } from 'react'
+import { type ComponentProps } from 'react'
 
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
-import { Box, Styles } from '../Layout/Box'
+import { Box, type Styles } from '../Layout/Box'
 
 interface LinkProps extends Styles, Omit<ComponentProps<'a'>, keyof Styles> {
   hoverUnderline?: boolean

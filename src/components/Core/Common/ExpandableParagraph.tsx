@@ -1,6 +1,6 @@
 import {
   forwardRef,
-  PropsWithChildren,
+  type PropsWithChildren,
   useEffect,
   useMemo,
   useState,
@@ -10,7 +10,7 @@ import { ExpandButton } from '@/components/Buttons/ExpandButton'
 import { getDisplayLength, sliceByDisplayLength } from '@/utils/stringUtils'
 
 import { Paragraph } from './Text'
-import { Box, Styles } from '../Layout/Box'
+import { Box, type Styles } from '../Layout/Box'
 
 interface ExpandParagraphProps extends Styles {
   maxLines?: number

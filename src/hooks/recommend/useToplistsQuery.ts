@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { TopPlaylist } from '@/types/playlist'
+import { type TopPlaylist } from '@/types/playlist'
 
 interface ToplistsApiResponse {
   list: TopPlaylist[]

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { Artist } from '@/types/music'
+import { type Artist } from '@/types/music'
 
 export const ArtistTypeEnum = {
   ALL: -1, // 全部

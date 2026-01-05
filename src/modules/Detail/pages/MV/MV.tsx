@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { type FC } from 'react'
 
 import { useMVDetailQuery } from '@/hooks/mv/useMVDetailQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'

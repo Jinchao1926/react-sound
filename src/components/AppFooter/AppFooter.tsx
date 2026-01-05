@@ -1,4 +1,4 @@
-import { Fragment, FC } from 'react'
+import { Fragment, type FC } from 'react'
 
 import {
   footerCopyRights,
@@ -44,7 +44,7 @@ export const AppFooter: FC = () => {
             </div>
           ))}
         </Flex>
-        <Box mt={60} color={'#666'}>
+        <Box mt={60} color="#666">
           <FooterCopyrights>
             {footerCopyRights.map((item, index) => (
               <Fragment key={item.title}>

@@ -1,4 +1,4 @@
-import React, { FC, Suspense, ReactNode, ElementType } from 'react'
+import { type FC, Suspense, type ReactNode, type ElementType } from 'react'
 
 import { Outlet } from 'react-router-dom'
 

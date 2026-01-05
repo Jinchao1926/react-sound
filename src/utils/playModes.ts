@@ -1,4 +1,4 @@
-import { PLAY_MODE, PlayModeType } from '@/types/player'
+import { PLAY_MODE, type PlayModeType } from '@/types/player'
 
 export const getNextPlayMode = (currentMode: PlayModeType): PlayModeType => {
   const modes: PlayModeType[] = [

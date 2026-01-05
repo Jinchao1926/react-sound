@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Vite
+.vite/
+vite.config.ts.timestamp-*
+
+# Testing
+coverage/
+
+# Cache
+.cache/
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+
+# Misc
+*.min.js
+public/

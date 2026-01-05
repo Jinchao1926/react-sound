@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useContext,
   useState,
@@ -9,9 +9,9 @@ import React, {
 import type { FC, PropsWithChildren } from 'react'
 
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
-import { LyricLine } from '@/types/lyric'
-import { PLAY_MODE, PlayModeType } from '@/types/player'
-import { Track } from '@/types/track'
+import { type LyricLine } from '@/types/lyric'
+import { PLAY_MODE, type PlayModeType } from '@/types/player'
+import { type Track } from '@/types/track'
 import { getNextPlayMode } from '@/utils/playModes'
 
 import { PlayerStorage } from '../utils/storages/playerStorage'

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { type FC } from 'react'
 
 import { Box, Flex } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
@@ -52,7 +52,7 @@ export const ArtistList: FC = () => {
                     <UserIcon />
                   </Flex>
                 </Box>
-                {idx === 9 && <DashedDivider key={`divider`} />}
+                {idx === 9 && <DashedDivider key="divider" />}
               </>
             )
           }

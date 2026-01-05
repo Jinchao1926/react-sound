@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { type FC } from 'react'
 
 import { Box, Flex, Text } from '@/components/Core'
 import { UserLink } from '@/components/Links'
@@ -10,7 +10,7 @@ import {
 } from '@/components/Shared/Social'
 import { useMVDynamicQuery } from '@/hooks/mv/useMVDynamicQuery'
 import { useMVUrlQuery } from '@/hooks/mv/useMVUrlQuery'
-import { MV } from '@/types/mv'
+import { type MV } from '@/types/mv'
 
 import { MVVideo } from './MVDetail.styles'
 

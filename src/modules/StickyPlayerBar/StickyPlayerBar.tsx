@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect, useCallback } from 'react'
+import { type FC, useRef, useEffect, useCallback } from 'react'
 
 import { usePlayerContext } from '@/providers/PlayerProvider'
 

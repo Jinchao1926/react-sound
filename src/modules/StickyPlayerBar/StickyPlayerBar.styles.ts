@@ -48,7 +48,7 @@ export const LockBarButton = styled(Sprite).attrs({
 `
 
 interface LockIconProps {
-  isLocked: Boolean
+  isLocked: boolean
 }
 export const LockIcon = styled(Sprite)
   .withConfig({

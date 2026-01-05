@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { type FC } from 'react'
 
 import { Box } from '@/components/Core'
 
@@ -13,8 +13,8 @@ export const Radio: FC = () => {
     <Box>
       <RadioCategoryHeader />
       <RadioPrograms>
-        <ProgramRecommend isCompact={true} />
-        <ProgramRanking isCompact={true} />
+        <ProgramRecommend isCompact />
+        <ProgramRanking isCompact />
       </RadioPrograms>
       <TopRadioCategory />
     </Box>

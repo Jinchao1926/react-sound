@@ -4,7 +4,7 @@ function createStorage(storage: StorageType) {
   const composeKey = (key: string, table: string = ''): string =>
     table.length > 0 ? `${table}_${key}` : key
 
-  const set = <T = any>(key: string, value: T): boolean => {
+  const set = <T = unknown>(key: string, value: T): boolean => {
     try {
       const serialized = JSON.stringify(value)
       storage.setItem(key, serialized)
@@ -14,7 +14,7 @@ function createStorage(storage: StorageType) {
     }
   }
 
-  const get = <T = any>(key: string): T | null => {
+  const get = <T = unknown>(key: string): T | null => {
     try {
       const serialized = storage.getItem(key)
       if (serialized === null) return null
@@ -35,13 +35,13 @@ function createStorage(storage: StorageType) {
 
   const has = (key: string): boolean => storage.getItem(key) !== null
 
-  const setStorage = <T = any>(
+  const setStorage = <T = unknown>(
     key: string,
     value: T,
     table: string = ''
   ): boolean => set(composeKey(key, table), value)
 
-  const getStorage = <T = any>(key: string, table: string = ''): T | null =>
+  const getStorage = <T = unknown>(key: string, table: string = ''): T | null =>
     get<T>(composeKey(key, table))
 
   const removeStorage = (key: string, table: string = ''): boolean =>

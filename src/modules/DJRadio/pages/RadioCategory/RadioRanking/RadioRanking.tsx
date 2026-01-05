@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react'
+import { type FC, useState, useEffect } from 'react'
 
 import { Box, Flex, Paragraph, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'

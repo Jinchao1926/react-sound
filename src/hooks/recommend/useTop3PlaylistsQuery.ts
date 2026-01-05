@@ -1,4 +1,4 @@
-import { PlaylistDetail } from '@/types/playlist'
+import { type PlaylistDetail } from '@/types/playlist'
 
 import { usePlaylistDetailQuery } from '../playlist/usePlaylistDetailQuery'
 

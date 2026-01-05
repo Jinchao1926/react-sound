@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState, useEffect } from 'react'
+import { type FC, useRef, useState, useEffect } from 'react'
 
 import classNames from 'classnames'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
@@ -38,7 +38,7 @@ export const JCBanner: FC = () => {
   // 更新 bgImage
   useEffect(() => {
     if (banners.length === 0) return
-    setBgImage(banners[currentIndex].imageUrl + '?imageView&blur=40x20')
+    setBgImage(`${banners[currentIndex].imageUrl}?imageView&blur=40x20`)
     setRefreshTimer(!refreshTimer)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [banners])
@@ -91,7 +91,7 @@ export const JCBanner: FC = () => {
   }
 
   function handleAfterChange() {
-    setBgImage(banners[indexRef.current].imageUrl + '?imageView&blur=40x20')
+    setBgImage(`${banners[indexRef.current].imageUrl}?imageView&blur=40x20`)
   }
 
   function handleMouseEnter() {

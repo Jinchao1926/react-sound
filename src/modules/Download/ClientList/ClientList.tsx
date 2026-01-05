@@ -1,4 +1,4 @@
-import React, { type FC } from 'react'
+import { type FC } from 'react'
 
 import { Image } from '@/components/Core'
 import { platforms } from '@/constants/platform'
