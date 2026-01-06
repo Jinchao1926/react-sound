@@ -1,9 +1,8 @@
 import { type FC, useMemo } from 'react'
 
-import { Tooltip } from 'antd'
-
 import { Box, TextNavLink } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
+import { Tooltip } from '@/components/Tooltip'
 import { useTopProgramsQuery } from '@/hooks/program/useTopProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { RankingTrend } from '@/modules/DJRadio/components/RankingTrend'
@@ -98,7 +97,6 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
       {!isCompact && (
         <Tooltip
           placement="bottomRight"
-          arrow={{ pointAtCenter: true }}
           color="#fff"
           title="选取云音乐中7天内发布的热度最高的节目，每天更新。热度由节目播放、赞、分享数量总和计算。"
         >
