@@ -1,8 +1,8 @@
-import { type ElementRef, type FC, useMemo, useRef, useState } from 'react'
+import { type FC, useMemo, useRef, useState } from 'react'
 
-import { Carousel } from 'antd'
 import classNames from 'classnames'
 
+import { Carousel, type CarouselRef } from '@/components/Carousel'
 import { Box, Flex, FlexContainer } from '@/components/Core'
 import { useBannersQuery } from '@/hooks/recommend/useBannersQuery'
 
@@ -18,7 +18,7 @@ import { DownloadClient } from './DownloadClient'
 
 export const Banner: FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const bannerRef = useRef<ElementRef<typeof Carousel>>(null)
+  const bannerRef = useRef<CarouselRef>(null)
 
   const { data: banners } = useBannersQuery()
 
@@ -27,16 +27,6 @@ export const Banner: FC = () => {
 
     return `${banners[currentIndex].imageUrl}?imageView&blur=40x20`
   }, [banners, currentIndex])
-
-  // 事件监听
-  function handleBeforeChange(from: number, to: number) {
-    setCurrentIndex(to)
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  function handleAfterChange(to: number) {
-    // setCurrentIndex(to)
-  }
 
   return (
     <BannerBackground bgImage={bgImage}>
@@ -47,11 +37,9 @@ export const Banner: FC = () => {
             autoplay
             ref={bannerRef}
             pauseOnHover
-            pauseOnDotsHover
             dotPosition="top"
             dots={false}
-            beforeChange={handleBeforeChange}
-            afterChange={handleAfterChange}
+            beforeChange={(_, to) => setCurrentIndex(to)}
           >
             {banners.map((item) => (
               <Box key={item.imageUrl} overflow="hidden" height={285}>
@@ -65,6 +53,7 @@ export const Banner: FC = () => {
             bottom={5}
             width={730}
             justifyContent="center"
+            zIndex={10}
           >
             {banners.map((item, idx) => (
               <BannerDot
