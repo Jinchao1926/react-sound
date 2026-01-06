@@ -18,6 +18,8 @@ interface UseCarouselProps {
 interface UseCarouselReturn {
   /** Current active slide index */
   currentIndex: number
+  /** Display index for animation (can be outside bounds for seamless loop) */
+  displayIndex: number
   /** Go to previous slide */
   prev: () => void
   /** Go to next slide */
@@ -30,6 +32,8 @@ interface UseCarouselReturn {
   pause: () => void
   /** Resume autoplay */
   resume: () => void
+  /** Reset display index after transition */
+  resetDisplayIndex: () => void
 }
 
 /**
@@ -45,6 +49,7 @@ export const useCarousel = ({
   afterChange,
 }: UseCarouselProps): UseCarouselReturn => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [displayIndex, setDisplayIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
@@ -55,22 +60,50 @@ export const useCarousel = ({
 
       beforeChange?.(currentIndex, index)
       setCurrentIndex(index)
+      setDisplayIndex(index)
       afterChange?.(index)
     },
     [currentIndex, total, beforeChange, afterChange]
   )
 
-  // Go to next slide
+  // Go to next slide (always animate forward)
   const next = useCallback(() => {
     const nextIndex = (currentIndex + 1) % total
-    goTo(nextIndex)
-  }, [currentIndex, total, goTo])
 
-  // Go to previous slide
+    beforeChange?.(currentIndex, nextIndex)
+
+    // If wrapping from last to first, animate to clone position then reset
+    if (currentIndex === total - 1 && nextIndex === 0) {
+      setDisplayIndex(total) // Animate to clone of first (at position total)
+    } else {
+      setDisplayIndex(nextIndex)
+    }
+    setCurrentIndex(nextIndex)
+    afterChange?.(nextIndex)
+  }, [currentIndex, total, beforeChange, afterChange])
+
+  // Go to previous slide (always animate backward)
   const prev = useCallback(() => {
     const prevIndex = (currentIndex - 1 + total) % total
-    goTo(prevIndex)
-  }, [currentIndex, total, goTo])
+
+    beforeChange?.(currentIndex, prevIndex)
+
+    // If wrapping from first to last, animate to clone position then reset
+    if (currentIndex === 0 && prevIndex === total - 1) {
+      setDisplayIndex(-1) // Animate to clone of last (at position -1)
+    } else {
+      setDisplayIndex(prevIndex)
+    }
+    setCurrentIndex(prevIndex)
+    afterChange?.(prevIndex)
+  }, [currentIndex, total, beforeChange, afterChange])
+
+  // Reset display index to current index (called after transition ends)
+  const resetDisplayIndex = useCallback(() => {
+    if (displayIndex !== currentIndex) {
+      setDisplayIndex(currentIndex)
+    }
+  }, [displayIndex, currentIndex])
 
   // Pause autoplay
   const pause = useCallback(() => {
@@ -112,11 +145,13 @@ export const useCarousel = ({
 
   return {
     currentIndex,
+    displayIndex,
     prev,
     next,
     goTo,
     isPaused,
     pause,
     resume,
+    resetDisplayIndex,
   }
 }

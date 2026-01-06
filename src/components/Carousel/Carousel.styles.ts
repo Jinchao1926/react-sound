@@ -10,16 +10,19 @@ export const CarouselContainer = styled.div`
 interface CarouselTrackProps {
   $effect: 'slide' | 'fade'
   $currentIndex: number
+  $disableTransition?: boolean
 }
 
 export const CarouselTrack = styled.div<CarouselTrackProps>`
-  ${({ $effect, $currentIndex }) => {
+  ${({ $effect, $currentIndex, $disableTransition }) => {
     if ($effect === 'slide') {
       return css`
         display: flex;
         height: 100%;
         transform: translateX(-${$currentIndex * 100}%);
-        transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        transition: ${$disableTransition
+          ? 'none'
+          : 'transform 1.5s cubic-bezier(0.23, 1, 0.32, 1)'};
       `
     }
 
