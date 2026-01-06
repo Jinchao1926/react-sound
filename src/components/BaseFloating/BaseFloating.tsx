@@ -121,7 +121,7 @@ export const BaseFloating: FC<BaseFloatingProps> = ({
       clearTimeout(timer)
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [visible, closeOnClickOutside, onVisibleChange])
+  }, [visible, closeOnClickOutside, onVisibleChange, triggerRef, floatingRef])
 
   // Get child element's original props
   const childProps = children.props as Record<string, unknown>

@@ -1,7 +1,6 @@
-import { Input } from 'antd'
 import styled from 'styled-components'
 
-import { Sprite } from '../Core'
+import { Input, Sprite } from '../Core'
 
 export const AppHeaderWrapper = styled.div`
   height: 75px;
@@ -58,12 +57,15 @@ export const HeaderLogo = styled(Sprite).attrs({
   text-indent: -9999px;
 `
 
-export const Search = styled(Input)`
+export const SearchBar = styled(Input)`
+  box-sizing: border-box;
   width: 158px;
-  height: 32px;
-  border-radius: 32px;
 
   input {
+    height: 22px;
+    border-radius: 22px;
+    font-size: 12px;
+
     &::placeholder {
       font-size: 12px;
       color: #9b9b9b;

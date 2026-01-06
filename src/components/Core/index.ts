@@ -9,4 +9,6 @@ export { Link, TextNavLink } from './Common/Link'
 export { Head, Paragraph, Strong, Text } from './Common/Text'
 export { Image } from './Common/Image'
 
+export { Input } from './Common/Input'
+
 export { Sprite } from './Spirit'
