@@ -1,6 +1,6 @@
-import { Carousel } from 'antd'
 import styled from 'styled-components'
 
+import { Carousel } from '@/components/Carousel'
 import { Flex, Sprite } from '@/components/Core'
 
 export const NewAlbumContent = styled(Flex)`
@@ -15,13 +15,17 @@ export const AlbumList = styled(Carousel)`
   width: 645px;
   height: 180px;
   margin-top: 28px;
-  padding-left: 10px;
+  /* padding-left: 10px; */
   box-sizing: border-box;
 `
 
 export const AlbumPage = styled.div`
   display: flex !important;
   justify-content: space-between;
+
+  .album-cover {
+    margin-left: 10px;
+  }
 `
 
 export const Left = styled(Sprite).attrs({

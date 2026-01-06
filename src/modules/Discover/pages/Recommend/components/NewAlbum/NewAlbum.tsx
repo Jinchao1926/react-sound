@@ -1,7 +1,6 @@
-import { type FC, type ElementRef, useRef, useMemo } from 'react'
+import { type FC, useRef, useMemo } from 'react'
 
-import { type Carousel } from 'antd'
-
+import { type CarouselRef } from '@/components/Carousel'
 import { Box } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useNewAlbumsQuery } from '@/hooks/album/useNewAlbumsQuery'
@@ -18,7 +17,7 @@ import {
 
 // 新碟上架
 export const NewAlbum: FC = () => {
-  const pageRef = useRef<ElementRef<typeof Carousel>>(null)
+  const pageRef = useRef<CarouselRef>(null)
 
   const { data: albums } = useNewAlbumsQuery()
   const albumPage = useMemo(() => {

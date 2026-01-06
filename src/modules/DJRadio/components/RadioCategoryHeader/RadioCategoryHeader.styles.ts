@@ -6,28 +6,7 @@ export const RadioCategoryHeaderWrapper = styled.div`
   position: relative;
 
   .dots {
-    bottom: 0px;
-    li {
-      margin: 0 1px;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      button {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background-color: #aaa;
-      }
-    }
-
-    li.slick-active {
-      button {
-        background-color: #c20c0c;
-      }
-    }
+    bottom: 8px;
   }
 `
 
