@@ -1,7 +1,7 @@
 import { type FC, useState, useEffect, useMemo, useCallback } from 'react'
 
 import { Box } from '@/components/Core'
-import { JCPagination } from '@/components/Pagination'
+import { Pagination } from '@/components/Pagination'
 import { useTopPlaylistsQuery } from '@/hooks/playlist/useTopPlaylistsQuery'
 import { PlaylistCover } from '@/modules/Discover/components/PlaylistCover'
 
@@ -39,7 +39,7 @@ export const PlaylistCovers: FC<{ category: string }> = ({ category }) => {
           <PlaylistCover key={item.id} playlist={item} />
         ))}
       </PlaylistCoverList>
-      <JCPagination
+      <Pagination
         total={total}
         pageSize={PAGE_SIZE}
         current={currentPage}

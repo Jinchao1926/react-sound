@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Box, Flex, Text, TextNavLink } from '@/components/Core'
 import { ExternalLink } from '@/components/Links'
-import { JCPagination } from '@/components/Pagination'
+import { Pagination } from '@/components/Pagination'
 import {
   AddToButtonSM,
   DownloadButton,
@@ -139,7 +139,7 @@ export const RadioPrograms: FC<{ radioId: number }> = ({ radioId }) => {
         </tbody>
       </ProgramCollectionTable>
 
-      <JCPagination
+      <Pagination
         total={count}
         pageSize={PAGE_SIZE}
         current={currentPage}

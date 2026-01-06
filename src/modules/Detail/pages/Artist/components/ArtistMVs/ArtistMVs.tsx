@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Box, Flex, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
-import { JCPagination } from '@/components/Pagination'
+import { Pagination } from '@/components/Pagination'
 import { useArtistMVsQuery } from '@/hooks/artist/useArtistMVsQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 import { routeBuilder } from '@/routers'
@@ -70,7 +70,7 @@ export const ArtistMVs: FC = () => {
         ))}
       </Flex>
 
-      <JCPagination
+      <Pagination
         total={count}
         pageSize={PAGE_SIZE}
         current={currentPage}

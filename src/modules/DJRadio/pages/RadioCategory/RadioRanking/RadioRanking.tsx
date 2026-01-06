@@ -3,7 +3,7 @@ import { type FC, useState, useEffect } from 'react'
 import { Box, Flex, Paragraph, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
-import { JCPagination } from '@/components/Pagination'
+import { Pagination } from '@/components/Pagination'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useTopRadiosQuery } from '@/hooks/djradio/useTopRadiosQuery'
 import { routeBuilder } from '@/routers'
@@ -63,7 +63,7 @@ export const RadioRanking: FC<{ id: number }> = ({ id }) => {
           </RadioItem>
         ))}
       </RadioList>
-      <JCPagination
+      <Pagination
         current={currentPage}
         pageSize={PAGE_SIZE}
         total={count}
