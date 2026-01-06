@@ -1,7 +1,7 @@
 import { type FC, useState, useEffect } from 'react'
 
 import { Box } from '@/components/Core'
-import { JCPagination } from '@/components/Pagination'
+import { Pagination } from '@/components/Pagination'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useAllAlbumsQuery } from '@/hooks/album/useAllAlbumsQuery'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
@@ -34,7 +34,7 @@ export const AllAlbum: FC = () => {
           <AlbumCover key={item.id} album={item} />
         ))}
       </AlbumList>
-      <JCPagination
+      <Pagination
         total={total}
         pageSize={PAGE_SIZE}
         current={currentPage}

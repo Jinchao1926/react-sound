@@ -59,6 +59,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
       <UserLinkContainer $isLarge={config.isLarge}>
         <UserLink
           users={album.artists ? album.artists : [album.artist]}
+          block
           space
         />
       </UserLinkContainer>
