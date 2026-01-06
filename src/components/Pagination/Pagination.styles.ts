@@ -32,30 +32,46 @@ export const NextButton = styled(PaginationButton)`
   }
 `
 
-export const PaginationWrapper = styled.div`
-  .pagination {
-    margin: 20px 0;
-    text-align: center;
+export const PageButton = styled.button<{ $active?: boolean }>`
+  background: url(${paginationImg}) no-repeat 0 9999px;
+  border: 1px solid ${({ $active }) => ($active ? '#a2161b' : '#ccc')};
+  border-radius: 2px;
+  margin: 0 1px;
+  padding: 0 8px;
+  min-width: 22px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+  color: ${({ $active }) => ($active ? '#fff' : '#333')};
+  cursor: ${({ $active }) => ($active ? 'default' : 'pointer')};
 
-    .ant-pagination-item {
-      background: url(${paginationImg}) no-repeat 0 9999px;
-      border: 1px solid #ccc !important;
-      border-radius: 2px;
-      margin: 0 5px;
-      a {
-        padding: 0 8px;
-        color: #333;
-        font-size: 12px;
-      }
+  ${({ $active }) =>
+    $active &&
+    `
+    background-position: 0 -650px;
+  `}
 
-      &.ant-pagination-item-active {
-        border-color: #a2161b !important;
-        a {
-          background: url(${paginationImg}) no-repeat 0 9999px;
-          background-position: 0 -650px;
-          color: #fff;
-        }
-      }
-    }
+  &:disabled {
+    color: #cacaca;
+    cursor: not-allowed;
   }
+
+  &:hover:not(:disabled):not([aria-current='true']) {
+    border-color: #a2161b;
+  }
+`
+
+export const Ellipsis = styled.span`
+  margin: 0 5px;
+  color: #333;
+  font-size: 12px;
+`
+
+export const PaginationWrapper = styled.div`
+  margin: 20px 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
 `

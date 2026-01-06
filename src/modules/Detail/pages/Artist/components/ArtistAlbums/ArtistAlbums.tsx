@@ -2,7 +2,7 @@ import { type FC, useRef, useState } from 'react'
 
 import { Box, Paragraph, Text } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
-import { JCPagination } from '@/components/Pagination'
+import { Pagination } from '@/components/Pagination'
 import { useArtistAlbumsQuery } from '@/hooks/artist/useArtistAlbumsQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 import { routeBuilder } from '@/routers'
@@ -79,7 +79,7 @@ export const ArtistAlbums: FC = () => {
         ))}
       </AlbumList>
 
-      <JCPagination
+      <Pagination
         total={count}
         pageSize={PAGE_SIZE}
         current={currentPage}

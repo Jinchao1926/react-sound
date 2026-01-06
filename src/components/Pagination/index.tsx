@@ -1,1 +1,1 @@
-export { JCPagination } from './Pagination'
+export { Pagination } from './Pagination'
