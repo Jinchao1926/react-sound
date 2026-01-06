@@ -1,11 +1,10 @@
 import type { FC } from 'react'
 import { useState } from 'react'
 
-import { Popover } from 'antd'
-
 import mobileImg from '@/assets/img/download/mobile.png'
 import pcImg from '@/assets/img/download/pc.png'
 import { Box, FlexContainer, Image, TextNavLink } from '@/components/Core'
+import { Popover } from '@/components/Popover'
 
 import {
   Android,
@@ -74,7 +73,7 @@ export const DownloadClient: FC = () => {
         <Popover
           content={<ClientList />}
           trigger="click"
-          placement="topRight"
+          placement="bottomRight"
           open={open}
           onOpenChange={handleOpenChange}
         >
