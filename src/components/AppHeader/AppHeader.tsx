@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 
-import { SearchOutlined } from '@ant-design/icons'
 import { NavLink, useLocation } from 'react-router-dom'
 
 import { rootNavigations } from '@/constants/navigation'
@@ -11,9 +10,10 @@ import {
   CreatorCenter,
   HeaderLogo,
   RedTriangle,
-  Search,
+  SearchBar,
 } from './AppHeader.styles'
 import { Divider, Flex, FlexContainer, Link } from '../Core'
+import { SearchIcon } from '../Icons'
 
 export const AppHeader: FC = () => {
   const location = useLocation()
@@ -64,9 +64,9 @@ export const AppHeader: FC = () => {
         </Flex>
 
         <Flex align="center" ml={5} gap={12} textAlign="center" fontSize={12}>
-          <Search
+          <SearchBar
             placeholder="音乐/视频/电台/用户"
-            prefix={<SearchOutlined twoToneColor="#9b9b9b" />}
+            prefix={<SearchIcon />}
           />
           <CreatorCenter
             href="https://music.163.com/#/creatorcenter"
