@@ -31,6 +31,10 @@ export interface CarouselProps {
   dots?: boolean | { className?: string }
   /** Dot position (not implemented, for API compatibility) */
   dotPosition?: 'top' | 'bottom' | 'left' | 'right'
+  /** Enable infinite loop */
+  infinite?: boolean
+  /** Enable animation */
+  animated?: boolean
   /** Callback before slide change */
   beforeChange?: (from: number, to: number) => void
   /** Callback after slide change */
@@ -61,6 +65,8 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
       autoplaySpeed = 3000,
       pauseOnHover = false,
       dots = true,
+      infinite = true,
+      animated = true,
       beforeChange,
       afterChange,
       className,
@@ -69,23 +75,24 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
   ) => {
     const childArray = Children.toArray(children) as ReactElement[]
     const total = childArray.length
+    const slideInfinite = effect === 'slide' && total > 1 && infinite
 
-    // For seamless loop: clone first and last slides
+    // For seamless infinite loop: clone first and last slides
     // DOM order: [Clone(last)] [0] [1] ... [n-1] [Clone(first)]
-    const slidesWithClones =
-      effect === 'slide' && total > 1
-        ? [
-            childArray[total - 1], // Clone of last slide
-            ...childArray,
-            childArray[0], // Clone of first slide
-          ]
-        : childArray
+    const slidesWithClones = slideInfinite
+      ? [
+          childArray[total - 1], // Clone of last slide
+          ...childArray,
+          childArray[0], // Clone of first slide
+        ]
+      : childArray
 
     const carousel = useCarousel({
       total,
       autoplay,
       autoplaySpeed,
       pauseOnHover,
+      infinite,
       beforeChange,
       afterChange,
     })
@@ -115,11 +122,7 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
 
     // Handle transition end to reset display index for seamless loop
     const handleTransitionEnd = () => {
-      if (
-        effect === 'slide' &&
-        total > 1 &&
-        carousel.displayIndex !== carousel.currentIndex
-      ) {
+      if (slideInfinite && carousel.displayIndex !== carousel.currentIndex) {
         // Disable transition and reset to actual position
         setIsResetting(true)
 
@@ -137,10 +140,12 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
 
     // Calculate display index for transform
     // For slide effect with clones: offset by 1 (because clone of last is at index 0)
-    const transformIndex =
-      effect === 'slide' && total > 1
-        ? carousel.displayIndex + 1
-        : carousel.displayIndex
+    const transformIndex = slideInfinite
+      ? carousel.displayIndex + 1
+      : carousel.displayIndex
+
+    // Disable transition if animated is false or during reset
+    const disableTransition = !animated || isResetting
 
     // Determine dots class name
     const dotsClassName = typeof dots === 'object' ? dots.className : undefined
@@ -155,26 +160,22 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
         <CarouselTrack
           $effect={effect}
           $currentIndex={transformIndex}
-          $disableTransition={isResetting}
+          $disableTransition={disableTransition}
           onTransitionEnd={handleTransitionEnd}
         >
-          {slidesWithClones.map((child, index) => {
-            // For slide effect with clones, adjust active state
-            let isActive = false
-            if (effect === 'fade') {
-              isActive = index === carousel.currentIndex
-            }
-
-            return (
-              <CarouselSlide
-                key={`slide-${index}`}
-                $effect={effect}
-                $active={isActive ? isActive : undefined}
-              >
-                {child}
-              </CarouselSlide>
-            )
-          })}
+          {slidesWithClones.map((child, index) => (
+            <CarouselSlide
+              key={`slide-${index}`}
+              $effect={effect}
+              $active={
+                effect === 'fade' && index === carousel.currentIndex
+                  ? true
+                  : undefined
+              }
+            >
+              {child}
+            </CarouselSlide>
+          ))}
         </CarouselTrack>
 
         {showDots && (

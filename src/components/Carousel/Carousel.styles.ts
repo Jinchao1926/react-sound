@@ -67,11 +67,11 @@ export const CarouselSlide = styled.div<CarouselSlideProps>`
 
 export const CarouselDots = styled.div`
   position: absolute;
-  bottom: 12px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
+  gap: 15px;
   z-index: 2;
 `
 
@@ -80,17 +80,16 @@ interface CarouselDotProps {
 }
 
 export const CarouselDot = styled.button<CarouselDotProps>`
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   border: none;
   padding: 0;
-  background-color: ${({ $active }) =>
-    $active ? '#fff' : 'rgba(255, 255, 255, 0.5)'};
+  background-color: ${({ $active }) => ($active ? '#c20c0c' : '#aaa')};
   cursor: pointer;
   transition: all 0.3s;
 
   &:hover {
-    background-color: #fff;
+    background-color: #c20c0c;
   }
 `

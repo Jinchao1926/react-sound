@@ -1,6 +1,6 @@
-import { type FC, useState, useRef, type ElementRef } from 'react'
+import { type FC, useState, useRef } from 'react'
 
-import { Carousel } from 'antd'
+import { Carousel, type CarouselRef } from '@/components/Carousel'
 
 import {
   ArrowLeft,
@@ -13,7 +13,7 @@ import { RadioCategoryItem } from '../RadioCategoryItem'
 
 export const RadioCategoryHeader: FC<{ id?: number }> = ({ id }) => {
   const [currentPage, setCurrentPage] = useState<number>(0)
-  const pageRef = useRef<ElementRef<typeof Carousel>>(null)
+  const pageRef = useRef<CarouselRef>(null)
 
   const { paginatedCategories } = useRadioCategories()
 
@@ -26,6 +26,8 @@ export const RadioCategoryHeader: FC<{ id?: number }> = ({ id }) => {
       <Carousel
         dots={{ className: 'dots' }}
         ref={pageRef}
+        infinite={false}
+        animated={false}
         beforeChange={(_, next) => setCurrentPage(next)}
       >
         {paginatedCategories.map((pageCategories, pageIndex) => (

@@ -9,6 +9,8 @@ interface UseCarouselProps {
   autoplaySpeed?: number
   /** Pause auto play on hover */
   pauseOnHover?: boolean
+  /** Enable infinite loop */
+  infinite?: boolean
   /** Callback before slide change */
   beforeChange?: (from: number, to: number) => void
   /** Callback after slide change */
@@ -45,6 +47,7 @@ export const useCarousel = ({
   autoplay = false,
   autoplaySpeed = 3000,
   pauseOnHover = false,
+  infinite = true,
   beforeChange,
   afterChange,
 }: UseCarouselProps): UseCarouselReturn => {
@@ -66,37 +69,41 @@ export const useCarousel = ({
     [currentIndex, total, beforeChange, afterChange]
   )
 
-  // Go to next slide (always animate forward)
+  // Go to next slide
   const next = useCallback(() => {
+    if (!infinite && currentIndex >= total - 1) return // Stop at last slide if not infinite
+
     const nextIndex = (currentIndex + 1) % total
 
     beforeChange?.(currentIndex, nextIndex)
 
-    // If wrapping from last to first, animate to clone position then reset
-    if (currentIndex === total - 1 && nextIndex === 0) {
+    // For infinite mode: if wrapping from last to first, animate to clone position
+    if (infinite && currentIndex === total - 1 && nextIndex === 0) {
       setDisplayIndex(total) // Animate to clone of first (at position total)
     } else {
       setDisplayIndex(nextIndex)
     }
     setCurrentIndex(nextIndex)
     afterChange?.(nextIndex)
-  }, [currentIndex, total, beforeChange, afterChange])
+  }, [currentIndex, total, infinite, beforeChange, afterChange])
 
-  // Go to previous slide (always animate backward)
+  // Go to previous slide
   const prev = useCallback(() => {
+    if (!infinite && currentIndex <= 0) return // Stop at first slide if not infinite
+
     const prevIndex = (currentIndex - 1 + total) % total
 
     beforeChange?.(currentIndex, prevIndex)
 
-    // If wrapping from first to last, animate to clone position then reset
-    if (currentIndex === 0 && prevIndex === total - 1) {
+    // For infinite mode: if wrapping from first to last, animate to clone position
+    if (infinite && currentIndex === 0 && prevIndex === total - 1) {
       setDisplayIndex(-1) // Animate to clone of last (at position -1)
     } else {
       setDisplayIndex(prevIndex)
     }
     setCurrentIndex(prevIndex)
     afterChange?.(prevIndex)
-  }, [currentIndex, total, beforeChange, afterChange])
+  }, [currentIndex, total, infinite, beforeChange, afterChange])
 
   // Reset display index to current index (called after transition ends)
   const resetDisplayIndex = useCallback(() => {
