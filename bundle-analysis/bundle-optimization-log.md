@@ -52,3 +52,21 @@
 
 **分析报告**: [stats-remove-antd-2026-01-07.html](./stats-remove-antd-2026-01-07.html)
 
+---
+
+## 优化 2: 移除未使用的 zustand（2026-01-08）
+
+### 结果
+
+| 指标 | 优化前 | 优化后 | 减少量 | 优化比例 |
+|------|--------|--------|--------|----------|
+| 总体积 (原始) | 365.31 kB | 365.31 kB | ~0 kB | 0% |
+| 总体积 (gzip) | 151.55 kB | 151.55 kB | ~0 kB | 0% |
+
+**发现：**
+- ⚠️ zustand 虽然在 package.json 中声明，但实际上没有被使用，也没有被打包
+- ✅ state-vendor (37.58 kB) 的大小完全来自 @tanstack/react-query
+- ✅ zustand 的实际大小约 1.1 kB (gzip)，移除它对包体积影响微乎其微
+
+**分析报告**: [stats-remove-zustand-2026-01-08.html](./stats-remove-zustand-2026-01-08.html)
+
