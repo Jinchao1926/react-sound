@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ant-design/icons": "^5.0.1",
     "@tanstack/react-query": "^5.81.5",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^5.16.5",
@@ -15,7 +14,6 @@
     "@types/react-dom": "^18.0.11",
     "@types/react-transition-group": "^4.4.6",
     "@types/styled-components": "^5.1.26",
-    "antd": "^5.4.2",
     "axios": "^1.3.5",
     "classnames": "^2.3.2",
     "normalize.css": "^8.0.1",
