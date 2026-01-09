@@ -2,8 +2,10 @@ import type { FC } from 'react'
 import { useState } from 'react'
 
 import mobileImg from '@/assets/img/download/mobile.png'
+import mobileWebp from '@/assets/img/download/mobile.webp'
 import pcImg from '@/assets/img/download/pc.png'
-import { Box, FlexContainer, Image, TextNavLink } from '@/components/Core'
+import pcWebp from '@/assets/img/download/pc.webp'
+import { Box, FlexContainer, TextNavLink } from '@/components/Core'
 import { Popover } from '@/components/Popover'
 
 import {
@@ -39,7 +41,16 @@ export const DownloadClient: FC = () => {
         {/* PC */}
         <Box width={556}>
           <DownloadTitle>在电脑上听</DownloadTitle>
-          <Image src={pcImg} alt="pc" width={464} height={273} />
+          <picture>
+            <source srcSet={pcWebp} type="image/webp" />
+            <img
+              src={pcImg}
+              alt="pc"
+              width={464}
+              height={273}
+              style={{ display: 'block' }}
+            />
+          </picture>
           <DownloadPlatform>
             <Mac />
             <Windows />
@@ -61,7 +72,16 @@ export const DownloadClient: FC = () => {
         {/* Mobile */}
         <Box width={400} marginLeft={220}>
           <DownloadTitle>在手机上听</DownloadTitle>
-          <Image src={mobileImg} alt="mobile" width={246} height={273} />
+          <picture>
+            <source srcSet={mobileWebp} type="image/webp" />
+            <img
+              src={mobileImg}
+              alt="mobile"
+              width={246}
+              height={273}
+              style={{ display: 'block' }}
+            />
+          </picture>
           <DownloadPlatform>
             <IOS />
             <Android />
