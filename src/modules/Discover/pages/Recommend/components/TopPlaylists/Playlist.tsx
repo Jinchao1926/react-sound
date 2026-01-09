@@ -31,7 +31,6 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
 
   const rankingUrl = `/discover/toplist?id=${playlist.id}`
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const collectMusic = (_item: Track) => {}
 
   return (

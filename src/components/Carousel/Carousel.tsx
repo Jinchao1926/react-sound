@@ -91,7 +91,6 @@ export const Carousel = forwardRef<CarouselRef, CarouselProps>(
       total,
       autoplay,
       autoplaySpeed,
-      pauseOnHover,
       infinite,
       beforeChange,
       afterChange,
