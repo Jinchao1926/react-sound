@@ -1,10 +1,10 @@
 import { type FC } from 'react'
 
 import cloudImg from '@/assets/img/download/cloud.png'
-import musicCoverImg from '@/assets/img/download/music_cover.png'
+import musicCoverImg from '@/assets/img/download/music_cover.webp'
 import recognizeImg from '@/assets/img/download/recognize.png'
-import socialImg from '@/assets/img/download/social.png'
-import starsImg from '@/assets/img/download/stars.png'
+import socialImg from '@/assets/img/download/social.webp'
+import starsImg from '@/assets/img/download/stars.webp'
 import { Box, FlexContainer, Image } from '@/components/Core'
 
 import {
