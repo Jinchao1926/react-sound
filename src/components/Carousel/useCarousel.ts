@@ -7,8 +7,6 @@ interface UseCarouselProps {
   autoplay?: boolean
   /** Auto play interval duration (default: 3000ms) */
   autoplaySpeed?: number
-  /** Pause auto play on hover */
-  pauseOnHover?: boolean
   /** Enable infinite loop */
   infinite?: boolean
   /** Callback before slide change */
@@ -46,7 +44,6 @@ export const useCarousel = ({
   total,
   autoplay = false,
   autoplaySpeed = 3000,
-  pauseOnHover = false,
   infinite = true,
   beforeChange,
   afterChange,
