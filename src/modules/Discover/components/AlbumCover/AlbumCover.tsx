@@ -33,9 +33,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
 
   // other handlers
   function handlePlayAlbumn() {
-    // 这是唱片，如何播放？
-    // eslint-disable-next-line no-console
-    console.log('handlePlayAlbumn')
+    // TODO: Implement album playback logic
   }
 
   return (

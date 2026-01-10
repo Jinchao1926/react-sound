@@ -50,16 +50,12 @@ export const JCBanner: FC = () => {
 
   // Timer
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('useEffect isPaused:', isPaused)
     if (isPaused) return
     timerRef.current = setInterval(() => {
       handleTimer()
     }, 3000)
 
     return () => {
-      // eslint-disable-next-line no-console
-      console.log('useEffect return ')
       if (timerRef.current) clearInterval(timerRef.current)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
