@@ -1,10 +1,10 @@
-export const roundToDecimal = (num: number, decimal: number) => {
+export const roundToDecimal = (num: number, decimal: number): number => {
   if (decimal >= 1 || decimal <= 0) return num
   const rounded = Math.round(num / decimal) * decimal
-  return rounded.toFixed(1) as unknown as number
+  return parseFloat(rounded.toFixed(1))
 }
 
-export const formatPlayCount = (count: number) => {
+export const formatPlayCount = (count: number): string | number => {
   if (count < 100000) {
     return count
   } else {
@@ -21,7 +21,10 @@ export const formatPlayCount = (count: number) => {
   } */
 }
 
-export const formatSizedImage = (imgUrl: string, size: number = 140) => {
+export const formatSizedImage = (
+  imgUrl: string,
+  size: number = 140
+): string => {
   return `${imgUrl}?param=${size}y${size}`
 }
 
@@ -29,10 +32,10 @@ export const formatImage = (
   imgUrl: string,
   width: number = 140,
   height: number = 140
-) => {
+): string => {
   return `${imgUrl}?param=${width}y${height}`
 }
 
-export const getMusicUrl = (id: number) => {
+export const getMusicUrl = (id: number): string => {
   return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
 }
