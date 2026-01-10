@@ -43,6 +43,11 @@ yarn install      # Install dependencies
 yarn dev          # Start dev server (http://localhost:3000)
 yarn build        # Build for production
 yarn build:analyze # Analyze bundle size
+yarn lint					# Check code quality with ESLint
+yarn lint:fix			# Auto-fix ESLint issues
+yarn type-check		# TypeScript type checking
+yarn format				# Format code with Prettier
+yarn validate			# Run all checks (type-check → lint → build)
 ```
 
 ## Configuration
@@ -62,4 +67,4 @@ VITE_API_BASE_URL=https://api.example.com
 
 ---
 
-📊 查看 [优化记录](./optimization.md) 了解项目优化历程（-42.6% 包体积，-79.7% 图片加载）
+📊 View [Optimization Log](./optimization.md) for project optimization metrics (-42.6% bundle size, -79.7% image loading)
