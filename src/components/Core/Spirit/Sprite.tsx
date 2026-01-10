@@ -8,6 +8,8 @@ import {
 import classNames from 'classnames'
 import styled, { css } from 'styled-components'
 
+import logger from '@/utils/logger'
+
 import {
   type SpriteCategory,
   INTERNAL_SPRITE_CONFIG,
@@ -99,10 +101,9 @@ interface SpriteProps extends Styles {
   disable?: boolean
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Sprite = forwardRef<
   HTMLElement,
-  PropsWithChildren<SpriteProps & any>
+  PropsWithChildren<SpriteProps & any> // eslint-disable-line @typescript-eslint/no-explicit-any
 >(
   (
     {
@@ -119,15 +120,13 @@ export const Sprite = forwardRef<
   ) => {
     const config = findSpriteConfig(sprite, icon)
     if (!config) {
-      // eslint-disable-next-line no-console
-      console.warn(`Sprite "${sprite}" not found`)
+      logger.warn(`Sprite "${sprite}" not found`)
       return null
     }
 
     const iconConfig = config.icons?.[icon]
     if (!iconConfig) {
-      // eslint-disable-next-line no-console
-      console.warn(`Icon "${icon}" in Sprite "${sprite}" not found`)
+      logger.warn(`Icon "${icon}" in Sprite "${sprite}" not found`)
       return null
     }
 

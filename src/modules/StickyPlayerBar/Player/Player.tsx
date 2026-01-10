@@ -14,6 +14,7 @@ import {
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PLAY_MODE } from '@/types/player'
 import { getMusicUrl, formatSizedImage } from '@/utils/dataFormat'
+import logger from '@/utils/logger'
 import { formatTime } from '@/utils/timeFormat'
 
 import {
@@ -104,12 +105,10 @@ export const Player: FC = () => {
       audioRef.current
         .play()
         .then(() => {
-          // eslint-disable-next-line no-console
-          console.log('Play music successfully')
+          // Playback started successfully
         })
         .catch((e) => {
-          // eslint-disable-next-line no-console
-          console.error('Play music failed:', e)
+          logger.error('Play music failed:', e)
         })
     } else {
       audioRef.current.pause()
@@ -279,6 +278,7 @@ export const Player: FC = () => {
         {/* Player Actions */}
         <PlayerAction />
       </FlexContainer>
+      {}
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio
         ref={audioRef}

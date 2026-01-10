@@ -4,6 +4,8 @@ import { createContext, useContext, useMemo } from 'react'
 
 import Axios from 'axios'
 
+import logger from '@/utils/logger'
+
 import type { AxiosInstance } from 'axios'
 
 const createDefaultAxiosInstance = (): AxiosInstance => {
@@ -33,31 +35,24 @@ const createDefaultAxiosInstance = (): AxiosInstance => {
         switch (status) {
           case 401:
             localStorage.removeItem('access_token')
-            // eslint-disable-next-line no-console
-            console.error('未授权访问，请重新登录')
+            logger.error('未授权访问，请重新登录')
             break
           case 403:
-            // eslint-disable-next-line no-console
-            console.error('权限不足')
+            logger.error('权限不足')
             break
           case 404:
-            // eslint-disable-next-line no-console
-            console.error('请求的资源不存在')
+            logger.error('请求的资源不存在')
             break
           case 500:
-            // eslint-disable-next-line no-console
-            console.error('服务器错误')
+            logger.error('服务器错误')
             break
           default:
-            // eslint-disable-next-line no-console
-            console.error(`请求失败: ${status}`)
+            logger.error(`请求失败: ${status}`)
         }
       } else if (error.request) {
-        // eslint-disable-next-line no-console
-        console.error('网络错误，请检查网络连接')
+        logger.error('网络错误，请检查网络连接')
       } else {
-        // eslint-disable-next-line no-console
-        console.error('请求配置错误:', error.message)
+        logger.error('请求配置错误:', error.message)
       }
       return Promise.reject(error)
     }

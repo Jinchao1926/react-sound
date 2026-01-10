@@ -9,6 +9,8 @@
 
 import { type LyricLine } from '@/types/lyric'
 
+import logger from './logger'
+
 // 正则表达式
 // \[ 和 \]，表示 [ 和 ] 字符，特殊字符需要转义
 // \d，表示数字
@@ -51,8 +53,7 @@ export const parserLyric = (lyricText?: string): LyricLine[] => {
 
         lyricLines.push({ time, text })
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error('解析歌词行失败:', line, error)
+        logger.error('解析歌词行失败:', line, error)
       }
     }
   })
