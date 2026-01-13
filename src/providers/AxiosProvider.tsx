@@ -4,9 +4,17 @@ import { createContext, useContext, useMemo } from 'react'
 
 import Axios from 'axios'
 
+import { useToast } from '@/components/Toast/ToastContext'
+import { classifyError } from '@/utils/errorHandler'
 import logger from '@/utils/logger'
 
 import type { AxiosInstance } from 'axios'
+
+let toastCallback: ((message: string) => void) | null = null
+
+export const setToastCallback = (callback: (message: string) => void) => {
+  toastCallback = callback
+}
 
 const createDefaultAxiosInstance = (): AxiosInstance => {
   const instance = Axios.create({
@@ -18,7 +26,7 @@ const createDefaultAxiosInstance = (): AxiosInstance => {
   })
 
   instance.interceptors.request.use((config) => {
-    // Bearer token
+    // Attach Bearer token to authorization header
     const token = localStorage.getItem('access_token')
     if (token && !config.headers.hasAuthorization()) {
       config.headers.setAuthorization(`Bearer ${token}`)
@@ -29,31 +37,9 @@ const createDefaultAxiosInstance = (): AxiosInstance => {
   instance.interceptors.response.use(
     (response) => response,
     (error) => {
-      if (error.response) {
-        const { status } = error.response
-
-        switch (status) {
-          case 401:
-            localStorage.removeItem('access_token')
-            logger.error('未授权访问，请重新登录')
-            break
-          case 403:
-            logger.error('权限不足')
-            break
-          case 404:
-            logger.error('请求的资源不存在')
-            break
-          case 500:
-            logger.error('服务器错误')
-            break
-          default:
-            logger.error(`请求失败: ${status}`)
-        }
-      } else if (error.request) {
-        logger.error('网络错误，请检查网络连接')
-      } else {
-        logger.error('请求配置错误:', error.message)
-      }
+      const { message } = classifyError(error)
+      logger.error('Request failed:', message)
+      toastCallback?.(message)
       return Promise.reject(error)
     }
   )
@@ -73,9 +59,12 @@ export const AxiosProvider: React.FC<AxiosProviderProps> = ({
   children,
   value,
 }) => {
+  const { show } = useToast()
   const axiosInstance = useMemo(() => {
+    // Register Toast callback for error notifications
+    setToastCallback((message) => show(message, 'error'))
     return value || defaultAxiosInstance
-  }, [value])
+  }, [show, value])
 
   return (
     <AxiosContext.Provider value={axiosInstance}>
