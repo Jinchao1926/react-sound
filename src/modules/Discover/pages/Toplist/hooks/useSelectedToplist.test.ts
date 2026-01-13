@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react'
 import * as ReactRouterDom from 'react-router-dom'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import type { TopPlaylist } from '@/types/playlist'
 
