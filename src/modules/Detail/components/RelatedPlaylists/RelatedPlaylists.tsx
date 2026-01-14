@@ -5,7 +5,7 @@ import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
 import { routeBuilder } from '@/routers'
 import { type PlaylistDetail } from '@/types/playlist'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import { RelatedPlaylistItem } from './RelatedPlaylists.styles'
 

@@ -12,7 +12,7 @@ import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { type LyricLine } from '@/types/lyric'
 import { PLAY_MODE, type PlayModeType } from '@/types/player'
 import { type Track } from '@/types/track'
-import { getNextPlayMode } from '@/utils/playModes'
+import { getNextPlayMode } from '@/utils/player/playModes'
 
 import { PlayerStorage } from '../utils/storages/playerStorage'
 

@@ -3,8 +3,8 @@ import { type FC } from 'react'
 import { Box, Flex, Image, Paragraph, Sprite, Text } from '@/components/Core'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
 import { type PlaylistDetail } from '@/types/playlist'
-import { formatSizedImage } from '@/utils/dataFormat'
-import { formatMonthDay } from '@/utils/timeFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
+import { formatMonthDay } from '@/utils/format/timeFormat'
 
 import { ToplistCover, ToplistCoverBright } from './ToplistDetailHeader.styles'
 

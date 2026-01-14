@@ -5,7 +5,7 @@ import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useTopRadioCategoriesQuery } from '@/hooks/djradio/useTopRadioCategoriesQuery'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import {
   TopRadioCategoryItem,

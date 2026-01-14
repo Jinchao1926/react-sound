@@ -9,7 +9,7 @@ import {
   useArtistListQuery,
 } from '@/hooks/artist/useArtistListQuery'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import { DashedDivider, UserIcon } from './ArtistList.styles'
 import { useSelectedCategory } from '../../hooks/useSelectedCategory'

@@ -13,7 +13,7 @@ import { usePlayerContext } from '@/providers/PlayerProvider'
 import { routeBuilder } from '@/routers'
 import { type PlaylistDetail } from '@/types/playlist'
 import { type Track } from '@/types/track'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import { SongActions, SongIndex, SongItem } from './Playlist.styles'
 

@@ -3,7 +3,7 @@ import { type FC } from 'react'
 import { Box, Image, Text } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
 import { popularAnchors } from '@/constants/anchor'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import { PopularAnchorContent, PopularAnchorItem } from './PopularAnchor.styles'
 

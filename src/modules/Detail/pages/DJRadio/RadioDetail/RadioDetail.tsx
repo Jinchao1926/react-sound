@@ -13,7 +13,7 @@ import {
 } from '@/components/Shared/Social'
 import { useRadioDetailQuery } from '@/hooks/djradio/useRadioDetailQuery'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import { RadioPrograms } from '../RadioPrograms'
 

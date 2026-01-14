@@ -1,6 +1,6 @@
 import { type ButtonHTMLAttributes, type FC } from 'react'
 
-import { formatPlayCount } from '@/utils/dataFormat'
+import { formatPlayCount } from '@/utils/format/dataFormat'
 
 import { LikedIcon, PlayBlueButton2, StarButton } from './Social.styles'
 import { SpriteGreyButton } from '../Buttons'

@@ -9,7 +9,7 @@ import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import {
   OpenClientButton,

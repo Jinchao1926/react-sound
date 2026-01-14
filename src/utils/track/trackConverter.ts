@@ -1,4 +1,4 @@
-import { type Track, type Song } from '../types/track'
+import { type Track, type Song } from '@/types/track'
 
 /**
  * Convert Song to Track

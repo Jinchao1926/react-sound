@@ -1,102 +1,203 @@
-/*
+/** VIP
+ {
+    "name": "富士山下",
+    "mainTitle": null,
+    "additionalTitle": null,
+    "id": 65766,
+    "pst": 0,
+    "t": 0,
+    "ar": [
+        {
+            "id": 2116,
+            "name": "陈奕迅",
+            "tns": [],
+            "alias": []
+        }
+    ],
+    "alia": [],
+    "pop": 100,
+    "st": 0,
+    "rt": "600902000001108413",
+    "fee": 1,
+    "v": 206,
+    "crbt": null,
+    "cf": "",
+    "al": {
+        "id": 6451,
+        "name": "What's Going On…?",
+        "picUrl": "https://p1.music.126.net/oSMs7RzJFx0TgWCqRC8XjA==/109951171844247587.jpg",
+        "tns": [],
+        "pic_str": "109951171844247587",
+        "pic": 109951171844247580
+    },
+    "dt": 258902,
+    "h": {
+        "br": 320000,
+        "fid": 0,
+        "size": 10359162,
+        "vd": -32859,
+        "sr": 44100
+    },
+    "m": {
+        "br": 192000,
+        "fid": 0,
+        "size": 6215515,
+        "vd": -30259,
+        "sr": 44100
+    },
+    "l": {
+        "br": 128000,
+        "fid": 0,
+        "size": 4143691,
+        "vd": -28666,
+        "sr": 44100
+    },
+    "sq": {
+        "br": 1567785,
+        "fid": 0,
+        "size": 50737963,
+        "vd": -32910,
+        "sr": 44100
+    },
+    "hr": null,
+    "a": null,
+    "cd": "01",
+    "no": 5,
+    "rtUrl": null,
+    "ftype": 0,
+    "rtUrls": [],
+    "djId": 0,
+    "copyright": 1,
+    "s_id": 0,
+    "mark": 17179877376,
+    "originCoverType": 1,
+    "originSongSimpleData": null,
+    "tagPicList": null,
+    "resourceState": true,
+    "version": 172,
+    "songJumpInfo": null,
+    "entertainmentTags": null,
+    "awardTags": null,
+    "displayTags": null,
+    "markTags": [],
+    "single": 0,
+    "noCopyrightRcmd": null,
+    "mv": 303140,
+    "mst": 9,
+    "cp": 7003,
+    "rurl": null,
+    "rtype": 0,
+    "publishTime": 1164211200000
+} 
+/** 非VIP
 {
-  "name": "准备好就出发",
-  "mainTitle": null,
-  "additionalTitle": null,
-  "id": 2718980895,
-  "pst": 0,
-  "t": 0,
-  "ar": [
-    {
-      "id": 34862670,
-      "name": "黄子弘凡",
-      "tns": [],
-      "alias": []
-    }
-  ],
-  "alia": [],
-  "pop": 100,
-  "st": 0,
-  "rt": "",
-  "fee": 8,
-  "v": 38,
-  "crbt": null,
-  "cf": "",
-  "al": {
-    "id": 276206869,
-    "name": "准备好就出发",
-    "picUrl": "http://p1.music.126.net/RMhbEK1UjCHwf_DIGJdKpA==/109951171388214602.jpg",
-    "tns": [],
-    "pic_str": "109951171388214602",
-    "pic": 109951171388214610
-  },
-  "dt": 185454,
-  "h": {
-    "br": 320000,
-    "fid": 0,
-    "size": 7420845,
-    "vd": -58611
-  },
-  "m": {
-    "br": 192000,
-    "fid": 0,
-    "size": 4452525,
-    "vd": -56062
-  },
-  "l": {
-    "br": 128000,
-    "fid": 0,
-    "size": 2968365,
-    "vd": -54410
-  },
-  "sq": {
-    "br": 1012137,
-    "fid": 0,
-    "size": 23466610,
-    "vd": -58598
-  },
-  "hr": {
-    "br": 1781842,
-    "fid": 0,
-    "size": 41309771,
-    "vd": -58598
-  },
-  "a": null,
-  "cd": "01",
-  "no": 1,
-  "rtUrl": null,
-  "ftype": 0,
-  "rtUrls": [],
-  "djId": 0,
-  "copyright": 0,
-  "s_id": 0,
-  "mark": 17716748288,
-  "originCoverType": 0,
-  "originSongSimpleData": null,
-  "tagPicList": null,
-  "resourceState": true,
-  "version": 4,
-  "songJumpInfo": null,
-  "entertainmentTags": null,
-  "awardTags": null,
-  "displayTags": null,
-  "single": 0,
-  "noCopyrightRcmd": null,
-  "alg": null,
-  "displayReason": null,
-  "rtype": 0,
-  "rurl": null,
-  "mst": 9,
-  "cp": 0,
-  "mv": 0,
-  "publishTime": 0,
-  "videoInfo": {
-    "moreThanOne": false,
-    "video": null
-  }
-} */
+    "name": "灰姑娘",
+    "mainTitle": null,
+    "additionalTitle": null,
+    "id": 255589,
+    "pst": 0,
+    "t": 0,
+    "ar": [
+        {
+            "id": 8329,
+            "name": "梁咏琪",
+            "tns": [],
+            "alias": []
+        }
+    ],
+    "alia": [],
+    "pop": 100,
+    "st": 0,
+    "rt": "",
+    "fee": 8,
+    "v": 64,
+    "crbt": null,
+    "cf": "",
+    "al": {
+        "id": 25528,
+        "name": "花火",
+        "picUrl": "https://p2.music.126.net/OD5mxXU1eRYPfOCOkuYvRg==/109951165529533415.jpg",
+        "tns": [],
+        "pic_str": "109951165529533415",
+        "pic": 109951165529533400
+    },
+    "dt": 212200,
+    "h": {
+        "br": 320000,
+        "fid": 0,
+        "size": 8490885,
+        "vd": -37190,
+        "sr": 44100
+    },
+    "m": {
+        "br": 192000,
+        "fid": 0,
+        "size": 5094548,
+        "vd": -34597,
+        "sr": 44100
+    },
+    "l": {
+        "br": 128000,
+        "fid": 0,
+        "size": 3396380,
+        "vd": -32880,
+        "sr": 44100
+    },
+    "sq": {
+        "br": 906398,
+        "fid": 0,
+        "size": 24042230,
+        "vd": -37184,
+        "sr": 44100
+    },
+    "hr": null,
+    "a": null,
+    "cd": "1",
+    "no": 3,
+    "rtUrl": null,
+    "ftype": 0,
+    "rtUrls": [],
+    "djId": 0,
+    "copyright": 1,
+    "s_id": 0,
+    "mark": 17179877376,
+    "originCoverType": 1,
+    "originSongSimpleData": null,
+    "tagPicList": null,
+    "resourceState": true,
+    "version": 30,
+    "songJumpInfo": null,
+    "entertainmentTags": null,
+    "awardTags": null,
+    "displayTags": null,
+    "markTags": [],
+    "single": 0,
+    "noCopyrightRcmd": null,
+    "mv": 0,
+    "rtype": 0,
+    "rurl": null,
+    "mst": 9,
+    "cp": -1,
+    "publishTime": 1423497600000
+}    
+*/
 
 import { type Album, type Artist } from './music'
+
+/**
+ * 付费类型 - 歌曲付费/权限状态
+ * 表示歌曲是否需要 VIP 会员或购买
+ */
+export enum FeeType {
+  /** 免费 - 无需付费，所有用户可播放 */
+  Free = 0,
+  /** VIP 专享 - 需要 VIP 会员才能播放 */
+  VIP = 1,
+  /** 需购买专辑 - 需要购买专辑才能播放 */
+  AlbumPurchase = 4,
+  /** 限时免费 - 非会员可播放低音质，VIP 可播放高音质 */
+  LimitedFree = 8,
+}
 
 /** 曲目 */
 export interface Track {
@@ -112,6 +213,10 @@ export interface Track {
   tns?: string[]
   alia: string[]
   mv: number
+  // 付费类型，参考 FeeType 枚举
+  fee?: FeeType
+  // 用于表示各种曲目属性（VIP、独家、高品质等）的位标志
+  mark?: number
 }
 
 export interface Track2 extends Omit<Track, 'ar' | 'al'> {

@@ -5,8 +5,8 @@ import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useArtistAlbumsQuery } from '@/hooks/artist/useArtistAlbumsQuery'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
-import { formatYearMonthDay } from '@/utils/timeFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
+import { formatYearMonthDay } from '@/utils/format/timeFormat'
 
 import { PopularAlbumItem } from './PopularArtistAlbums.styles'
 

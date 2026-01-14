@@ -4,7 +4,7 @@ import { Box, Flex, Image } from '@/components/Core'
 import { artistNavigations } from '@/constants/navigation'
 import { useArtistQuery } from '@/hooks/artist/useArtistsQuery'
 import { routeBuilder } from '@/routers'
-import { formatImage } from '@/utils/dataFormat'
+import { formatImage } from '@/utils/format/dataFormat'
 
 import {
   Actions,

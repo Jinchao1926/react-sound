@@ -1,7 +1,10 @@
 import { forwardRef, type PropsWithChildren, useMemo, useState } from 'react'
 
 import { ExpandButton } from '@/components/Buttons/ExpandButton'
-import { getDisplayLength, sliceByDisplayLength } from '@/utils/stringUtils'
+import {
+  getDisplayLength,
+  sliceByDisplayLength,
+} from '@/utils/format/stringUtils'
 
 import { Paragraph } from './Text'
 import { Box, type Styles } from '../Layout/Box'

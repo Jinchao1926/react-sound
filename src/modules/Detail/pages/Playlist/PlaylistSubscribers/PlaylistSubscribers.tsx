@@ -5,7 +5,7 @@ import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 export const PlaylistSubscribers: FC<{ playlistId: number }> = ({
   playlistId,

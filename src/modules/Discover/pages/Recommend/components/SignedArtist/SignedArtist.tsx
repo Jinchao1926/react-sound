@@ -4,7 +4,7 @@ import { Box, Image, Text } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useTopArtistQuery } from '@/hooks/artist/useTopArtistQuery'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import {
   BecomeSingerLink,

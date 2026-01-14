@@ -3,7 +3,7 @@ import { type FC, useMemo } from 'react'
 import { CoverImage } from '@/components/CoverImage'
 import { UserLink } from '@/components/Links'
 import { type Album } from '@/types/music'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import {
   AlbumCoverWrapper,
