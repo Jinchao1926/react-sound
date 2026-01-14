@@ -1,6 +1,9 @@
 import { createRoot } from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'
 
+import { Toast } from '@/components/Toast'
+import { ToastProvider } from '@/components/Toast/ToastContext'
+
 import { App } from './App'
 import { AxiosProvider } from './providers/AxiosProvider'
 import { PlayerProvider } from './providers/PlayerProvider'
@@ -16,13 +19,16 @@ if (!rootElement) {
 const root = createRoot(rootElement)
 
 root.render(
-  <QueryClientProvider>
+  <ToastProvider>
     <AxiosProvider>
-      <HashRouter>
-        <PlayerProvider>
-          <App />
-        </PlayerProvider>
-      </HashRouter>
+      <QueryClientProvider>
+        <HashRouter>
+          <PlayerProvider>
+            <App />
+          </PlayerProvider>
+        </HashRouter>
+      </QueryClientProvider>
     </AxiosProvider>
-  </QueryClientProvider>
+    <Toast />
+  </ToastProvider>
 )
