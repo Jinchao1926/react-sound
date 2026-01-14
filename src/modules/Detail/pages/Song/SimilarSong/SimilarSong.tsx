@@ -7,7 +7,7 @@ import { AddToButtonXS, PlayButtonXS } from '@/components/Shared/Media'
 import { useSimilarSongsQuery } from '@/hooks/song/useSimilarSongsQuery'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { routeBuilder } from '@/routers'
-import { songToTrack } from '@/utils/trackConverter'
+import { songToTrack } from '@/utils/track/trackConverter'
 
 import { SimilarSongItem } from './SimilarSong.styles'
 

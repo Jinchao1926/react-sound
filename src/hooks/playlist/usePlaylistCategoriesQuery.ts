@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
 import { type PlaylistCategoriesApiResponse } from '@/types/playlist-category'
-import { parsePlaylistCategories } from '@/utils/playlistCategoriesParser'
+import { parsePlaylistCategories } from '@/utils/parser/playlistCategoriesParser'
 
 /**
  * 歌单分类

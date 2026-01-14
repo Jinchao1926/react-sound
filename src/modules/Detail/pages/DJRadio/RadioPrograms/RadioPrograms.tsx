@@ -14,8 +14,11 @@ import {
 import { useRadioProgramsQuery } from '@/hooks/program/useRadioProgramsQuery'
 import { useUrlParams } from '@/hooks/useUrlParams'
 import { routeBuilder } from '@/routers'
-import { formatPlayCount } from '@/utils/dataFormat'
-import { formatMinuteSecond, formatYearMonthDay } from '@/utils/timeFormat'
+import { formatPlayCount } from '@/utils/format/dataFormat'
+import {
+  formatMinuteSecond,
+  formatYearMonthDay,
+} from '@/utils/format/timeFormat'
 
 import {
   ProgramCollectionCol,

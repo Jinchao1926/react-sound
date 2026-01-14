@@ -5,7 +5,7 @@ import { CoverImage } from '@/components/CoverImage'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useRadiosQuery } from '@/hooks/djradio/useRadiosQuery'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import { RadioNameLink, RadioItemList } from './RadioRecommend.styles'
 

@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import { Box, Flex, Image, Text } from '@/components/Core'
 import { routeBuilder } from '@/routers'
 import { type TopPlaylist } from '@/types/playlist'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import { CategoryHead, CategoryLink } from './ToplistCategory.styles'
 

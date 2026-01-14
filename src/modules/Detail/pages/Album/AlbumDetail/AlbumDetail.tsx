@@ -10,8 +10,8 @@ import { type TrackCollectionConfig } from '@/components/TrackCollection/TrackCo
 import { useAlbumDetailQuery } from '@/hooks/album/useAlbumDetailQuery'
 import { useAlbumDynamicQuery } from '@/hooks/album/useAlbumDynamicQuery'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
-import { formatYearMonthDay } from '@/utils/timeFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
+import { formatYearMonthDay } from '@/utils/format/timeFormat'
 
 import { AlbumHead3, AlbumParagraph } from './AlbumDetail.styles'
 

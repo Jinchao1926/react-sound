@@ -8,8 +8,7 @@
  */
 
 import { type LyricLine } from '@/types/lyric'
-
-import logger from './logger'
+import logger from '@/utils/logger'
 
 // 正则表达式
 // \[ 和 \]，表示 [ 和 ] 字符，特殊字符需要转义

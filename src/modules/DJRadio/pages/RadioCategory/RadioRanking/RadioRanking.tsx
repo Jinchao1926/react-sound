@@ -7,7 +7,7 @@ import { Pagination } from '@/components/Pagination'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useTopRadiosQuery } from '@/hooks/djradio/useTopRadiosQuery'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import {
   RadioItem,

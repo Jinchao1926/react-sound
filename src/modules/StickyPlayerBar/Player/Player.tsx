@@ -13,9 +13,9 @@ import {
 } from '@/components/Shared/Playbar'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { PLAY_MODE } from '@/types/player'
-import { getMusicUrl, formatSizedImage } from '@/utils/dataFormat'
+import { getMusicUrl, formatSizedImage } from '@/utils/format/dataFormat'
+import { formatTime } from '@/utils/format/timeFormat'
 import logger from '@/utils/logger'
-import { formatTime } from '@/utils/timeFormat'
 
 import {
   PlayerProgressBar,

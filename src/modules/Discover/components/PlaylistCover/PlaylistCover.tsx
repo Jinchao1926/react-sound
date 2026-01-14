@@ -5,7 +5,7 @@ import { CoverImage } from '@/components/CoverImage'
 import { IdentityIcon } from '@/components/IdentityIcon'
 import { routeBuilder } from '@/routers'
 import { type PlaylistDetail, type PopularPlaylist } from '@/types/playlist'
-import { formatPlayCount, formatSizedImage } from '@/utils/dataFormat'
+import { formatPlayCount, formatSizedImage } from '@/utils/format/dataFormat'
 
 import {
   HeadsetIcon,

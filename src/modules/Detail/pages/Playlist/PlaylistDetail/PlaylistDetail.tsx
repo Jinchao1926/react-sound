@@ -10,8 +10,8 @@ import { TrackCollection } from '@/components/TrackCollection'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
 import { usePlaylistDynamicQuery } from '@/hooks/playlist/usePlaylistDynamicQuery'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
-import { formatYearMonthDay } from '@/utils/timeFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
+import { formatYearMonthDay } from '@/utils/format/timeFormat'
 
 import { PlaylistTagLink } from './PlaylistDetail.styles'
 

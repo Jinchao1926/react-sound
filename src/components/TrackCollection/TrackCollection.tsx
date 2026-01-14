@@ -12,8 +12,8 @@ import {
   ShareButton,
 } from '@/components/Shared/Media'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
-import { formatMinuteSecond } from '@/utils/timeFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
+import { formatMinuteSecond } from '@/utils/format/timeFormat'
 
 import {
   Actions,

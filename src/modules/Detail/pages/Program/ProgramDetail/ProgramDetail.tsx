@@ -15,9 +15,12 @@ import {
 import { TrackCollection } from '@/components/TrackCollection'
 import { useProgramDetailQuery } from '@/hooks/program/useProgramDetailQuery'
 import { routeBuilder } from '@/routers'
-import { formatPlayCount, formatSizedImage } from '@/utils/dataFormat'
-import { normalizeTracks } from '@/utils/normalizeTrack'
-import { formatMinuteSecond, formatYearMonthDay } from '@/utils/timeFormat'
+import { formatPlayCount, formatSizedImage } from '@/utils/format/dataFormat'
+import {
+  formatMinuteSecond,
+  formatYearMonthDay,
+} from '@/utils/format/timeFormat'
+import { normalizeTracks } from '@/utils/track/normalizeTrack'
 
 import {
   RadioIcon,

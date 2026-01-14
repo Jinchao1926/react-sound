@@ -8,7 +8,7 @@ import { Pagination } from '@/components/Pagination'
 import { useArtistMVsQuery } from '@/hooks/artist/useArtistMVsQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 import { routeBuilder } from '@/routers'
-import { formatImage } from '@/utils/dataFormat'
+import { formatImage } from '@/utils/format/dataFormat'
 
 import { MVItem, PlayButton } from './ArtistMVs.styles'
 

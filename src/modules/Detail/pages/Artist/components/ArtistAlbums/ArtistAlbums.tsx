@@ -6,8 +6,8 @@ import { Pagination } from '@/components/Pagination'
 import { useArtistAlbumsQuery } from '@/hooks/artist/useArtistAlbumsQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 import { routeBuilder } from '@/routers'
-import { formatSizedImage } from '@/utils/dataFormat'
-import { formatYearMonthDay } from '@/utils/timeFormat'
+import { formatSizedImage } from '@/utils/format/dataFormat'
+import { formatYearMonthDay } from '@/utils/format/timeFormat'
 
 import {
   AlbumItem,

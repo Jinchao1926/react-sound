@@ -8,7 +8,7 @@ import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { RankingTrend } from '@/modules/DJRadio/components/RankingTrend'
 import { routeBuilder } from '@/routers'
 import { type Program } from '@/types/program'
-import { padLeft, formatMonthDay } from '@/utils/timeFormat'
+import { padLeft, formatMonthDay } from '@/utils/format/timeFormat'
 
 import {
   InfoIcon,
