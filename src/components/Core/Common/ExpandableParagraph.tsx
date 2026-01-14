@@ -1,10 +1,4 @@
-import {
-  forwardRef,
-  type PropsWithChildren,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import { forwardRef, type PropsWithChildren, useMemo, useState } from 'react'
 
 import { ExpandButton } from '@/components/Buttons/ExpandButton'
 import { getDisplayLength, sliceByDisplayLength } from '@/utils/stringUtils'
@@ -36,7 +30,6 @@ export const ExpandableParagraph = forwardRef<
     },
     ref
   ) => {
-    const [showExpand, setShowExpand] = useState<boolean | undefined>(undefined)
     const [expanded, setExpanded] = useState(false)
 
     const { content, isArray, hasMore } = useMemo(() => {
@@ -76,12 +69,6 @@ export const ExpandableParagraph = forwardRef<
       return { content, isArray, hasMore: false }
     }, [children, expanded, maxLines, maxChars])
 
-    useEffect(() => {
-      if (showExpand === undefined) {
-        setShowExpand(hasMore)
-      }
-    }, [showExpand, hasMore])
-
     return (
       <Box ref={ref} display={rest.display}>
         {isArray ? (
@@ -114,7 +101,7 @@ export const ExpandableParagraph = forwardRef<
           </Paragraph>
         )}
 
-        {showExpand && (
+        {hasMore && (
           <Box textAlign={expandPosition}>
             <ExpandButton
               expanded={!expanded}
