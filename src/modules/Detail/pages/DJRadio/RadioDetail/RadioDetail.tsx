@@ -12,6 +12,7 @@ import {
   SubscribeBlueButton,
 } from '@/components/Shared/Social'
 import { useRadioDetailQuery } from '@/hooks/djradio/useRadioDetailQuery'
+import { usePlayRadio } from '@/hooks/player/usePlayRadio'
 import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/format/dataFormat'
 
@@ -19,20 +20,23 @@ import { RadioPrograms } from '../RadioPrograms'
 
 export const RadioDetail: FC<{ radioId: number }> = ({ radioId }) => {
   const { data: radio } = useRadioDetailQuery(radioId)
+  const { play } = usePlayRadio()
 
   if (!radio) return null
 
   return (
     <Box mt={10}>
       <Flex gap={30}>
-        <CoverImage
-          src={formatSizedImage(radio.picUrl, 200)}
-          alt={radio.name}
-          size={200}
-          coverSprite="cover"
-          coverIcon="bright200"
-          coverEdge={-4}
-        />
+        <Box mb={24}>
+          <CoverImage
+            src={formatSizedImage(radio.picUrl, 200)}
+            alt={radio.name}
+            size={200}
+            coverSprite="cover"
+            coverIcon="bright200"
+            coverEdge={-4}
+          />
+        </Box>
 
         <Box flex={1}>
           <Flex gap={10} mb={12}>
@@ -60,7 +64,7 @@ export const RadioDetail: FC<{ radioId: number }> = ({ radioId }) => {
           <Flex gap={26} mt={20} mb={25}>
             <Flex gap={10} align="center">
               <SubscribeBlueButton count={radio.subCount} hasPrefix />
-              <PlayGreyButton title="播放全部" />
+              <PlayGreyButton title="播放全部" onClick={() => play(radioId)} />
               <ShareGreyButton count={radio.shareCount} hasPrefix />
             </Flex>
           </Flex>

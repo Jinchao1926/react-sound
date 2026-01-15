@@ -13,12 +13,14 @@ import {
 } from '@/components/Shared/Media'
 import { useRadioProgramsQuery } from '@/hooks/program/useRadioProgramsQuery'
 import { useUrlParams } from '@/hooks/useUrlParams'
+import { usePlayerContext } from '@/providers/PlayerProvider'
 import { routeBuilder } from '@/routers'
 import { formatPlayCount } from '@/utils/format/dataFormat'
 import {
   formatMinuteSecond,
   formatYearMonthDay,
 } from '@/utils/format/timeFormat'
+import { normalizeTrack } from '@/utils/track/normalizeTrack'
 
 import {
   ProgramCollectionCol,
@@ -49,6 +51,8 @@ export const RadioPrograms: FC<{ radioId: number }> = ({ radioId }) => {
     limit: PAGE_SIZE,
     asc,
   })
+
+  const { playTrack, addToPlaylist } = usePlayerContext()
 
   const handleSortChange = (newAsc: boolean) => {
     const newOrder = newAsc ? '2' : '1'
@@ -94,7 +98,9 @@ export const RadioPrograms: FC<{ radioId: number }> = ({ radioId }) => {
                   <Text width={25} color="#999" textAlign="center">
                     {program.serialNum}
                   </Text>
-                  <PlayButtonSMLight onClick={() => {}} />
+                  <PlayButtonSMLight
+                    onClick={() => playTrack(normalizeTrack(program.mainSong))}
+                  />
                 </Flex>
               </td>
               {/* Program & Actions */}
@@ -108,7 +114,11 @@ export const RadioPrograms: FC<{ radioId: number }> = ({ radioId }) => {
                 </TextNavLink>
 
                 <SocialActions>
-                  <AddToButtonSM onClick={() => {}} />
+                  <AddToButtonSM
+                    onClick={() =>
+                      addToPlaylist(normalizeTrack(program.mainSong))
+                    }
+                  />
                   <ShareButton onClick={() => {}} />
                   <DownloadButton onClick={() => {}} />
                 </SocialActions>
