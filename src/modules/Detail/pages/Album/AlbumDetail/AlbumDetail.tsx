@@ -98,7 +98,7 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
           maxChars={320}
           mt={4}
           lineHeight={24}
-          textIndent="2em"
+          style={{ textIndent: '2em' }}
         >
           {descriptions}
         </ExpandableParagraph>

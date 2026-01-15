@@ -9,19 +9,25 @@ import { PlaylistBadge } from '@/components/Shared/Badge'
 import { TrackCollection } from '@/components/TrackCollection'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
 import { usePlaylistDynamicQuery } from '@/hooks/playlist/usePlaylistDynamicQuery'
+import { usePlayerContext } from '@/providers/PlayerProvider'
 import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/format/dataFormat'
 import { formatYearMonthDay } from '@/utils/format/timeFormat'
 
 import { PlaylistTagLink } from './PlaylistDetail.styles'
 
+const MAX_TRACKS = 20
+
 export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
   const { data: playlist } = usePlaylistDetailQuery(playlistId)
   const { data: dynamic } = usePlaylistDynamicQuery(playlistId)
 
+  const { playTrack, playTracks, addToPlaylist, addTracksToPlaylist } =
+    usePlayerContext()
+
   const config = useMemo(() => {
     return {
-      maxRows: 20,
+      maxRows: MAX_TRACKS,
       showExternalLink: true,
       showAlbumColumn: true,
       showIndexTrend: false,
@@ -83,6 +89,12 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
                 share: dynamic?.shareCount,
                 comment: dynamic?.commentCount,
               }}
+              callbacks={{
+                onPlayClick: () =>
+                  playTracks(playlist.tracks.slice(0, MAX_TRACKS)),
+                onAddClick: () =>
+                  addTracksToPlaylist(playlist.tracks.slice(0, MAX_TRACKS)),
+              }}
             />
           </Box>
 
@@ -106,7 +118,14 @@ export const PlaylistDetail: FC<{ playlistId: number }> = ({ playlistId }) => {
         </Box>
       </Flex>
 
-      <TrackCollection dataSource={playlist} config={config} />
+      <TrackCollection
+        dataSource={playlist}
+        config={config}
+        callbacks={{
+          onPlayClick: (track) => playTrack(track),
+          onAddClick: (track) => addToPlaylist(track),
+        }}
+      />
     </Flex>
   )
 }
