@@ -17,7 +17,8 @@ import {
 
 export const PlaylistCover: FC<{
   playlist: PlaylistDetail | PopularPlaylist
-}> = ({ playlist }) => {
+  onPlay?: () => void
+}> = ({ playlist, onPlay }) => {
   const getImageUrl = () => {
     if ('coverImgUrl' in playlist) return playlist.coverImgUrl
     return playlist.picUrl
@@ -56,7 +57,7 @@ export const PlaylistCover: FC<{
             <HeadsetIcon />
             <Text>{formatPlayCount(playlist.playCount)}</Text>
           </Flex>
-          <PlayButton />
+          <PlayButton onClick={onPlay} />
         </PlaylistCoverPanel>
       </CoverImage>
 

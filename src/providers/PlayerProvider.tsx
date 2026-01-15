@@ -31,6 +31,7 @@ interface PlayerContextType {
   state: PlayerState
   // Playlist Management
   addToPlaylist: (song: Track) => void
+  addTracksToPlaylist: (tracks: Track[]) => void
   removeFromPlaylist: (songId: number) => void
   clearPlaylist: () => void
   // Play Mode
@@ -39,6 +40,8 @@ interface PlayerContextType {
   togglePinned: () => void
   // Playback Control
   playSong: (song: Track) => void
+  playTracks: (tracks: Track[], startIndex?: number) => void
+  // playTracksWithSong: (tracks: Track[], song: Track) => void
   switchSong: (nextTrack: boolean) => void
   togglePlayState: () => void
   // Lyric
@@ -139,6 +142,27 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
     })
   }, [])
 
+  const addTracksToPlaylist = useCallback((tracks: Track[]) => {
+    setState((prev) => {
+      // 过滤掉已存在的歌曲
+      const newTracks = tracks.filter(
+        (track) => !prev.playlist.some((t) => t.id === track.id)
+      )
+
+      if (newTracks.length === 0) {
+        return prev
+      }
+
+      const newPlaylist = [...prev.playlist, ...newTracks]
+      PlayerStorage.setPlaylist(newPlaylist)
+
+      return {
+        ...prev,
+        playlist: newPlaylist,
+      }
+    })
+  }, [])
+
   // Play Mode
   const switchPlayMode = useCallback(() => {
     setState((prev) => {
@@ -153,32 +177,67 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [])
 
   // Playback Control
-  const playSong = useCallback(
-    (song: Track) => {
-      setState((prev) => {
-        if (!song) return prev
+  const playSong = useCallback((song: Track) => {
+    setState((prev) => {
+      if (!song) return prev
 
-        const index = prev.playlist.findIndex((track) => track.id === song.id)
-        if (index === -1) {
-          // Add song to playlist if not already present
-          addToPlaylist(song)
-        }
+      let songIndex = prev.playlist.findIndex((track) => track.id === song.id)
+      let newPlaylist = prev.playlist
 
-        const songIndex = index >= 0 ? index : prev.playlist.length
-        PlayerStorage.setCurrentSongIndex(songIndex)
-        lyricSongIdRef.current = song.id
+      if (songIndex === -1) {
+        // Add song to playlist if not already present
+        newPlaylist = [...prev.playlist, song]
+        songIndex = newPlaylist.length - 1
+        PlayerStorage.setPlaylist(newPlaylist)
+      }
 
-        return {
-          ...prev,
-          currentSong: song,
-          currentSongIndex: songIndex,
-          isPlaying: true,
-          currentLyricLineIndex: 0,
-        }
-      })
-    },
-    [addToPlaylist]
-  )
+      PlayerStorage.setCurrentSongIndex(songIndex)
+      lyricSongIdRef.current = song.id
+
+      return {
+        ...prev,
+        playlist: newPlaylist,
+        currentSong: song,
+        currentSongIndex: songIndex,
+        isPlaying: true,
+        currentLyric: undefined,
+        currentLyricLineIndex: 0,
+      }
+    })
+  }, [])
+
+  const playTracks = useCallback((tracks: Track[], startIndex: number = 0) => {
+    if (!tracks || tracks.length === 0) return
+
+    setState((prev) => {
+      const validIndex = Math.max(0, Math.min(startIndex, tracks.length - 1))
+      const firstSong = tracks[validIndex]
+
+      PlayerStorage.setPlaylist(tracks)
+      PlayerStorage.setCurrentSongIndex(validIndex)
+      lyricSongIdRef.current = firstSong.id
+
+      return {
+        ...prev,
+        playlist: tracks,
+        currentSong: firstSong,
+        currentSongIndex: validIndex,
+        isPlaying: true,
+        currentLyric: undefined,
+        currentLyricLineIndex: 0,
+      }
+    })
+  }, [])
+
+  // const playTracksWithSong = useCallback(
+  //   (tracks: Track[], song: Track) => {
+  //     if (!tracks || tracks.length === 0) return
+
+  //     const index = tracks.findIndex((t) => t.id === song.id)
+  //     playTracks(tracks, index >= 0 ? index : 0)
+  //   },
+  //   [playTracks]
+  // )
 
   const switchSong = useCallback((nextTrack: boolean) => {
     setState((prev) => {
@@ -263,11 +322,14 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
   const contextValue: PlayerContextType = {
     state,
     addToPlaylist,
+    addTracksToPlaylist,
     removeFromPlaylist,
     clearPlaylist,
     switchPlayMode,
     togglePinned,
     playSong,
+    playTracks,
+    // playTracksWithSong,
     switchSong,
     togglePlayState,
     changeLyricLineIndex,

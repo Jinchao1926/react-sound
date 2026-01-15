@@ -16,6 +16,7 @@ import { PLAY_MODE } from '@/types/player'
 import { getMusicUrl, formatSizedImage } from '@/utils/format/dataFormat'
 import { formatTime } from '@/utils/format/timeFormat'
 import logger from '@/utils/logger'
+import { findLyricIndexByTime } from '@/utils/player/lyricUtils'
 
 import {
   PlayerProgressBar,
@@ -117,41 +118,12 @@ export const Player: FC = () => {
 
   // ========== Player Control Handlers ==========
   // Lyric Scroll - Using binary search
-
   const handleLyric = useCallback(
     (time: number) => {
       if (!currentLyric || currentLyric.length === 0) return
 
-      // Binary search for the correct lyric line
-      const findLyricIndex = (targetTime: number): number => {
-        let left = 0
-        let right = currentLyric.length - 1
-        let result = -1
-
-        while (left <= right) {
-          const mid = Math.floor((left + right) / 2)
-
-          if (currentLyric[mid].time <= targetTime) {
-            result = mid
-            left = mid + 1
-          } else {
-            right = mid - 1
-          }
-        }
-
-        return result
-      }
-
-      const newIndex = findLyricIndex(time)
+      const newIndex = findLyricIndexByTime(currentLyric, time)
       if (newIndex !== currentLyricLineIndexRef.current && newIndex >= 0) {
-        // console.log(
-        //   'jinchao time:',
-        //   time,
-        //   'newIndex:',
-        //   newIndex,
-        //   'lyric:',
-        //   currentLyric[newIndex]
-        // )
         changeLyricLineIndex(newIndex)
       }
     },

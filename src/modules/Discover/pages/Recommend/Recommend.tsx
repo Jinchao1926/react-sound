@@ -3,7 +3,6 @@ import { type FC } from 'react'
 import { Box } from '@/components/Core'
 
 import { Banner } from './components/Banner'
-// import { JCBanner } from './components/JCBanner'
 import { NewAlbum } from './components/NewAlbum'
 import { PopularAnchor } from './components/PopularAnchor'
 import { PopularPlaylists } from './components/PopularPlaylist'
@@ -21,7 +20,6 @@ export const Recommend: FC = () => {
   return (
     <Box>
       <Banner />
-      {/* <JCBanner /> */}
       <RecommendSection>
         <RecommendLeft>
           <PopularPlaylists />
