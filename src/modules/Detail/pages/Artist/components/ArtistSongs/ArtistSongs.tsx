@@ -5,6 +5,7 @@ import { CollectGreyButton } from '@/components/Shared/Social'
 import { TrackCollection } from '@/components/TrackCollection'
 import { useArtistSongsQuery } from '@/hooks/artist/useArtistsQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
+import { usePlayerContext } from '@/providers/PlayerProvider'
 
 import { AddBlueButton, PlayBlueButton } from './ArtistSongs.styles'
 
@@ -12,14 +13,19 @@ export const ArtistSongs: FC = () => {
   const { id: artistId } = useQueryParamId()
   const { data: songs } = useArtistSongsQuery(artistId)
 
+  const { playTrack, playTracks, addToPlaylist, addTracksToPlaylist } =
+    usePlayerContext()
+
   if (!songs) return null
 
   return (
     <Box>
       <Flex gap={10} mb={10}>
         <Flex>
-          <PlayBlueButton onClick={() => {}}>播放</PlayBlueButton>
-          <AddBlueButton onClick={() => {}} />
+          <PlayBlueButton onClick={() => playTracks(songs)}>
+            播放
+          </PlayBlueButton>
+          <AddBlueButton onClick={() => addTracksToPlaylist(songs)} />
         </Flex>
         <CollectGreyButton title={`收藏热门 ${songs.length}`} />
       </Flex>
@@ -37,6 +43,10 @@ export const ArtistSongs: FC = () => {
             duration: 89,
             album: 148,
           },
+        }}
+        callbacks={{
+          onPlayClick: (track) => playTrack(track),
+          onAddClick: (track) => addToPlaylist(track),
         }}
       />
     </Box>

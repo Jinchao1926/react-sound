@@ -4,6 +4,7 @@ import { Box, Paragraph, Text } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
 import { Pagination } from '@/components/Pagination'
 import { useArtistAlbumsQuery } from '@/hooks/artist/useArtistAlbumsQuery'
+import { usePlayAlbum } from '@/hooks/player/usePlayAlbum'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/format/dataFormat'
@@ -29,6 +30,8 @@ export const ArtistAlbums: FC = () => {
     offset: (currentPage - 1) * PAGE_SIZE,
     limit: PAGE_SIZE,
   })
+
+  const { play } = usePlayAlbum()
 
   if (!albums) return null
 
@@ -57,7 +60,7 @@ export const ArtistAlbums: FC = () => {
               coverIcon="albumLarge"
               coverWidth={145}
             >
-              <CoverPlayButton />
+              <CoverPlayButton onClick={() => play(album.id)} />
             </CoverImage>
 
             <AlbumName>

@@ -11,4 +11,5 @@ export const UserLinks = styled(Text).withConfig({
 })<UserLinksProps>`
   display: ${({ block }) => (block ? 'block' : 'inline-block')};
   ${({ block }) => block && 'width: 100%;'}
+  flex-shrink: 0;
 `
