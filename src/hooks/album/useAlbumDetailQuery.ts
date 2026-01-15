@@ -25,7 +25,11 @@ export const useAlbumDetailQuery = (id?: number) => {
           id,
         },
       })
-      return { album: data.album, songs: data.songs }
+      const tracks: Track[] = data.songs.map((song) => ({
+        ...song,
+        al: data.album,
+      }))
+      return { album: data.album, songs: tracks }
     },
     enabled: !!id,
     staleTime: Infinity,

@@ -28,6 +28,7 @@ import {
   TrackCollectionTHeader,
 } from './TrackCollection.styles'
 import {
+  type TrackCollectionCallbacks,
   type TrackCollectionConfig,
   type TrackSource,
 } from './TrackCollection.type'
@@ -36,11 +37,13 @@ import { TrackCollectionHeader } from './TrackCollectionHeader'
 export interface TrackCollectionProps {
   dataSource: TrackSource
   config?: TrackCollectionConfig
+  callbacks?: TrackCollectionCallbacks
 }
 
 export const TrackCollection: FC<TrackCollectionProps> = ({
   dataSource,
   config = {},
+  callbacks = {},
 }) => {
   const {
     maxRows,
@@ -59,6 +62,14 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
       artist: 173,
     },
   } = config
+
+  const {
+    onPlayClick,
+    onAddClick,
+    onCollectClick,
+    onShareClick,
+    onDownloadClick,
+  } = callbacks
 
   const [expanded, setExpanded] = useState(true)
 
@@ -139,7 +150,7 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
                       <New />
                     </Box>
                   ) : (
-                    <PlayButtonSMLight onClick={() => {}} />
+                    <PlayButtonSMLight onClick={() => onPlayClick?.(item)} />
                   )}
                 </Flex>
               </td>
@@ -158,7 +169,9 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
                       </NavLink>
                     ) : null
                   }
-                  {showIndexTrend && <PlayButtonSMLight onClick={() => {}} />}
+                  {showIndexTrend && (
+                    <PlayButtonSMLight onClick={() => onPlayClick?.(item)} />
+                  )}
                   <TextNavLink
                     to={routeBuilder.song(item.id)}
                     color="#333"
@@ -189,10 +202,10 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
               <DurationTD>
                 <Duration nowrap>{formatMinuteSecond(item.dt)}</Duration>
                 <Actions>
-                  <AddToButtonSM onClick={() => {}} />
-                  <CollectButtonSM onClick={() => {}} />
-                  <ShareButton onClick={() => {}} />
-                  <DownloadButton onClick={() => {}} />
+                  <AddToButtonSM onClick={() => onAddClick?.(item)} />
+                  <CollectButtonSM onClick={() => onCollectClick?.(item)} />
+                  <ShareButton onClick={() => onShareClick?.(item)} />
+                  <DownloadButton onClick={() => onDownloadClick?.(item)} />
                 </Actions>
               </DurationTD>
               {/* Artist */}
