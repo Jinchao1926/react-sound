@@ -1,10 +1,11 @@
 import {
   type ButtonHTMLAttributes,
+  type CSSProperties,
   type FC,
   type PropsWithChildren,
 } from 'react'
 
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 interface ButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
@@ -14,109 +15,6 @@ interface ButtonProps
   disabled?: boolean
 }
 
-const getButtonStyles = (buttonType: ButtonProps['type']) => {
-  switch (buttonType) {
-    case 'primary':
-      return css`
-        background-color: #c20c0c;
-        color: #fff;
-        border: 1px solid #c20c0c;
-
-        &:hover:not(:disabled) {
-          background-color: #d81e1e;
-          border-color: #d81e1e;
-        }
-      `
-
-    case 'text':
-      return css`
-        background-color: transparent;
-        color: #333;
-        border: none;
-
-        &:hover:not(:disabled) {
-          background-color: #f5f5f5;
-        }
-      `
-
-    case 'link':
-      return css`
-        background-color: transparent;
-        color: #c20c0c;
-        border: none;
-        position: relative;
-
-        &:hover:not(:disabled) {
-          color: #d81e1e;
-          &::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -2px;
-            height: 1px;
-            background-color: #d81e1e;
-          }
-        }
-      `
-
-    case 'default':
-    default:
-      return css`
-        background-color: #fff;
-        color: #333;
-        border: 1px solid #d9d9d9;
-
-        &:hover:not(:disabled) {
-          background-color: #f0f0f0;
-          border-color: #c20c0c;
-          color: #c20c0c;
-        }
-      `
-  }
-}
-
-const getSizeStyles = (
-  size: ButtonProps['size'],
-  shape: ButtonProps['shape']
-) => {
-  const baseStyles = {
-    small: { padding: '4px 12px', fontSize: '12px', height: '24px' },
-    medium: { padding: '6px 16px', fontSize: '14px', height: '32px' },
-    large: { padding: '10px 24px', fontSize: '16px', height: '40px' },
-  }
-
-  const current = baseStyles[size || 'medium']
-
-  return css`
-    padding: ${current.padding};
-    font-size: ${current.fontSize};
-    height: ${current.height};
-    line-height: 1.5;
-    ${getShapeStyles(shape, current.height)}
-  `
-}
-
-const getShapeStyles = (shape: ButtonProps['shape'], height: string) => {
-  switch (shape) {
-    case 'circle':
-      return css`
-        border-radius: 50%;
-        width: ${height};
-        padding: 0;
-      `
-    case 'round':
-      return css`
-        border-radius: ${height};
-      `
-    case 'default':
-    default:
-      return css`
-        border-radius: 4px;
-      `
-  }
-}
-
 interface StyledButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   buttonType?: 'primary' | 'default' | 'text' | 'link'
@@ -124,23 +22,102 @@ interface StyledButtonProps
   shape?: 'default' | 'circle' | 'round'
 }
 
-const StyledButton = styled.button.withConfig({
-  shouldForwardProp: (prop) =>
-    !['buttonType', 'size', 'shape'].includes(prop as string),
-})<StyledButtonProps>`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: inherit;
-  font-weight: 400;
-  cursor: pointer;
-  transition: all 0.2s;
-  outline: none;
-  user-select: none;
-  white-space: nowrap;
+const StyledButton = styled.button
+  .withConfig({
+    shouldForwardProp: (prop) =>
+      !['buttonType', 'size', 'shape'].includes(prop as string),
+  })
+  .attrs<StyledButtonProps>((props) => {
+    const { buttonType = 'default', size = 'medium', shape = 'default' } = props
 
-  ${({ size, shape }) => getSizeStyles(size, shape)}
-  ${({ buttonType }) => getButtonStyles(buttonType)}
+    const style: CSSProperties = {
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: 'inherit',
+      fontWeight: 400,
+      cursor: 'pointer',
+      transition: 'all 0.2s',
+      outline: 'none',
+      userSelect: 'none',
+      whiteSpace: 'nowrap',
+      lineHeight: 1.5,
+    }
+
+    // Size styles
+    const sizeConfig = {
+      small: { padding: '4px 12px', fontSize: '12px', height: '24px' },
+      medium: { padding: '6px 16px', fontSize: '14px', height: '32px' },
+      large: { padding: '10px 24px', fontSize: '16px', height: '40px' },
+    }
+    const sizeStyle = sizeConfig[size]
+    style.padding = sizeStyle.padding
+    style.fontSize = sizeStyle.fontSize
+    style.height = sizeStyle.height
+
+    // Shape styles
+    switch (shape) {
+      case 'circle':
+        style.borderRadius = '50%'
+        style.width = sizeStyle.height
+        style.padding = '0'
+        break
+      case 'round':
+        style.borderRadius = sizeStyle.height
+        break
+      default:
+        style.borderRadius = '4px'
+    }
+
+    // Button type styles
+    switch (buttonType) {
+      case 'primary':
+        style.backgroundColor = '#c20c0c'
+        style.color = '#fff'
+        style.border = '1px solid #c20c0c'
+        break
+      case 'text':
+        style.backgroundColor = 'transparent'
+        style.color = '#333'
+        style.border = 'none'
+        break
+      case 'link':
+        style.backgroundColor = 'transparent'
+        style.color = '#c20c0c'
+        style.border = 'none'
+        style.position = 'relative'
+        break
+      case 'default':
+      default:
+        style.backgroundColor = '#fff'
+        style.color = '#333'
+        style.border = '1px solid #d9d9d9'
+    }
+
+    return { style }
+  })<StyledButtonProps>`
+  &:hover:not(:disabled) {
+    ${({ buttonType }) => {
+      switch (buttonType) {
+        case 'primary':
+          return 'background-color: #d81e1e; border-color: #d81e1e;'
+        case 'text':
+          return 'background-color: #f5f5f5;'
+        case 'link':
+          return 'color: #d81e1e;'
+        case 'default':
+        default:
+          return 'background-color: #f0f0f0; border-color: #c20c0c; color: #c20c0c;'
+      }
+    }}
+  }
+
+  &:hover:not(:disabled)::after {
+    ${({ buttonType }) =>
+      buttonType === 'link'
+        ? `content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background-color: #d81e1e;`
+        : 'display: none;'}
+  }
 
   &:disabled {
     cursor: not-allowed;
