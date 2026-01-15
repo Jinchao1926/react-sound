@@ -27,7 +27,19 @@ export const useProgramDetailQuery = (id?: number) => {
           },
         }
       )
-      return data.program
+
+      const coverUrl = data.program.coverUrl
+      const program: Program = {
+        ...data.program,
+        mainSong: {
+          ...data.program.mainSong,
+          album: {
+            ...data.program.mainSong.album,
+            picUrl: coverUrl,
+          },
+        },
+      }
+      return program
     },
     enabled: !!id,
     staleTime: Infinity,

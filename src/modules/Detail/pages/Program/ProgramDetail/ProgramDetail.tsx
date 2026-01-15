@@ -13,7 +13,9 @@ import {
   ShareGreyButton,
 } from '@/components/Shared/Social'
 import { TrackCollection } from '@/components/TrackCollection'
+import { usePlayProgram } from '@/hooks/player/usePlayProgram'
 import { useProgramDetailQuery } from '@/hooks/program/useProgramDetailQuery'
+import { usePlayerContext } from '@/providers/PlayerProvider'
 import { routeBuilder } from '@/routers'
 import { formatPlayCount, formatSizedImage } from '@/utils/format/dataFormat'
 import {
@@ -31,6 +33,9 @@ import {
 
 export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
   const { data: program } = useProgramDetailQuery(programId)
+
+  const { playTrack, addToPlaylist } = usePlayerContext()
+  const { play } = usePlayProgram()
 
   const config = useMemo(() => {
     return {
@@ -89,6 +94,7 @@ export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
         <Flex gap={10} align="center">
           <PlayBlueButton
             title={`播放 ${formatMinuteSecond(program.duration, 'chinese')}`}
+            onClick={() => play(program.id)}
           />
           <LikeGreyButton count={program.likedCount} />
           <CommentGreyButton count={program.commentCount} />
@@ -121,7 +127,7 @@ export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
         </ExpandableParagraph>
       </Box>
 
-      {program.trackCount > 0 && (
+      {program.trackCount > 1 && (
         <TrackCollection
           dataSource={{
             id: program.id,
@@ -131,6 +137,10 @@ export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
             playCount: program.listenerCount,
           }}
           config={config}
+          callbacks={{
+            onPlayClick: (track) => playTrack(track),
+            onAddClick: (track) => addToPlaylist(track),
+          }}
         />
       )}
     </Box>
