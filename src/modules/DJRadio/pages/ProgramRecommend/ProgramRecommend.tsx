@@ -2,6 +2,7 @@ import { type FC, useMemo } from 'react'
 
 import { Box, Text, TextNavLink } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
+import { usePlayProgram } from '@/hooks/player/usePlayProgram'
 import { useRecommendedProgramsQuery } from '@/hooks/program/useRecommendedProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { routeBuilder } from '@/routers'
@@ -23,9 +24,11 @@ export const ProgramRecommend: FC<{ isCompact?: boolean }> = ({
     [isCompact, data]
   )
 
+  const { play } = usePlayProgram()
+
   const renderProgramContent = (program: Program) => {
-    const programPath = `/program?id=${program.id}`
-    const radioPath = `/djradio?id=${program.radio.id}`
+    const programPath = routeBuilder.program(program.id)
+    const radioPath = routeBuilder.radio(program.radio.id)
 
     const programLink = (
       <TextNavLink
@@ -81,7 +84,10 @@ export const ProgramRecommend: FC<{ isCompact?: boolean }> = ({
       <ProgramList>
         {programs.map((item) => (
           <ProgramItem key={item.id} pl={20}>
-            <ProgramCover coverUrl={item.coverUrl} />
+            <ProgramCover
+              coverUrl={item.coverUrl}
+              onPlayClick={() => play(item.id)}
+            />
 
             {renderProgramContent(item)}
 
