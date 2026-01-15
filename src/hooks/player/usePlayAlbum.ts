@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import { usePlayerContext } from '@/providers/PlayerProvider'
+import { type Track } from '@/types/track'
 
 import { useAlbumDetailQuery } from '../album/useAlbumDetailQuery'
 
@@ -16,7 +17,11 @@ export const usePlayAlbum = () => {
 
   useEffect(() => {
     if (album?.songs && album.songs.length > 0) {
-      playTracks(album.songs)
+      const tracks: Track[] = album.songs.map((song) => ({
+        ...song,
+        al: album.album,
+      }))
+      playTracks(tracks)
     }
   }, [album, playTracks])
 

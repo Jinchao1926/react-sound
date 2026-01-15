@@ -4,6 +4,7 @@ import { Box } from '@/components/Core'
 import { Pagination } from '@/components/Pagination'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useAllAlbumsQuery } from '@/hooks/album/useAllAlbumsQuery'
+import { usePlayAlbum } from '@/hooks/player/usePlayAlbum'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 
 import { AlbumList } from './AllAlbum.styles'
@@ -22,6 +23,8 @@ export const AllAlbum: FC = () => {
     limit: PAGE_SIZE,
   })
 
+  const { play } = usePlayAlbum()
+
   useEffect(() => {
     setCurrentPage(1)
   }, [selectedArea])
@@ -31,7 +34,7 @@ export const AllAlbum: FC = () => {
       <SectionHeader title="全部新碟" tags={areaTags} />
       <AlbumList>
         {albums.map((item) => (
-          <AlbumCover key={item.id} album={item} />
+          <AlbumCover key={item.id} album={item} onPlay={() => play(item.id)} />
         ))}
       </AlbumList>
       <Pagination
