@@ -9,6 +9,7 @@ import { TrackCollection } from '@/components/TrackCollection/TrackCollection'
 import { type TrackCollectionConfig } from '@/components/TrackCollection/TrackCollection.type'
 import { useAlbumDetailQuery } from '@/hooks/album/useAlbumDetailQuery'
 import { useAlbumDynamicQuery } from '@/hooks/album/useAlbumDynamicQuery'
+import { usePlayerContext } from '@/providers/PlayerProvider'
 import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/format/dataFormat'
 import { formatYearMonthDay } from '@/utils/format/timeFormat'
@@ -18,6 +19,9 @@ import { AlbumHead3, AlbumParagraph } from './AlbumDetail.styles'
 export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
   const { data } = useAlbumDetailQuery(albumId)
   const { data: dynamic } = useAlbumDynamicQuery(albumId)
+
+  const { playTrack, playTracks, addToPlaylist, addTracksToPlaylist } =
+    usePlayerContext()
 
   const descriptions = useMemo(() => {
     return data?.album.description.split('\n') || []
@@ -79,6 +83,10 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
                 download: dynamic?.likedCount,
                 comment: dynamic?.commentCount,
               }}
+              callbacks={{
+                onPlayClick: () => playTracks(data.songs),
+                onAddClick: () => addTracksToPlaylist(data.songs),
+              }}
             />
           </Box>
         </Box>
@@ -90,7 +98,7 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
           maxChars={320}
           mt={4}
           lineHeight={24}
-          textIndent="2em"
+          style={{ textIndent: '2em' }}
         >
           {descriptions}
         </ExpandableParagraph>
@@ -104,6 +112,10 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
           trackCount: data.songs.length,
         }}
         config={config}
+        callbacks={{
+          onPlayClick: (track) => playTrack(track),
+          onAddClick: (track) => addToPlaylist(track),
+        }}
       />
     </Box>
   )

@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import { usePlayerContext } from '@/providers/PlayerProvider'
-import { type Track2 } from '@/types/track'
 import { normalizeTrack } from '@/utils/track/normalizeTrack'
 
 import { useProgramDetailQuery } from '../program/useProgramDetailQuery'
@@ -18,11 +17,7 @@ export const usePlayProgram = () => {
 
   useEffect(() => {
     if (program?.mainSong) {
-      const track: Track2 = {
-        ...program.mainSong,
-        album: { ...program.mainSong.album, picUrl: program.coverUrl },
-      }
-      playTrack(normalizeTrack(track))
+      playTrack(normalizeTrack(program.mainSong))
     }
   }, [program, playTrack])
 

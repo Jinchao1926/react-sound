@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
 import { type Program } from '@/types/program'
+import { normalizeProgramTrack } from '@/utils/track/normalizeProgramTrack'
 
 interface ProgramDetailApiResponse {
   program: Program
@@ -27,7 +28,8 @@ export const useProgramDetailQuery = (id?: number) => {
           },
         }
       )
-      return data.program
+
+      return normalizeProgramTrack(data.program)
     },
     enabled: !!id,
     staleTime: Infinity,

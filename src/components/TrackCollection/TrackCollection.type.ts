@@ -28,3 +28,11 @@ export interface TrackCollectionConfig {
     album?: number
   }
 }
+
+export interface TrackCollectionCallbacks {
+  onPlayClick?: (track: Track) => void
+  onAddClick?: (track: Track) => void
+  onCollectClick?: (track: Track) => void
+  onShareClick?: (track: Track) => void
+  onDownloadClick?: (track: Track) => void
+}

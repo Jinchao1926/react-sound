@@ -2,8 +2,8 @@ import { type Track, type Song } from '@/types/track'
 
 /**
  * Convert Song to Track
- * @param song Song 对象
- * @returns Track 对象
+ * @param song Song object
+ * @returns Track object
  */
 export function songToTrack(song: Song): Track {
   return {
@@ -20,8 +20,8 @@ export function songToTrack(song: Song): Track {
 
 /**
  * Convert Track to Song
- * @param track Track 对象
- * @returns Song 对象
+ * @param track Track object
+ * @returns Song object
  */
 export function trackToSong(track: Track): Song {
   return {
