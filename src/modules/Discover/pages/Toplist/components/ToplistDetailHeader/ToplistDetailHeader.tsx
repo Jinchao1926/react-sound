@@ -2,6 +2,7 @@ import { type FC } from 'react'
 
 import { Box, Flex, Image, Paragraph, Sprite, Text } from '@/components/Core'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
+import { usePlayerContext } from '@/providers/PlayerProvider'
 import { type PlaylistDetail } from '@/types/playlist'
 import { formatSizedImage } from '@/utils/format/dataFormat'
 import { formatMonthDay } from '@/utils/format/timeFormat'
@@ -11,6 +12,8 @@ import { ToplistCover, ToplistCoverBright } from './ToplistDetailHeader.styles'
 export const ToplistDetailHeader: FC<{ playlist: PlaylistDetail }> = ({
   playlist,
 }) => {
+  const { playTracks, addTracksToPlaylist } = usePlayerContext()
+
   return (
     <Flex gap={30} mb={40}>
       <ToplistCover>
@@ -39,6 +42,10 @@ export const ToplistDetailHeader: FC<{ playlist: PlaylistDetail }> = ({
             collect: playlist.subscribedCount,
             share: playlist.shareCount,
             comment: playlist.commentCount,
+          }}
+          callbacks={{
+            onPlayClick: () => playTracks(playlist.tracks),
+            onAddClick: () => addTracksToPlaylist(playlist.tracks),
           }}
         />
       </Box>
