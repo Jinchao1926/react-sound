@@ -17,9 +17,14 @@ import {
 interface AlbumCoverProps {
   album: Album
   isLarge?: boolean
+  onPlay?: () => void
 }
 
-export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
+export const AlbumCover: FC<AlbumCoverProps> = ({
+  album,
+  isLarge = true,
+  onPlay,
+}) => {
   const config = useMemo<IAlbumStyleConfig>(
     () => getAlbumStyleConfig(isLarge),
     [isLarge]
@@ -30,11 +35,6 @@ export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
     [album.picUrl, config.imgSize]
   )
   const albumUrl = useMemo(() => `/album?id=${album.id}`, [album.id])
-
-  // other handlers
-  function handlePlayAlbumn() {
-    // TODO: Implement album playback logic
-  }
 
   return (
     <AlbumCoverWrapper className="album-cover" width={config.width}>
@@ -47,7 +47,7 @@ export const AlbumCover: FC<AlbumCoverProps> = ({ album, isLarge = true }) => {
         coverIcon={config.isLarge ? 'albumMedium' : 'album'}
         coverWidth={config.width}
       >
-        <CoverPlayButton $isLarge={config.isLarge} onClick={handlePlayAlbumn} />
+        <CoverPlayButton $isLarge={config.isLarge} onClick={onPlay} />
       </CoverImage>
 
       <AlbumnNameLink to={albumUrl} nowrap $isLarge={config.isLarge}>

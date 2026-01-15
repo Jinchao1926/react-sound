@@ -2,6 +2,7 @@ import { type FC, useState, useEffect, useMemo, useCallback } from 'react'
 
 import { Box } from '@/components/Core'
 import { Pagination } from '@/components/Pagination'
+import { usePlayPlaylist } from '@/hooks/player/usePlayPlaylist'
 import { useTopPlaylistsQuery } from '@/hooks/playlist/useTopPlaylistsQuery'
 import { PlaylistCover } from '@/modules/Discover/components/PlaylistCover'
 
@@ -22,6 +23,7 @@ export const PlaylistCovers: FC<{ category: string }> = ({ category }) => {
   )
 
   const { data: playlists, total } = useTopPlaylistsQuery(queryOptions)
+  const { play } = usePlayPlaylist()
 
   // Reset current page when category changes
   useEffect(() => {
@@ -36,7 +38,11 @@ export const PlaylistCovers: FC<{ category: string }> = ({ category }) => {
     <Box mt={10}>
       <PlaylistCoverList>
         {playlists.map((item) => (
-          <PlaylistCover key={item.id} playlist={item} />
+          <PlaylistCover
+            key={item.id}
+            playlist={item}
+            onPlay={() => play(item.id)}
+          />
         ))}
       </PlaylistCoverList>
       <Pagination
