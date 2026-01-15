@@ -3,6 +3,7 @@ import { type FC, useMemo } from 'react'
 import { Box, TextNavLink } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
 import { Tooltip } from '@/components/Tooltip'
+import { usePlayProgram } from '@/hooks/player/usePlayProgram'
 import { useTopProgramsQuery } from '@/hooks/program/useTopProgramsQuery'
 import { ProgramCover } from '@/modules/DJRadio/components/ProgramCover'
 import { RankingTrend } from '@/modules/DJRadio/components/RankingTrend'
@@ -33,6 +34,8 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
     }),
     [isCompact, data, updateTime]
   )
+
+  const { play } = usePlayProgram()
 
   const renderProgramContent = (program: Program) => {
     const programPath = `/program?id=${program.id}`
@@ -113,7 +116,10 @@ export const ProgramRanking: FC<{ isCompact?: boolean }> = ({
               </RankingIndex>
               <RankingTrend rank={item.rank} lastRank={item.lastRank} />
             </Box>
-            <ProgramCover coverUrl={item.program.coverUrl} />
+            <ProgramCover
+              coverUrl={item.program.coverUrl}
+              onPlayClick={() => play(item.program.id)}
+            />
 
             {renderProgramContent(item.program)}
 

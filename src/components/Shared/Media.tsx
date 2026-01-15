@@ -11,6 +11,7 @@ export const PlayButton = styled(Sprite).attrs({
 })`
   width: 22px;
   height: 22px;
+  flex-shrink: 0;
 `
 
 export const PlayButtonSM = styled(Sprite).attrs({

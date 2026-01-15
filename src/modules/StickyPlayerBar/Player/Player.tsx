@@ -12,6 +12,7 @@ import {
   PrevButton,
 } from '@/components/Shared/Playbar'
 import { usePlayerContext } from '@/providers/PlayerProvider'
+import { routeBuilder } from '@/routers'
 import { PLAY_MODE } from '@/types/player'
 import { getMusicUrl, formatSizedImage } from '@/utils/format/dataFormat'
 import { formatTime } from '@/utils/format/timeFormat'
@@ -61,7 +62,7 @@ export const Player: FC = () => {
   const { songSrc, songDetailUrl, songAvatar, duration } = useMemo(() => {
     return {
       songSrc: currentTrack ? getMusicUrl(currentTrack.id) : undefined,
-      songDetailUrl: currentTrack ? `/song?id=${currentTrack.id}` : '',
+      songDetailUrl: currentTrack ? routeBuilder.song(currentTrack.id) : '',
       songAvatar: currentTrack
         ? formatSizedImage(currentTrack.al.picUrl, 35)
         : defaultAlbumImg,

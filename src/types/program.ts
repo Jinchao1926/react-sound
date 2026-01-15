@@ -379,6 +379,7 @@ export interface Program {
   listenerCount: number
   likedCount: number
   trackCount: number
+  mainSong: Track2
   songs: Track2[]
   radio: Radio
 }
