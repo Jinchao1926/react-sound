@@ -23,7 +23,7 @@ interface PlaylistProps {
 
 export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
   const { tracks = [] } = playlist
-  const { playSong, addToPlaylist, playTracks } = usePlayerContext()
+  const { playTrack, addToPlaylist, playTracks } = usePlayerContext()
 
   const top10Tracks = useMemo(() => {
     return tracks.slice(0, 10)
@@ -31,7 +31,7 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
 
   const rankingUrl = routeBuilder.discoverToplist(playlist.id)
 
-  const collectMusic = (_item: Track) => {}
+  const collectTrack = (item: Track) => {}
 
   return (
     <Box width={230}>
@@ -71,9 +71,9 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
             </TextNavLink>
 
             <SongActions>
-              <PlayButtonSM onClick={() => playSong(song)} />
+              <PlayButtonSM onClick={() => playTrack(song)} />
               <AddToButtonSM onClick={() => addToPlaylist(song)} />
-              <CollectButtonSM onClick={() => collectMusic(song)} />
+              <CollectButtonSM onClick={() => collectTrack(song)} />
             </SongActions>
           </SongItem>
         ))}

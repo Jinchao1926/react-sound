@@ -21,8 +21,8 @@ interface PlayerState {
   playMode: PlayModeType
   isPinned: boolean
   isPlaying: boolean
-  currentSong?: Track
-  currentSongIndex?: number
+  currentTrack?: Track
+  currentTrackIndex?: number
   currentLyric?: LyricLine[]
   currentLyricLineIndex: number
 }
@@ -30,19 +30,18 @@ interface PlayerState {
 interface PlayerContextType {
   state: PlayerState
   // Playlist Management
-  addToPlaylist: (song: Track) => void
+  addToPlaylist: (track: Track) => void
   addTracksToPlaylist: (tracks: Track[]) => void
-  removeFromPlaylist: (songId: number) => void
+  removeFromPlaylist: (trackId: number) => void
   clearPlaylist: () => void
   // Play Mode
   switchPlayMode: () => void
   // Player UI Control
   togglePinned: () => void
   // Playback Control
-  playSong: (song: Track) => void
+  playTrack: (track: Track) => void
   playTracks: (tracks: Track[], startIndex?: number) => void
-  // playTracksWithSong: (tracks: Track[], song: Track) => void
-  switchSong: (nextTrack: boolean) => void
+  switchTrack: (nextTrack: boolean) => void
   togglePlayState: () => void
   // Lyric
   changeLyricLineIndex: (index: number) => void
@@ -56,10 +55,10 @@ const getInitialState = (): PlayerState => {
   const playlist = getPlaylist()
   const playMode = getPlayMode()
   const isPinned = getPlayerPinned()
-  const currentSongIndex = getCurrentSongIndex()
-  const currentSong =
-    currentSongIndex !== undefined && currentSongIndex < playlist.length
-      ? playlist[currentSongIndex]
+  const currentTrackIndex = getCurrentSongIndex()
+  const currentTrack =
+    currentTrackIndex !== undefined && currentTrackIndex < playlist.length
+      ? playlist[currentTrackIndex]
       : undefined
 
   return {
@@ -67,18 +66,18 @@ const getInitialState = (): PlayerState => {
     playMode,
     isPinned,
     isPlaying: false,
-    currentSong,
-    currentSongIndex,
+    currentTrack,
+    currentTrackIndex,
     currentLyric: undefined,
     currentLyricLineIndex: 0,
   }
 }
 
 export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
-  const lyricSongIdRef = useRef<number | undefined>(undefined)
+  const lyricTrackIdRef = useRef<number | undefined>(undefined)
 
   const [state, setState] = useState<PlayerState>(getInitialState)
-  const { data: lyricData } = useSongLyricQuery(lyricSongIdRef.current)
+  const { data: lyricData } = useSongLyricQuery(lyricTrackIdRef.current)
 
   useEffect(() => {
     if (lyricData.length) {
@@ -177,28 +176,28 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [])
 
   // Playback Control
-  const playSong = useCallback((song: Track) => {
+  const playTrack = useCallback((track: Track) => {
     setState((prev) => {
-      if (!song) return prev
+      if (!track) return prev
 
-      let songIndex = prev.playlist.findIndex((track) => track.id === song.id)
+      let trackIndex = prev.playlist.findIndex((t) => t.id === track.id)
       let newPlaylist = prev.playlist
 
-      if (songIndex === -1) {
-        // Add song to playlist if not already present
-        newPlaylist = [...prev.playlist, song]
-        songIndex = newPlaylist.length - 1
+      if (trackIndex === -1) {
+        // Add track to playlist if not already present
+        newPlaylist = [...prev.playlist, track]
+        trackIndex = newPlaylist.length - 1
         PlayerStorage.setPlaylist(newPlaylist)
       }
 
-      PlayerStorage.setCurrentSongIndex(songIndex)
-      lyricSongIdRef.current = song.id
+      PlayerStorage.setCurrentSongIndex(trackIndex)
+      lyricTrackIdRef.current = track.id
 
       return {
         ...prev,
         playlist: newPlaylist,
-        currentSong: song,
-        currentSongIndex: songIndex,
+        currentTrack: track,
+        currentTrackIndex: trackIndex,
         isPlaying: true,
         currentLyric: undefined,
         currentLyricLineIndex: 0,
@@ -215,13 +214,13 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
 
       PlayerStorage.setPlaylist(tracks)
       PlayerStorage.setCurrentSongIndex(validIndex)
-      lyricSongIdRef.current = firstSong.id
+      lyricTrackIdRef.current = firstSong.id
 
       return {
         ...prev,
         playlist: tracks,
-        currentSong: firstSong,
-        currentSongIndex: validIndex,
+        currentTrack: firstSong,
+        currentTrackIndex: validIndex,
         isPlaying: true,
         currentLyric: undefined,
         currentLyricLineIndex: 0,
@@ -229,25 +228,15 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
     })
   }, [])
 
-  // const playTracksWithSong = useCallback(
-  //   (tracks: Track[], song: Track) => {
-  //     if (!tracks || tracks.length === 0) return
-
-  //     const index = tracks.findIndex((t) => t.id === song.id)
-  //     playTracks(tracks, index >= 0 ? index : 0)
-  //   },
-  //   [playTracks]
-  // )
-
-  const switchSong = useCallback((nextTrack: boolean) => {
+  const switchTrack = useCallback((nextTrack: boolean) => {
     setState((prev) => {
-      const { playMode, playlist, currentSong } = prev
+      const { playMode, playlist, currentTrack } = prev
       const currentIndex = playlist.findIndex(
-        (track) => track.id === currentSong?.id
+        (track) => track.id === currentTrack?.id
       )
 
       let switchedIndex: number
-      let switchedSong: Track | undefined
+      let switchedTrack: Track | undefined
       switch (playMode) {
         case PLAY_MODE.RANDOM:
           // Random mode, choose a random song (not repeating current)
@@ -260,7 +249,7 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
             }
             switchedIndex = randomIndex % playlist.length
           }
-          switchedSong = playlist[switchedIndex]
+          switchedTrack = playlist[switchedIndex]
           break
 
         default:
@@ -268,17 +257,17 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
           switchedIndex = nextTrack
             ? (currentIndex + 1) % playlist.length
             : (currentIndex - 1 + playlist.length) % playlist.length
-          switchedSong = playlist[switchedIndex]
+          switchedTrack = playlist[switchedIndex]
           break
       }
 
       PlayerStorage.setCurrentSongIndex(switchedIndex)
-      lyricSongIdRef.current = switchedSong?.id
+      lyricTrackIdRef.current = switchedTrack?.id
 
       return {
         ...prev,
-        currentSong: switchedSong,
-        currentSongIndex: switchedIndex,
+        currentTrack: switchedTrack,
+        currentTrackIndex: switchedIndex,
         currentLyricLineIndex: 0,
       }
     })
@@ -327,10 +316,9 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
     clearPlaylist,
     switchPlayMode,
     togglePinned,
-    playSong,
+    playTrack,
     playTracks,
-    // playTracksWithSong,
-    switchSong,
+    switchTrack,
     togglePlayState,
     changeLyricLineIndex,
   }
