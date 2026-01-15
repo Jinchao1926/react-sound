@@ -1,31 +1,11 @@
 import { describe, it, expect } from 'vitest'
 
-import type { Album, Artist } from '@/types/music'
+import { mockArtist, mockArtist2, mockAlbum } from '@/test/mocks'
 import type { Song, Track } from '@/types/track'
 
 import { songToTrack, trackToSong } from './trackConverter'
 
 describe('trackConverter', () => {
-  const mockArtist: Artist = {
-    id: 1,
-    accountId: 123,
-    name: '林俊杰',
-    img1v1Url: 'https://example.com/img1v1.jpg',
-    picUrl: 'https://example.com/pic.jpg',
-    alias: ['JJ Lin'],
-  }
-
-  const mockAlbum: Album = {
-    id: 100,
-    name: '西界',
-    artist: mockArtist,
-    picUrl: 'https://example.com/album.jpg',
-    alias: [],
-    publishTime: 1648742400000,
-    company: 'JFJ Productions',
-    description: 'Album description',
-  }
-
   describe('songToTrack', () => {
     it('should convert Song to Track with all fields', () => {
       const song: Song = {
@@ -100,19 +80,10 @@ describe('trackConverter', () => {
     })
 
     it('should handle multiple artists', () => {
-      const artist2: Artist = {
-        id: 2,
-        accountId: 456,
-        name: '张学友',
-        img1v1Url: 'https://example.com/img2.jpg',
-        picUrl: 'https://example.com/pic2.jpg',
-        alias: [],
-      }
-
       const song: Song = {
         id: 123,
         name: '双节棍',
-        artists: [mockArtist, artist2],
+        artists: [mockArtist, mockArtist2],
         album: mockAlbum,
         duration: 180000,
         alias: [],
@@ -169,20 +140,11 @@ describe('trackConverter', () => {
     })
 
     it('should preserve all artist information', () => {
-      const artist2: Artist = {
-        id: 2,
-        accountId: 456,
-        name: '张学友',
-        img1v1Url: 'https://example.com/img2.jpg',
-        picUrl: 'https://example.com/pic2.jpg',
-        alias: ['Jacky Cheung'],
-      }
-
       const track: Track = {
         id: 123,
         name: '双节棍',
         dt: 180000,
-        ar: [mockArtist, artist2],
+        ar: [mockArtist, mockArtist2],
         al: mockAlbum,
         alia: [],
         mv: 789,
