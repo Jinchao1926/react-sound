@@ -42,13 +42,13 @@ export const Player: FC = () => {
 
   const {
     state: {
-      currentSong,
+      currentTrack,
       currentLyric,
       currentLyricLineIndex,
       isPlaying,
       playMode,
     },
-    switchSong,
+    switchTrack,
     togglePlayState,
     changeLyricLineIndex,
   } = usePlayerContext()
@@ -60,14 +60,14 @@ export const Player: FC = () => {
 
   const { songSrc, songDetailUrl, songAvatar, duration } = useMemo(() => {
     return {
-      songSrc: currentSong ? getMusicUrl(currentSong.id) : undefined,
-      songDetailUrl: currentSong ? `/song?id=${currentSong.id}` : '',
-      songAvatar: currentSong
-        ? formatSizedImage(currentSong.al.picUrl, 35)
+      songSrc: currentTrack ? getMusicUrl(currentTrack.id) : undefined,
+      songDetailUrl: currentTrack ? `/song?id=${currentTrack.id}` : '',
+      songAvatar: currentTrack
+        ? formatSizedImage(currentTrack.al.picUrl, 35)
         : defaultAlbumImg,
-      duration: currentSong ? currentSong.dt : 0, // ms
+      duration: currentTrack ? currentTrack.dt : 0, // ms
     }
-  }, [currentSong])
+  }, [currentTrack])
 
   useEffect(() => {
     if (!audioRef.current) return
@@ -206,15 +206,15 @@ export const Player: FC = () => {
     <Playbar>
       <FlexContainer height={47}>
         <Flex align="center" width={137}>
-          <PrevButton onClick={() => switchSong(false)} />
+          <PrevButton onClick={() => switchTrack(false)} />
           <PlayButton isPlaying={isPlaying} onClick={() => togglePlayState()} />
-          <NextButton onClick={() => switchSong(true)} />
+          <NextButton onClick={() => switchTrack(true)} />
         </Flex>
         <Flex align="center" flex={1} gap={15}>
           {/* Song Avatar */}
           <SongCoverImage
             src={songAvatar}
-            alt={currentSong?.name}
+            alt={currentTrack?.name}
             to={songDetailUrl}
           />
           <Box width={581} height="100%">
@@ -226,10 +226,10 @@ export const Player: FC = () => {
                 maxWidth={300}
                 nowrap
               >
-                {currentSong?.name}
+                {currentTrack?.name}
               </TextNavLink>
-              {currentSong?.ar && (
-                <UserLink users={currentSong?.ar} color="#9b9b9b" />
+              {currentTrack?.ar && (
+                <UserLink users={currentTrack?.ar} color="#9b9b9b" />
               )}
             </Flex>
             {/* Progress Bar */}
@@ -263,7 +263,7 @@ export const Player: FC = () => {
               audioRef.current.play()
             }
           } else {
-            switchSong(true)
+            switchTrack(true)
           }
         }}
       />

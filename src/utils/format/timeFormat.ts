@@ -3,14 +3,14 @@ export const padLeft = (num: number): string => {
 }
 
 export const formatTime = (time: number): string => {
-  // 0.将毫秒转成秒
+  // Convert milliseconds to seconds
   time = time / 1000
 
-  // 1.获取时间
+  // Get minute and second components
   const minute = Math.floor(time / 60)
   const second = Math.floor(time) % 60
 
-  // 2.拼接字符串
+  // Concatenate to formatted string
   return `${padLeft(minute)}:${padLeft(second)}`
 }
 

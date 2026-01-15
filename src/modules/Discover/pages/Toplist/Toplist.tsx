@@ -2,6 +2,7 @@ import { type FC, useMemo } from 'react'
 
 import { TrackCollection } from '@/components/TrackCollection'
 import { usePlaylistDetailQuery } from '@/hooks/playlist/usePlaylistDetailQuery'
+import { useScrollToTop } from '@/hooks/useScrollToTop'
 import { useSelectedToplist } from '@/modules/Discover/pages/Toplist/hooks/useSelectedToplist'
 import { type PlaylistDetail } from '@/types/playlist'
 
@@ -12,6 +13,8 @@ import { ToplistLeft, ToplistRight, ToplistWrapper } from './Toplist.styles'
 export const Toplist: FC = () => {
   const { selectedToplist, toplists } = useSelectedToplist()
   const { data } = usePlaylistDetailQuery(selectedToplist?.id)
+
+  useScrollToTop()
 
   const playlistDetail = useMemo((): PlaylistDetail | undefined => {
     if (data) {

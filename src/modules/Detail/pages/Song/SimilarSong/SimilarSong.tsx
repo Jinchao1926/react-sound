@@ -13,7 +13,7 @@ import { SimilarSongItem } from './SimilarSong.styles'
 
 export const SimilarSong: FC<{ songId: number }> = ({ songId }) => {
   const { data: songs } = useSimilarSongsQuery(songId)
-  const { playSong, addToPlaylist } = usePlayerContext()
+  const { playTrack, addToPlaylist } = usePlayerContext()
 
   return (
     <Box mb={25}>
@@ -29,7 +29,7 @@ export const SimilarSong: FC<{ songId: number }> = ({ songId }) => {
             </Box>
 
             <Flex justify="space-between" width={36}>
-              <PlayButtonXS onClick={() => playSong(songToTrack(song))} />
+              <PlayButtonXS onClick={() => playTrack(songToTrack(song))} />
               <AddToButtonXS onClick={() => addToPlaylist(songToTrack(song))} />
             </Flex>
           </SimilarSongItem>

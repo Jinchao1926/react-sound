@@ -47,10 +47,12 @@ export const ToplistCategory: FC<ToplistCategoryProps> = ({ id, toplists }) => {
               className={classNames({ selected: selectedIndex === idx })}
               to={routeBuilder.discoverToplist(item.id)}
             >
-              <Flex gap={10} height={40}>
+              <Flex gap={10} height={40} mr={16} nowrap>
                 <Image src={formatSizedImage(item.coverImgUrl, 40)} alt="" />
                 <Flex vertical justify="space-between" py={2}>
-                  <Text color="#000">{item.name}</Text>
+                  <Text color="#000" nowrap>
+                    {item.name}
+                  </Text>
                   <Text color="#999">{item.updateFrequency}</Text>
                 </Flex>
               </Flex>

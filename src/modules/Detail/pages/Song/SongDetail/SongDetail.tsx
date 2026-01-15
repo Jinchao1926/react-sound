@@ -24,7 +24,7 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
 
   const { data: song } = useSongDetailQuery(songId)
   const { data: lyric } = useSongLyricQuery(songId)
-  const { playSong, addToPlaylist } = usePlayerContext()
+  const { playTrack, addToPlaylist } = usePlayerContext()
 
   const lyrics = useMemo(() => {
     return lyric.map((item) => item.text)
@@ -87,7 +87,7 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
         <Box mb={38}>
           <MediaOperationBar
             callbacks={{
-              onPlayClick: () => playSong(song),
+              onPlayClick: () => playTrack(song),
               onAddClick: () => addToPlaylist(song),
             }}
           />
