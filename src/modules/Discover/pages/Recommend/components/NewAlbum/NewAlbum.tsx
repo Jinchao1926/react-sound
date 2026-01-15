@@ -4,6 +4,7 @@ import { type CarouselRef } from '@/components/Carousel'
 import { Box } from '@/components/Core'
 import { SectionHeader } from '@/components/SectionHeader'
 import { useNewAlbumsQuery } from '@/hooks/album/useNewAlbumsQuery'
+import { usePlayAlbum } from '@/hooks/player/usePlayAlbum'
 import { AlbumCover } from '@/modules/Discover/components/AlbumCover'
 import { routeBuilder } from '@/routers'
 
@@ -26,6 +27,8 @@ export const NewAlbum: FC = () => {
     )
   }, [albums])
 
+  const { play } = usePlayAlbum()
+
   return (
     <Box>
       <SectionHeader
@@ -40,7 +43,12 @@ export const NewAlbum: FC = () => {
           {albumPage.map((page, idx) => (
             <AlbumPage key={idx}>
               {page.map((album) => (
-                <AlbumCover key={album.id} album={album} isLarge={false} />
+                <AlbumCover
+                  key={album.id}
+                  album={album}
+                  isLarge={false}
+                  onPlay={() => play(album.id)}
+                />
               ))}
             </AlbumPage>
           ))}

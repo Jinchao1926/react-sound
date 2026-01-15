@@ -23,13 +23,13 @@ interface PlaylistProps {
 
 export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
   const { tracks = [] } = playlist
-  const { playSong, addToPlaylist } = usePlayerContext()
+  const { playSong, addToPlaylist, playTracks } = usePlayerContext()
 
   const top10Tracks = useMemo(() => {
     return tracks.slice(0, 10)
   }, [tracks])
 
-  const rankingUrl = `/discover/toplist?id=${playlist.id}`
+  const rankingUrl = routeBuilder.discoverToplist(playlist.id)
 
   const collectMusic = (_item: Track) => {}
 
@@ -50,7 +50,7 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
             </Head>
           </TextNavLink>
           <Flex gap={10}>
-            <PlayButton onClick={() => {}} />
+            <PlayButton onClick={() => playTracks(top10Tracks)} />
             <CollectButton onClick={() => {}} />
           </Flex>
         </Box>
@@ -63,7 +63,7 @@ export const Playlist: FC<PlaylistProps> = ({ playlist }) => {
             <TextNavLink
               to={routeBuilder.song(song.id)}
               color="#000"
-              width={170}
+              mr={10}
               flex={1}
               nowrap
             >
