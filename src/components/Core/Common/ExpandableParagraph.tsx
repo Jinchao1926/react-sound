@@ -17,6 +17,57 @@ interface ExpandParagraphProps extends Styles {
   onExpand?: (expanded: boolean) => void
 }
 
+/**
+ * Type guard to check if content is a string array
+ */
+const isStringArray = (content: string | string[]): content is string[] => {
+  return Array.isArray(content)
+}
+
+/**
+ * Get full text from content (handles both string and string array)
+ */
+const getFullText = (content: string | string[]): string => {
+  return isStringArray(content) ? content.join('\n') : content
+}
+
+/**
+ * Check if content needs expand/collapse functionality based on limits
+ */
+const checkNeedsExpansion = (
+  content: string | string[],
+  isArray: boolean,
+  maxLines: number | undefined,
+  maxChars: number | undefined
+): boolean => {
+  // Check by lines limit
+  if (maxLines && isArray && content.length > maxLines) {
+    return true
+  }
+
+  // Check by characters limit
+  if (maxChars) {
+    const fullText = getFullText(content)
+    return getDisplayLength(fullText) > maxChars
+  }
+
+  return false
+}
+
+/**
+ * Truncate text by character limit
+ */
+const truncateByChars = (
+  text: string,
+  maxChars: number
+): { content: string; canToggle: boolean } => {
+  const displayLength = getDisplayLength(text)
+  return {
+    content: sliceByDisplayLength(text, maxChars),
+    canToggle: displayLength > maxChars,
+  }
+}
+
 export const ExpandableParagraph = forwardRef<
   HTMLDivElement,
   PropsWithChildren<ExpandParagraphProps>
@@ -35,47 +86,70 @@ export const ExpandableParagraph = forwardRef<
   ) => {
     const [expanded, setExpanded] = useState(false)
 
-    const { content, isArray, hasMore } = useMemo(() => {
-      const isArray = Array.isArray(children)
-      const content: string | string[] = isArray
-        ? children
-        : (children as string)
+    const { content, canToggle, isTruncated, isArray } = useMemo(() => {
+      const contentValue = children as string | string[]
+      const contentIsArray = isStringArray(contentValue)
+      const content: string | string[] = contentValue
 
+      // Determine if content needs expand/collapse functionality
+      const needsExpansion = checkNeedsExpansion(
+        content,
+        contentIsArray,
+        maxLines,
+        maxChars
+      )
+
+      // If expanded, show full content
       if (expanded) {
-        return { content, isArray, hasMore: false }
+        return {
+          content,
+          canToggle: needsExpansion,
+          isTruncated: false,
+          isArray: contentIsArray,
+        }
       }
 
+      // If not expanded, slice content based on limits
       // Slice by lines
-      if (maxLines && isArray && content.length > maxLines) {
-        return { content: content.slice(0, maxLines), isArray, hasMore: true }
+      if (maxLines && contentIsArray && content.length > maxLines) {
+        return {
+          content: content.slice(0, maxLines),
+          canToggle: true,
+          isTruncated: true,
+          isArray: contentIsArray,
+        }
       }
 
       // Slice by characters (display length)
       if (maxChars) {
-        if (isArray) {
-          const fullText = (content as string[]).join('\n')
-          return {
-            content: sliceByDisplayLength(fullText, maxChars).split('\n'),
-            isArray,
-            hasMore: getDisplayLength(fullText) > maxChars,
-          }
-        } else {
-          const fullText = content as string
-          return {
-            content: sliceByDisplayLength(fullText, maxChars),
-            isArray,
-            hasMore: getDisplayLength(fullText) > maxChars,
-          }
+        const fullText = getFullText(content)
+        const { content: truncated, canToggle: toggle } = truncateByChars(
+          fullText,
+          maxChars
+        )
+        return {
+          content: contentIsArray ? truncated.split('\n') : truncated,
+          canToggle: toggle,
+          isTruncated: toggle,
+          isArray: contentIsArray,
         }
       }
 
-      return { content, isArray, hasMore: false }
+      return {
+        content,
+        canToggle: false,
+        isTruncated: false,
+        isArray: contentIsArray,
+      }
     }, [children, expanded, maxLines, maxChars])
+
+    // Type-safe content access
+    const contentLines = isArray && isStringArray(content) ? content : null
 
     return (
       <Box ref={ref} display={rest.display}>
-        {isArray ? (
-          (content as string[]).map((line, idx) => (
+        {contentLines ? (
+          contentLines.map((line, idx) => (
             <Paragraph
               key={idx}
               whiteSpace="pre-line"
@@ -85,9 +159,9 @@ export const ExpandableParagraph = forwardRef<
               {...rest}
             >
               {line}
-              {idx === (content as string[]).length - 1 &&
+              {idx === contentLines.length - 1 &&
                 ellipsis &&
-                hasMore &&
+                isTruncated &&
                 '...'}
             </Paragraph>
           ))
@@ -100,11 +174,11 @@ export const ExpandableParagraph = forwardRef<
             {...rest}
           >
             {content}
-            {ellipsis && hasMore && '...'}
+            {ellipsis && isTruncated && '...'}
           </Paragraph>
         )}
 
-        {hasMore && (
+        {canToggle && (
           <Box textAlign={expandPosition}>
             <ExpandButton
               expanded={!expanded}

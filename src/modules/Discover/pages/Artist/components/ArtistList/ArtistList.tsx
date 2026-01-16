@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { Fragment, type FC } from 'react'
 
 import { Box, Flex } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'
@@ -37,8 +37,8 @@ export const ArtistList: FC = () => {
         {artists.map((artist, idx) => {
           if (idx < 10) {
             return (
-              <>
-                <Box key={artist.id} mb={30}>
+              <Fragment key={artist.id}>
+                <Box mb={30}>
                   <CoverImage
                     src={formatSizedImage(artist.img1v1Url, 130)}
                     alt={artist.name}
@@ -53,7 +53,7 @@ export const ArtistList: FC = () => {
                   </Flex>
                 </Box>
                 {idx === 9 && <DashedDivider key="divider" />}
-              </>
+              </Fragment>
             )
           }
 

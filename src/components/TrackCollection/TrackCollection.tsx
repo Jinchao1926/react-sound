@@ -83,9 +83,7 @@ export const TrackCollection: FC<TrackCollectionProps> = ({
     return { tracks: expanded ? dataSource.tracks : [], hasMoreTracks: false }
   }, [dataSource.tracks, maxRows, expanded])
 
-  const showHeader = Boolean(
-    dataSource.id && dataSource.trackCount && dataSource.playCount
-  )
+  const showHeader = Boolean(dataSource.id && dataSource.trackCount)
   const showTHeader = !showExpandableHeader
 
   return (
