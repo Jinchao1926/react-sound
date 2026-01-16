@@ -5,7 +5,7 @@ import {
   QueryClient,
   QueryClientProvider as Provider,
 } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import axios from 'axios'
 
 interface QueryClientProviderProps {
@@ -39,7 +39,7 @@ export const QueryClientProvider: FC<QueryClientProviderProps> = ({
   return (
     <Provider client={queryClient}>
       {children}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </Provider>
   )
 }

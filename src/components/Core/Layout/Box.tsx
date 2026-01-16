@@ -2,6 +2,14 @@ import { type CSSProperties, type HTMLAttributes } from 'react'
 
 import styled from 'styled-components'
 
+/**
+ * Box component using attrs() method with inline styles instead of generating CSS classes.
+ * This approach prevents styled-components from creating excessive CSS classes when many
+ * dynamic style combinations are used, which can cause performance issues and trigger
+ * "Over 200 classes were generated" warnings. Using attrs() to apply dynamic styles as
+ * inline styles keeps the component class count constant while maintaining all functionality.
+ */
+
 // List of all style props that should not be forwarded to DOM
 const styleProps = new Set([
   'display',
@@ -216,151 +224,165 @@ const toPx = (value: string | number | undefined): string | undefined => {
   return value
 }
 
-export const Box = styled.div.withConfig({
-  shouldForwardProp: (prop) => !styleProps.has(prop),
-})<Styles>`
-  /* Layout */
-  ${({ display }) => display && `display: ${display};`}
-  ${({ position }) => position && `position: ${position};`}
-  ${({ top }) => top !== undefined && `top: ${toPx(top)};`}
-  ${({ right }) => right !== undefined && `right: ${toPx(right)};`}
-  ${({ bottom }) => bottom !== undefined && `bottom: ${toPx(bottom)};`}
-  ${({ left }) => left !== undefined && `left: ${toPx(left)};`}
-  ${({ zIndex }) => zIndex !== undefined && `z-index: ${zIndex};`}
+export const Box = styled.div
+  .withConfig({
+    shouldForwardProp: (prop) => !styleProps.has(prop),
+  })
+  .attrs<Styles>((props) => {
+    const dynamicStyle: CSSProperties = {}
 
-  /* Size */
-  ${({ width }) => width !== undefined && `width: ${toPx(width)};`}
-  ${({ height }) => height !== undefined && `height: ${toPx(height)};`}
-  ${({ minWidth }) => minWidth !== undefined && `min-width: ${toPx(minWidth)};`}
-  ${({ minHeight }) =>
-    minHeight !== undefined && `min-height: ${toPx(minHeight)};`}
-  ${({ maxWidth }) => maxWidth !== undefined && `max-width: ${toPx(maxWidth)};`}
-  ${({ maxHeight }) =>
-    maxHeight !== undefined && `max-height: ${toPx(maxHeight)};`}
+    // Layout
+    if (props.display) dynamicStyle.display = props.display
+    if (props.position) dynamicStyle.position = props.position
+    if (props.top !== undefined) dynamicStyle.top = toPx(props.top)
+    if (props.right !== undefined) dynamicStyle.right = toPx(props.right)
+    if (props.bottom !== undefined) dynamicStyle.bottom = toPx(props.bottom)
+    if (props.left !== undefined) dynamicStyle.left = toPx(props.left)
+    if (props.zIndex !== undefined) dynamicStyle.zIndex = props.zIndex
 
-  /* Margin */
-  ${({ margin, m }) =>
-    (margin !== undefined || m !== undefined) &&
-    `margin: ${toPx(margin ?? m)};`}
-  ${({ marginTop, mt }) =>
-    (marginTop !== undefined || mt !== undefined) &&
-    `margin-top: ${toPx(marginTop ?? mt)};`}
-  ${({ marginRight, mr }) =>
-    (marginRight !== undefined || mr !== undefined) &&
-    `margin-right: ${toPx(marginRight ?? mr)};`}
-  ${({ marginBottom, mb }) =>
-    (marginBottom !== undefined || mb !== undefined) &&
-    `margin-bottom: ${toPx(marginBottom ?? mb)};`}
-  ${({ marginLeft, ml }) =>
-    (marginLeft !== undefined || ml !== undefined) &&
-    `margin-left: ${toPx(marginLeft ?? ml)};`}
-  ${({ mx }) =>
-    mx !== undefined && `margin-left: ${toPx(mx)}; margin-right: ${toPx(mx)};`}
-  ${({ my }) =>
-    my !== undefined && `margin-top: ${toPx(my)}; margin-bottom: ${toPx(my)};`}
+    // Size
+    if (props.width !== undefined) dynamicStyle.width = toPx(props.width)
+    if (props.height !== undefined) dynamicStyle.height = toPx(props.height)
+    if (props.minWidth !== undefined)
+      dynamicStyle.minWidth = toPx(props.minWidth)
+    if (props.minHeight !== undefined)
+      dynamicStyle.minHeight = toPx(props.minHeight)
+    if (props.maxWidth !== undefined)
+      dynamicStyle.maxWidth = toPx(props.maxWidth)
+    if (props.maxHeight !== undefined)
+      dynamicStyle.maxHeight = toPx(props.maxHeight)
 
-  /* Padding */
-  ${({ padding, p }) =>
-    (padding !== undefined || p !== undefined) &&
-    `padding: ${toPx(padding ?? p)};`}
-  ${({ paddingTop, pt }) =>
-    (paddingTop !== undefined || pt !== undefined) &&
-    `padding-top: ${toPx(paddingTop ?? pt)};`}
-  ${({ paddingRight, pr }) =>
-    (paddingRight !== undefined || pr !== undefined) &&
-    `padding-right: ${toPx(paddingRight ?? pr)};`}
-  ${({ paddingBottom, pb }) =>
-    (paddingBottom !== undefined || pb !== undefined) &&
-    `padding-bottom: ${toPx(paddingBottom ?? pb)};`}
-  ${({ paddingLeft, pl }) =>
-    (paddingLeft !== undefined || pl !== undefined) &&
-    `padding-left: ${toPx(paddingLeft ?? pl)};`}
-  ${({ px }) =>
-    px !== undefined &&
-    `padding-left: ${toPx(px)}; padding-right: ${toPx(px)};`}
-  ${({ py }) =>
-    py !== undefined &&
-    `padding-top: ${toPx(py)}; padding-bottom: ${toPx(py)};`}
+    // Margin
+    if (props.margin !== undefined || props.m !== undefined)
+      dynamicStyle.margin = toPx(props.margin ?? props.m)
+    if (props.marginTop !== undefined || props.mt !== undefined)
+      dynamicStyle.marginTop = toPx(props.marginTop ?? props.mt)
+    if (props.marginRight !== undefined || props.mr !== undefined)
+      dynamicStyle.marginRight = toPx(props.marginRight ?? props.mr)
+    if (props.marginBottom !== undefined || props.mb !== undefined)
+      dynamicStyle.marginBottom = toPx(props.marginBottom ?? props.mb)
+    if (props.marginLeft !== undefined || props.ml !== undefined)
+      dynamicStyle.marginLeft = toPx(props.marginLeft ?? props.ml)
+    if (props.mx !== undefined) {
+      dynamicStyle.marginLeft = toPx(props.mx)
+      dynamicStyle.marginRight = toPx(props.mx)
+    }
+    if (props.my !== undefined) {
+      dynamicStyle.marginTop = toPx(props.my)
+      dynamicStyle.marginBottom = toPx(props.my)
+    }
 
-  /* Border */
-  ${({ border }) => border && `border: ${border};`}
-  ${({ borderWidth }) =>
-    borderWidth !== undefined && `border-width: ${toPx(borderWidth)};`}
-  ${({ borderStyle }) => borderStyle && `border-style: ${borderStyle};`}
-  ${({ borderColor }) => borderColor && `border-color: ${borderColor};`}
-  ${({ borderRadius }) =>
-    borderRadius !== undefined && `border-radius: ${toPx(borderRadius)};`}
-  ${({ borderTop }) => borderTop && `border-top: ${borderTop};`}
-  ${({ borderRight }) => borderRight && `border-right: ${borderRight};`}
-  ${({ borderBottom }) => borderBottom && `border-bottom: ${borderBottom};`}
-  ${({ borderLeft }) => borderLeft && `border-left: ${borderLeft};`}
+    // Padding
+    if (props.padding !== undefined || props.p !== undefined)
+      dynamicStyle.padding = toPx(props.padding ?? props.p)
+    if (props.paddingTop !== undefined || props.pt !== undefined)
+      dynamicStyle.paddingTop = toPx(props.paddingTop ?? props.pt)
+    if (props.paddingRight !== undefined || props.pr !== undefined)
+      dynamicStyle.paddingRight = toPx(props.paddingRight ?? props.pr)
+    if (props.paddingBottom !== undefined || props.pb !== undefined)
+      dynamicStyle.paddingBottom = toPx(props.paddingBottom ?? props.pb)
+    if (props.paddingLeft !== undefined || props.pl !== undefined)
+      dynamicStyle.paddingLeft = toPx(props.paddingLeft ?? props.pl)
+    if (props.px !== undefined) {
+      dynamicStyle.paddingLeft = toPx(props.px)
+      dynamicStyle.paddingRight = toPx(props.px)
+    }
+    if (props.py !== undefined) {
+      dynamicStyle.paddingTop = toPx(props.py)
+      dynamicStyle.paddingBottom = toPx(props.py)
+    }
 
-  /* Background */
-  ${({ background }) => background && `background: ${background};`}
-  ${({ backgroundColor }) =>
-    backgroundColor && `background-color: ${backgroundColor};`}
-  ${({ backgroundImage }) =>
-    backgroundImage && `background-image: ${backgroundImage};`}
-  ${({ backgroundSize }) =>
-    backgroundSize && `background-size: ${backgroundSize};`}
-  ${({ backgroundPosition }) =>
-    backgroundPosition && `background-position: ${backgroundPosition};`}
-  ${({ backgroundRepeat }) =>
-    backgroundRepeat && `background-repeat: ${backgroundRepeat};`}
+    // Border
+    if (props.border) dynamicStyle.border = props.border
+    if (props.borderWidth !== undefined)
+      dynamicStyle.borderWidth = toPx(props.borderWidth)
+    if (props.borderStyle) dynamicStyle.borderStyle = props.borderStyle
+    if (props.borderColor) dynamicStyle.borderColor = props.borderColor
+    if (props.borderRadius !== undefined)
+      dynamicStyle.borderRadius = toPx(props.borderRadius)
+    if (props.borderTop) dynamicStyle.borderTop = props.borderTop
+    if (props.borderRight) dynamicStyle.borderRight = props.borderRight
+    if (props.borderBottom) dynamicStyle.borderBottom = props.borderBottom
+    if (props.borderLeft) dynamicStyle.borderLeft = props.borderLeft
 
-  /* Font */
-  ${({ color }) => color && `color: ${color};`}
-  ${({ fontSize }) => fontSize !== undefined && `font-size: ${toPx(fontSize)};`}
-  ${({ fontWeight }) => fontWeight && `font-weight: ${fontWeight};`}
-  ${({ fontFamily }) => fontFamily && `font-family: ${fontFamily};`}
-  ${({ lineHeight }) =>
-    lineHeight !== undefined &&
-    `line-height: ${typeof lineHeight === 'number' ? `${lineHeight}px` : lineHeight};`}
-  ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
-  ${({ textDecoration }) =>
-    textDecoration && `text-decoration: ${textDecoration};`}
-  ${({ textIndent }) =>
-    textIndent !== undefined && `text-indent: ${toPx(textIndent)};`}
-  ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace};`}
-  ${({ textOverflow }) => textOverflow && `text-overflow: ${textOverflow};`}
-  ${({ overflow }) => overflow && `overflow: ${overflow};`}
-  ${({ overflowX }) => overflowX && `overflow-x: ${overflowX};`}
-  ${({ overflowY }) => overflowY && `overflow-y: ${overflowY};`}
+    // Background
+    if (props.background) dynamicStyle.background = props.background
+    if (props.backgroundColor)
+      dynamicStyle.backgroundColor = props.backgroundColor
+    if (props.backgroundImage)
+      dynamicStyle.backgroundImage = props.backgroundImage
+    if (props.backgroundSize) dynamicStyle.backgroundSize = props.backgroundSize
+    if (props.backgroundPosition)
+      dynamicStyle.backgroundPosition = props.backgroundPosition
+    if (props.backgroundRepeat)
+      dynamicStyle.backgroundRepeat = props.backgroundRepeat
 
-  /* Text utilities */
-  ${({ nowrap }) =>
-    nowrap &&
-    `white-space: nowrap; overflow: hidden; text-overflow: ellipsis; `}
+    // Font
+    if (props.color) dynamicStyle.color = props.color
+    if (props.fontSize !== undefined)
+      dynamicStyle.fontSize = toPx(props.fontSize)
+    if (props.fontWeight) dynamicStyle.fontWeight = props.fontWeight
+    if (props.fontFamily) dynamicStyle.fontFamily = props.fontFamily
+    if (props.lineHeight !== undefined) {
+      dynamicStyle.lineHeight =
+        typeof props.lineHeight === 'number'
+          ? `${props.lineHeight}px`
+          : props.lineHeight
+    }
+    if (props.textAlign) dynamicStyle.textAlign = props.textAlign
+    if (props.textDecoration) dynamicStyle.textDecoration = props.textDecoration
+    if (props.textIndent !== undefined)
+      dynamicStyle.textIndent = toPx(props.textIndent)
+    if (props.whiteSpace) dynamicStyle.whiteSpace = props.whiteSpace
+    if (props.textOverflow) dynamicStyle.textOverflow = props.textOverflow
+    if (props.overflow) dynamicStyle.overflow = props.overflow
+    if (props.overflowX) dynamicStyle.overflowX = props.overflowX
+    if (props.overflowY) dynamicStyle.overflowY = props.overflowY
 
-  /* Flex */
-  ${({ flex }) => flex && `flex: ${flex};`}
-  ${({ flexDirection }) => flexDirection && `flex-direction: ${flexDirection};`}
-  ${({ flexWrap }) => flexWrap && `flex-wrap: ${flexWrap};`}
-  ${({ flexGrow }) => flexGrow !== undefined && `flex-grow: ${flexGrow};`}
-  ${({ flexShrink }) =>
-    flexShrink !== undefined && `flex-shrink: ${flexShrink};`}
-  ${({ flexBasis }) => flexBasis && `flex-basis: ${flexBasis};`}
-  ${({ justifyContent }) =>
-    justifyContent && `justify-content: ${justifyContent};`}
-  ${({ alignItems }) => alignItems && `align-items: ${alignItems};`}
-  ${({ alignSelf }) => alignSelf && `align-self: ${alignSelf};`}
-  ${({ alignContent }) => alignContent && `align-content: ${alignContent};`}
-  ${({ gap }) => gap !== undefined && `gap: ${toPx(gap)};`}
+    // Text utilities
+    if (props.nowrap) {
+      dynamicStyle.whiteSpace = 'nowrap'
+      dynamicStyle.overflow = 'hidden'
+      dynamicStyle.textOverflow = 'ellipsis'
+    }
 
-  /* Grid */
-  ${({ gridColumn }) => gridColumn && `grid-column: ${gridColumn};`}
-  ${({ gridRow }) => gridRow && `grid-row: ${gridRow};`}
-  ${({ gridArea }) => gridArea && `grid-area: ${gridArea};`}
-  ${({ gridTemplateColumns }) =>
-    gridTemplateColumns && `grid-template-columns: ${gridTemplateColumns};`}
-  ${({ gridTemplateRows }) =>
-    gridTemplateRows && `grid-template-rows: ${gridTemplateRows};`}
+    // Flex
+    if (props.flex) dynamicStyle.flex = props.flex
+    if (props.flexDirection) dynamicStyle.flexDirection = props.flexDirection
+    if (props.flexWrap) dynamicStyle.flexWrap = props.flexWrap
+    if (props.flexGrow !== undefined) dynamicStyle.flexGrow = props.flexGrow
+    if (props.flexShrink !== undefined)
+      dynamicStyle.flexShrink = props.flexShrink
+    if (props.flexBasis) dynamicStyle.flexBasis = props.flexBasis
+    if (props.justifyContent) dynamicStyle.justifyContent = props.justifyContent
+    if (props.alignItems) dynamicStyle.alignItems = props.alignItems
+    if (props.alignSelf) dynamicStyle.alignSelf = props.alignSelf
+    if (props.alignContent) dynamicStyle.alignContent = props.alignContent
+    if (props.gap !== undefined) dynamicStyle.gap = toPx(props.gap)
 
-  /* Other */
-  ${({ opacity }) => opacity !== undefined && `opacity: ${opacity};`}
-  ${({ visibility }) => visibility && `visibility: ${visibility};`}
-  ${({ cursor }) => cursor && `cursor: ${cursor};`}
-  ${({ transform }) => transform && `transform: ${transform};`}
-  ${({ transition }) => transition && `transition: ${transition};`}
-  ${({ boxShadow }) => boxShadow && `box-shadow: ${boxShadow};`}
+    // Grid
+    if (props.gridColumn) dynamicStyle.gridColumn = props.gridColumn
+    if (props.gridRow) dynamicStyle.gridRow = props.gridRow
+    if (props.gridArea) dynamicStyle.gridArea = props.gridArea
+    if (props.gridTemplateColumns)
+      dynamicStyle.gridTemplateColumns = props.gridTemplateColumns
+    if (props.gridTemplateRows)
+      dynamicStyle.gridTemplateRows = props.gridTemplateRows
+
+    // Other
+    if (props.opacity !== undefined) dynamicStyle.opacity = props.opacity
+    if (props.visibility) dynamicStyle.visibility = props.visibility
+    if (props.cursor) dynamicStyle.cursor = props.cursor
+    if (props.transform) dynamicStyle.transform = props.transform
+    if (props.transition) dynamicStyle.transition = props.transition
+    if (props.boxShadow) dynamicStyle.boxShadow = props.boxShadow
+
+    return {
+      style: {
+        ...dynamicStyle,
+        ...props.style,
+      },
+    }
+  })<Styles>`
+  /* Base styles only */
 `
