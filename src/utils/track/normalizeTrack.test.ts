@@ -1,31 +1,11 @@
 import { describe, it, expect } from 'vitest'
 
-import type { Album, Artist } from '@/types/music'
+import { mockArtist, mockArtist2, mockAlbum } from '@/test/mocks'
 import type { Track, Track2 } from '@/types/track'
 
 import { normalizeTrack, normalizeTracks } from './normalizeTrack'
 
 describe('normalizeTrack', () => {
-  const mockArtist: Artist = {
-    id: 1,
-    accountId: 123,
-    name: '林俊杰',
-    img1v1Url: 'https://example.com/img1v1.jpg',
-    picUrl: 'https://example.com/pic.jpg',
-    alias: ['JJ Lin'],
-  }
-
-  const mockAlbum: Album = {
-    id: 100,
-    name: '西界',
-    artist: mockArtist,
-    picUrl: 'https://example.com/album.jpg',
-    alias: [],
-    publishTime: 1648742400000,
-    company: 'JFJ Productions',
-    description: 'Album description',
-  }
-
   describe('normalizeTrack', () => {
     it('should convert Track2 to Track', () => {
       const track2: Track2 = {
@@ -75,20 +55,11 @@ describe('normalizeTrack', () => {
     })
 
     it('should handle multiple artists', () => {
-      const artist2: Artist = {
-        id: 2,
-        accountId: 456,
-        name: '张学友',
-        img1v1Url: 'https://example.com/img2.jpg',
-        picUrl: 'https://example.com/pic2.jpg',
-        alias: [],
-      }
-
       const track2: Track2 = {
         id: 123,
         name: '双节棍',
         duration: 180000,
-        artists: [mockArtist, artist2],
+        artists: [mockArtist, mockArtist2],
         album: mockAlbum,
         mvid: 789,
         dt: 180000,
@@ -101,7 +72,7 @@ describe('normalizeTrack', () => {
 
       expect(result.ar).toHaveLength(2)
       expect(result.ar[0]).toEqual(mockArtist)
-      expect(result.ar[1]).toEqual(artist2)
+      expect(result.ar[1]).toEqual(mockArtist2)
     })
   })
 

@@ -9,3 +9,8 @@ Examples:
 - `yarn build` (not `npm run build`)
 - `yarn dev` (not `npm run dev`)
 - `yarn add <package>` (not `npm install <package>`)
+
+## Documentation
+
+- Do not automatically create `README.md` or documentation files unless explicitly requested
+- Only create documentation when the user specifically asks for it
