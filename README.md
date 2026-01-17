@@ -4,16 +4,16 @@ A Netease Music-inspired web player built with React & TypeScript. Learning proj
 
 ## Tech Stack
 
-| Layer | Technology | Rationale |
-|-------|-----------|-----------|
-| **UI Framework** | React 18.3 | Modern hooks API, concurrent features, excellent ecosystem |
-| **Build Tool** | Vite 5 | Lightning-fast HMR, optimized bundle splitting, native ES modules |
-| **Language** | TypeScript 5.4 | Type safety, better IDE support, refactoring confidence |
-| **Routing** | React Router 6 | Industry standard, flexible nested routes, first-class transitions support |
-| **State Management** | TanStack React Query 5.81 | Server state management, automatic caching, request deduplication, built-in devtools |
-| **HTTP Client** | Axios 1.3 | Promise-based, interceptors for auth/error handling, request cancellation |
-| **Styling** | Styled Components 5.3 | CSS-in-JS, dynamic theming, scoped styles, better maintainability |
-| **Code Quality** | ESLint 8 + Prettier 3 | Consistent code style, pre-commit hooks with Husky |
+| Layer                | Technology                |
+| -------------------- | ------------------------- |
+| **UI Framework**     | React 18.3                |
+| **Build Tool**       | Vite 5                    |
+| **Language**         | TypeScript 5.4            |
+| **Routing**          | React Router 6            |
+| **State Management** | TanStack React Query 5.81 |
+| **HTTP Client**      | Axios 1.3                 |
+| **Styling**          | Styled Components 5.3     |
+| **Code Quality**     | ESLint 8 + Prettier 3     |
 
 ## Architecture
 
@@ -25,12 +25,12 @@ src/
 │       ├── hooks/        # Feature-specific hooks
 │       ├── routes.tsx    # Route definitions
 │       └── index.tsx
-├── components/       # Shared UI components (reusable across modules)
-├── hooks/           # Custom hooks (usePlayerContext, usePlayer, etc.)
-├── providers/       # React Context providers (AxiosProvider, QueryClientProvider)
+├── components/       # Shared UI components
+├── hooks/           # Custom hooks
+├── providers/       # React Context providers
 ├── routers/         # Global route configuration
 ├── types/           # TypeScript type definitions
-├── utils/           # Utility functions (image formatting, storage, etc.)
+├── utils/           # Utility functions
 ├── constants/       # Application constants
 ├── App.tsx          # Root component
 └── index.tsx        # Entry point
@@ -39,32 +39,26 @@ src/
 ## Quick Start
 
 ```bash
-yarn install      # Install dependencies
-yarn dev          # Start dev server (http://localhost:3000)
-yarn build        # Build for production
-yarn build:analyze # Analyze bundle size
-yarn lint					# Check code quality with ESLint
-yarn lint:fix			# Auto-fix ESLint issues
-yarn type-check		# TypeScript type checking
-yarn format				# Format code with Prettier
-yarn validate			# Run all checks (type-check → lint → build)
+yarn install          # Install dependencies
+yarn dev              # Start dev server (http://localhost:3000)
+yarn build            # Build for production
+yarn test             # Run tests
+yarn lint             # Check code quality
+yarn type-check       # TypeScript type checking
 ```
 
 ## Configuration
 
 Create `.env` in project root:
+
 ```env
 VITE_API_BASE_URL=https://api.example.com
 ```
 
-## Key Features
+## Credits
 
-- **Module-based organization**: Self-contained feature modules (Discover, Mine, Friend, DJRadio, Detail, Download)
-- **React Query integration**: Server state management with automatic caching & deduplication
-- **Performance optimized**: Bundle splitting, image optimization, code splitting
-- **Type-safe routing**: RouteBuilder for type-safe route generation
-- **Development tools**: ESLint + Prettier with pre-commit hooks
+API provided by [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 
 ---
 
-📊 View [Optimization Log](./optimization.md) for project optimization metrics (-42.6% bundle size, -79.7% image loading)
+📊 View [Optimization Log](./optimization.md) for project optimization metrics
