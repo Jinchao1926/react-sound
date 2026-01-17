@@ -1,6 +1,6 @@
 # React Sound
 
-A Netease Music-inspired web player built with React & TypeScript. Learning project exploring modern web development practices.
+A Netease Music clone with all pre-login features. Built with React & TypeScript for exploring modern web development practices.
 
 ## Tech Stack
 
