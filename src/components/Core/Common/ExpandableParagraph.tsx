@@ -158,7 +158,7 @@ export const ExpandableParagraph = forwardRef<
               m={0}
               {...rest}
             >
-              {line}
+              {line || '\u00A0'}
               {idx === contentLines.length - 1 &&
                 ellipsis &&
                 isTruncated &&

@@ -2,15 +2,27 @@ import styled from 'styled-components'
 
 import { Sprite } from '../Core'
 
-export const MVIcon = styled(Sprite).attrs({
+export const PlayMV = styled(Sprite).attrs({
   sprite: 'icon',
-  icon: 'mvIcon',
+  icon: 'playMV',
   component: 'span',
   title: '播放MV',
 })`
   display: inline-block;
   width: 23px;
   height: 17px;
+  flex-shrink: 0;
+`
+
+export const PlayMVRed = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'mvRed',
+  component: 'span',
+  title: '播放MV',
+})`
+  display: inline-block;
+  width: 21px;
+  height: 18px;
   flex-shrink: 0;
 `
 
@@ -36,6 +48,26 @@ export const SongBadge = styled(Sprite).attrs({
   width: 54px;
   height: 24px;
   flex-shrink: 0;
+`
+
+export const SongVIPBadge = styled(Sprite).attrs({
+  sprite: 'icon',
+  icon: 'badge',
+  component: 'span',
+  title: 'VIP单曲',
+})`
+  display: inline-flex;
+  align-items: center;
+  padding-left: 8px;
+  width: 67px;
+  height: 27px;
+  color: #fff;
+  font-size: 13px;
+  flex-shrink: 0;
+
+  &::after {
+    content: 'VIP单曲';
+  }
 `
 
 export const PlaylistBadge = styled(Sprite).attrs({

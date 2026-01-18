@@ -10,8 +10,10 @@ import downloadBgImg from './img/download_bg.webp'
 import footerImg from './img/footer.webp'
 import footer2Img from './img/footer2.webp'
 import headerImg from './img/header.png'
+import badgeIcon from './img/icon/badge.png'
 import fileImg from './img/icon/file.png'
 import pipImg from './img/icon/pip.png'
+import playRedImg from './img/icon/play_red.png'
 import policeImg from './img/icon/police.png'
 import wikiImg from './img/icon/wiki.png'
 import iconImg from './img/icon.png'
@@ -166,6 +168,13 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       collectSmall: { normal: '-297px -268px', hover: '-297px -288px' },
     },
   },
+  playRed: {
+    url: playRedImg,
+    icons: {
+      playRed: { normal: '0 0', size: 'auto 100%' },
+      addRed: { normal: '-78px 0', size: 'auto 100%' },
+    },
+  },
   // Icons
   icon: {
     url: iconImg,
@@ -207,6 +216,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       playlist: '0 -243px', // 歌单
       album: '0 -186px', // 专辑
       radio: '0 -1014px', // 电台
+      mvRed: '0 -18px',
     },
   },
   icon3: {
@@ -230,7 +240,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     url: icon4Img,
     icons: {
       header: { normal: '0 0', repeat: 'repeat-x' },
-      mvIcon: '0 -151px',
+      playMV: '0 -151px',
       play: { normal: '0 -103px', hover: '0 -128px' },
       share: { normal: '0 -195px', hover: '-20px -195px' },
       download: { normal: '-81px -174px', hover: '-104px -174px' },
@@ -244,6 +254,12 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       homepage: { normal: '0 -1156px', hover: '0 -1196px' },
       favorite: { normal: '0px -500px', hover: '0 -540px' },
       playMV: { normal: '-30px -135px', hover: '-30px -85px' },
+    },
+  },
+  badge: {
+    url: badgeIcon,
+    icons: {
+      badge: { normal: '0 0', size: '100% 100%' },
     },
   },
   police: {
@@ -365,7 +381,17 @@ export const SPRITE_VARIANTS: Record<string, string[]> = {
   footer: ['footer', 'footer2'],
   background: ['downloadBG', 'loginBG', 'loginBG2', 'categoryBG'],
   button: ['button', 'button2', 'button3'],
-  icon: ['icon', 'icon2', 'icon3', 'icon4', 'icon5', 'police', 'file', 'wiki'],
+  icon: [
+    'icon',
+    'icon2',
+    'icon3',
+    'icon4',
+    'icon5',
+    'badge',
+    'police',
+    'file',
+    'wiki',
+  ],
   playbar: ['playbar', 'pip'],
   cover: ['cover', 'coverMask'],
 }
