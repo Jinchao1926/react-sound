@@ -1,5 +1,7 @@
 import { type FC, useMemo } from 'react'
 
+import { Helmet } from 'react-helmet-async'
+
 import { Box, Flex, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
 import { CoverImage } from '@/components/CoverImage'
@@ -46,77 +48,91 @@ export const AlbumDetail: FC<{ albumId: number }> = ({ albumId }) => {
   if (!data) return null
 
   return (
-    <Box>
-      <Flex gap={53}>
-        <CoverImage
-          src={formatSizedImage(data.album.picUrl, 177)}
-          alt={data.album.name}
-          size={177}
-          coverSprite="cover"
-          coverIcon="albumXLarge"
-          coverWidth={209}
+    <>
+      <Helmet>
+        <title>
+          {data.album.name} - {data.album.artist.name} - 专辑 - React Sound
+        </title>
+        <meta
+          name="description"
+          content={
+            data.album.description ||
+            `${data.album.name} - ${data.album.artist.name}`
+          }
         />
+      </Helmet>
+      <Box>
+        <Flex gap={53}>
+          <CoverImage
+            src={formatSizedImage(data.album.picUrl, 177)}
+            alt={data.album.name}
+            size={177}
+            coverSprite="cover"
+            coverIcon="albumXLarge"
+            coverWidth={209}
+          />
 
-        <Box>
-          <Flex gap={10} mb={12}>
-            <AlbumBadge />
-            <Text fontSize={20}>{data.album.name}</Text>
-          </Flex>
-          <AlbumParagraph>
-            歌手：
-            <TextNavLink
-              to={routeBuilder.user(data.album.artist.id)}
-              color="#0c73c2"
-            >
-              {data.album.artist.name}
-            </TextNavLink>
-          </AlbumParagraph>
-          <AlbumParagraph>
-            发行时间：{formatYearMonthDay(data.album.publishTime)}
-          </AlbumParagraph>
-          <AlbumParagraph>发行公司：{data.album.company}</AlbumParagraph>
+          <Box>
+            <Flex gap={10} mb={12}>
+              <AlbumBadge />
+              <Text fontSize={20}>{data.album.name}</Text>
+            </Flex>
+            <AlbumParagraph>
+              歌手：
+              <TextNavLink
+                to={routeBuilder.user(data.album.artist.id)}
+                color="#0c73c2"
+              >
+                {data.album.artist.name}
+              </TextNavLink>
+            </AlbumParagraph>
+            <AlbumParagraph>
+              发行时间：{formatYearMonthDay(data.album.publishTime)}
+            </AlbumParagraph>
+            <AlbumParagraph>发行公司：{data.album.company}</AlbumParagraph>
 
-          <Box mt={20}>
-            <MediaOperationBar
-              counts={{
-                share: dynamic?.shareCount,
-                download: dynamic?.likedCount,
-                comment: dynamic?.commentCount,
-              }}
-              callbacks={{
-                onPlayClick: () => playTracks(data.songs),
-                onAddClick: () => addTracksToPlaylist(data.songs),
-              }}
-            />
+            <Box mt={20}>
+              <MediaOperationBar
+                counts={{
+                  share: dynamic?.shareCount,
+                  download: dynamic?.likedCount,
+                  comment: dynamic?.commentCount,
+                }}
+                callbacks={{
+                  onPlayClick: () => playTracks(data.songs),
+                  onAddClick: () => addTracksToPlaylist(data.songs),
+                }}
+              />
+            </Box>
           </Box>
+        </Flex>
+
+        <Box mt={20} mb={27}>
+          <AlbumHead3>专辑介绍：</AlbumHead3>
+          <ExpandableParagraph
+            maxChars={320}
+            mt={4}
+            lineHeight={24}
+            style={{ textIndent: '2em' }}
+          >
+            {descriptions}
+          </ExpandableParagraph>
         </Box>
-      </Flex>
 
-      <Box mt={20} mb={27}>
-        <AlbumHead3>专辑介绍：</AlbumHead3>
-        <ExpandableParagraph
-          maxChars={320}
-          mt={4}
-          lineHeight={24}
-          style={{ textIndent: '2em' }}
-        >
-          {descriptions}
-        </ExpandableParagraph>
+        <TrackCollection
+          dataSource={{
+            id: data.album.id,
+            name: data.album.name,
+            tracks: data.songs,
+            trackCount: data.songs.length,
+          }}
+          config={config}
+          callbacks={{
+            onPlayClick: (track) => playTrack(track),
+            onAddClick: (track) => addToPlaylist(track),
+          }}
+        />
       </Box>
-
-      <TrackCollection
-        dataSource={{
-          id: data.album.id,
-          name: data.album.name,
-          tracks: data.songs,
-          trackCount: data.songs.length,
-        }}
-        config={config}
-        callbacks={{
-          onPlayClick: (track) => playTrack(track),
-          onAddClick: (track) => addToPlaylist(track),
-        }}
-      />
-    </Box>
+    </>
   )
 }

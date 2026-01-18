@@ -1,5 +1,7 @@
 import { type FC } from 'react'
 
+import { Helmet } from 'react-helmet-async'
+
 import { Box, Flex, Image } from '@/components/Core'
 import { artistNavigations } from '@/constants/navigation'
 import { useArtistQuery } from '@/hooks/artist/useArtistsQuery'
@@ -23,37 +25,46 @@ export const ArtistHeader: FC<{ artistId: number }> = ({ artistId }) => {
   if (!artist) return null
 
   return (
-    <Box mt={-10} mb={20}>
-      <Flex alignItems="end" gap={10}>
-        <ArtistName>{artist.name}</ArtistName>
-        <ArtistAlias>{artist.alias?.join(';')}</ArtistAlias>
-      </Flex>
+    <>
+      <Helmet>
+        <title>
+          {artist.name}
+          {artist.alias && `(${artist.alias.join(';')})`} - 歌手 - React Sound
+        </title>
+        <meta name="description" content={artist.name} />
+      </Helmet>
+      <Box mt={-10} mb={20}>
+        <Flex alignItems="end" gap={10}>
+          <ArtistName>{artist.name}</ArtistName>
+          <ArtistAlias>{artist.alias?.join(';')}</ArtistAlias>
+        </Flex>
 
-      <Box position="relative" width={640} height={300}>
-        <Image
-          src={formatImage(artist.picUrl, 640, 300)}
-          alt={artist.name}
-          width={640}
-          height={300}
-        />
-        <ArtistCover />
-        <Actions>
-          <HomepageLink to={routeBuilder.user(artist.accountId)} />
-          <Favorite />
-        </Actions>
+        <Box position="relative" width={640} height={300}>
+          <Image
+            src={formatImage(artist.picUrl, 640, 300)}
+            alt={artist.name}
+            width={640}
+            height={300}
+          />
+          <ArtistCover />
+          <Actions>
+            <HomepageLink to={routeBuilder.user(artist.accountId)} />
+            <Favorite />
+          </Actions>
+        </Box>
+
+        <ArtistNavigationBar>
+          {artistNavigations.map((item) => (
+            <ArtistNavigationLink
+              key={item.title}
+              to={`${item.link}?id=${artistId}`}
+              end={item.link === '/artist'}
+            >
+              {item.title}
+            </ArtistNavigationLink>
+          ))}
+        </ArtistNavigationBar>
       </Box>
-
-      <ArtistNavigationBar>
-        {artistNavigations.map((item) => (
-          <ArtistNavigationLink
-            key={item.title}
-            to={`${item.link}?id=${artistId}`}
-            end={item.link === '/artist'}
-          >
-            {item.title}
-          </ArtistNavigationLink>
-        ))}
-      </ArtistNavigationBar>
-    </Box>
+    </>
   )
 }
