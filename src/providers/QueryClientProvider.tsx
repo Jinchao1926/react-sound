@@ -18,7 +18,7 @@ const defaultOptions: DefaultOptions = {
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
     retry: (failureCount, error) =>
-      failureCount < 3 &&
+      failureCount < 1 &&
       !(axios.isAxiosError(error) && error?.response?.status === 401),
     staleTime: 5 * 60 * 1000, // 5 mins
     gcTime: 30 * 60 * 1000, // 30 mins

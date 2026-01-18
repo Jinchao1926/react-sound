@@ -23,6 +23,7 @@ import icon4Img from './img/icon4.png'
 import icon5Img from './img/icon5.png'
 import loginBgImg from './img/login_bg.webp'
 import loginBg2Img from './img/login_bg2.webp'
+import logoImg from './img/logo.png'
 import playbarImg from './img/playbar.png'
 import progressImg from './img/progress.png'
 import radioImg from './img/radio_slider.png'
@@ -374,6 +375,13 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       selected: { normal: '0 0' },
     },
   },
+  // Logo
+  logo: {
+    url: logoImg,
+    icons: {
+      404: { normal: '0 -405px' },
+    },
+  },
 }
 
 // Variant group configuration
@@ -410,6 +418,7 @@ export type SpriteCategory =
   | 'cover'
   | 'sort'
   | 'selection'
+  | 'logo'
 
 export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   header: INTERNAL_SPRITE_CONFIG.header,
@@ -424,4 +433,5 @@ export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   cover: INTERNAL_SPRITE_CONFIG.cover,
   sort: INTERNAL_SPRITE_CONFIG.sort,
   selection: INTERNAL_SPRITE_CONFIG.selection,
+  logo: INTERNAL_SPRITE_CONFIG.logo,
 }
