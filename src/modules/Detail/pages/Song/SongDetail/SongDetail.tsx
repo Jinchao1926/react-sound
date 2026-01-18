@@ -2,14 +2,15 @@ import { type FC, useMemo, useRef } from 'react'
 
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
-import { ExternalLink, UserLink } from '@/components/Links'
+import { ExternalLink, MVLink, UserLink } from '@/components/Links'
 import { MediaOperationBar } from '@/components/MediaOperationBar'
-import { SongBadge } from '@/components/Shared/Badge'
+import { SongBadge, SongVIPBadge } from '@/components/Shared/Badge'
 import { useSongDetailQuery } from '@/hooks/song/useSongDetailQuery'
 import { useSongLyricQuery } from '@/hooks/song/useSongLyricQuery'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { routeBuilder } from '@/routers'
 import { formatSizedImage } from '@/utils/format/dataFormat'
+import { isVIPTrack } from '@/utils/track/trackUtils'
 
 import {
   OpenClientButton,
@@ -68,9 +69,12 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
       </Box>
 
       <Box width={414}>
-        <Flex align="center" gap={10} pb={8}>
-          <SongBadge />
-          <Text fontSize={24}>{song.name}</Text>
+        <Flex align="center" gap={8} pb={8}>
+          {isVIPTrack(song) ? <SongVIPBadge /> : <SongBadge />}
+          <Text fontSize={24} mr={4}>
+            {song.name}
+          </Text>
+          <MVLink mvID={song.mv} variant="detail" />
         </Flex>
 
         <SongLink>
@@ -86,6 +90,7 @@ export const SongDetail: FC<{ songId: number }> = ({ songId }) => {
 
         <Box mb={38}>
           <MediaOperationBar
+            isVIP={isVIPTrack(song)}
             callbacks={{
               onPlayClick: () => playTrack(song),
               onAddClick: () => addToPlaylist(song),

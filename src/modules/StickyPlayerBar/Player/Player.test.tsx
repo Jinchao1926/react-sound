@@ -301,7 +301,7 @@ describe('Player', () => {
       expect(audio).toBeDefined()
 
       const endEvent = new Event('ended')
-      audio.dispatchEvent(endEvent)
+      audio?.dispatchEvent(endEvent)
 
       await waitFor(() => {
         expect(mockSwitchTrack).toHaveBeenCalledWith(true)

@@ -1,6 +1,11 @@
 import { type FC } from 'react'
 
-import { AddBlueButton, PlayBlueButton } from './MediaOperationBar.styles'
+import {
+  AddBlueButton,
+  AddRedButton,
+  PlayBlueButton,
+  PlayRedButton,
+} from './MediaOperationBar.styles'
 import { Flex } from '../Core'
 import {
   CollectGreyButton,
@@ -10,6 +15,7 @@ import {
 } from '../Shared/Social'
 
 interface MediaOperationBarProps {
+  isVIP?: boolean
   counts?: {
     collect?: number
     share?: number
@@ -27,6 +33,7 @@ interface MediaOperationBarProps {
 }
 
 export const MediaOperationBar: FC<MediaOperationBarProps> = ({
+  isVIP = false,
   counts = {},
   callbacks = {},
 }: MediaOperationBarProps) => {
@@ -40,11 +47,15 @@ export const MediaOperationBar: FC<MediaOperationBarProps> = ({
     onCommentClick,
   } = callbacks
 
+  const playTitle = isVIP ? 'VIP尊享' : '播放'
+  const PlayButton = isVIP ? PlayRedButton : PlayBlueButton
+  const AddButton = isVIP ? AddRedButton : AddBlueButton
+
   return (
     <Flex align="center" gap={6}>
       <Flex>
-        <PlayBlueButton onClick={onPlayClick}>播放</PlayBlueButton>
-        <AddBlueButton onClick={onAddClick} />
+        <PlayButton onClick={onPlayClick}>{playTitle}</PlayButton>
+        <AddButton onClick={onAddClick} />
       </Flex>
 
       <CollectGreyButton count={collect} onClick={onCollectClick} />

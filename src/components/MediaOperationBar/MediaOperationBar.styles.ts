@@ -24,3 +24,28 @@ export const AddBlueButton = styled(Sprite).attrs({
   height: 31px;
   padding: 0;
 `
+
+export const PlayRedButton = styled(Sprite).attrs({
+  sprite: 'playRed',
+  icon: 'playRed',
+  component: 'button',
+})`
+  width: 78px;
+  height: 31px;
+  padding: 0 0 0 26px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  color: white;
+  text-align: center;
+`
+
+export const AddRedButton = styled(Sprite).attrs({
+  sprite: 'playRed',
+  icon: 'addRed',
+  component: 'button',
+})`
+  width: 31px;
+  height: 31px;
+  padding: 0;
+  background-size: auto 100%;
+`
