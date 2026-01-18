@@ -11,10 +11,11 @@ import {
   PlayButton,
   PrevButton,
 } from '@/components/Shared/Playbar'
+import { useToast } from '@/components/Toast/ToastContext'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 import { routeBuilder } from '@/routers'
 import { PLAY_MODE } from '@/types/player'
-import { getMusicUrl, formatSizedImage } from '@/utils/format/dataFormat'
+import { getTrackUrl, formatSizedImage } from '@/utils/format/dataFormat'
 import { formatTime } from '@/utils/format/timeFormat'
 import logger from '@/utils/logger'
 import { findLyricIndexByTime } from '@/utils/player/lyricUtils'
@@ -54,6 +55,8 @@ export const Player: FC = () => {
     changeLyricLineIndex,
   } = usePlayerContext()
 
+  const { show } = useToast()
+
   // 同步 ref 以避免闭包问题
   useEffect(() => {
     currentLyricLineIndexRef.current = currentLyricLineIndex
@@ -61,7 +64,7 @@ export const Player: FC = () => {
 
   const { songSrc, songDetailUrl, songAvatar, duration } = useMemo(() => {
     return {
-      songSrc: currentTrack ? getMusicUrl(currentTrack.id) : undefined,
+      songSrc: currentTrack ? getTrackUrl(currentTrack.id) : undefined,
       songDetailUrl: currentTrack ? routeBuilder.song(currentTrack.id) : '',
       songAvatar: currentTrack
         ? formatSizedImage(currentTrack.al.picUrl, 35)
@@ -110,12 +113,13 @@ export const Player: FC = () => {
           // Playback started successfully
         })
         .catch((e) => {
+          show('该资源为VIP专享，开通VIP畅听无阻')
           logger.error('Play music failed:', e)
         })
     } else {
       audioRef.current.pause()
     }
-  }, [songSrc, isPlaying])
+  }, [songSrc, isPlaying, show])
 
   // ========== Player Control Handlers ==========
   // Lyric Scroll - Using binary search

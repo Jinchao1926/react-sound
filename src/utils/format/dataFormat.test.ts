@@ -5,7 +5,7 @@ import {
   formatPlayCount,
   formatSizedImage,
   formatImage,
-  getMusicUrl,
+  getTrackUrl,
 } from './dataFormat'
 
 describe('dataFormat utils', () => {
@@ -84,18 +84,18 @@ describe('dataFormat utils', () => {
     })
   })
 
-  describe('getMusicUrl', () => {
-    it('should generate correct music URL', () => {
-      expect(getMusicUrl(12345)).toBe(
+  describe('getTrackUrl', () => {
+    it('should generate correct track URL', () => {
+      expect(getTrackUrl(12345)).toBe(
         'https://music.163.com/song/media/outer/url?id=12345.mp3'
       )
     })
 
     it('should handle different IDs', () => {
-      expect(getMusicUrl(1)).toBe(
+      expect(getTrackUrl(1)).toBe(
         'https://music.163.com/song/media/outer/url?id=1.mp3'
       )
-      expect(getMusicUrl(9999999)).toBe(
+      expect(getTrackUrl(9999999)).toBe(
         'https://music.163.com/song/media/outer/url?id=9999999.mp3'
       )
     })
