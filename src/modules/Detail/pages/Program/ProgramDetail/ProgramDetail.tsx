@@ -1,5 +1,7 @@
 import { type FC, useMemo } from 'react'
 
+import { Helmet } from 'react-helmet-async'
+
 import { Box, Flex, Strong, Text, TextNavLink } from '@/components/Core'
 import { ExpandableParagraph } from '@/components/Core/Common/ExpandableParagraph'
 import { CoverImage } from '@/components/CoverImage'
@@ -56,93 +58,104 @@ export const ProgramDetail: FC<{ programId: number }> = ({ programId }) => {
   if (!program) return null
 
   return (
-    <Box mt={10}>
-      <Flex gap={22}>
-        <CoverImage
-          src={formatSizedImage(program.coverUrl, 140)}
-          alt={program.name}
-          size={140}
-          bordered
+    <>
+      <Helmet>
+        <title>
+          {program.name} - {program.radio.name} - 电台节目 - React Sound
+        </title>
+        <meta
+          name="description"
+          content={program.description || program.name}
         />
-
-        <Box pt={18} flex={1}>
-          <Flex gap={10} mb={29}>
-            <ProgramBadge />
-            <Text fontSize={20}>{program.name}</Text>
-          </Flex>
-
-          {/* DJRadio */}
-          <Flex align="center" gap={8}>
-            <RadioIcon />
-            <TextNavLink
-              to={routeBuilder.radio(program.radio.id)}
-              fontSize={16}
-            >
-              {program.radio.name}
-            </TextNavLink>
-
-            <SubscribeButton>
-              <StarredIcon $starred={program.subscribed} />
-              {program.subscribed ? '已订阅' : '订阅'}
-              {`(${formatPlayCount(program.subscribedCount)})`}
-            </SubscribeButton>
-          </Flex>
-        </Box>
-      </Flex>
-
-      <Flex gap={26} mt={20} mb={25}>
-        <Flex gap={10} align="center">
-          <PlayBlueButton
-            title={`播放 ${formatMinuteSecond(program.duration, 'chinese')}`}
-            onClick={() => play(program.id)}
+      </Helmet>
+      <Box mt={10}>
+        <Flex gap={22}>
+          <CoverImage
+            src={formatSizedImage(program.coverUrl, 140)}
+            alt={program.name}
+            size={140}
+            bordered
           />
-          <LikeGreyButton count={program.likedCount} />
-          <CommentGreyButton count={program.commentCount} />
-          <ShareGreyButton count={program.shareCount} />
-          <DownloadGreyButton />
+
+          <Box pt={18} flex={1}>
+            <Flex gap={10} mb={29}>
+              <ProgramBadge />
+              <Text fontSize={20}>{program.name}</Text>
+            </Flex>
+
+            {/* DJRadio */}
+            <Flex align="center" gap={8}>
+              <RadioIcon />
+              <TextNavLink
+                to={routeBuilder.radio(program.radio.id)}
+                fontSize={16}
+              >
+                {program.radio.name}
+              </TextNavLink>
+
+              <SubscribeButton>
+                <StarredIcon $starred={program.subscribed} />
+                {program.subscribed ? '已订阅' : '订阅'}
+                {`(${formatPlayCount(program.subscribedCount)})`}
+              </SubscribeButton>
+            </Flex>
+          </Box>
         </Flex>
 
-        <ExternalLink id={program.id} type="program" underline={false} />
-      </Flex>
+        <Flex gap={26} mt={20} mb={25}>
+          <Flex gap={10} align="center">
+            <PlayBlueButton
+              title={`播放 ${formatMinuteSecond(program.duration, 'chinese')}`}
+              onClick={() => play(program.id)}
+            />
+            <LikeGreyButton count={program.likedCount} />
+            <CommentGreyButton count={program.commentCount} />
+            <ShareGreyButton count={program.shareCount} />
+            <DownloadGreyButton />
+          </Flex>
 
-      <Flex align="center" height={35}>
-        <RadioCategoryLink
-          category={{
-            id: program.radio.categoryId,
-            name: program.radio.category,
-          }}
-        />
-        <RadioName>{`${program.radio.name}  第${program.serialNum}期`}</RadioName>
-        <Text mx={18} color="#999">
-          {formatYearMonthDay(program.createTime)} 创建
-        </Text>
-        <Text color="#999">
-          播放：<Strong color="#c20c0c">{program.listenerCount}</Strong>次
-        </Text>
-      </Flex>
+          <ExternalLink id={program.id} type="program" underline={false} />
+        </Flex>
 
-      <Box mb={27}>
-        <ExpandableParagraph maxChars={320} lineHeight={23} m={0}>
-          {`介绍： ${program.description}`}
-        </ExpandableParagraph>
+        <Flex align="center" height={35}>
+          <RadioCategoryLink
+            category={{
+              id: program.radio.categoryId,
+              name: program.radio.category,
+            }}
+          />
+          <RadioName>{`${program.radio.name}  第${program.serialNum}期`}</RadioName>
+          <Text mx={18} color="#999">
+            {formatYearMonthDay(program.createTime)} 创建
+          </Text>
+          <Text color="#999">
+            播放：<Strong color="#c20c0c">{program.listenerCount}</Strong>次
+          </Text>
+        </Flex>
+
+        <Box mb={27}>
+          <ExpandableParagraph maxChars={320} lineHeight={23} m={0}>
+            {`介绍： ${program.description}`}
+          </ExpandableParagraph>
+        </Box>
+
+        {program.trackCount > 1 && (
+          <TrackCollection
+            dataSource={{
+              id: program.id,
+              name: program.name,
+              tracks: normalizeTracks(program.songs),
+              trackCount: program.trackCount,
+              playCount: program.listenerCount,
+            }}
+            config={config}
+            callbacks={{
+              onPlayClick: (track) => playTrack(track),
+              onAddClick: (track) => addToPlaylist(track),
+            }}
+          />
+        )}
       </Box>
-
-      {program.trackCount > 1 && (
-        <TrackCollection
-          dataSource={{
-            id: program.id,
-            name: program.name,
-            tracks: normalizeTracks(program.songs),
-            trackCount: program.trackCount,
-            playCount: program.listenerCount,
-          }}
-          config={config}
-          callbacks={{
-            onPlayClick: (track) => playTrack(track),
-            onAddClick: (track) => addToPlaylist(track),
-          }}
-        />
-      )}
-    </Box>
+    </>
   )
 }

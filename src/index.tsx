@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
 import { HashRouter } from 'react-router-dom'
 
 import { Toast } from '@/components/Toast'
@@ -19,16 +20,18 @@ if (!rootElement) {
 const root = createRoot(rootElement)
 
 root.render(
-  <ToastProvider>
-    <AxiosProvider>
-      <QueryClientProvider>
-        <HashRouter>
-          <PlayerProvider>
-            <App />
-          </PlayerProvider>
-        </HashRouter>
-      </QueryClientProvider>
-    </AxiosProvider>
-    <Toast />
-  </ToastProvider>
+  <HelmetProvider>
+    <ToastProvider>
+      <AxiosProvider>
+        <QueryClientProvider>
+          <HashRouter>
+            <PlayerProvider>
+              <App />
+            </PlayerProvider>
+          </HashRouter>
+        </QueryClientProvider>
+      </AxiosProvider>
+      <Toast />
+    </ToastProvider>
+  </HelmetProvider>
 )

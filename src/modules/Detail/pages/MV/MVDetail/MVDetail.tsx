@@ -1,5 +1,7 @@
 import { type FC } from 'react'
 
+import { Helmet } from 'react-helmet-async'
+
 import { Box, Flex, Text } from '@/components/Core'
 import { UserLink } from '@/components/Links'
 import { MVBadge } from '@/components/Shared/Badge'
@@ -20,21 +22,27 @@ export const MVDetail: FC<{ mv: MV }> = ({ mv }) => {
   const { data: dynamic } = useMVDynamicQuery(mv.id)
 
   return (
-    <Box mt={-10}>
-      <Flex gap={5} align="baseline" mb={8}>
-        <MVBadge />
-        <Text fontSize={24} lineHeight={32} mr={3} nowrap>
-          {mv.name}
-        </Text>
-        <UserLink users={mv.artists} color="#0c73c2" />
-      </Flex>
-      <MVVideo controls src={mvUrl?.url} />
+    <>
+      <Helmet>
+        <title>{mv.name}</title>
+        <meta name="description" content={mv.name} />
+      </Helmet>
+      <Box mt={-10}>
+        <Flex gap={5} align="baseline" mb={8}>
+          <MVBadge />
+          <Text fontSize={24} lineHeight={32} mr={3} nowrap>
+            {mv.name}
+          </Text>
+          <UserLink users={mv.artists} color="#0c73c2" />
+        </Flex>
+        <MVVideo controls src={mvUrl?.url} />
 
-      <Flex gap={10} mt={12}>
-        <LikeGreyButton count={dynamic?.likedCount} />
-        <CollectGreyButton count={mv.subCount} />
-        <ShareGreyButton count={mv.shareCount} />
-      </Flex>
-    </Box>
+        <Flex gap={10} mt={12}>
+          <LikeGreyButton count={dynamic?.likedCount} />
+          <CollectGreyButton count={mv.subCount} />
+          <ShareGreyButton count={mv.shareCount} />
+        </Flex>
+      </Box>
+    </>
   )
 }
