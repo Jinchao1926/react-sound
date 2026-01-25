@@ -22,9 +22,9 @@ export const UserLink: FC<UserLinkProps> = ({
   color,
 }) => {
   return (
-    <UserLinks nowrap block={block}>
+    <UserLinks nowrap $block={block}>
       {users.map((item, idx) => (
-        <Fragment key={item.id}>
+        <Fragment key={`${item.id}-${idx}`}>
           {idx > 0 && (space ? ' / ' : '/')}
           <TextNavLink
             to={routeBuilder.artist(item.id)}
