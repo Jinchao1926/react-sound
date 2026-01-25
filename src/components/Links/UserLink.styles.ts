@@ -3,13 +3,11 @@ import styled from 'styled-components'
 import { Text } from '../Core'
 
 interface UserLinksProps {
-  block?: boolean
+  $block?: boolean
 }
 
-export const UserLinks = styled(Text).withConfig({
-  shouldForwardProp: (prop) => prop !== ('block' as string),
-})<UserLinksProps>`
-  display: ${({ block }) => (block ? 'block' : 'inline-block')};
-  ${({ block }) => block && 'width: 100%;'}
+export const UserLinks = styled(Text)<UserLinksProps>`
+  display: ${({ $block }) => ($block ? 'block' : 'inline-block')};
+  ${({ $block }) => $block && 'width: 100%;'}
   flex-shrink: 0;
 `
