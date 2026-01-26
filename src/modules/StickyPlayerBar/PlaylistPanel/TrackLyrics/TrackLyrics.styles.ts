@@ -3,8 +3,17 @@ import styled from 'styled-components'
 export const TrackLyricsWrapper = styled.div`
   background-color: #1a1a1a;
   height: 260px;
-  overflow-y: auto;
   flex: 1;
+`
+
+export const TrackLyricsContent = styled.div`
+  width: 100%;
+  height: 220px;
+  box-sizing: border-box;
+  margin: 20px 0;
+  padding: 0 33px;
+
+  overflow-y: auto;
 
   ::-webkit-scrollbar {
     width: 6px;
@@ -18,12 +27,6 @@ export const TrackLyricsWrapper = styled.div`
     border: 1px solid #4f4f4f;
     border-radius: 5px;
   }
-`
-
-export const TrackLyricsContent = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  padding: 21px 33px 20px 33px;
 `
 
 export interface TrackLyricProps {
