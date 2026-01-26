@@ -26,8 +26,8 @@ import {
   PlayerTimeNow,
   SongCoverImage,
 } from './Player.styles'
-import { PlayerAction } from '../PlayerAction'
-import { ProgressBar } from '../ProgressBar'
+import { PlayerAction } from './PlayerAction'
+import { ProgressBar } from './ProgressBar'
 
 export const Player: FC = () => {
   // If dragging, do not update progress bar based on audio time

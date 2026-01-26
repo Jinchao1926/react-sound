@@ -9,7 +9,11 @@ import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { StickyPlayerBar } from '@/modules/StickyPlayerBar'
 import { routes } from '@/routers'
 
+import { useRouteChange } from './hooks/useRouteChange'
+
 export const App: FC = () => {
+  useRouteChange()
+
   return (
     <ErrorBoundary>
       <Helmet>
