@@ -333,7 +333,9 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       share: { normal: '0 0', hover: '0 -20px' },
       collect: { normal: '-24px 0', hover: '-24px -20px' },
       clear: { normal: '-51px 0', hover: '-51px -20px' },
+      download: { normal: '-57px -50px', hover: '-80px -50px' },
       close: { normal: '-195px 9px', hover: '-195px -21px' },
+      play: { normal: '-182px 0' },
     },
   },
   playlistBG: {

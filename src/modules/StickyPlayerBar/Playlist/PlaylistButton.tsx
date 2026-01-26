@@ -7,11 +7,13 @@ import { PlaylistButtonWrapper, PlaylistText } from './PlaylistButton.styles'
 export interface PlaylistButtonProps {
   type?: 'collect' | 'clear'
   className?: string
+  onClick?: () => void
 }
 
 export const PlaylistButton: FC<PlaylistButtonProps> = ({
   type = 'collect',
   className,
+  onClick,
 }) => {
   const buttonRef = useRef<HTMLButtonElement>(null)
 
@@ -26,6 +28,7 @@ export const PlaylistButton: FC<PlaylistButtonProps> = ({
   return (
     <PlaylistButtonWrapper
       className={className}
+      onClick={onClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

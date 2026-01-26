@@ -139,7 +139,7 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
       return {
         ...prev,
         playlist: [],
-        currentSongIndex: undefined,
+        // currentSongIndex: undefined,
       }
     })
   }, [])
