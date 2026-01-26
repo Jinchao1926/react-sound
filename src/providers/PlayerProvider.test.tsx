@@ -41,7 +41,8 @@ describe('PlayerProvider', () => {
 
       expect(result.current.state.playlist).toEqual([])
       expect(result.current.state.playMode).toBe('loop')
-      expect(result.current.state.isPinned).toBe(false)
+      expect(result.current.state.isPlayerPinned).toBe(false)
+      expect(result.current.state.showPlaylistPannel).toBe(false)
       expect(result.current.state.isPlaying).toBe(false)
       expect(result.current.state.currentTrack).toBeUndefined()
       expect(result.current.state.currentTrackIndex).toBeUndefined()
@@ -239,22 +240,55 @@ describe('PlayerProvider', () => {
   })
 
   describe('UI Control', () => {
-    it('should toggle pinned state', () => {
+    it('should toggle player pinned state', () => {
       const { result } = renderHook(() => usePlayerContext(), { wrapper })
 
-      expect(result.current.state.isPinned).toBe(false)
+      expect(result.current.state.isPlayerPinned).toBe(false)
 
       act(() => {
-        result.current.togglePinned()
+        result.current.togglePlayerPinned()
       })
 
-      expect(result.current.state.isPinned).toBe(true)
+      expect(result.current.state.isPlayerPinned).toBe(true)
 
       act(() => {
-        result.current.togglePinned()
+        result.current.togglePlayerPinned()
       })
 
-      expect(result.current.state.isPinned).toBe(false)
+      expect(result.current.state.isPlayerPinned).toBe(false)
+    })
+
+    it('should toggle playlist pannel showed state', () => {
+      const { result } = renderHook(() => usePlayerContext(), { wrapper })
+
+      expect(result.current.state.showPlaylistPannel).toBe(false)
+
+      act(() => {
+        result.current.togglePlaylistPannel()
+      })
+
+      expect(result.current.state.showPlaylistPannel).toBe(true)
+
+      act(() => {
+        result.current.togglePlaylistPannel()
+      })
+
+      expect(result.current.state.showPlaylistPannel).toBe(false)
+    })
+
+    it('should set playlist pannel showed state false', () => {
+      const { result } = renderHook(() => usePlayerContext(), { wrapper })
+      act(() => {
+        result.current.togglePlaylistPannel()
+      })
+
+      expect(result.current.state.showPlaylistPannel).toBe(true)
+
+      act(() => {
+        result.current.closePlaylistPannel()
+      })
+
+      expect(result.current.state.showPlaylistPannel).toBe(false)
     })
   })
 

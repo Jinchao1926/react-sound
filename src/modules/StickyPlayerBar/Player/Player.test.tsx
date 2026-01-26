@@ -93,8 +93,8 @@ describe('Player', () => {
   const mockPlayerState = {
     playlist: [mockTrack],
     playMode: PLAY_MODE.LOOP,
-    isPinned: false,
-    showPlaylist: false,
+    isPlayerPinned: false,
+    showPlaylistPannel: false,
     isPlaying: false,
     currentTrack: mockTrack,
     currentTrackIndex: 0,
@@ -114,8 +114,9 @@ describe('Player', () => {
       removeFromPlaylist: vi.fn(),
       clearPlaylist: vi.fn(),
       switchPlayMode: vi.fn(),
-      togglePinned: vi.fn(),
-      togglePlaylist: vi.fn(),
+      togglePlayerPinned: vi.fn(),
+      togglePlaylistPannel: vi.fn(),
+      closePlaylistPannel: vi.fn(),
       playTrack: vi.fn(),
       playTracks: vi.fn(),
     })

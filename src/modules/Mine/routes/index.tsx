@@ -9,3 +9,7 @@ export const mineRoutes: RouteObject = {
   path: '/mine',
   element: <Mine />,
 }
+
+export const mineRouteBuilder = {
+  mine: () => '/mine',
+}
