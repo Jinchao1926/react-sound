@@ -20,6 +20,7 @@ interface PlayerState {
   playlist: Track[]
   playMode: PlayModeType
   isPinned: boolean
+  showPlaylist: boolean
   isPlaying: boolean
   currentTrack?: Track
   currentTrackIndex?: number
@@ -38,6 +39,7 @@ interface PlayerContextType {
   switchPlayMode: () => void
   // Player UI Control
   togglePinned: () => void
+  togglePlaylist: () => void
   // Playback Control
   playTrack: (track: Track) => void
   playTracks: (tracks: Track[], startIndex?: number) => void
@@ -65,6 +67,7 @@ const getInitialState = (): PlayerState => {
     playlist,
     playMode,
     isPinned,
+    showPlaylist: false,
     isPlaying: false,
     currentTrack,
     currentTrackIndex,
@@ -293,6 +296,13 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
     })
   }, [])
 
+  const togglePlaylist = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      showPlaylist: !prev.showPlaylist,
+    }))
+  }, [])
+
   // Lyric
   const changeLyricLineIndex = useCallback((index: number) => {
     setState((prev) => {
@@ -316,6 +326,7 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
     clearPlaylist,
     switchPlayMode,
     togglePinned,
+    togglePlaylist,
     playTrack,
     playTracks,
     switchTrack,

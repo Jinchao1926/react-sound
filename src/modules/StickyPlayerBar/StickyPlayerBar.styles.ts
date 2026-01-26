@@ -41,6 +41,7 @@ export const LockBarButton = styled(Sprite).attrs({
   right: 15px;
   width: 52px;
   height: 20px;
+  z-index: 90;
 
   &:focus-visible {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
