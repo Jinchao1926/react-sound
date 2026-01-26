@@ -78,9 +78,10 @@ const getInitialState = (): PlayerState => {
 }
 
 export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
-  const lyricTrackIdRef = useRef<number | undefined>(undefined)
+  const initState = getInitialState()
+  const [state, setState] = useState<PlayerState>(initState)
 
-  const [state, setState] = useState<PlayerState>(getInitialState)
+  const lyricTrackIdRef = useRef<number | undefined>(initState.currentTrack?.id)
   const { data: lyricData } = useSongLyricQuery(lyricTrackIdRef.current)
 
   useEffect(() => {

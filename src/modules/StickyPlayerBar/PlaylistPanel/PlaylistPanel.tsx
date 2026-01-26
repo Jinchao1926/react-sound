@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { useMemo, type FC } from 'react'
 
 import { Flex } from '@/components/Core'
 import { usePlayerContext } from '@/providers/PlayerProvider'
@@ -23,6 +23,14 @@ export const PlaylistPanel: FC = () => {
     closePlaylistPannel,
   } = usePlayerContext()
 
+  const trackName = useMemo(() => {
+    if (currentTrack) return currentTrack.name
+
+    if (playlist.length > 0) return playlist[0].name
+
+    return ''
+  }, [currentTrack, playlist])
+
   return (
     <PlaylistWrapper>
       <PlaylistHeader>
@@ -33,7 +41,7 @@ export const PlaylistPanel: FC = () => {
         <ClearPlaylist onClick={clearPlaylist} />
 
         {/* Current Track */}
-        <CurrentTrackTitle>{currentTrack?.name || ''}</CurrentTrackTitle>
+        <CurrentTrackTitle>{trackName}</CurrentTrackTitle>
         <ClosePlaylistButton onClick={closePlaylistPannel} />
       </PlaylistHeader>
 

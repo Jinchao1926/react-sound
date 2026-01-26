@@ -52,7 +52,11 @@ export const PlaylistTracks: FC = () => {
           <tbody>
             {playlist.map((track, index) => (
               <PlaylistTrackTR key={track.id} onClick={() => playTrack(track)}>
-                <td>{track.id === currentTrack?.id && <PlayingIcon />}</td>
+                <td>
+                  {currentTrack
+                    ? track.id === currentTrack?.id
+                    : index === 0 && <PlayingIcon />}
+                </td>
                 <PlaylistTrackTD>{track.name}</PlaylistTrackTD>
                 {/* Actions */}
                 <td>
