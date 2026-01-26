@@ -32,7 +32,20 @@ export const ClearButton = styled(Sprite).attrs({
   sprite: 'playlist',
   icon: 'clear',
   component: 'button',
-  title: '清除',
+  title: '删除',
+})`
+  display: inline-block;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+`
+
+export const DownloadButton = styled(Sprite).attrs({
+  sprite: 'playlist',
+  icon: 'download',
+  component: 'button',
+  title: '下载',
 })`
   display: inline-block;
   padding: 0;

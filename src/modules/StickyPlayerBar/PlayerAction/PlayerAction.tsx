@@ -17,7 +17,7 @@ export const PlayerAction: FC = () => {
   const {
     state: { playlist, playMode },
     switchPlayMode,
-    togglePlaylist,
+    togglePlaylistPannel,
   } = usePlayerContext()
 
   return (
@@ -30,7 +30,7 @@ export const PlayerAction: FC = () => {
       <PlayControl>
         <VolumeButton />
         <PlayModeButton playMode={playMode} onClick={switchPlayMode} />
-        <PlaylistCountButton onClick={togglePlaylist}>
+        <PlaylistCountButton onClick={togglePlaylistPannel}>
           {playlist.length}
         </PlaylistCountButton>
       </PlayControl>

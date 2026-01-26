@@ -4,7 +4,7 @@ import { detailRouteBuilder, detailRoutes } from '@/modules/Detail/routes'
 import { discoverRouteBuilder, discoverRoutes } from '@/modules/Discover/routes'
 import { downloadRoutes } from '@/modules/Download/routes'
 import { friendRoutes } from '@/modules/Friend/routes'
-import { mineRoutes } from '@/modules/Mine/routes'
+import { mineRoutes, mineRouteBuilder } from '@/modules/Mine/routes'
 
 import type { RouteObject } from 'react-router-dom'
 
@@ -23,4 +23,5 @@ export const routes: RouteObject[] = [
 export const routeBuilder = {
   ...discoverRouteBuilder,
   ...detailRouteBuilder,
+  ...mineRouteBuilder,
 }

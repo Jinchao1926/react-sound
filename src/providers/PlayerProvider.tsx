@@ -19,8 +19,8 @@ import { PlayerStorage } from '../utils/storages/playerStorage'
 interface PlayerState {
   playlist: Track[]
   playMode: PlayModeType
-  isPinned: boolean
-  showPlaylist: boolean
+  isPlayerPinned: boolean
+  showPlaylistPannel: boolean
   isPlaying: boolean
   currentTrack?: Track
   currentTrackIndex?: number
@@ -38,8 +38,9 @@ interface PlayerContextType {
   // Play Mode
   switchPlayMode: () => void
   // Player UI Control
-  togglePinned: () => void
-  togglePlaylist: () => void
+  togglePlayerPinned: () => void
+  togglePlaylistPannel: () => void
+  closePlaylistPannel: () => void
   // Playback Control
   playTrack: (track: Track) => void
   playTracks: (tracks: Track[], startIndex?: number) => void
@@ -56,7 +57,7 @@ const getInitialState = (): PlayerState => {
     PlayerStorage
   const playlist = getPlaylist()
   const playMode = getPlayMode()
-  const isPinned = getPlayerPinned()
+  const isPlayerPinned = getPlayerPinned()
   const currentTrackIndex = getCurrentSongIndex()
   const currentTrack =
     currentTrackIndex !== undefined && currentTrackIndex < playlist.length
@@ -66,8 +67,8 @@ const getInitialState = (): PlayerState => {
   return {
     playlist,
     playMode,
-    isPinned,
-    showPlaylist: false,
+    isPlayerPinned,
+    showPlaylistPannel: false,
     isPlaying: false,
     currentTrack,
     currentTrackIndex,
@@ -139,7 +140,7 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
       return {
         ...prev,
         playlist: [],
-        currentSongIndex: undefined,
+        // currentSongIndex: undefined,
       }
     })
   }, [])
@@ -284,22 +285,29 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [])
 
   // Player UI Control
-  const togglePinned = useCallback(() => {
+  const togglePlayerPinned = useCallback(() => {
     setState((prev) => {
-      const isPinned = !prev.isPinned
-      PlayerStorage.setPlayerPinned(isPinned)
+      const isPlayerPinned = !prev.isPlayerPinned
+      PlayerStorage.setPlayerPinned(isPlayerPinned)
 
       return {
         ...prev,
-        isPinned,
+        isPlayerPinned,
       }
     })
   }, [])
 
-  const togglePlaylist = useCallback(() => {
+  const togglePlaylistPannel = useCallback(() => {
     setState((prev) => ({
       ...prev,
-      showPlaylist: !prev.showPlaylist,
+      showPlaylistPannel: !prev.showPlaylistPannel,
+    }))
+  }, [])
+
+  const closePlaylistPannel = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      showPlaylistPannel: false,
     }))
   }, [])
 
@@ -325,8 +333,9 @@ export const PlayerProvider: FC<PropsWithChildren> = ({ children }) => {
     removeFromPlaylist,
     clearPlaylist,
     switchPlayMode,
-    togglePinned,
-    togglePlaylist,
+    togglePlayerPinned,
+    togglePlaylistPannel,
+    closePlaylistPannel,
     playTrack,
     playTracks,
     switchTrack,
