@@ -25,6 +25,8 @@ import loginBgImg from './img/login_bg.webp'
 import loginBg2Img from './img/login_bg2.webp'
 import logoImg from './img/logo.png'
 import playbarImg from './img/playbar.png'
+import playlistImg from './img/playlist.png'
+import playlistBGImg from './img/playlist_bg.png'
 import progressImg from './img/progress.png'
 import radioImg from './img/radio_slider.png'
 import selectionImg from './img/selection.png'
@@ -324,6 +326,22 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       cur: { normal: 'left -66px' },
     },
   },
+  // Playlist
+  playlist: {
+    url: playlistImg,
+    icons: {
+      share: { normal: '0 0', hover: '0 -20px' },
+      collect: { normal: '-24px 0', hover: '-24px -20px' },
+      clear: { normal: '-51px 0', hover: '-51px -20px' },
+      close: { normal: '-195px 9px', hover: '-195px -21px' },
+    },
+  },
+  playlistBG: {
+    url: playlistBGImg,
+    icons: {
+      bg: { normal: '0 0' },
+    },
+  },
   // Radio
   radio: {
     url: radioImg,
@@ -402,6 +420,7 @@ export const SPRITE_VARIANTS: Record<string, string[]> = {
   ],
   playbar: ['playbar', 'pip'],
   cover: ['cover', 'coverMask'],
+  playlist: ['playlist', 'playlistBG'],
 }
 
 // Public API - Export types for external use
@@ -414,6 +433,7 @@ export type SpriteCategory =
   | 'icon'
   | 'playbar'
   | 'progress'
+  | 'playlist'
   | 'radio'
   | 'cover'
   | 'sort'
@@ -429,6 +449,7 @@ export const SPRITE_CONFIG: Record<SpriteCategory, SpriteConfig> = {
   icon: INTERNAL_SPRITE_CONFIG.icon,
   playbar: INTERNAL_SPRITE_CONFIG.playbar,
   progress: INTERNAL_SPRITE_CONFIG.progress,
+  playlist: INTERNAL_SPRITE_CONFIG.playlist,
   radio: INTERNAL_SPRITE_CONFIG.radio,
   cover: INTERNAL_SPRITE_CONFIG.cover,
   sort: INTERNAL_SPRITE_CONFIG.sort,

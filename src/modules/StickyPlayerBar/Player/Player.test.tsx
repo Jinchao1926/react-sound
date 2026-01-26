@@ -94,6 +94,7 @@ describe('Player', () => {
     playlist: [mockTrack],
     playMode: PLAY_MODE.LOOP,
     isPinned: false,
+    showPlaylist: false,
     isPlaying: false,
     currentTrack: mockTrack,
     currentTrackIndex: 0,
@@ -114,6 +115,7 @@ describe('Player', () => {
       clearPlaylist: vi.fn(),
       switchPlayMode: vi.fn(),
       togglePinned: vi.fn(),
+      togglePlaylist: vi.fn(),
       playTrack: vi.fn(),
       playTracks: vi.fn(),
     })

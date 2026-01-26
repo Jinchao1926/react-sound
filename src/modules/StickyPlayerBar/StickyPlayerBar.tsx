@@ -2,6 +2,7 @@ import { type FC, useRef, useEffect, useCallback } from 'react'
 
 import { usePlayerContext } from '@/providers/PlayerProvider'
 
+import { Playlist } from './Playlist/Playlist'
 import {
   LockBarButton,
   LockIcon,
@@ -11,7 +12,7 @@ import {
 
 export const StickyPlayerBar: FC = () => {
   const {
-    state: { isPinned },
+    state: { isPinned, showPlaylist },
     togglePinned,
   } = usePlayerContext()
 
@@ -53,6 +54,7 @@ export const StickyPlayerBar: FC = () => {
       onMouseLeave={hidePlayer}
       data-pinned={isPinned}
     >
+      {showPlaylist && <Playlist />}
       <Player />
 
       <LockBarButton
