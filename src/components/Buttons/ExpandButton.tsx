@@ -11,7 +11,7 @@ export const ExpandButton: FC<ExpandButtonProps> = ({ expanded, onClick }) => {
   return (
     <ExpandButtonWrapper onClick={onClick}>
       {expanded ? '展开' : '收起'}
-      <ExpandIcon expanded={expanded} />
+      <ExpandIcon $expanded={expanded} />
     </ExpandButtonWrapper>
   )
 }

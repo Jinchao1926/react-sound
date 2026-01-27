@@ -20,7 +20,6 @@ import iconImg from './img/icon.png'
 import icon2Img from './img/icon2.png'
 import icon3Img from './img/icon3.png'
 import icon4Img from './img/icon4.png'
-import icon5Img from './img/icon5.png'
 import loginBgImg from './img/login_bg.webp'
 import loginBg2Img from './img/login_bg2.webp'
 import logoImg from './img/logo.png'
@@ -188,6 +187,9 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       progressDot: { normal: '0 -250px', hover: '0 -280px' },
       headset: '0 -24px',
       playInPanel: { normal: '0 0', hover: '0 -60px' },
+      homepage: { normal: '0 -1156px', hover: '0 -1196px' },
+      favorite: { normal: '0px -500px', hover: '0 -540px' },
+      playMV: { normal: '-30px -135px', hover: '-30px -85px' },
     },
   },
   icon2: {
@@ -251,14 +253,6 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       rankingProgress: '0 -304px',
     },
   },
-  icon5: {
-    url: icon5Img,
-    icons: {
-      homepage: { normal: '0 -1156px', hover: '0 -1196px' },
-      favorite: { normal: '0px -500px', hover: '0 -540px' },
-      playMV: { normal: '-30px -135px', hover: '-30px -85px' },
-    },
-  },
   badge: {
     url: badgeIcon,
     icons: {
@@ -295,6 +289,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
       bar: { normal: '0 0', repeat: 'repeat-x' },
       cover: '0 -80px',
       // Play
+      mv: { normal: '0 -57px', hover: '-20px -57px' },
       pause: { normal: '0 -165px', hover: '-40px -165px' },
       play: { normal: '0 -204px', hover: '-40px -204px' },
       prev: { normal: '0 -130px', hover: '-30px -130px' },

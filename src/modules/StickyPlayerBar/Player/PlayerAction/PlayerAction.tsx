@@ -29,7 +29,7 @@ export const PlayerAction: FC = () => {
       </Flex>
       <PlayControl>
         <VolumeButton />
-        <PlayModeButton playMode={playMode} onClick={switchPlayMode} />
+        <PlayModeButton $playMode={playMode} onClick={switchPlayMode} />
         <PlaylistCountButton onClick={togglePlaylistPannel}>
           {playlist.length}
         </PlaylistCountButton>
