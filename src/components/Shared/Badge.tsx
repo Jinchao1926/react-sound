@@ -12,6 +12,7 @@ export const PlayMV = styled(Sprite).attrs({
   width: 23px;
   height: 17px;
   flex-shrink: 0;
+  margin: 2px 0 0 2px;
 `
 
 export const PlayMVRed = styled(Sprite).attrs({

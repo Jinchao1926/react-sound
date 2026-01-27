@@ -1,24 +1,29 @@
 import { type FC } from 'react'
 
-import { NavLink } from 'react-router-dom'
-
 import { routeBuilder } from '@/routers'
 
+import { StyledMVLink } from './MVLink.styles'
 import { PlayMV, PlayMVRed } from '../Shared/Badge'
+import { PlaybarMV } from '../Shared/Playbar'
 
 interface MVLinkProps {
   mvID?: number
-  variant?: 'list' | 'detail'
+  variant?: 'playbar' | 'list' | 'detail'
 }
 
 export const MVLink: FC<MVLinkProps> = ({ mvID, variant = 'list' }) => {
   if (!mvID || mvID === 0) return null
 
-  const MVIcon = variant === 'detail' ? PlayMVRed : PlayMV
+  const MVIcon =
+    variant === 'playbar'
+      ? PlaybarMV
+      : variant === 'detail'
+        ? PlayMVRed
+        : PlayMV
 
   return (
-    <NavLink to={routeBuilder.mv(mvID)}>
-      <MVIcon mt={2} ml={2} />
-    </NavLink>
+    <StyledMVLink to={routeBuilder.mv(mvID)}>
+      <MVIcon />
+    </StyledMVLink>
   )
 }

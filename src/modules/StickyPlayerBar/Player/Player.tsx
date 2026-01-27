@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import defaultAlbumImg from '@/assets/img/default_album.png'
 import { Box, Flex, FlexContainer, Text, TextNavLink } from '@/components/Core'
-import { UserLink } from '@/components/Links'
+import { MVLink, UserLink } from '@/components/Links'
 import {
   NextButton,
   Playbar,
@@ -212,7 +212,10 @@ export const Player: FC = () => {
       <FlexContainer height={47}>
         <Flex align="center" width={137}>
           <PrevButton onClick={() => switchTrack(false)} />
-          <PlayButton isPlaying={isPlaying} onClick={() => togglePlayState()} />
+          <PlayButton
+            $isPlaying={isPlaying}
+            onClick={() => togglePlayState()}
+          />
           <NextButton onClick={() => switchTrack(true)} />
         </Flex>
         <Flex align="center" flex={1} gap={15}>
@@ -224,15 +227,19 @@ export const Player: FC = () => {
           />
           <Box width={581} height="100%">
             {/* Music Name and Artist */}
-            <Flex gap={15} height={28} lineHeight={28}>
-              <TextNavLink
-                to={songDetailUrl}
-                color="#e8e8e8"
-                maxWidth={300}
-                nowrap
-              >
-                {currentTrack?.name}
-              </TextNavLink>
+            <Flex gap={15} align="center" height={28} lineHeight={28}>
+              <Flex>
+                <TextNavLink
+                  to={songDetailUrl}
+                  color="#e8e8e8"
+                  maxWidth={300}
+                  nowrap
+                >
+                  {currentTrack?.name}
+                </TextNavLink>
+                <MVLink mvID={currentTrack?.mv} variant="playbar" />
+              </Flex>
+
               {currentTrack?.ar && (
                 <UserLink users={currentTrack?.ar} color="#9b9b9b" />
               )}
