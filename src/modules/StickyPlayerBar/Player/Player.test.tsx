@@ -4,6 +4,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 
+import { ToastProvider } from '@/components/Toast/ToastContext'
 import { mockTrack } from '@/test/mocks'
 import type { LyricLine } from '@/types/lyric'
 import { PLAY_MODE } from '@/types/player'
@@ -17,7 +18,9 @@ vi.mock('@/providers/PlayerProvider', () => ({
 
 vi.mock('@/utils/format/dataFormat', () => ({
   getMusicUrl: vi.fn(() => 'https://example.com/music.mp3'),
+  getTrackUrl: vi.fn(() => 'https://example.com/music.mp3'),
   formatSizedImage: vi.fn((url: string) => url),
+  roundToDecimal: vi.fn((num: number) => Math.round(num * 2) / 2),
 }))
 
 vi.mock('@/utils/format/timeFormat', () => ({
@@ -54,11 +57,11 @@ vi.mock('@/utils/logger', () => ({
   },
 }))
 
-vi.mock('../PlayerAction', () => ({
+vi.mock('./PlayerAction', () => ({
   PlayerAction: () => <div data-testid="player-action" />,
 }))
 
-vi.mock('../ProgressBar', () => ({
+vi.mock('./ProgressBar', () => ({
   ProgressBar: ({
     onChange,
     onAfterChange,
@@ -80,9 +83,13 @@ vi.mock('../ProgressBar', () => ({
 
 const { usePlayerContext } = await import('@/providers/PlayerProvider')
 
-// Wrapper component to provide router context
+// Wrapper component to provide router and toast context
 const renderWithRouter = (ui: ReactNode) => {
-  return render(<BrowserRouter>{ui}</BrowserRouter>)
+  return render(
+    <BrowserRouter>
+      <ToastProvider>{ui}</ToastProvider>
+    </BrowserRouter>
+  )
 }
 
 describe('Player', () => {
@@ -193,7 +200,9 @@ describe('Player', () => {
 
       rerender(
         <BrowserRouter>
-          <Player />
+          <ToastProvider>
+            <Player />
+          </ToastProvider>
         </BrowserRouter>
       )
 
@@ -226,7 +235,9 @@ describe('Player', () => {
 
       rerender(
         <BrowserRouter>
-          <Player />
+          <ToastProvider>
+            <Player />
+          </ToastProvider>
         </BrowserRouter>
       )
 
