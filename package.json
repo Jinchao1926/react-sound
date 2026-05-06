@@ -48,6 +48,10 @@
       "prettier --write"
     ]
   },
+  "resolutions": {
+    "**/micromatch/picomatch": "2.3.2",
+    "**/babel-plugin-styled-components/picomatch": "2.3.2"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -69,8 +73,8 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^14.6.1",
-    "@typescript-eslint/eslint-plugin": "6.21.0",
-    "@typescript-eslint/parser": "6.21.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.2.0",
     "@vitest/coverage-v8": "^4.0.16",
     "@vitest/ui": "^4.0.16",
@@ -85,7 +89,7 @@
     "happy-dom": "^20.8.9",
     "husky": "^8.0.0",
     "less": "^4.2.0",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "^17.0.2",
     "prettier": "^3.2.5",
     "rollup-plugin-visualizer": "^6.0.5",
     "sharp": "^0.34.5",
