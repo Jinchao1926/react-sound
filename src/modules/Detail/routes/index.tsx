@@ -13,6 +13,7 @@ const Album = lazy(() => import('../pages/Album'))
 const DJRadio = lazy(() => import('../pages/DJRadio'))
 const Program = lazy(() => import('../pages/Program'))
 const MV = lazy(() => import('../pages/MV'))
+const User = lazy(() => import('../pages/User'))
 
 export const detailRoutes: RouteObject = {
   path: '/',
@@ -45,7 +46,7 @@ export const detailRoutes: RouteObject = {
     artistRoutes,
     {
       path: detailRoutePath.user,
-      element: <Song />,
+      element: <User />,
     },
   ],
 }
