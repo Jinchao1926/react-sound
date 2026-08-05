@@ -1,6 +1,6 @@
 import { type FC, useCallback, useState, useEffect, useRef } from 'react'
 
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
 
 import { SpriteGreyButton } from '@/components/Buttons'
 import { Box, Flex, Text } from '@/components/Core'

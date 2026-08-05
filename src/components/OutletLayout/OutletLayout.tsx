@@ -1,6 +1,6 @@
 import { type FC, Suspense, type ReactNode, type ElementType } from 'react'
 
-import { Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router'
 
 import { DiscoverMenu } from './DiscoverMenu'
 

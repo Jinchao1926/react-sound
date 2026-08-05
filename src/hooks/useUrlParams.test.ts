@@ -1,12 +1,12 @@
 import { renderHook } from '@testing-library/react'
-import * as ReactRouterDom from 'react-router-dom'
+import * as ReactRouterDom from 'react-router'
 import { describe, it, expect, vi } from 'vitest'
 
 import { useUrlParams } from './useUrlParams'
 
-// Mock react-router-dom
-vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom')
+// Mock react-router
+vi.mock('react-router', async () => {
+  const actual = await vi.importActual('react-router')
   return {
     ...actual,
     useLocation: vi.fn(),

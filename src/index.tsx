@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import { HelmetProvider } from 'react-helmet-async'
-import { HashRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router'
 
 import { Toast } from '@/components/Toast'
 import { ToastProvider } from '@/components/Toast/ToastContext'

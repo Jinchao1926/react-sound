@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 
 import { ToastProvider } from '@/components/Toast/ToastContext'
