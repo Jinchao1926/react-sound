@@ -3,7 +3,7 @@ import { type FC } from 'react'
 import { Box, Flex } from '@/components/Core'
 import { CollectGreyButton } from '@/components/Shared/Social'
 import { TrackCollection } from '@/components/TrackCollection'
-import { useArtistSongsQuery } from '@/hooks/artist/useArtistsQuery'
+import { useArtistTopSongsQuery } from '@/hooks/artist/useArtistTopSongsQuery'
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 import { usePlayerContext } from '@/providers/PlayerProvider'
 
@@ -11,7 +11,7 @@ import { AddBlueButton, PlayBlueButton } from './ArtistSongs.styles'
 
 export const ArtistSongs: FC = () => {
   const { id: artistId } = useQueryParamId()
-  const { data: songs } = useArtistSongsQuery(artistId)
+  const { data: songs } = useArtistTopSongsQuery(artistId)
 
   const { playTrack, playTracks, addToPlaylist, addTracksToPlaylist } =
     usePlayerContext()

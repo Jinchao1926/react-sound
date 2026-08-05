@@ -5,6 +5,7 @@ import {
   formatPlayCount,
   formatSizedImage,
   formatImage,
+  formatHttpUrlToHttps,
   getTrackUrl,
 } from './dataFormat'
 
@@ -46,6 +47,13 @@ describe('dataFormat utils', () => {
   })
 
   describe('formatSizedImage', () => {
+    it('should convert http image URL to https', () => {
+      const url = 'http://example.com/image.jpg'
+      expect(formatImage(url)).toBe(
+        'https://example.com/image.jpg?param=140y140'
+      )
+    })
+
     it('should append size parameter with default 140x140', () => {
       const url = 'https://example.com/image.jpg'
       expect(formatSizedImage(url)).toBe(
@@ -62,6 +70,13 @@ describe('dataFormat utils', () => {
   })
 
   describe('formatImage', () => {
+    it('should convert http image URL to https', () => {
+      const url = 'http://example.com/image.jpg'
+      expect(formatImage(url)).toBe(
+        'https://example.com/image.jpg?param=140y140'
+      )
+    })
+
     it('should append width and height parameters with defaults', () => {
       const url = 'https://example.com/image.jpg'
       expect(formatImage(url)).toBe(
@@ -80,6 +95,23 @@ describe('dataFormat utils', () => {
       const url = 'https://example.com/image.jpg'
       expect(formatImage(url, 100, 50)).toBe(
         'https://example.com/image.jpg?param=100y50'
+      )
+    })
+  })
+
+  describe('formatHttpUrlToHttps', () => {
+    it('should convert http URL to https', () => {
+      expect(formatHttpUrlToHttps('http://example.com/image.jpg')).toBe(
+        'https://example.com/image.jpg'
+      )
+    })
+
+    it('should keep non-http URLs unchanged', () => {
+      expect(formatHttpUrlToHttps('https://example.com/image.jpg')).toBe(
+        'https://example.com/image.jpg'
+      )
+      expect(formatHttpUrlToHttps('//example.com/image.jpg')).toBe(
+        '//example.com/image.jpg'
       )
     })
   })

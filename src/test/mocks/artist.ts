@@ -1,4 +1,4 @@
-import type { Artist } from '@/types/music'
+import type { Artist } from '@/types/artist'
 
 /**
  * Mock Artist data for testing

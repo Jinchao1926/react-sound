@@ -49,7 +49,9 @@ export const ArtistList: FC = () => {
                   />
                   <Flex justify="space-between" align="center" mt={8}>
                     <UserLink users={[artist]} color="#000" />
-                    <UserIcon />
+                    {artist.accountId && (
+                      <UserIcon to={routeBuilder.user(artist.accountId)} />
+                    )}
                   </Flex>
                 </Box>
                 {idx === 9 && <DashedDivider key="divider" />}

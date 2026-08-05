@@ -27,6 +27,9 @@
   "name": "情感",
   "id": 3
 },*/
+
+import { type User } from './user'
+
 /** 电台分类 */
 export interface RadioCategory {
   id: number
@@ -151,13 +154,5 @@ export interface Radio {
   shareCount: number
   likedCount: number
   commentCount: number
-  dj: {
-    userId: number
-    nickname: string
-    avatarUrl: string
-    avatarDetail?: {
-      identityLevel: number
-      identityIconUrl: string
-    }
-  }
+  dj: User
 }

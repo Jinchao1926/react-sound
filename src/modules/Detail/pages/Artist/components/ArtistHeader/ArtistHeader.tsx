@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async'
 
 import { Box, Flex, Image } from '@/components/Core'
 import { artistNavigations } from '@/constants/navigation'
-import { useArtistQuery } from '@/hooks/artist/useArtistsQuery'
+import { useArtistDetailQuery } from '@/hooks/artist/useArtistDetailQuery'
 import { routeBuilder } from '@/routers'
 import { formatImage } from '@/utils/format/dataFormat'
 
@@ -20,9 +20,10 @@ import {
 } from './ArtistHeader.styles'
 
 export const ArtistHeader: FC<{ artistId: number }> = ({ artistId }) => {
-  const { data: artist } = useArtistQuery(artistId)
+  const { data } = useArtistDetailQuery(artistId)
 
-  if (!artist) return null
+  if (!data) return null
+  const { artist, user } = data.data
 
   return (
     <>
@@ -48,7 +49,7 @@ export const ArtistHeader: FC<{ artistId: number }> = ({ artistId }) => {
           />
           <ArtistCover />
           <Actions>
-            <HomepageLink to={routeBuilder.user(artist.accountId)} />
+            {user && <HomepageLink to={routeBuilder.user(user.userId)} />}
             <Favorite />
           </Actions>
         </Box>
