@@ -4,7 +4,7 @@ import { Sprite } from '../Core'
 
 export const PlayMV = styled(Sprite).attrs({
   sprite: 'icon',
-  icon: 'playMV',
+  icon: 'trackPlayMV',
   component: 'span',
   title: '播放MV',
 })`

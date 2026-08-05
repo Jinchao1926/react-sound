@@ -245,7 +245,7 @@ export const INTERNAL_SPRITE_CONFIG: InternalSpriteConfig = {
     url: icon4Img,
     icons: {
       header: { normal: '0 0', repeat: 'repeat-x' },
-      playMV: '0 -151px',
+      trackPlayMV: '0 -151px',
       play: { normal: '0 -103px', hover: '0 -128px' },
       share: { normal: '0 -195px', hover: '-20px -195px' },
       download: { normal: '-81px -174px', hover: '-104px -174px' },
