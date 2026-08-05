@@ -1,4 +1,4 @@
-import type { Album } from '@/types/music'
+import type { Album } from '@/types/artist'
 
 import { mockArtist, mockArtist2 } from './artist'
 

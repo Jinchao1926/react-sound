@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router'
 import styled from 'styled-components'
 
 import { Sprite } from '@/components/Core'
@@ -5,7 +6,7 @@ import { Sprite } from '@/components/Core'
 export const UserIcon = styled(Sprite).attrs({
   sprite: 'icon',
   icon: 'user',
-  component: 'span',
+  component: NavLink,
 })`
   display: inline-block;
   width: 17px;

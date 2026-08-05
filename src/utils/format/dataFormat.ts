@@ -21,11 +21,15 @@ export const formatPlayCount = (count: number): string | number => {
   } */
 }
 
+export const formatHttpUrlToHttps = (url: string): string => {
+  return url.startsWith('http://') ? url.replace('http://', 'https://') : url
+}
+
 export const formatSizedImage = (
   imgUrl: string,
   size: number = 140
 ): string => {
-  return `${imgUrl}?param=${size}y${size}`
+  return `${formatHttpUrlToHttps(imgUrl)}?param=${size}y${size}`
 }
 
 export const formatImage = (
@@ -33,7 +37,7 @@ export const formatImage = (
   width: number = 140,
   height: number = 140
 ): string => {
-  return `${imgUrl}?param=${width}y${height}`
+  return `${formatHttpUrlToHttps(imgUrl)}?param=${width}y${height}`
 }
 
 export const getTrackUrl = (id: number): string => {

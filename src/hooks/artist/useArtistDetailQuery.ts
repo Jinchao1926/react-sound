@@ -1,12 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { useAxios } from '@/providers/AxiosProvider'
-import { type Album } from '@/types/music'
-import { type Track } from '@/types/track'
+import { type Artist } from '@/types/artist'
+import { type User } from '@/types/user'
 
+type ArtistDetailApiArtist = Omit<Artist, 'img1v1Url' | 'picUrl'> & {
+  avatar: string
+  cover: string
+}
 interface ArtistDetailApiResponse {
-  album: Album
-  songs: Track[]
+  data: {
+    artist: ArtistDetailApiArtist
+    user?: User
+  }
   code: number
 }
 
@@ -29,7 +35,13 @@ export const useArtistDetailQuery = (id?: number) => {
           },
         }
       )
-      return { album: data.album, songs: data.songs }
+      return {
+        ...data,
+        data: {
+          ...data.data,
+          artist: normalizeArtistDetail(data.data.artist),
+        },
+      }
     },
     enabled: !!id,
     staleTime: Infinity,
@@ -37,3 +49,9 @@ export const useArtistDetailQuery = (id?: number) => {
 
   return queryResult
 }
+
+const normalizeArtistDetail = (artist: ArtistDetailApiArtist): Artist => ({
+  ...artist,
+  img1v1Url: artist.avatar,
+  picUrl: artist.cover,
+})

@@ -1,4 +1,4 @@
-import { type Artist } from './music'
+import { type Artist } from './artist'
 
 /*
 {

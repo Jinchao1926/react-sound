@@ -182,7 +182,8 @@
 }    
 */
 
-import { type Album, type Artist } from './music'
+import { type Album } from './album'
+import { type Artist } from './artist'
 
 /**
  * 付费类型 - 歌曲付费/权限状态
