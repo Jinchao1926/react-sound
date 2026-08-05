@@ -1,14 +1,14 @@
 import { renderHook, waitFor } from '@testing-library/react'
-import * as ReactRouterDom from 'react-router-dom'
+import * as ReactRouterDom from 'react-router'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import type { TopPlaylist } from '@/types/playlist'
 
 import { useSelectedToplist } from './useSelectedToplist'
 
-// Mock react-router-dom
-vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom')
+// Mock react-router
+vi.mock('react-router', async () => {
+  const actual = await vi.importActual('react-router')
   return {
     ...actual,
     useLocation: vi.fn(),

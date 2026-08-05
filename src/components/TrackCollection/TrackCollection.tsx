@@ -1,6 +1,6 @@
 import { type FC, useMemo, useState } from 'react'
 
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router'
 
 import { Box, Flex, Image, Text, TextNavLink } from '@/components/Core'
 import { MVLink, UserLink } from '@/components/Links'

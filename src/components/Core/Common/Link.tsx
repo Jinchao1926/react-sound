@@ -1,6 +1,6 @@
 import { type ComponentProps } from 'react'
 
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router'
 import styled, { css } from 'styled-components'
 
 import { Box, type Styles } from '../Layout/Box'

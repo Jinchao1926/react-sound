@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router'
 
 import disVipCardImg from '@/assets/img/dis_vip_card.webp'
 import { Box } from '@/components/Core'

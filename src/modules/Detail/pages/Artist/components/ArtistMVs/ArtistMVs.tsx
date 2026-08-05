@@ -1,6 +1,6 @@
 import { type FC, useRef, useState } from 'react'
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 import { Box, Flex, TextNavLink } from '@/components/Core'
 import { CoverImage } from '@/components/CoverImage'

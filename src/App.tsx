@@ -1,7 +1,7 @@
 import { type FC, Suspense } from 'react'
 
 import { Helmet } from 'react-helmet-async'
-import { useRoutes } from 'react-router-dom'
+import { useRoutes } from 'react-router'
 
 import { AppFooter } from '@/components/AppFooter'
 import { AppHeader } from '@/components/AppHeader'

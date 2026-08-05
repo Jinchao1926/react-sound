@@ -5,7 +5,7 @@ import { OutletLayout } from '@/components/OutletLayout'
 import { detailRoutePath } from './config'
 import { artistRoutes } from '../pages/Artist/routes'
 
-import type { RouteObject } from 'react-router-dom'
+import type { RouteObject } from 'react-router'
 
 const Song = lazy(() => import('../pages/Song'))
 const Playlist = lazy(() => import('../pages/Playlist'))

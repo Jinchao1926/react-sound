@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router'
 
 import { rootNavigations } from '@/constants/navigation'
 

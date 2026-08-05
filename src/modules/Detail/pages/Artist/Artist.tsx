@@ -1,6 +1,6 @@
 import { type FC, Suspense } from 'react'
 
-import { Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router'
 
 import { useQueryParamId } from '@/hooks/useQueryParamId'
 

@@ -1,6 +1,6 @@
 import { type FC, useMemo, useState } from 'react'
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 import { Box, Flex, Text, TextNavLink } from '@/components/Core'
 import { ExternalLink } from '@/components/Links'
