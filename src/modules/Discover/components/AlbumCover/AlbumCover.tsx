@@ -2,7 +2,7 @@ import { type FC, useMemo } from 'react'
 
 import { CoverImage } from '@/components/CoverImage'
 import { UserLink } from '@/components/Links'
-import { type Album } from '@/types/artist'
+import { type Album } from '@/types/album'
 import { formatSizedImage } from '@/utils/format/dataFormat'
 
 import {
